@@ -1,0 +1,26 @@
+From fad480d114410847763ef98fb1b99b541e3084c7 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 21 Jan 2020 11:30:00 +0200
+Subject: [PATCH 1/4] qtbase: don't use neon flags on arm64
+
+NEON is mandatatory for aarch64 and compiler does't unrecognize
+-mfpu=neon command line option.
+
+Change-Id: I36e9c40e3fd3604d4895da0526152e90b2165770
+---
+ cmake/QtCompilerOptimization.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/QtCompilerOptimization.cmake b/cmake/QtCompilerOptimization.cmake
+index f1ebafc009..1f50044a6f 100644
+--- a/cmake/QtCompilerOptimization.cmake
++++ b/cmake/QtCompilerOptimization.cmake
+@@ -62,7 +62,7 @@ if(GCC OR CLANG)
+     set(QT_CFLAGS_AVX512VBMI "-mavx512vbmi")
+     set(QT_CFLAGS_AESNI      "-maes")
+     set(QT_CFLAGS_SHANI      "-msha")
+-    if(NOT APPLE_UIKIT)
++    if(NOT APPLE_UIKIT AND NOT QT_64BIT)
+         set(QT_CFLAGS_NEON   "-mfpu=neon")
+     endif()
+     set(QT_CFLAGS_MIPS_DSP   "-mdsp")

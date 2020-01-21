@@ -1,0 +1,15 @@
+inherit cmake
+
+DEPENDS_prepend = "qtbase-native python3-native "
+
+QT6_ARCHDATADIR = "lib"
+QT6_LIBEXECDIR = "libexec"
+QT6_ARCHDATADIR_class-native = "${STAGING_EXECPREFIXDIR}/lib"
+
+EXTRA_OECMAKE += " \
+    -DQT_CMAKE_DEBUG_EXTEND_TARGET=ON \
+    -DQT_HOST_PATH=${RECIPE_SYSROOT_NATIVE}/usr/ \
+    -DPYTHON_EXECUTABLE=${RECIPE_SYSROOT_NATIVE}/usr/bin/nativepython3 \
+    -DINSTALL_ARCHDATADIR=${QT6_ARCHDATADIR} \
+    -DINSTALL_LIBEXECDIR=${QT6_LIBEXECDIR} \
+"
