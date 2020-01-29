@@ -25,6 +25,7 @@ DEPENDS = "\
 "
 
 PACKAGECONFIG_class-native ?= "gui widgets dbus"
+PACKAGECONFIG_class-nativesdk ?= "gui widgets dbus"
 PACKAGECONFIG_class-target ?= "\
     ${PACKAGECONFIG_GL} \
     ${PACKAGECONFIG_DEFAULT} \
@@ -63,6 +64,7 @@ PACKAGECONFIG[widgets] = "-DFEATURE_widgets=ON,-DFEATURE_widgets=OFF"
 PACKAGECONFIG[xcb] = "-DFEATURE_xcb=ON,-DFEATURE_xcb=OFF,libxcb libxkbcommon xcb-util-wm xcb-util-image xcb-util-keysyms xcb-util-renderutil libxext"
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
 PACKAGECONFIG[openssl] = "-DFEATURE_openssl${OPENSSL_LINKING_MODE}=ON,-DFEATURE_openssl=OFF,openssl,libssl"
+PACKAGECONFIG[sql-sqlite] = "-DFEATURE_sql_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sqlite3"
 
 EXTRA_OECMAKE += " \
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \

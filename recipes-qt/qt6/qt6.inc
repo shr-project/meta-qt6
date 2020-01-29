@@ -1,6 +1,6 @@
 PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,"
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON,-DBUILD_TESTING=OFF,"
-PACKAGECONFIG[qtquickcompiler] = "-Dqtquickcompiler=ON,-Dqtquickcompiler=OFF,qtdeclarative-native"
+#PACKAGECONFIG[qtquickcompiler] = "-Dqtquickcompiler=ON,-Dqtquickcompiler=OFF,qtdeclarative-native"
 
 # If Qt6 (qtbase) is machine specific, then everything will be,
 # because the (initial) qtbase configuration becomes part of Qt5/qmake
@@ -28,7 +28,7 @@ python __anonymous() {
 #INSANE_SKIP_${PN}-plugins += "libdir"
 #INSANE_SKIP_${PN}-examples += "libdir staticdev dev-so"
 
-PACKAGES =. "${PN}-qmldesigner ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-mkspecs ${PN}-examples "
+PACKAGES =. "${PN}-qmldesigner ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples "
 
 ALLOW_EMPTY_${PN} = "1"
 ALLOW_EMPTY_${PN}-plugins = "1"
@@ -42,106 +42,96 @@ RRECOMMENDS_${PN}_class-native = ""
 
 RRECOMMENDS_${PN}-dev = " \
     ${PN} \
-    ${PN}-mkspecs \
     ${PN}-qmldesigner \
     "
 
-OE_QMAKE_PATH_QML = "/usr/lib/qml"
-OE_QMAKE_PATH_BINS = "/usr/bin"
-OE_QMAKE_PATH_PLUGINS = "/usr/lib/plugins"
-OE_QMAKE_PATH_LIBEXECS = "/usr/libexec"
-OE_QMAKE_PATH_LIBS = "/usr/lib"
-OE_QMAKE_PATH_EXAMPLES = "/usr/examples"
-OE_QMAKE_PATH_ARCHDATA = "/usr"
-
 # extra packages
 FILES_${PN}-qmldesigner += " \
-    ${OE_QMAKE_PATH_QML}/*/designer \
-    ${OE_QMAKE_PATH_QML}/*/*/designer \
-    ${OE_QMAKE_PATH_QML}/*/*/*/designer \
+    ${QT6_INSTALL_QMLDIR}/*/designer \
+    ${QT6_INSTALL_QMLDIR}/*/*/designer \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/designer \
 "
 
 # qmlplugins 1-4 levels of subdirs qmldir + *{.so,*.qmltypes,*.qml,*.qmlc,*.js,*.jsc}
 FILES_${PN}-qmlplugins = " \
-    ${OE_QMAKE_PATH_QML}/*.qmltypes \
-    ${OE_QMAKE_PATH_QML}/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_QML}/*/qmldir \
-    ${OE_QMAKE_PATH_QML}/*/*.qmltypes \
-    ${OE_QMAKE_PATH_QML}/*/*.qml \
-    ${OE_QMAKE_PATH_QML}/*/*.qmlc \
-    ${OE_QMAKE_PATH_QML}/*/*.js \
-    ${OE_QMAKE_PATH_QML}/*/*.jsc \
-    ${OE_QMAKE_PATH_QML}/*/*.png \
-    ${OE_QMAKE_PATH_QML}/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_QML}/*/*/qmldir \
-    ${OE_QMAKE_PATH_QML}/*/*/*.qmltypes \
-    ${OE_QMAKE_PATH_QML}/*/*/*.qml \
-    ${OE_QMAKE_PATH_QML}/*/*/*.qmlc \
-    ${OE_QMAKE_PATH_QML}/*/*/*.js \
-    ${OE_QMAKE_PATH_QML}/*/*/*.jsc \
-    ${OE_QMAKE_PATH_QML}/*/*/*.png \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_QML}/*/*/*/qmldir \
-    ${OE_QMAKE_PATH_QML}/*/*/*/images \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.qmltypes \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.qml \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.qmlc \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.js \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.jsc \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.png \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.metainfo \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/qmldir \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.qmltypes \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.qml \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.qmlc \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.js \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.jsc \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*/*.png \
+    ${QT6_INSTALL_QMLDIR}/*.qmltypes \
+    ${QT6_INSTALL_QMLDIR}/*/*${SOLIBSDEV} \
+    ${QT6_INSTALL_QMLDIR}/*/qmldir \
+    ${QT6_INSTALL_QMLDIR}/*/*.qmltypes \
+    ${QT6_INSTALL_QMLDIR}/*/*.qml \
+    ${QT6_INSTALL_QMLDIR}/*/*.qmlc \
+    ${QT6_INSTALL_QMLDIR}/*/*.js \
+    ${QT6_INSTALL_QMLDIR}/*/*.jsc \
+    ${QT6_INSTALL_QMLDIR}/*/*.png \
+    ${QT6_INSTALL_QMLDIR}/*/*/*${SOLIBSDEV} \
+    ${QT6_INSTALL_QMLDIR}/*/*/qmldir \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.qmltypes \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.qml \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.qmlc \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.js \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.jsc \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.png \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*${SOLIBSDEV} \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/qmldir \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/images \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.qmltypes \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.qml \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.qmlc \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.js \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.jsc \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.png \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.metainfo \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*${SOLIBSDEV} \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/qmldir \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.qmltypes \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.qml \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.qmlc \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.js \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.jsc \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*/*.png \
 "
 
 FILES_${PN}-tools = " \
-    ${OE_QMAKE_PATH_BINS}/* \
+    ${QT6_INSTALL_BINDIR}/* \
 "
 FILES_${PN}-plugins = " \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*/*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*/*/*${SOLIBSDEV} \
-"
-FILES_${PN}-mkspecs = "\
-    ${OE_QMAKE_PATH_ARCHDATA}/mkspecs \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*${SOLIBSDEV} \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*/*${SOLIBSDEV} \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*/*/*${SOLIBSDEV} \
 "
 
 # modifications to normal packages
 FILES_${PN} += " \
-    ${OE_QMAKE_PATH_LIBS}/lib*${SOLIBS} \
-    ${OE_QMAKE_PATH_LIBEXECS} \
+    ${QT6_INSTALL_LIBDIR}/lib*${SOLIBS} \
+    ${QT6_INSTALL_LIBEXECDIR} \
 "
 FILES_${PN}-dev += " \
-    ${OE_QMAKE_PATH_LIBS}/lib*${SOLIBSDEV} \
-    ${OE_QMAKE_PATH_LIBS}/pkgconfig \
-    ${OE_QMAKE_PATH_LIBS}/cmake/* \
-    ${OE_QMAKE_PATH_LIBS}/*.prl \
-    ${OE_QMAKE_PATH_LIBS}/*.la \
-    ${OE_QMAKE_PATH_HEADERS}/* \
-    /usr/modules \
-    /usr/doc \
+    ${QT6_INSTALL_LIBDIR}/lib*${SOLIBSDEV} \
+    ${QT6_INSTALL_LIBDIR}/pkgconfig \
+    ${QT6_INSTALL_LIBDIR}/cmake/* \
+    ${QT6_INSTALL_LIBDIR}/*.prl \
+    ${QT6_INSTALL_LIBDIR}/*.la \
+    ${QT6_INSTALL_INCLUDEDIR}/* \
+    ${QT6_INSTALL_DESCRIPTIONSDIR}/* \
+    ${QT6_INSTALL_DOCDIR} \
+    ${prefix}/mkspecs \
+    ${QT6_INSTALL_DATADIR}/mkspecs \
 "
 FILES_${PN}-staticdev += " \
-    ${OE_QMAKE_PATH_LIBS}/*.a \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*.a \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*.prl \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*/*.a \
-    ${OE_QMAKE_PATH_PLUGINS}/*/*/*.prl \
-    ${OE_QMAKE_PATH_QML}/*/*.a \
-    ${OE_QMAKE_PATH_QML}/*/*.prl \
-    ${OE_QMAKE_PATH_QML}/*/*/*.a \
-    ${OE_QMAKE_PATH_QML}/*/*/*.prl \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.a \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*.prl \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.a \
-    ${OE_QMAKE_PATH_QML}/*/*/*/*/*.prl \
+    ${QT6_INSTALL_LIBDIR}/*.a \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*.a \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*.prl \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*/*.a \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*/*.prl \
+    ${QT6_INSTALL_QMLDIR}/*/*.a \
+    ${QT6_INSTALL_QMLDIR}/*/*.prl \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.a \
+    ${QT6_INSTALL_QMLDIR}/*/*/*.prl \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.a \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*.prl \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.a \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.prl \
 "
 FILES_${PN}-examples = " \
-    ${OE_QMAKE_PATH_EXAMPLES} \
+    ${QT6_INSTALL_EXAMPLESDIR} \
 "
