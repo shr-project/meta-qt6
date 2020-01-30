@@ -1,7 +1,7 @@
-From ce2df20d68d32cecca12a3a4e65667624e3fdab8 Mon Sep 17 00:00:00 2001
+From dc8d5028d50534e2339ea3fd371a0bd7d89cc1f9 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Thu, 23 Jan 2020 15:56:43 +0200
-Subject: [PATCH 4/4] Add additional include path for DRM
+Subject: [PATCH 3/4] Add additional include path for DRM
 
 Tegra has drm.h header in include/drm instead of include/libdrm
 

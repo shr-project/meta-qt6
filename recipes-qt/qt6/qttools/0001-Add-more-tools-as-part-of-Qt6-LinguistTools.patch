@@ -1,0 +1,89 @@
+From 946de80d16b66bfdf96c497d94e5e019a9c11f27 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Thu, 30 Jan 2020 10:57:10 +0200
+Subject: [PATCH] Add more tools as part of Qt6::LinguistTools
+
+Needed for cross-compiling
+
+Change-Id: Id92b1f99b4af2f8ec290a6f642567d8afc93f491
+---
+ src/assistant/qcollectiongenerator/CMakeLists.txt | 1 +
+ src/assistant/qhelpgenerator/CMakeLists.txt       | 1 +
+ src/linguist/lprodump/CMakeLists.txt              | 1 +
+ src/linguist/lrelease-pro/CMakeLists.txt          | 1 +
+ src/linguist/lupdate-pro/CMakeLists.txt           | 1 +
+ src/qtattributionsscanner/CMakeLists.txt          | 1 +
+ 6 files changed, 6 insertions(+)
+
+diff --git a/src/assistant/qcollectiongenerator/CMakeLists.txt b/src/assistant/qcollectiongenerator/CMakeLists.txt
+index ba927bd7..96981b97 100644
+--- a/src/assistant/qcollectiongenerator/CMakeLists.txt
++++ b/src/assistant/qcollectiongenerator/CMakeLists.txt
+@@ -5,6 +5,7 @@
+ #####################################################################
+ 
+ qt_add_tool(qcollectiongenerator
++    TOOLS_TARGET Linguist # special case
+     SOURCES
+         main.c
+     PUBLIC_LIBRARIES
+diff --git a/src/assistant/qhelpgenerator/CMakeLists.txt b/src/assistant/qhelpgenerator/CMakeLists.txt
+index 564edd5e..793e47e6 100644
+--- a/src/assistant/qhelpgenerator/CMakeLists.txt
++++ b/src/assistant/qhelpgenerator/CMakeLists.txt
+@@ -5,6 +5,7 @@
+ #####################################################################
+ 
+ qt_add_tool(qhelpgenerator
++    TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/collectionconfiguration.cpp ../shared/collectionconfiguration.h
+         collectionconfigreader.cpp collectionconfigreader.h
+diff --git a/src/linguist/lprodump/CMakeLists.txt b/src/linguist/lprodump/CMakeLists.txt
+index 2fb6df7f..350b4593 100644
+--- a/src/linguist/lprodump/CMakeLists.txt
++++ b/src/linguist/lprodump/CMakeLists.txt
+@@ -5,6 +5,7 @@
+ #####################################################################
+ 
+ qt_add_tool(lprodump
++    TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/ioutils.cpp ../shared/ioutils.h
+         ../shared/profileevaluator.cpp ../shared/profileevaluator.h
+diff --git a/src/linguist/lrelease-pro/CMakeLists.txt b/src/linguist/lrelease-pro/CMakeLists.txt
+index c1961603..84db24fb 100644
+--- a/src/linguist/lrelease-pro/CMakeLists.txt
++++ b/src/linguist/lrelease-pro/CMakeLists.txt
+@@ -5,6 +5,7 @@
+ #####################################################################
+ 
+ qt_add_tool(lrelease-pro
++    TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/runqttool.cpp ../shared/runqttool.h
+         main.cpp
+diff --git a/src/linguist/lupdate-pro/CMakeLists.txt b/src/linguist/lupdate-pro/CMakeLists.txt
+index 07f7af6f..c366a2d6 100644
+--- a/src/linguist/lupdate-pro/CMakeLists.txt
++++ b/src/linguist/lupdate-pro/CMakeLists.txt
+@@ -5,6 +5,7 @@
+ #####################################################################
+ 
+ qt_add_tool(lupdate-pro
++    TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/runqttool.cpp ../shared/runqttool.h
+         main.cpp
+diff --git a/src/qtattributionsscanner/CMakeLists.txt b/src/qtattributionsscanner/CMakeLists.txt
+index a7e7694e..e65e5068 100644
+--- a/src/qtattributionsscanner/CMakeLists.txt
++++ b/src/qtattributionsscanner/CMakeLists.txt
+@@ -5,6 +5,7 @@
+ #####################################################################
+ 
+ qt_add_tool(qtattributionsscanner
++    TOOLS_TARGET Linguist # special case
+     SOURCES
+         jsongenerator.cpp jsongenerator.h
+         logging.h

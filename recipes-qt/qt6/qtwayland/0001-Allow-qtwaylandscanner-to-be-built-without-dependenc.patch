@@ -1,0 +1,23 @@
+From 8ff1b137523ea82c7e73e7eded90035a74c75702 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Wed, 29 Jan 2020 12:39:09 +0200
+Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
+
+Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
+---
+ src/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 62c1adbe..87abb5ac 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -3,7 +3,7 @@
+ qt_find_package(WaylandScanner PROVIDED_TARGETS Wayland::Scanner)
+ qt_find_package(Wayland)
+ 
+-if (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND)
++if ((QT_FEATURE_wayland_server OR QT_FEATURE_wayland_client) AND (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND))
+     message(WARNING "QtWayland is missing required dependencies, nothing will be built. \
+ Although this could be considered an error, the configuration will still pass as coin (Qt's \
+ continuous integration system) will fail the build if configure fails, but will still try to \

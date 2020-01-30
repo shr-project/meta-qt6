@@ -16,7 +16,7 @@ include recipes-qt/qt6/qt6-git.inc
 SRC_URI += "\
     file://0001-qtbase-don-t-use-neon-flags-on-arm64.patch \
     file://0002-qtbase-use-syncqt.pl-from-QT_HOST_PATH.patch \
-    file://0004-Add-additional-include-path-for-DRM.patch \
+    file://0003-Add-additional-include-path-for-DRM.patch \
 "
 
 DEPENDS = "\
@@ -27,7 +27,6 @@ DEPENDS = "\
 PACKAGECONFIG_class-native ?= "gui widgets dbus"
 PACKAGECONFIG_class-nativesdk ?= "gui widgets dbus"
 PACKAGECONFIG_class-target ?= "\
-    ${PACKAGECONFIG_GL} \
     ${PACKAGECONFIG_DEFAULT} \
     ${PACKAGECONFIG_GL} \
     ${PACKAGECONFIG_FB} \
@@ -39,14 +38,14 @@ PACKAGECONFIG_class-target ?= "\
 "
 
 PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'opengl', \
-                        bb.utils.contains('DISTRO_FEATURES',     'opengl', 'eglfs gles2', '', d), d)}"
+                        bb.utils.contains('DISTRO_FEATURES', 'opengl', 'eglfs gles2', '', d), d)}"
 PACKAGECONFIG_FB ?= "${@bb.utils.contains('DISTRO_FEATURES', 'directfb', 'directfb', '', d)}"
 PACKAGECONFIG_X11 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb xcb-xinput glib xkb xkbcommon', '', d)}"
 PACKAGECONFIG_KDE ?= "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'sm cups fontconfig kms gbm libinput sql-sqlite openssl', '', d)}"
 PACKAGECONFIG_FONTS ?= ""
 PACKAGECONFIG_SYSTEM ?= "jpeg libpng zlib dbus"
 PACKAGECONFIG_DISTRO ?= ""
-PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev evdev gui widgets tools libs icu openssl \
+PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev evdev gui widgets tools libs icu openssl  \
     ${@bb.utils.contains('SELECTED_OPTIMIZATION', '-Os', 'optimize-size ltcg', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'qt5-static', 'static', '', d)} \
 "
@@ -65,6 +64,7 @@ PACKAGECONFIG[xcb] = "-DFEATURE_xcb=ON,-DFEATURE_xcb=OFF,libxcb libxkbcommon xcb
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
 PACKAGECONFIG[openssl] = "-DFEATURE_openssl${OPENSSL_LINKING_MODE}=ON,-DFEATURE_openssl=OFF,openssl,libssl"
 PACKAGECONFIG[sql-sqlite] = "-DFEATURE_sql_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sqlite3"
+PACKAGECONFIG[accessibility] = "-DFEATURE_accessibility=ON,-DFEATURE_accessibility=OFF,at-spi2-atk"
 
 EXTRA_OECMAKE += " \
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
@@ -73,8 +73,12 @@ EXTRA_OECMAKE += " \
 SYSROOT_DIRS += "${exec_prefix}/mkspecs"
 
 do_install_append() {
-    # remove QT_SOURCE_TREE path pointing to the build directory
-    sed -i -e '/QT_SOURCE_TREE/,+2d' ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake
+    sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
+        -e '/QT_SOURCE_TREE/,+2d' \
+        -e '/CMAKE_INSTALL_PREFIX/,+2d'
+
+    # confligs with qttools module cmake files
+    rm -rf ${D}${libdir}/cmake/Qt6Tools
 }
 
 BBCLASSEXTEND =+ "native nativesdk"

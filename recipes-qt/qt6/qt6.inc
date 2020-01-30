@@ -1,5 +1,6 @@
 PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,"
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON,-DBUILD_TESTING=OFF,"
+PACKAGECONFIG[translations] = ",,qttranslations,,qttranslations-${BPN}"
 #PACKAGECONFIG[qtquickcompiler] = "-Dqtquickcompiler=ON,-Dqtquickcompiler=OFF,qtdeclarative-native"
 
 # If Qt6 (qtbase) is machine specific, then everything will be,
@@ -105,17 +106,19 @@ FILES_${PN} += " \
     ${QT6_INSTALL_LIBDIR}/lib*${SOLIBS} \
     ${QT6_INSTALL_LIBEXECDIR} \
 "
+# Note: Not all mkspecs are in [INSTALL_DATADIR]/mkspecs
 FILES_${PN}-dev += " \
     ${QT6_INSTALL_LIBDIR}/lib*${SOLIBSDEV} \
     ${QT6_INSTALL_LIBDIR}/pkgconfig \
     ${QT6_INSTALL_LIBDIR}/cmake/* \
     ${QT6_INSTALL_LIBDIR}/*.prl \
     ${QT6_INSTALL_LIBDIR}/*.la \
+    ${QT6_INSTALL_LIBDIR}/metatypes \
     ${QT6_INSTALL_INCLUDEDIR}/* \
     ${QT6_INSTALL_DESCRIPTIONSDIR}/* \
     ${QT6_INSTALL_DOCDIR} \
-    ${prefix}/mkspecs \
     ${QT6_INSTALL_DATADIR}/mkspecs \
+    ${prefix}/mkspecs \
 "
 FILES_${PN}-staticdev += " \
     ${QT6_INSTALL_LIBDIR}/*.a \
@@ -132,6 +135,9 @@ FILES_${PN}-staticdev += " \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.a \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.prl \
 "
+
+# Note: INSTALL_EXAMPLESDIR is not used
 FILES_${PN}-examples = " \
     ${QT6_INSTALL_EXAMPLESDIR} \
+    ${prefix}/examples \
 "

@@ -1,4 +1,4 @@
-From 10371ea77a78d9cee13b5adfda8b855432bf2647 Mon Sep 17 00:00:00 2001
+From d675fd3aba34d4870fa565c94a2208659f818f35 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Tue, 21 Jan 2020 12:45:38 +0200
 Subject: [PATCH 2/4] qtbase: use syncqt.pl from QT_HOST_PATH
@@ -13,7 +13,7 @@ Change-Id: I165b17a5a02fd4dbb2340bf69a641b8aaab8fabd
  1 file changed, 6 insertions(+)
 
 diff --git a/cmake/QtBuild.cmake b/cmake/QtBuild.cmake
-index 738f38fbd1..e4bb6f0e40 100644
+index 738f38fbd1..d7014c3ed0 100644
 --- a/cmake/QtBuild.cmake
 +++ b/cmake/QtBuild.cmake
 @@ -777,6 +777,12 @@ function(qt_ensure_sync_qt)
