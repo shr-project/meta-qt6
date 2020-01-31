@@ -70,7 +70,7 @@ EXTRA_OECMAKE += " \
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
 "
 
-SYSROOT_DIRS += "${exec_prefix}/mkspecs"
+SYSROOT_DIRS += "${prefix}/mkspecs"
 
 do_install_append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
@@ -80,6 +80,10 @@ do_install_append() {
     # confligs with qttools module cmake files
     rm -rf ${D}${libdir}/cmake/Qt6Tools
 }
+
+FILES_${PN}-tools += "\
+    ${QT6_INSTALL_LIBEXECDIR}/syncqt.pl \
+"
 
 BBCLASSEXTEND =+ "native nativesdk"
 

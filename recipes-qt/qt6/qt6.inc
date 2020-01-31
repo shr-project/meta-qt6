@@ -25,11 +25,9 @@ python __anonymous() {
 
 # Many examples come with libraries installed outside of standard libdir,
 # suppress QA check complaining
-#INSANE_SKIP_${PN}-dbg += "libdir"
-#INSANE_SKIP_${PN}-plugins += "libdir"
 #INSANE_SKIP_${PN}-examples += "libdir staticdev dev-so"
 
-PACKAGES =. "${PN}-qmldesigner ${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples "
+PACKAGES =. "${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples "
 
 ALLOW_EMPTY_${PN} = "1"
 ALLOW_EMPTY_${PN}-plugins = "1"
@@ -38,88 +36,50 @@ ALLOW_EMPTY_${PN}-qmlplugins = "1"
 RRECOMMENDS_${PN} = " \
     ${PN}-plugins \
     ${PN}-qmlplugins \
-    "
+"
 RRECOMMENDS_${PN}_class-native = ""
 
-RRECOMMENDS_${PN}-dev = " \
-    ${PN} \
-    ${PN}-qmldesigner \
-    "
-
-# extra packages
-FILES_${PN}-qmldesigner += " \
-    ${QT6_INSTALL_QMLDIR}/*/designer \
-    ${QT6_INSTALL_QMLDIR}/*/*/designer \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/designer \
+RRECOMMENDS_${PN}-dev += " \
+    ${PN}-staticdev \
 "
 
-# qmlplugins 1-4 levels of subdirs qmldir + *{.so,*.qmltypes,*.qml,*.qmlc,*.js,*.jsc}
 FILES_${PN}-qmlplugins = " \
-    ${QT6_INSTALL_QMLDIR}/*.qmltypes \
-    ${QT6_INSTALL_QMLDIR}/*/*${SOLIBSDEV} \
-    ${QT6_INSTALL_QMLDIR}/*/qmldir \
-    ${QT6_INSTALL_QMLDIR}/*/*.qmltypes \
-    ${QT6_INSTALL_QMLDIR}/*/*.qml \
-    ${QT6_INSTALL_QMLDIR}/*/*.qmlc \
-    ${QT6_INSTALL_QMLDIR}/*/*.js \
-    ${QT6_INSTALL_QMLDIR}/*/*.jsc \
-    ${QT6_INSTALL_QMLDIR}/*/*.png \
-    ${QT6_INSTALL_QMLDIR}/*/*/*${SOLIBSDEV} \
-    ${QT6_INSTALL_QMLDIR}/*/*/qmldir \
-    ${QT6_INSTALL_QMLDIR}/*/*/*.qmltypes \
-    ${QT6_INSTALL_QMLDIR}/*/*/*.qml \
-    ${QT6_INSTALL_QMLDIR}/*/*/*.qmlc \
-    ${QT6_INSTALL_QMLDIR}/*/*/*.js \
-    ${QT6_INSTALL_QMLDIR}/*/*/*.jsc \
-    ${QT6_INSTALL_QMLDIR}/*/*/*.png \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*${SOLIBSDEV} \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/qmldir \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/images \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.qmltypes \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.qml \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.qmlc \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.js \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.jsc \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.png \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*.metainfo \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*${SOLIBSDEV} \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/qmldir \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.qmltypes \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.qml \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.qmlc \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.js \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.jsc \
-    ${QT6_INSTALL_QMLDIR}/*/*/*/*/*/*.png \
+    ${QT6_INSTALL_QMLDIR} \
 "
 
 FILES_${PN}-tools = " \
-    ${QT6_INSTALL_BINDIR}/* \
+    ${QT6_INSTALL_BINDIR} \
 "
+
 FILES_${PN}-plugins = " \
     ${QT6_INSTALL_PLUGINSDIR}/*/*${SOLIBSDEV} \
     ${QT6_INSTALL_PLUGINSDIR}/*/*/*${SOLIBSDEV} \
     ${QT6_INSTALL_PLUGINSDIR}/*/*/*/*${SOLIBSDEV} \
 "
 
-# modifications to normal packages
 FILES_${PN} += " \
     ${QT6_INSTALL_LIBDIR}/lib*${SOLIBS} \
     ${QT6_INSTALL_LIBEXECDIR} \
 "
+
 # Note: Not all mkspecs are in [INSTALL_DATADIR]/mkspecs
 FILES_${PN}-dev += " \
+    ${QT6_INSTALL_DATADIR}/mkspecs \
+    ${QT6_INSTALL_DESCRIPTIONSDIR} \
+    ${QT6_INSTALL_DOCDIR} \
+    ${QT6_INSTALL_INCLUDEDIR} \
     ${QT6_INSTALL_LIBDIR}/lib*${SOLIBSDEV} \
-    ${QT6_INSTALL_LIBDIR}/pkgconfig \
-    ${QT6_INSTALL_LIBDIR}/cmake/* \
     ${QT6_INSTALL_LIBDIR}/*.prl \
     ${QT6_INSTALL_LIBDIR}/*.la \
+    ${QT6_INSTALL_LIBDIR}/cmake \
     ${QT6_INSTALL_LIBDIR}/metatypes \
-    ${QT6_INSTALL_INCLUDEDIR}/* \
-    ${QT6_INSTALL_DESCRIPTIONSDIR}/* \
-    ${QT6_INSTALL_DOCDIR} \
-    ${QT6_INSTALL_DATADIR}/mkspecs \
+    ${QT6_INSTALL_LIBDIR}/pkgconfig \
+    ${QT6_INSTALL_QMLDIR}/*/designer \
+    ${QT6_INSTALL_QMLDIR}/*/*/designer \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/designer \
     ${prefix}/mkspecs \
 "
+
 FILES_${PN}-staticdev += " \
     ${QT6_INSTALL_LIBDIR}/*.a \
     ${QT6_INSTALL_PLUGINSDIR}/*/*.a \
