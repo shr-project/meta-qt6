@@ -5,7 +5,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.GPL3;md5=d32239bcb673463ab874e80d47fae504 \
     file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
     file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
-    file://LICENSE.QT-LICENSE-AGREEMENT-4.0;md5=948f8877345cd66106f11031977a4625 \
+    file://LICENSE.QT-LICENSE-AGREEMENT;md5=c8b6dd132d52c6e5a545df07a4e3e283 \
 "
 
 inherit qt6-cmake
@@ -14,9 +14,7 @@ include recipes-qt/qt6/qt6.inc
 include recipes-qt/qt6/qt6-git.inc
 
 SRC_URI += "\
-    file://0001-qtbase-don-t-use-neon-flags-on-arm64.patch \
-    file://0002-qtbase-use-syncqt.pl-from-QT_HOST_PATH.patch \
-    file://0003-Add-additional-include-path-for-DRM.patch \
+    file://0001-Add-additional-include-path-for-DRM.patch \
 "
 
 DEPENDS = "\
@@ -38,7 +36,7 @@ PACKAGECONFIG_class-target ?= "\
 "
 
 PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11 opengl', 'opengl', \
-                        bb.utils.contains('DISTRO_FEATURES', 'opengl', 'eglfs gles2', '', d), d)}"
+                        bb.utils.contains('DISTRO_FEATURES', 'opengl', 'gles2', '', d), d)}"
 PACKAGECONFIG_FB ?= "${@bb.utils.contains('DISTRO_FEATURES', 'directfb', 'directfb', '', d)}"
 PACKAGECONFIG_X11 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb xcb-xinput glib xkb xkbcommon', '', d)}"
 PACKAGECONFIG_KDE ?= "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'sm cups fontconfig kms gbm libinput sql-sqlite openssl', '', d)}"
@@ -62,7 +60,7 @@ PACKAGECONFIG[icu] = "-DFEATURE_icu=ON,-DFEATURE_icu=OFF,icu"
 PACKAGECONFIG[widgets] = "-DFEATURE_widgets=ON,-DFEATURE_widgets=OFF"
 PACKAGECONFIG[xcb] = "-DFEATURE_xcb=ON,-DFEATURE_xcb=OFF,libxcb libxkbcommon xcb-util-wm xcb-util-image xcb-util-keysyms xcb-util-renderutil libxext"
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
-PACKAGECONFIG[openssl] = "-DFEATURE_openssl${OPENSSL_LINKING_MODE}=ON,-DFEATURE_openssl=OFF,openssl,libssl"
+PACKAGECONFIG[openssl] = "-DFEATURE_openssl_${OPENSSL_LINKING_MODE}=ON,-DFEATURE_openssl=OFF,openssl,libssl"
 PACKAGECONFIG[sql-sqlite] = "-DFEATURE_sql_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sqlite3"
 PACKAGECONFIG[accessibility] = "-DFEATURE_accessibility=ON,-DFEATURE_accessibility=OFF,at-spi2-atk"
 
@@ -87,4 +85,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "b29cb7889ac5b3a7b4b515971f462f65b7db7ec4"
+SRCREV = "0f8039140c9e32cb1643eabd4539c53f0e5c1482"

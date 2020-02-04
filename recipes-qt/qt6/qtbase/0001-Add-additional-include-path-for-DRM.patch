@@ -1,7 +1,7 @@
-From dc8d5028d50534e2339ea3fd371a0bd7d89cc1f9 Mon Sep 17 00:00:00 2001
+From 452dd3af319d06c09a79b9eedec3bd414243a41e Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Thu, 23 Jan 2020 15:56:43 +0200
-Subject: [PATCH 3/4] Add additional include path for DRM
+Subject: [PATCH] Add additional include path for DRM
 
 Tegra has drm.h header in include/drm instead of include/libdrm
 
@@ -10,22 +10,26 @@ cmake file searches only for xf86drm.h.
 
 Change-Id: If1e979c7d5aec520b18eed5b3fcbb5ac2e15cc62
 ---
- cmake/3rdparty/kwin/FindLibdrm.cmake | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ cmake/3rdparty/kwin/FindLibdrm.cmake | 8 +++++++-
+ 1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/cmake/3rdparty/kwin/FindLibdrm.cmake b/cmake/3rdparty/kwin/FindLibdrm.cmake
-index 9936e07eee..112a2ae358 100644
+index 9936e07eee..10822e693a 100644
 --- a/cmake/3rdparty/kwin/FindLibdrm.cmake
 +++ b/cmake/3rdparty/kwin/FindLibdrm.cmake
-@@ -104,6 +104,7 @@ if(NOT WIN32)
-             INTERFACE_COMPILE_OPTIONS "${Libdrm_DEFINITIONS}"
+@@ -105,13 +105,19 @@ if(NOT WIN32)
              INTERFACE_INCLUDE_DIRECTORIES "${Libdrm_INCLUDE_DIR}"
              INTERFACE_INCLUDE_DIRECTORIES "${Libdrm_INCLUDE_DIR}/libdrm"
-+            INTERFACE_INCLUDE_DIRECTORIES "${Libdrm_INCLUDE_DIR}/drm"
          )
++        if(EXISTS "${Libdrm_INCLUDE_DIR}/drm")
++            set_property(TARGET Libdrm::Libdrm APPEND PROPERTY
++                INTERFACE_INCLUDE_DIRECTORIES "${Libdrm_INCLUDE_DIR}/drm"
++            )
++        endif()
++
      endif()
  
-@@ -111,7 +112,7 @@ if(NOT WIN32)
+     mark_as_advanced(Libdrm_LIBRARY Libdrm_INCLUDE_DIR)
  
      # compatibility variables
      set(Libdrm_LIBRARIES ${Libdrm_LIBRARY})
