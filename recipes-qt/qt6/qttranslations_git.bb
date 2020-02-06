@@ -14,14 +14,10 @@ DEPENDS += "qttools-native"
 
 PACKAGES_DYNAMIC = "${PN}-*"
 
-SRC_URI += "\
-    file://0001-Follow-INSTALL_TRANSLATIONSDIR-for-installations.patch \
-"
-
 python populate_packages_prepend () {
     do_split_packages(d, d.expand('${QT6_INSTALL_TRANSLATIONSDIR}'),
                       r'^(.*?)(?:_..)+\.qm$', d.expand('${PN}-%s'),
                       'Qt translations for %s', extra_depends='')
 }
 
-SRCREV = "7991a2b2b2fa1d54e2c582d1490e91614664fe84"
+SRCREV = "0bb1c706b2164654cb050d2e47d0180b17ac2bce"

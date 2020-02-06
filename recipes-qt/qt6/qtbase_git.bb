@@ -13,10 +13,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6.inc
 include recipes-qt/qt6/qt6-git.inc
 
-SRC_URI += "\
-    file://0001-Add-additional-include-path-for-DRM.patch \
-"
-
 DEPENDS = "\
     pcre2 \
     freetype \
@@ -89,4 +85,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "0f8039140c9e32cb1643eabd4539c53f0e5c1482"
+SRCREV = "225113d59bae389d004fac8e73e7b8cec0bcc4ea"
