@@ -16,8 +16,12 @@ SRC_URI += "\
     file://0001-Use-correct-default-install-dir-for-qml-files.patch \
 "
 
+PACKAGECONFIG ?= "translations"
+PACKAGECONFIG_class-native ?= ""
+PACKAGECONFIG_class-nativesdk ?= ""
+
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "8ee679b50f20dc9f74af6ecec5492880c5b8b92e"
+SRCREV = "3e0edc61cf4d2e0a613ed971f42a96120b094ecc"

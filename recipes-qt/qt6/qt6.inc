@@ -1,7 +1,7 @@
 PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,"
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON,-DBUILD_TESTING=OFF,"
-PACKAGECONFIG[translations] = ",,qttranslations,,qttranslations-${BPN}"
-#PACKAGECONFIG[qtquickcompiler] = "-Dqtquickcompiler=ON,-Dqtquickcompiler=OFF,qtdeclarative-native"
+PACKAGECONFIG[qtquickcompiler] = "-DFEATURE_qtquickcompiler=ON,-DFEATURE_qtquickcompiler=OFF"
+PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 # If Qt6 (qtbase) is machine specific, then everything will be,
 # because the (initial) qtbase configuration becomes part of Qt5/qmake
@@ -13,14 +13,6 @@ python __anonymous() {
         tarch = d.getVar("QT_PACKAGES_ARCH", True) or ''
         if tarch:
             d.setVar("PACKAGE_ARCH", tarch)
-}
-
-# if building static Qt5, add qtdeclarative-native dependency to all recipes
-# that depend on qtdeclarative as it's required for qmlimportscannertool
-python __anonymous() {
-    if bb.utils.contains('DISTRO_FEATURES', "qt5-static", True, False, d):
-        if bb.utils.contains('DEPENDS', "qtdeclarative", True, False, d):
-            d.appendVar("DEPENDS", " qtdeclarative-native")
 }
 
 # Many examples come with libraries installed outside of standard libdir,

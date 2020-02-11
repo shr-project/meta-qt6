@@ -10,10 +10,10 @@ LIC_FILES_CHKSUM = " \
 inherit qt6-cmake
 inherit features_check
 
+REQUIRED_DISTRO_FEATURES = "x11"
+
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
-
-REQUIRED_DISTRO_FEATURES = "x11"
 
 DEPENDS += "qtbase"
 
