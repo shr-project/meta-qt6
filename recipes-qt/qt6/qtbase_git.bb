@@ -22,8 +22,7 @@ PACKAGECONFIG_class-native ?= "gui widgets dbus"
 PACKAGECONFIG_class-nativesdk ?= "gui widgets dbus"
 PACKAGECONFIG_class-target ?= "\
     ${PACKAGECONFIG_DEFAULT} \
-    ${PACKAGECONFIG_GL} \
-    ${PACKAGECONFIG_FB} \
+    ${PACKAGECONFIG_GRAPHICS} \
     ${PACKAGECONFIG_X11} \
     ${PACKAGECONFIG_KDE} \
     ${PACKAGECONFIG_FONTS} \
@@ -31,11 +30,14 @@ PACKAGECONFIG_class-target ?= "\
     ${PACKAGECONFIG_DISTRO} \
 "
 
-PACKAGECONFIG_GL ?= "${@bb.utils.contains('DISTRO_FEATURES', 'opengl', \
-                        bb.utils.contains('DISTRO_FEATURES', 'x11', 'opengl', 'gles2', d), '', d)}"
-PACKAGECONFIG_FB ?= "${@bb.utils.contains('DISTRO_FEATURES', 'directfb', 'directfb', '', d)}"
+PACKAGECONFIG_GRAPHICS ?= "\
+    ${@bb.utils.filter('DISTRO_FEATURES', 'vulkan', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', \
+        bb.utils.contains('DISTRO_FEATURES', 'x11', 'opengl', 'gles2', d), '', d)} \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'directfb', 'directfb', '', d)} \
+"
 PACKAGECONFIG_X11 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb xkbcommon glib', '', d)}"
-PACKAGECONFIG_KDE ?= "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'sm cups kms gbm libinput sql-sqlite', '', d)}"
+PACKAGECONFIG_KDE ?= "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'sm cups kms gbm sql-sqlite', '', d)}"
 PACKAGECONFIG_FONTS ?= ""
 PACKAGECONFIG_SYSTEM ?= ""
 PACKAGECONFIG_DISTRO ?= ""
