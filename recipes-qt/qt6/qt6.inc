@@ -17,7 +17,8 @@ python __anonymous() {
 
 # Many examples come with libraries installed outside of standard libdir,
 # suppress QA check complaining
-#INSANE_SKIP_${PN}-examples += "libdir staticdev dev-so"
+INSANE_SKIP_${PN}-dbg += "libdir"
+INSANE_SKIP_${PN}-examples += "libdir"
 
 PACKAGES =. "${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples "
 
