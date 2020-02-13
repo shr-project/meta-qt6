@@ -12,6 +12,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-DEPENDS += "qtbase qtdeclarative qtdeclarative-native qtwebsockets"
+DEPENDS += "qtbase qtdeclarative qtwebsockets"
 
 SRCREV = "3c3d168487b10e7e4d7c06df5a28df9d4220b6de"

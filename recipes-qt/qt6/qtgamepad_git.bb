@@ -9,7 +9,7 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-DEPENDS += "qtbase qtdeclarative qtdeclarative-native qtquickcontrols2"
+DEPENDS += "qtbase qtdeclarative qtquickcontrols2"
 
 #PACKAGECONFIG ??= "sdl2"
 PACKAGECONFIG[sdl2] = "-DFEATURE_sdl2=ON,-DFEATURE_sdl2=OFF,libsdl2"

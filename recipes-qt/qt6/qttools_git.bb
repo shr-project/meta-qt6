@@ -12,7 +12,7 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-DEPENDS += "qtbase qtdeclarative qtdeclarative-native qttools-native"
+DEPENDS += "qtbase qtdeclarative qttools-native"
 
 SRC_URI += "\
     file://0001-Add-more-tools-as-part-of-Qt6-LinguistTools.patch \
