@@ -31,6 +31,8 @@ QT6_INSTALL_EXAMPLESDIR = "${datadir}/examples"
 QT6_INSTALL_TESTSDIR = "${datadir}/tests"
 # Module description files directory [DATADIR/modules]
 QT6_INSTALL_DESCRIPTIONSDIR = "${datadir}/modules"
+# Mkspecs files [PREFIX/mkspecs]
+QT6_INSTALL_MKSPECSDIR = "${datadir}/mkspecs"
 
 EXTRA_OECMAKE += "\
     -DQT_CMAKE_DEBUG_EXTEND_TARGET=ON \
@@ -52,4 +54,5 @@ EXTRA_OECMAKE += "\
     -DINSTALL_SYSCONFDIR:PATH=${@os.path.relpath(d.getVar('QT6_INSTALL_SYSCONFDIR'), d.getVar('prefix') + '/')} \
     -DINSTALL_TESTSDIR:PATH=${@os.path.relpath(d.getVar('QT6_INSTALL_TESTSDIR'), d.getVar('prefix') + '/')} \
     -DINSTALL_TRANSLATIONSDIR:PATH=${@os.path.relpath(d.getVar('QT6_INSTALL_TRANSLATIONSDIR'), d.getVar('prefix') + '/')} \
+    -DINSTALL_MKSPECSDIR:PATH=${@os.path.relpath(d.getVar('QT6_INSTALL_MKSPECSDIR'), d.getVar('prefix') + '/')} \
 "

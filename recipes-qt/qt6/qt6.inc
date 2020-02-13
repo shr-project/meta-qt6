@@ -55,9 +55,7 @@ FILES_${PN} += " \
     ${QT6_INSTALL_LIBEXECDIR} \
 "
 
-# Note: Not all mkspecs are in [INSTALL_DATADIR]/mkspecs
 FILES_${PN}-dev += " \
-    ${QT6_INSTALL_DATADIR}/mkspecs \
     ${QT6_INSTALL_DESCRIPTIONSDIR} \
     ${QT6_INSTALL_DOCDIR} \
     ${QT6_INSTALL_INCLUDEDIR} \
@@ -67,10 +65,10 @@ FILES_${PN}-dev += " \
     ${QT6_INSTALL_LIBDIR}/cmake \
     ${QT6_INSTALL_LIBDIR}/metatypes \
     ${QT6_INSTALL_LIBDIR}/pkgconfig \
+    ${QT6_INSTALL_MKSPECSDIR} \
     ${QT6_INSTALL_QMLDIR}/*/designer \
     ${QT6_INSTALL_QMLDIR}/*/*/designer \
     ${QT6_INSTALL_QMLDIR}/*/*/*/designer \
-    ${prefix}/mkspecs \
 "
 
 FILES_${PN}-staticdev += " \
