@@ -10,6 +10,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Fix-compilation-after-string-data-changes-in-qtbase.patch \
+"
+
 DEPENDS += "qtbase qtdeclarative qtscxml-native"
 
 BBCLASSEXTEND += "native nativesdk"

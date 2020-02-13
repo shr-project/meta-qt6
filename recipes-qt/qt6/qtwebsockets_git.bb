@@ -11,6 +11,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Stop-forcing-deprecated-ssl-protocol-version.patch \
+"
+
 PACKAGECONFIG ?= "translations"
 
 DEPENDS += "qtbase qtdeclarative"

@@ -1,0 +1,36 @@
+From e3d919e215d987ec8f912c7cec05ba502d4c3f0b Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?M=C3=A5rten=20Nordheim?= <marten.nordheim@qt.io>
+Date: Thu, 16 Jan 2020 15:25:46 +0100
+Subject: [PATCH] Stop forcing deprecated ssl protocol version
+
+Change-Id: I422a2498bb940f801484d3f2e6e5d59edd637514
+Reviewed-by: Timur Pocheptsov <timur.pocheptsov@qt.io>
+---
+ examples/websockets/sslechoserver/sslechoserver.cpp             | 1 -
+ tests/auto/websockets/qwebsocketserver/tst_qwebsocketserver.cpp | 1 -
+ 2 files changed, 2 deletions(-)
+
+diff --git a/examples/websockets/sslechoserver/sslechoserver.cpp b/examples/websockets/sslechoserver/sslechoserver.cpp
+index 00bc6c1..5dc41e0 100644
+--- a/examples/websockets/sslechoserver/sslechoserver.cpp
++++ b/examples/websockets/sslechoserver/sslechoserver.cpp
+@@ -77,7 +77,6 @@ SslEchoServer::SslEchoServer(quint16 port, QObject *parent) :
+     sslConfiguration.setPeerVerifyMode(QSslSocket::VerifyNone);
+     sslConfiguration.setLocalCertificate(certificate);
+     sslConfiguration.setPrivateKey(sslKey);
+-    sslConfiguration.setProtocol(QSsl::TlsV1SslV3);
+     m_pWebSocketServer->setSslConfiguration(sslConfiguration);
+ 
+     if (m_pWebSocketServer->listen(QHostAddress::Any, port))
+diff --git a/tests/auto/websockets/qwebsocketserver/tst_qwebsocketserver.cpp b/tests/auto/websockets/qwebsocketserver/tst_qwebsocketserver.cpp
+index c40bb01..a56594c 100644
+--- a/tests/auto/websockets/qwebsocketserver/tst_qwebsocketserver.cpp
++++ b/tests/auto/websockets/qwebsocketserver/tst_qwebsocketserver.cpp
+@@ -604,7 +604,6 @@ static void setupSecureServer(QWebSocketServer *secureServer)
+     sslConfiguration.setPeerVerifyMode(QSslSocket::VerifyNone);
+     sslConfiguration.setLocalCertificate(certificate);
+     sslConfiguration.setPrivateKey(sslKey);
+-    sslConfiguration.setProtocol(QSsl::TlsV1SslV3);
+     secureServer->setSslConfiguration(sslConfiguration);
+ }
+ #endif
