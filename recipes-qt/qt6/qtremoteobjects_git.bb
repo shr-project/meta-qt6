@@ -13,9 +13,6 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI += "\
     file://0001-Add-alarl-target-only-if-building-repc.patch \
-    file://0001-Fix-the-build-with-current-qtbase-dev.patch \
-    file://0001-Fix-Qt6-build.patch \
-    file://0001-Replace-endl-with-Qt-endl.patch \
 "
 
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
