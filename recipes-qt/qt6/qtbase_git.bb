@@ -13,6 +13,12 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6.inc
 include recipes-qt/qt6/qt6-git.inc
 
+SRC_URI += "\
+    file://0001-Add-linux-oe-g-platform.patch \
+    file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
+    file://0003-Sysrootify-qmake.patch \
+"
+
 DEPENDS = "\
     freetype \
     pcre2 \
@@ -96,8 +102,12 @@ PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
 PACKAGECONFIG[udev] = "-DFEATURE_libudev=ON,-DFEATURE_libudev=OFF,udev"
 PACKAGECONFIG[zstd] = "-DFEATURE_zstd=ON,-DFEATURE_zstd=OFF,zstd"
 
-EXTRA_OECMAKE += " \
+EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+"
+
+EXTRA_OECMAKE_append_class-target = "\
+    -DCMAKE_SKIP_RPATH=ON \
 "
 
 SYSROOT_DIRS += "${prefix}/mkspecs"
@@ -106,6 +116,10 @@ do_install_append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
         -e '/QT_SOURCE_TREE/,+2d' \
         -e '/CMAKE_INSTALL_PREFIX/,+2d'
+
+    if [ ! -e ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri ]; then
+        touch ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri
+    fi
 
     # confligs with qttools module cmake files
     rm -rf ${D}${libdir}/cmake/Qt6Tools

@@ -1,0 +1,26 @@
+From 512da3f0552d3ab190b39e801987c11d3d209f88 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Mon, 17 Feb 2020 15:33:55 +0200
+Subject: [PATCH 3/3] Sysrootify qmake
+
+For cross-compilations we need to enable qmake to sysrootify
+the install paths.
+
+Change-Id: I47d210f89203e32da59a1e41fcd6ebd28e968b25
+---
+ cmake/QtBuild.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/QtBuild.cmake b/cmake/QtBuild.cmake
+index 4456ea99f1..89c37a3706 100644
+--- a/cmake/QtBuild.cmake
++++ b/cmake/QtBuild.cmake
+@@ -3944,7 +3944,7 @@ function(qt_generate_qconfig_cpp)
+     set(QT_CONFIG_STRS "")
+ 
+     qt_add_string_to_qconfig_cpp("")
+-    qt_add_string_to_qconfig_cpp("false")
++    qt_add_string_to_qconfig_cpp("true")
+     qt_add_string_to_qconfig_cpp("bin")
+     qt_add_string_to_qconfig_cpp("lib")
+     qt_add_string_to_qconfig_cpp(".")
