@@ -27,6 +27,8 @@ QMAKE_MKSPEC_PATH = "${QMAKE_MKSPEC_PATH_TARGET}"
 QMAKE_MKSPEC_PATH_class-native = "${QMAKE_MKSPEC_PATH_NATIVE}"
 QMAKE_MKSPEC_PATH_class-nativesdk = "${QMAKE_MKSPEC_PATH_NATIVE}"
 
+DEPENDS_prepend = "qtbase-native "
+
 # hardcode linux, because that's what 0001-Add-linux-oe-g-platform.patch adds
 XPLATFORM_toolchain-clang = "linux-oe-clang"
 XPLATFORM ?= "linux-oe-g++"
@@ -37,8 +39,8 @@ OE_QMAKE_PLATFORM = "${XPLATFORM}"
 # Add -d to show debug output from every qmake call, but it prints *a lot*, better to add it only to debugged recipe
 OE_QMAKE_DEBUG_OUTPUT ?= ""
 
-# Look through supplied directories recursively by default
-OE_QMAKE_RECURSIVE ?= "-r"
+# Don't look through supplied directories recursively by default
+OE_QMAKE_RECURSIVE ?= ""
 
 # Paths in .prl files contain SYSROOT value
 SSTATE_SCAN_FILES += "*.pri *.prl *.prf"
