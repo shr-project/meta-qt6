@@ -16,6 +16,7 @@ SRC_URI += "\
 "
 
 PACKAGECONFIG ?= "translations"
+PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 DEPENDS += "qtbase qtdeclarative"
 

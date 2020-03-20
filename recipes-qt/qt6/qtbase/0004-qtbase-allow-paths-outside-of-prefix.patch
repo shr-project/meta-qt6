@@ -1,0 +1,23 @@
+From 40cc3275b5144a357d106f015ac632675457f7eb Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Fri, 20 Mar 2020 09:11:48 +0200
+Subject: [PATCH] qtbase: allow paths outside of prefix
+
+Change-Id: I0ada0283a31cdf27890b83207f292db38e4e569a
+---
+ cmake/QtBuild.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/cmake/QtBuild.cmake b/cmake/QtBuild.cmake
+index 4dbbe4c3ff..ee963bdef6 100644
+--- a/cmake/QtBuild.cmake
++++ b/cmake/QtBuild.cmake
+@@ -22,7 +22,7 @@ function(qt_configure_process_path name default docstring)
+         # which is what qmake does for some reason).
+         # In both cases, store the value as a relative path.
+         if(rel_path MATCHES "^\.\./")
+-            message(FATAL_ERROR
++            message(AUTHOR_WARNING
+                 "Path component '${name}' is outside computed install prefix: ${rel_path} ")
+         endif()
+         set("${name}" "${rel_path}" CACHE STRING "${docstring}" FORCE)

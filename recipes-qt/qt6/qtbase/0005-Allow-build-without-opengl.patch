@@ -1,0 +1,23 @@
+From 170b41c7807e066ee294c03423a8b816b1d0ed59 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Fri, 20 Mar 2020 09:55:42 +0200
+Subject: [PATCH] Allow build without opengl
+
+Change-Id: I10dd13d6cdc6e69b13925ad4f96c90e178695ef4
+---
+ src/gui/configure.cmake | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/gui/configure.cmake b/src/gui/configure.cmake
+index bf9d0e71f1..bd43503855 100644
+--- a/src/gui/configure.cmake
++++ b/src/gui/configure.cmake
+@@ -1279,7 +1279,7 @@ qt_configure_add_report_entry(
+ qt_configure_add_report_entry(
+     TYPE ERROR
+     MESSAGE "The OpenGL functionality tests failed!  You might need to modify the include and library search paths by editing QMAKE_INCDIR_OPENGL[_ES2], QMAKE_LIBDIR_OPENGL[_ES2] and QMAKE_LIBS_OPENGL[_ES2] in the mkspec for your platform."
+-    CONDITION QT_FEATURE_gui AND NOT WATCHOS AND ( NOT INPUT_opengl STREQUAL 'no' ) AND NOT QT_FEATURE_opengl_desktop AND NOT QT_FEATURE_opengles2 AND NOT QT_FEATURE_opengl_dynamic
++    CONDITION QT_FEATURE_gui AND NOT WATCHOS AND QT_FEATURE_opengl AND NOT QT_FEATURE_opengl_desktop AND NOT QT_FEATURE_opengles2 AND NOT QT_FEATURE_opengl_dynamic
+ )
+ qt_configure_add_report_entry(
+     TYPE WARNING

@@ -10,8 +10,13 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-PACKAGECONFIG ?= "translations"
+SRC_URI += "\
+    file://0001-fix-CMakeLists.patch \
+"
+
+#PACKAGECONFIG ?= "translations"
+PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 DEPENDS = "qtbase qtdeclarative"
 
-SRCREV = "2bd4f5cd587e258227c69b3124757d7b8e019c9f"
+SRCREV = "e13c5b753a1c579b28e8b0af950a3972d4475a92"

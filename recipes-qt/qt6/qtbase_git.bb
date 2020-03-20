@@ -17,6 +17,8 @@ SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0003-Sysrootify-qmake.patch \
+    file://0004-qtbase-allow-paths-outside-of-prefix.patch \
+    file://0005-Allow-build-without-opengl.patch \
 "
 
 DEPENDS = "\
@@ -131,4 +133,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "36089f5e7793bd8b15e5b43caf18f856ff2a18b0"
+SRCREV = "edf5fe49b34225932a7752f2bac0e43f7410f46b"

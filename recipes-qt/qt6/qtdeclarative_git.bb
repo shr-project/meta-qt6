@@ -13,18 +13,19 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 SRC_URI += "\
-    file://0001-Use-correct-default-install-dir-for-qml-files.patch \
 "
 
-PACKAGECONFIG ?= "translations"
+#PACKAGECONFIG ?= "translations"
 PACKAGECONFIG_class-native ?= ""
 PACKAGECONFIG_class-nativesdk ?= ""
+
+PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "3e0edc61cf4d2e0a613ed971f42a96120b094ecc"
+SRCREV = "585ee10c63d9e69dce07674db99c92a3814da157"
 
 do_install_append_class-target() {
     # broken installation of plugins.qmltypes

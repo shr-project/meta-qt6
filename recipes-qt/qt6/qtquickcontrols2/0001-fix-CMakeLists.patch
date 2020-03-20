@@ -1,0 +1,37 @@
+From d28a28a580cc0ed0e41c0fc3af9d3595fe55bc1b Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Fri, 20 Mar 2020 13:01:00 +0200
+Subject: [PATCH] fix CMakeLists
+
+Change-Id: Ie5afc6adf705939d61ded32c452346c37a062e4f
+---
+ examples/quickcontrols2/texteditor/CMakeLists.txt | 2 +-
+ src/quicktemplates2/CMakeLists.txt                | 2 --
+ 2 files changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/examples/quickcontrols2/texteditor/CMakeLists.txt b/examples/quickcontrols2/texteditor/CMakeLists.txt
+index d9e24479..ea33a427 100644
+--- a/examples/quickcontrols2/texteditor/CMakeLists.txt
++++ b/examples/quickcontrols2/texteditor/CMakeLists.txt
+@@ -54,7 +54,7 @@ endif()
+ 
+ if(CMAKE_CROSSCOMPILING)
+     target_compile_definitions(texteditor PUBLIC
+-        QT_EXTRA_FILE_SELECTOR=\\\"touch\\\"
++        QT_EXTRA_FILE_SELECTOR=\"touch\" # special case
+     )
+ endif()
+ 
+diff --git a/src/quicktemplates2/CMakeLists.txt b/src/quicktemplates2/CMakeLists.txt
+index df8c6071..4b7f2ff9 100644
+--- a/src/quicktemplates2/CMakeLists.txt
++++ b/src/quicktemplates2/CMakeLists.txt
+@@ -58,8 +58,6 @@ qt_add_module(QuickTemplates2
+         qquickpage.cpp qquickpage_p.h
+         qquickpage_p_p.h
+         qquickpageindicator.cpp qquickpageindicator_p.h
+-        qquickpalette.cpp qquickpalette_p.h
+-        qquickpaletteprovider.cpp qquickpaletteprovider_p.h
+         qquickpane.cpp qquickpane_p.h
+         qquickpane_p_p.h
+         qquickpopup.cpp qquickpopup_p.h

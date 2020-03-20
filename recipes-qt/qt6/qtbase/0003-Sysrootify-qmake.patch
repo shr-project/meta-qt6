@@ -1,7 +1,7 @@
-From 512da3f0552d3ab190b39e801987c11d3d209f88 Mon Sep 17 00:00:00 2001
+From bc78a382df5f64f3665fe45779941aae250f50b1 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Mon, 17 Feb 2020 15:33:55 +0200
-Subject: [PATCH 3/3] Sysrootify qmake
+Subject: [PATCH] Sysrootify qmake
 
 For cross-compilations we need to enable qmake to sysrootify
 the install paths.
@@ -12,15 +12,15 @@ Change-Id: I47d210f89203e32da59a1e41fcd6ebd28e968b25
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/cmake/QtBuild.cmake b/cmake/QtBuild.cmake
-index 4456ea99f1..89c37a3706 100644
+index 407f0b6524..4dbbe4c3ff 100644
 --- a/cmake/QtBuild.cmake
 +++ b/cmake/QtBuild.cmake
-@@ -3944,7 +3944,7 @@ function(qt_generate_qconfig_cpp)
+@@ -3995,7 +3995,7 @@ function(qt_generate_qconfig_cpp)
      set(QT_CONFIG_STRS "")
  
-     qt_add_string_to_qconfig_cpp("")
--    qt_add_string_to_qconfig_cpp("false")
-+    qt_add_string_to_qconfig_cpp("true")
-     qt_add_string_to_qconfig_cpp("bin")
-     qt_add_string_to_qconfig_cpp("lib")
-     qt_add_string_to_qconfig_cpp(".")
+     qt_add_string_to_qconfig_cpp("") # config.input.sysroot
+-    qt_add_string_to_qconfig_cpp("false") # qmake_sysrootify
++    qt_add_string_to_qconfig_cpp("true") # qmake_sysrootify
+     qt_add_string_to_qconfig_cpp("${INSTALL_BINDIR}") # TODO: Host-specific
+     qt_add_string_to_qconfig_cpp("${INSTALL_LIBDIR}") # TODO: Host-specific
+     qt_add_string_to_qconfig_cpp("${INSTALL_DATADIR}") # TODO: Host-specific
