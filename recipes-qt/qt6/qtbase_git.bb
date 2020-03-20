@@ -48,7 +48,7 @@ PACKAGECONFIG_FONTS ?= ""
 PACKAGECONFIG_SYSTEM ?= ""
 PACKAGECONFIG_DISTRO ?= ""
 PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev gui widgets icu openssl  \
-    jpeg png dbus translations libinput fontconfig harfbuzz \
+    jpeg png dbus libinput fontconfig harfbuzz \
     ${@bb.utils.contains('SELECTED_OPTIMIZATION', '-Os', 'optimize-size ltcg', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'qt5-static', 'static', '', d)} \
 "

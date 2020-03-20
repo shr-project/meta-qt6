@@ -10,7 +10,7 @@ include recipes-qt/qt6/qt6.inc
 
 PACKAGE_ARCH = "all"
 
-DEPENDS += "qttools-native"
+DEPENDS += "qtbase qttools-native"
 
 PACKAGES_DYNAMIC = "${PN}-*"
 
