@@ -57,6 +57,18 @@ BUILD_TYPE ?= "Release"
 # OpenSSL linking mode: runtime, linked
 OPENSSL_LINKING_MODE ?= "runtime"
 
+PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
+PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
+PACKAGECONFIG[udev] = "-DFEATURE_libudev=ON,-DFEATURE_libudev=OFF,udev"
+PACKAGECONFIG[zstd] = "-DFEATURE_zstd=ON,-DFEATURE_zstd=OFF,zstd"
+
+# corelib
+PACKAGECONFIG[glib] = "-DFEATURE_glib=ON,-DFEATURE_glib=OFF,glib-2.0"
+PACKAGECONFIG[iconv] = "-DFEATURE_iconv=ON,-DFEATURE_iconv=OFF,virtual/libiconv"
+PACKAGECONFIG[icu] = "-DFEATURE_icu=ON,-DFEATURE_icu=OFF,icu"
+PACKAGECONFIG[journald] = "-DFEATURE_journald=ON,-DFEATURE_journald=OFF,systemd"
+PACKAGECONFIG[lttng] = "-DFEATURE_lttng=ON,-DFEATURE_lttng=OFF,lttng-ust"
+
 # gui
 PACKAGECONFIG[gui] = "-DFEATURE_gui=ON,-DFEATURE_gui=OFF"
 PACKAGECONFIG[accessibility] = "-DFEATURE_accessibility=ON,-DFEATURE_accessibility=OFF,at-spi2-atk"
@@ -80,13 +92,6 @@ PACKAGECONFIG[xkbcommon] = "-DFEATURE_xkbcommon=ON,-DFEATURE_xkbcommon=OFF,libxk
 PACKAGECONFIG[widgets] = "-DFEATURE_widgets=ON,-DFEATURE_widgets=OFF"
 PACKAGECONFIG[gtk] = "-DFEATURE_gtk3=ON,-DFEATUER_gtk3=OFF,gtk+3"
 
-# corelib
-PACKAGECONFIG[glib] = "-DFEATURE_glib=ON,-DFEATURE_glib=OFF,glib-2.0"
-PACKAGECONFIG[iconv] = "-DFEATURE_iconv=ON,-DFEATURE_iconv=OFF,virtual/libiconv"
-PACKAGECONFIG[icu] = "-DFEATURE_icu=ON,-DFEATURE_icu=OFF,icu"
-PACKAGECONFIG[journald] = "-DFEATURE_journald=ON,-DFEATURE_journald=OFF,systemd"
-PACKAGECONFIG[lttng] = "-DFEATURE_lttng=ON,-DFEATURE_lttng=OFF,lttng-ust"
-
 # network
 PACKAGECONFIG[gssapi] = "-DFEATURE_gssapi=ON,-DFEATURE_gssapi=OFF,krb5"
 PACKAGECONFIG[libproxy] = "-DFEATURE_libproxy=ON,-DFEATURE_libproxy=OFF,libproxy"
@@ -96,11 +101,6 @@ PACKAGECONFIG[openssl] = "-DFEATURE_openssl_${OPENSSL_LINKING_MODE}=ON,-DFEATURE
 PACKAGECONFIG[sql-mysql] = "-DFEATURE_sql_mysql=ON,-DFEATURE_sql_mysql=OFF,mysql5"
 PACKAGECONFIG[sql-psql] = "-DFEATURE_sql_psql=ON,-DFEATURE_sql-psql=OFF,postgresql"
 PACKAGECONFIG[sql-sqlite] = "-DFEATURE_sql_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sqlite3"
-
-PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
-PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
-PACKAGECONFIG[udev] = "-DFEATURE_libudev=ON,-DFEATURE_libudev=OFF,udev"
-PACKAGECONFIG[zstd] = "-DFEATURE_zstd=ON,-DFEATURE_zstd=OFF,zstd"
 
 EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
