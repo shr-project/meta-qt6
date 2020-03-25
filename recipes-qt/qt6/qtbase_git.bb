@@ -28,7 +28,7 @@ DEPENDS += "\
 
 PACKAGECONFIG_class-native ?= "gui widgets dbus"
 PACKAGECONFIG_class-nativesdk ?= "gui widgets dbus"
-PACKAGECONFIG_class-target ?= "\
+PACKAGECONFIG ?= "\
     ${PACKAGECONFIG_DEFAULT} \
     ${PACKAGECONFIG_GRAPHICS} \
     ${PACKAGECONFIG_X11} \
