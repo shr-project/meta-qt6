@@ -21,7 +21,7 @@ SRC_URI += "\
     file://0005-Allow-build-without-opengl.patch \
 "
 
-DEPENDS = "\
+DEPENDS += "\
     freetype \
     pcre2 \
 "
