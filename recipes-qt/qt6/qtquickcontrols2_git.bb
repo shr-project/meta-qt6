@@ -19,4 +19,8 @@ PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 DEPENDS = "qtbase qtdeclarative"
 
+do_configure_prepend() {
+    sed -i -e 's/QmlTools//' ${S}/CMakeLists.txt
+}
+
 SRCREV = "e13c5b753a1c579b28e8b0af950a3972d4475a92"
