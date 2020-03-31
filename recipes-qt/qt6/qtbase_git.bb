@@ -26,8 +26,8 @@ DEPENDS += "\
     pcre2 \
 "
 
-PACKAGECONFIG_class-native ?= "gui widgets dbus"
-PACKAGECONFIG_class-nativesdk ?= "gui widgets dbus"
+PACKAGECONFIG_class-native ?= "gui widgets png dbus"
+PACKAGECONFIG_class-nativesdk ?= "gui widgets png dbus"
 PACKAGECONFIG ?= "\
     ${PACKAGECONFIG_DEFAULT} \
     ${PACKAGECONFIG_GRAPHICS} \
@@ -133,4 +133,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "edf5fe49b34225932a7752f2bac0e43f7410f46b"
+SRCREV = "e3d01840656a07f17549864da163b67094c03c0e"

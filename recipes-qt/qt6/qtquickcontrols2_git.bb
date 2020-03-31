@@ -14,7 +14,7 @@ SRC_URI += "\
     file://0001-fix-CMakeLists.patch \
 "
 
-#PACKAGECONFIG ?= "translations"
+PACKAGECONFIG ?= "translations"
 PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 DEPENDS = "qtbase qtdeclarative"
@@ -23,4 +23,4 @@ do_configure_prepend() {
     sed -i -e 's/QmlTools//' ${S}/CMakeLists.txt
 }
 
-SRCREV = "e13c5b753a1c579b28e8b0af950a3972d4475a92"
+SRCREV = "5579140836afeb9274a4061dd309829d6b1b7610"

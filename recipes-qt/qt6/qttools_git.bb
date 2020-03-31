@@ -15,11 +15,10 @@ include recipes-qt/qt6/qt6.inc
 DEPENDS += "qtbase qtdeclarative qttools-native"
 
 SRC_URI += "\
-    file://0001-Add-more-tools-as-part-of-Qt6-LinguistTools.patch \
 "
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "d15b40ff8b9b3e1756c0db0e10c24efab0cb71cb"
+SRCREV = "37f736c0752c810f5c8ad8e01f26cab754f7f5f3"
 
-PNBLACKLIST[qttools] = "broken"
+#PNBLACKLIST[qttools] = "broken"

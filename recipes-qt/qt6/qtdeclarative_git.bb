@@ -15,7 +15,7 @@ include recipes-qt/qt6/qt6.inc
 SRC_URI += "\
 "
 
-#PACKAGECONFIG ?= "translations"
+PACKAGECONFIG ?= "translations"
 PACKAGECONFIG_class-native ?= ""
 PACKAGECONFIG_class-nativesdk ?= ""
 
@@ -25,7 +25,7 @@ DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "585ee10c63d9e69dce07674db99c92a3814da157"
+SRCREV = "0e358095634165f321093ce019d3a2a47ec17f38"
 
 do_install_append_class-target() {
     # broken installation of plugins.qmltypes

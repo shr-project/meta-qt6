@@ -16,6 +16,8 @@ PACKAGECONFIG ?= "translations"
 PACKAGECONFIG_class-native ?= ""
 PACKAGECONFIG_class-nativesdk ?= ""
 
+PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
+
 DEPENDS += "qtbase"
 
 BBCLASSEXTEND =+ "native nativesdk"
