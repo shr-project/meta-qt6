@@ -10,10 +10,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-fix-CMakeLists.patch \
-"
-
 PACKAGECONFIG ?= "translations"
 PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
@@ -23,4 +19,4 @@ do_configure_prepend() {
     sed -i -e 's/QmlTools//' ${S}/CMakeLists.txt
 }
 
-SRCREV = "5579140836afeb9274a4061dd309829d6b1b7610"
+SRCREV = "3f875192e10670088cc1646d0dae9e432d6146e4"
