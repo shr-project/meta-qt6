@@ -19,6 +19,7 @@ SRC_URI += "\
     file://0003-Sysrootify-qmake.patch \
     file://0004-qtbase-allow-paths-outside-of-prefix.patch \
     file://0005-Allow-build-without-opengl.patch \
+    file://0001-CMake-check-that-target-exists-in-qt_record_extra_pa.patch \
 "
 
 DEPENDS += "\
@@ -133,4 +134,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "098d2edb07e08da6485fee4efbea72f43ddc766e"
+SRCREV = "a97703d33a088865e5d3b077a36cdea1f2725ac3"
