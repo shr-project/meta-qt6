@@ -14,14 +14,10 @@ RDEPENDS_${PN} += " \
     qtconnectivity \
     qtdeclarative \
     qtdeclarative-tools \
-    qtgamepad \
     qtgraphicaleffects \
     qtimageformats \
     qtnetworkauth \
     qtquickcontrols2 \
-    qtremoteobjects \
-    qtscxml \
-    qtserialbus \
     qtserialport \
     qtsvg \
     qttools \
