@@ -3,6 +3,7 @@ From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Fri, 20 Mar 2020 09:11:48 +0200
 Subject: [PATCH] qtbase: allow paths outside of prefix
 
+Task-number: QTBUG-81289
 Change-Id: I0ada0283a31cdf27890b83207f292db38e4e569a
 ---
  cmake/QtBuild.cmake | 2 +-

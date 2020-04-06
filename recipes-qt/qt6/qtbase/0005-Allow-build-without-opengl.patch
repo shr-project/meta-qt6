@@ -3,6 +3,7 @@ From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Fri, 20 Mar 2020 09:55:42 +0200
 Subject: [PATCH] Allow build without opengl
 
+Task-number: QTBUG-82982
 Change-Id: I10dd13d6cdc6e69b13925ad4f96c90e178695ef4
 ---
  src/gui/configure.cmake | 2 +-
