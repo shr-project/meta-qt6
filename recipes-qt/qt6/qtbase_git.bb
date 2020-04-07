@@ -19,6 +19,7 @@ SRC_URI += "\
     file://0003-Sysrootify-qmake.patch \
     file://0004-qtbase-allow-paths-outside-of-prefix.patch \
     file://0005-Allow-build-without-opengl.patch \
+    file://0006-qmake-use-syncqt-from-libexec-dir.patch \
 "
 
 DEPENDS += "\
@@ -125,6 +126,10 @@ do_install_append() {
 
     # confligs with qttools module cmake files
     rm -rf ${D}${libdir}/cmake/Qt6Tools
+
+    # qmake fixes
+    sed -i -e '/stack_protector_strong/d' ${D}${QT6_INSTALL_MKSPECSDIR}/features/qt_common.prf
+    sed -i -e 's/cxx/c++/g' ${D}${QT6_INSTALL_MKSPECSDIR}/qconfig.pri
 }
 
 FILES_${PN}-tools += "\

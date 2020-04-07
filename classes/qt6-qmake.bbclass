@@ -144,6 +144,7 @@ HostBinaries = ${OE_QMAKE_PATH_EXTERNAL_HOST_BINS}
 HostLibraries = ${STAGING_LIBDIR_NATIVE}
 HostData = ${OE_QMAKE_PATH_HOST_DATA}
 HostPrefix = ${STAGING_DIR_NATIVE}
+LibraryExecutables = ${STAGING_LIBEXECDIR_NATIVE}
 EOF
 }
 #
