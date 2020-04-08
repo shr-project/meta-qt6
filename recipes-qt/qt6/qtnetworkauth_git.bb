@@ -11,4 +11,4 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase"
 
-SRCREV = "80c21ccaebc19e41939df16b56d3834c9d4a5e4e"
+SRCREV = "a96d6744af2893371f47fd8c01164715d74f746e"
