@@ -16,4 +16,4 @@ PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
 
 DEPENDS += "qtbase qtdeclarative"
 
-SRCREV = "ac7c185ffed5c1f5b3a8d404a75c35e679cc30d6"
+SRCREV = "87ed789eeabaded6af1380182bf078bd516f656c"
