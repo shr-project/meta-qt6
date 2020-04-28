@@ -8,8 +8,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-PACKAGE_ARCH = "all"
-
 DEPENDS += "qtbase qttools qttools-native"
 
 PACKAGES_DYNAMIC = "${PN}-*"

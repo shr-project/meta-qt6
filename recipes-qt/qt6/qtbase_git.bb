@@ -20,7 +20,9 @@ SRC_URI += "\
     file://0004-qtbase-allow-paths-outside-of-prefix.patch \
     file://0005-Allow-build-without-opengl.patch \
     file://0006-qmake-use-syncqt-from-libexec-dir.patch \
+    file://0001-WIP-Build-Tools-when-cross-compiling.patch \
 "
+
 
 DEPENDS += "\
     freetype \
@@ -119,6 +121,13 @@ do_install_append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
         -e '/QT_SOURCE_TREE/,+2d' \
         -e '/CMAKE_INSTALL_PREFIX/,+2d'
+
+    sed -i ${D}${bindir}/qt-cmake \
+        -e 's|${STAGING_BINDIR_NATIVE}|${bindir}|'
+
+    sed -i ${D}${libdir}/cmake/Qt6/qt.toolchain.cmake \
+        -e 's|${STAGING_EXECPREFIXDIR}|${exec_prefix}|' \
+        -e '/set(qt_chainload_toolchain_file/s|".*"|${datadir}/cmake/OEToolchainConfig.cmake|'
 
     if [ ! -e ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri ]; then
         touch ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri

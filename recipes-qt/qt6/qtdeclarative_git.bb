@@ -27,7 +27,7 @@ BBCLASSEXTEND =+ "native nativesdk"
 
 SRCREV = "399ebb5635efc897d29efba90f92f931843b266a"
 
-do_install_append_class-target() {
+do_install_append() {
     # broken installation of plugins.qmltypes
-    rm -rf ${D}/usr/qml_install_dir-NOTFOUND
+    rm -rf ${D}${exec_prefix}/qml_install_dir-NOTFOUND
 }
