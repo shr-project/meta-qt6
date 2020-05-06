@@ -13,6 +13,8 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 SRC_URI += "\
+    file://0001-Add-forward-declaration-for-QSurface.patch \
+    file://0001-Fix-build-without-opengl.patch  \
 "
 
 PACKAGECONFIG ?= "translations"
@@ -25,7 +27,7 @@ DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "399ebb5635efc897d29efba90f92f931843b266a"
+SRCREV = "a135f3d6c3202b37eda0f1e94292f795f9e575ca"
 
 do_install_append() {
     # broken installation of plugins.qmltypes

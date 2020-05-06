@@ -11,7 +11,6 @@ RDEPENDS_${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'qtx11extras', '', d)} \
     qtbase \
-    qtconnectivity \
     qtdeclarative \
     qtdeclarative-tools \
     qtgraphicaleffects \

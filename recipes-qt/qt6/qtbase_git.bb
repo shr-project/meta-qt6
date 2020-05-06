@@ -21,8 +21,9 @@ SRC_URI += "\
     file://0005-Allow-build-without-opengl.patch \
     file://0006-qmake-use-syncqt-from-libexec-dir.patch \
     file://0001-WIP-Build-Tools-when-cross-compiling.patch \
+    file://0001-QtGui-fix-a-few-more-char-int-uint-QChar-conversions.patch \
+    file://0001-cmake-use-configured-mkspec-path-for-qmodule.pri.patch \
 "
-
 
 DEPENDS += "\
     freetype \
@@ -147,4 +148,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "5422fb79486a1818d6355d75f019fe63120a43d0"
+SRCREV = "4ba25a092065a6422510a9f4afa4fbbabeda686c"
