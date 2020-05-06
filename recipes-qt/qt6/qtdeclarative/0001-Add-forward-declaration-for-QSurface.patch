@@ -1,0 +1,29 @@
+From 92b1583aa9783fc2d2d4bbda6493cc386d199567 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 5 May 2020 13:24:54 +0300
+Subject: [PATCH] Add forward declaration for QSurface
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+qsgdefaultrendercontext_p.h:101:9: error: ‘QSurface’ does not name a type
+|          QSurface *maybeSurface = nullptr;
+|          ^~~~~~~~
+
+Change-Id: Ie062ba5ce5bd8071f1a55f3d966649748a707b9f
+---
+ src/quick/scenegraph/qsgdefaultrendercontext_p.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/quick/scenegraph/qsgdefaultrendercontext_p.h b/src/quick/scenegraph/qsgdefaultrendercontext_p.h
+index cddfe9add2..be83f5a9f5 100644
+--- a/src/quick/scenegraph/qsgdefaultrendercontext_p.h
++++ b/src/quick/scenegraph/qsgdefaultrendercontext_p.h
+@@ -69,6 +69,7 @@ class QSGMaterialRhiShader;
+ class QOpenGLFramebufferObject;
+ class QSGDepthStencilBufferManager;
+ class QSGDepthStencilBuffer;
++class QSurface;
+ 
+ namespace QSGOpenGLAtlasTexture {
+     class Manager;
