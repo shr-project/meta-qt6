@@ -27,7 +27,7 @@ DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "a135f3d6c3202b37eda0f1e94292f795f9e575ca"
+SRCREV = "1465ca26c62605634afdf7b2c9e8ecbfc2397dae"
 
 do_install_append() {
     # broken installation of plugins.qmltypes
