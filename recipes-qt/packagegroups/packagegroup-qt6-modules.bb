@@ -23,4 +23,5 @@ RDEPENDS_${PN} += " \
     qttools-tools \
     qtwebchannel \
     qtwebsockets \
+    qt5compat \
 "
