@@ -142,6 +142,14 @@ do_install_append() {
     sed -i -e 's/cxx/c++/g' ${D}${QT6_INSTALL_MKSPECSDIR}/qconfig.pri
 }
 
+do_install_append_class-nativesdk() {
+    install -d ${D}${datadir}/cmake/OEToolchainConfig.cmake.d
+    cat > ${D}${datadir}/cmake/OEToolchainConfig.cmake.d/OEQt6Toolchain.cmake <<EOF
+set(QT_HOST_PATH "${prefix}" CACHE PATH "" FORCE)
+set(QT_BUILD_TOOLS_WHEN_CROSSCOMPILING "TRUE" CACHE BOOL "" FORCE)
+EOF
+}
+
 FILES_${PN}-tools += "\
     ${QT6_INSTALL_LIBEXECDIR}/syncqt.pl \
 "
