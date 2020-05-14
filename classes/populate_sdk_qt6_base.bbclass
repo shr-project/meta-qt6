@@ -2,31 +2,45 @@ inherit qt6-paths
 
 create_sdk_files_prepend () {
     # Generate a qt.conf file to be deployed with the SDK
-    qtconf=${SDK_OUTPUT}/${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}/qt.conf
+    qtconf=${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}/qt.conf
     touch $qtconf
     echo '[Paths]' >> $qtconf
-    echo 'Prefix = ${OE_QMAKE_PATH_PREFIX}' >> $qtconf
-    echo 'Headers = ${OE_QMAKE_PATH_QT_HEADERS}' >> $qtconf
-    echo 'Libraries = ${OE_QMAKE_PATH_LIBS}' >> $qtconf
-    echo 'ArchData = ${OE_QMAKE_PATH_QT_ARCHDATA}' >> $qtconf
-    echo 'Data = ${OE_QMAKE_PATH_QT_DATA}' >> $qtconf
-    echo 'Binaries = ${OE_QMAKE_PATH_QT_BINS}' >> $qtconf
-    echo 'LibraryExecutables = ${OE_QMAKE_PATH_LIBEXECS}' >> $qtconf
-    echo 'Plugins = ${OE_QMAKE_PATH_PLUGINS}' >> $qtconf
-    echo 'Qml2Imports = ${OE_QMAKE_PATH_QML}' >> $qtconf
-    echo 'Translations = ${OE_QMAKE_PATH_QT_TRANSLATIONS}' >> $qtconf
-    echo 'Documentation = ${OE_QMAKE_PATH_QT_DOCS}' >> $qtconf
-    echo 'Settings = ${OE_QMAKE_PATH_QT_SETTINGS}' >> $qtconf
-    echo 'Examples = ${OE_QMAKE_PATH_QT_EXAMPLES}' >> $qtconf
-    echo 'Tests = ${OE_QMAKE_PATH_QT_TESTS}' >> $qtconf
-    echo 'HostPrefix = ${SDKPATHNATIVE}' >> $qtconf
-    echo 'HostData = ${SDKTARGETSYSROOT}${OE_QMAKE_PATH_QT_ARCHDATA}' >> $qtconf
-    echo 'HostBinaries = ${SDKPATHNATIVE}${OE_QMAKE_PATH_HOST_BINS}' >> $qtconf
-    echo 'HostLibraries = ${SDKPATHNATIVE}${OE_QMAKE_PATH_LIBS}' >> $qtconf
+    echo 'Prefix = ${prefix}' >> $qtconf
+    echo 'Headers = ${QT6_INSTALL_INCLUDEDIR}' >> $qtconf
+    echo 'Libraries = ${QT6_INSTALL_LIBDIR}' >> $qtconf
+    echo 'ArchData = ${QT6_INSTALL_ARCHDATADIR}' >> $qtconf
+    echo 'Data = ${QT6_INSTALL_DATADIR}' >> $qtconf
+    echo 'Binaries = ${QT6_INSTALL_BINDIR}' >> $qtconf
+    echo 'LibraryExecutables = ${QT6_INSTALL_LIBEXECDIR}' >> $qtconf
+    echo 'Plugins = ${QT6_INSTALL_PLUGINSDIR}' >> $qtconf
+    echo 'Qml2Imports = ${QT6_INSTALL_QMLDIR}' >> $qtconf
+    echo 'Translations = ${QT6_INSTALL_TRANSLATIONSDIR}' >> $qtconf
+    echo 'Documentation = ${QT6_INSTALL_DOCDIR}' >> $qtconf
+    echo 'Settings = ${QT6_INSTALL_SYSCONFDIR}' >> $qtconf
+    echo 'Examples = ${QT6_INSTALL_EXAMPLESDIR}' >> $qtconf
+    echo 'Tests = ${QT6_INSTALL_TESTSDIR}' >> $qtconf
+    echo 'HostPrefix = ${SDKPATHNATIVE}${prefix}' >> $qtconf
+    echo 'HostData = ${SDKTARGETSYSROOT}${QT6_INSTALL_ARCHDATADIR}' >> $qtconf
+    echo 'HostBinaries = ${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}' >> $qtconf
+    echo 'HostLibraries = ${SDKPATHNATIVE}${QT6_INSTALL_LIBDIR}' >> $qtconf
     echo 'Sysroot = ${SDKTARGETSYSROOT}' >> $qtconf
+    echo 'HostSpec = linux-oe-g++' >> $qtconf
+    echo 'TargetSpec = linux-oe-g++' >> $qtconf
+
+    install -d ${SDK_OUTPUT}${SDKPATHNATIVE}/environment-setup.d
+    script=${SDK_OUTPUT}${SDKPATHNATIVE}/environment-setup.d/qt6.sh
+    touch $script
+    echo 'export OE_QMAKE_CFLAGS="$CFLAGS"' >> $script
+    echo 'export OE_QMAKE_CXXFLAGS="$CXXFLAGS"' >> $script
+    echo 'export OE_QMAKE_LDFLAGS="$LDFLAGS"' >> $script
+    echo 'export OE_QMAKE_CC="$CC"' >> $script
+    echo 'export OE_QMAKE_CXX="$CXX"' >> $script
+    echo 'export OE_QMAKE_LINK="$CXX"' >> $script
+    echo 'export OE_QMAKE_AR="$AR" >> $script
+    echo 'export OE_QMAKE_STRIP="$STRIP" >> $script
 
     # Generate a toolchain file for using Qt without running setup-environment script
-    cat > ${SDK_OUTPUT}/${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
+    cat > ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
 set(ENV{CC} "${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}")
 set(ENV{CXX} "${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}")
 
