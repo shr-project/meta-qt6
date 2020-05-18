@@ -8,20 +8,25 @@ inherit packagegroup
 PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
 RDEPENDS_${PN} += " \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'qtx11extras', '', d)} \
+    qt5compat \
     qtbase \
+    qtcoap \
     qtdeclarative \
-    qtdeclarative-tools \
     qtgraphicaleffects \
     qtimageformats \
+    qtmqtt \
     qtnetworkauth \
+    qtquick3d \
     qtquickcontrols2 \
+    qtserialbus \
     qtserialport \
+    qtshadertools \
     qtsvg \
     qttools \
-    qttools-tools \
+    qttranslations \
+    qtvirtualkeyboard \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
     qtwebchannel \
     qtwebsockets \
-    qt5compat \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'qtx11extras', '', d)} \
 "
