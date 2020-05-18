@@ -41,6 +41,7 @@ create_sdk_files_prepend () {
 
     # Generate a toolchain file for using Qt without running setup-environment script
     cat > ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
+set(ENV{PATH} "${SDKPATHNATIVE}${bindir}/${TARGET_SYS}:\$ENV{PATH}")
 set(ENV{CC} "${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}")
 set(ENV{CXX} "${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}")
 
