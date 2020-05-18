@@ -36,8 +36,8 @@ create_sdk_files_prepend () {
     echo 'export OE_QMAKE_CC="$CC"' >> $script
     echo 'export OE_QMAKE_CXX="$CXX"' >> $script
     echo 'export OE_QMAKE_LINK="$CXX"' >> $script
-    echo 'export OE_QMAKE_AR="$AR" >> $script
-    echo 'export OE_QMAKE_STRIP="$STRIP" >> $script
+    echo 'export OE_QMAKE_AR="$AR"' >> $script
+    echo 'export OE_QMAKE_STRIP="$STRIP"' >> $script
 
     # Generate a toolchain file for using Qt without running setup-environment script
     cat > ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
