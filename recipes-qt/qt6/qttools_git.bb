@@ -20,5 +20,3 @@ SRC_URI += "\
 BBCLASSEXTEND =+ "native nativesdk"
 
 SRCREV = "e633ec59893e2f4a25330be8a9ece4a943cfcef9"
-
-#PNBLACKLIST[qttools] = "broken"
