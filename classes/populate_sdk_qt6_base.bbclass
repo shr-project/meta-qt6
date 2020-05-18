@@ -39,6 +39,19 @@ create_sdk_files_prepend () {
     echo 'export OE_QMAKE_AR="$AR"' >> $script
     echo 'export OE_QMAKE_STRIP="$STRIP"' >> $script
 
+    mkspec=${SDK_OUTPUT}${SDKTARGETSYSROOT}${QT6_INSTALL_MKSPECSDIR}/linux-oe-g++/qmake.conf
+    echo "count(QMAKE_AR, 1): QMAKE_AR = ${AR} cqs" >> $mkspec
+    echo "isEmpty(QMAKE_CC): QMAKE_CC = ${CC}" >> $mkspec
+    echo "isEmpty(QMAKE_CFLAGS): QMAKE_CFLAGS =  ${CFLAGS}" >> $mkspec
+    echo "isEmpty(QMAKE_CXX): QMAKE_CXX = ${CXX}" >> $mkspec
+    echo "isEmpty(QMAKE_CXXFLAGS): QMAKE_CXXFLAGS =  ${CXXFLAGS}" >> $mkspec
+    echo "isEmpty(QMAKE_LINK): QMAKE_LINK = ${CXX}" >> $mkspec
+    echo "isEmpty(QMAKE_LFLAGS): QMAKE_LFLAGS = ${LDFLAGS}" >> $mkspec
+    echo "isEmpty(QMAKE_STRIP): QMAKE_STRIP = ${STRIP}" >> $mkspec
+    sed -i $mkspec \
+        -e 's:${RECIPE_SYSROOT}:$$[QT_SYSROOT]:' \
+        -e 's:${TARGET_PREFIX}:$$[QT_HOST_BINS]/${TARGET_SYS}/${TARGET_PREFIX}:'
+
     # Generate a toolchain file for using Qt without running setup-environment script
     cat > ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
 set(ENV{PATH} "${SDKPATHNATIVE}${bindir}/${TARGET_SYS}:\$ENV{PATH}")
