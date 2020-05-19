@@ -242,21 +242,6 @@ do_install_class-native() {
     fi
 }
 
-qmake5_base_fix_install() {
-    STAGING_PATH=$1
-    if [ -d ${D}${STAGING_PATH} ] ; then
-        echo "Some files are installed in wrong directory ${D}${STAGING_PATH}"
-        cp -ra ${D}${STAGING_PATH}/* ${D}
-        rm -rf ${D}${STAGING_PATH}
-        # remove empty dirs
-        TMP=`dirname ${D}${STAGING_PATH}`
-        while test ${TMP} != ${D}; do
-            rmdir ${TMP}
-            TMP=`dirname ${TMP}`;
-        done
-    fi
-}
-
 do_install() {
     # Fix install paths for all
     find . -name "Makefile*" | xargs -r sed -i "s,(INSTALL_ROOT)${STAGING_DIR_TARGET},(INSTALL_ROOT),g"
@@ -264,14 +249,6 @@ do_install() {
     find . -name "Makefile*" | xargs -r sed -i "s,(INSTALL_ROOT)${STAGING_DIR_NATIVE},(INSTALL_ROOT),g"
 
     oe_runmake install INSTALL_ROOT=${D}
-
-    # everything except HostData and HostBinaries is prefixed with sysroot value,
-    # but we cannot remove sysroot override, because that's useful for pkg-config etc
-    # concurrent builds may cause qmake to regenerate Makefiles and override the above
-    # sed changes. If that happens, move files manually to correct location.
-    qmake5_base_fix_install ${STAGING_DIR_TARGET}
-    qmake5_base_fix_install ${STAGING_DIR_HOST}
-    qmake5_base_fix_install ${STAGING_DIR_NATIVE}
 
     # Replace host paths with qmake built-in properties
     find ${D} \( -name "*.pri" -or -name "*.prl" \) -exec \
