@@ -4,11 +4,11 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
 "
 
-inherit qt6-cmake
+inherit qt6-qmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase"
 
-SRCREV = "d56901973edb2e4d87b6d7eafbfce8321fa6b0b9"
+SRCREV = "36d65d7a6549c1aa6ed1ee8da675452f0b7e7cd4"

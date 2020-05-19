@@ -5,17 +5,13 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
 "
 
-inherit qt6-cmake
+inherit qt6-qmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
-
-SRC_URI += "\
-    file://0001-Fix-compilation-after-string-data-changes-in-qtbase.patch \
-"
 
 DEPENDS += "qtbase qtdeclarative qtscxml-native"
 
 BBCLASSEXTEND += "native nativesdk"
 
-SRCREV = "804fb1f97a713edc96435433d15b09a3cb670416"
+SRCREV = "3409281d09a5e6579a58fc785a5079cdcf6b6035"

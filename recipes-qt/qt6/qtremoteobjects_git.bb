@@ -6,19 +6,13 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
 "
 
-inherit qt6-cmake
+inherit qt6-qmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
-
-SRC_URI += "\
-    file://0001-Add-alarl-target-only-if-building-repc.patch \
-"
 
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 
 BBCLASSEXTEND += "native nativesdk"
 
-SRCREV = "3707937ca78d21a21aecd0e671821dd4759cf385"
-
-PNBLACKLIST[qtremoteobjects] = "broken"
+SRCREV = "3e8acbdb90635d1e06378156dc9ba70f3e1014e5"
