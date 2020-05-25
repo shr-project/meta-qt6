@@ -12,11 +12,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Add-forward-declaration-for-QSurface.patch \
-    file://0001-Fix-build-without-opengl.patch  \
-"
-
 PACKAGECONFIG ?= "translations"
 PACKAGECONFIG_class-native ?= ""
 PACKAGECONFIG_class-nativesdk ?= ""
@@ -27,7 +22,7 @@ DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "1465ca26c62605634afdf7b2c9e8ecbfc2397dae"
+SRCREV = "24abd0d14ebd420c275fa4e49ddb1a43b441c74f"
 
 do_install_append() {
     # broken installation of plugins.qmltypes

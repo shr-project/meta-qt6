@@ -18,7 +18,6 @@ RDEPENDS_${PN} += " \
     qtnetworkauth \
     qtquick3d \
     qtquickcontrols2 \
-    qtserialbus \
     qtserialport \
     qtshadertools \
     qtsvg \

@@ -19,4 +19,4 @@ SRC_URI += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "e633ec59893e2f4a25330be8a9ece4a943cfcef9"
+SRCREV = "2495c48a93fe0771ee59777a47071d19062d9e4a"

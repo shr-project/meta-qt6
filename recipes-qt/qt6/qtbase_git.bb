@@ -20,8 +20,6 @@ SRC_URI += "\
     file://0004-qtbase-allow-paths-outside-of-prefix.patch \
     file://0005-Allow-build-without-opengl.patch \
     file://0001-WIP-Build-Tools-when-cross-compiling.patch \
-    file://0001-QtGui-fix-a-few-more-char-int-uint-QChar-conversions.patch \
-    file://0001-cmake-use-configured-mkspec-path-for-qmodule.pri.patch \
 "
 
 DEPENDS += "\
@@ -118,10 +116,6 @@ EXTRA_OECMAKE_append_class-target = "\
 SYSROOT_DIRS += "${prefix}/mkspecs"
 
 do_install_append() {
-    sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
-        -e '/QT_SOURCE_TREE/,+2d' \
-        -e '/CMAKE_INSTALL_PREFIX/,+2d'
-
     # qt-cmake is not needed, remove it and the toolchain file
     rm -f ${D}${QT6_INSTALL_BINDIR}/qt-cmake \
           ${D}{QT6_INSTALL_LIBDIR}/cmake/Qt6/qt.toolchain.cmake
@@ -148,4 +142,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "4ba25a092065a6422510a9f4afa4fbbabeda686c"
+SRCREV = "794150e5bda0c203a5373c3fa2f9785f9941f6dd"
