@@ -12,12 +12,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-PACKAGECONFIG ?= "translations"
-PACKAGECONFIG_class-native ?= ""
-PACKAGECONFIG_class-nativesdk ?= ""
-
-PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
-
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"

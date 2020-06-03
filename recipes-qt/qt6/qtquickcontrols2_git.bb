@@ -10,9 +10,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-PACKAGECONFIG ?= "translations"
-PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
-
 DEPENDS = "qtbase qtdeclarative"
 
 do_configure_prepend() {

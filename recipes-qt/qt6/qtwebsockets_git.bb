@@ -11,9 +11,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-PACKAGECONFIG ?= "translations"
-PACKAGECONFIG[translations] = ",,,qttranslations-${BPN}"
-
 DEPENDS += "qtbase qtdeclarative"
 
 SRCREV = "9486a8053edd0eab68a03178effebda0d5194607"
