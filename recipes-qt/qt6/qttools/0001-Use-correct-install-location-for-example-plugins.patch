@@ -1,0 +1,68 @@
+From a5fc59d93d3b08805750c538a92e55255f9c45d8 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Thu, 4 Jun 2020 11:55:36 +0300
+Subject: [PATCH] Use correct install location for example plugins
+
+Change-Id: I5bc782d9c6dcfb205872b4f72182758214ff59f7
+---
+ examples/designer/containerextension/CMakeLists.txt   | 2 +-
+ examples/designer/customwidgetplugin/CMakeLists.txt   | 2 +-
+ examples/designer/taskmenuextension/CMakeLists.txt    | 2 +-
+ examples/designer/worldtimeclockplugin/CMakeLists.txt | 2 +-
+ 4 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/examples/designer/containerextension/CMakeLists.txt b/examples/designer/containerextension/CMakeLists.txt
+index fa7080ea..ec6f0af9 100644
+--- a/examples/designer/containerextension/CMakeLists.txt
++++ b/examples/designer/containerextension/CMakeLists.txt
+@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
+ set(CMAKE_AUTORCC ON)
+ set(CMAKE_AUTOUIC ON)
+ 
+-set(INSTALL_EXAMPLEDIR "plugins/designer") # special case
++set(INSTALL_EXAMPLEDIR "${INSTALL_PLUGINSDIR}/designer") # special case
+ 
+ find_package(Qt6 COMPONENTS Core)
+ find_package(Qt6 COMPONENTS Gui)
+diff --git a/examples/designer/customwidgetplugin/CMakeLists.txt b/examples/designer/customwidgetplugin/CMakeLists.txt
+index c9232a2c..286aa72d 100644
+--- a/examples/designer/customwidgetplugin/CMakeLists.txt
++++ b/examples/designer/customwidgetplugin/CMakeLists.txt
+@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
+ set(CMAKE_AUTORCC ON)
+ set(CMAKE_AUTOUIC ON)
+ 
+-set(INSTALL_EXAMPLEDIR "plugins/designer") # special case
++set(INSTALL_EXAMPLEDIR "${INSTALL_PLUGINSDIR}/designer") # special case
+ 
+ find_package(Qt6 COMPONENTS Core)
+ find_package(Qt6 COMPONENTS Gui)
+diff --git a/examples/designer/taskmenuextension/CMakeLists.txt b/examples/designer/taskmenuextension/CMakeLists.txt
+index 2ed6c4fe..ce684ff8 100644
+--- a/examples/designer/taskmenuextension/CMakeLists.txt
++++ b/examples/designer/taskmenuextension/CMakeLists.txt
+@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
+ set(CMAKE_AUTORCC ON)
+ set(CMAKE_AUTOUIC ON)
+ 
+-set(INSTALL_EXAMPLEDIR "plugins/designer") # special case
++set(INSTALL_EXAMPLEDIR "${INSTALL_PLUGINSDIR}/designer") # special case
+ 
+ find_package(Qt6 COMPONENTS Core)
+ find_package(Qt6 COMPONENTS Gui)
+diff --git a/examples/designer/worldtimeclockplugin/CMakeLists.txt b/examples/designer/worldtimeclockplugin/CMakeLists.txt
+index 191f148b..5cf19af2 100644
+--- a/examples/designer/worldtimeclockplugin/CMakeLists.txt
++++ b/examples/designer/worldtimeclockplugin/CMakeLists.txt
+@@ -9,7 +9,7 @@ set(CMAKE_AUTOMOC ON)
+ set(CMAKE_AUTORCC ON)
+ set(CMAKE_AUTOUIC ON)
+ 
+-set(INSTALL_EXAMPLEDIR "plugins/designer") # special case
++set(INSTALL_EXAMPLEDIR "${INSTALL_PLUGINSDIR}/designer") # special case
+ 
+ find_package(Qt6 COMPONENTS Core)
+ find_package(Qt6 COMPONENTS Gui)
+-- 
+2.25.1
+

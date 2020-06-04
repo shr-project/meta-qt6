@@ -1,0 +1,623 @@
+From 4b2be44ed2a26fa2d2aa93c5ecbcb111587fd7df Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 2 Jun 2020 07:20:46 +0300
+Subject: [PATCH] Regenerate CMakeLists
+
+Change-Id: I914c1b4c12ad3dbcfade11466b83a632a43a778c
+---
+ .../qcollectiongenerator/.prev_CMakeLists.txt        |  4 +++-
+ src/assistant/qcollectiongenerator/CMakeLists.txt    |  4 +++-
+ src/assistant/qhelpgenerator/.prev_CMakeLists.txt    |  5 ++++-
+ src/assistant/qhelpgenerator/CMakeLists.txt          |  5 ++++-
+ src/linguist/lconvert/.prev_CMakeLists.txt           |  4 +++-
+ src/linguist/lconvert/CMakeLists.txt                 |  4 +++-
+ src/linguist/lprodump/.prev_CMakeLists.txt           |  6 ++++--
+ src/linguist/lprodump/CMakeLists.txt                 |  6 ++++--
+ src/linguist/lrelease-pro/.prev_CMakeLists.txt       |  4 +++-
+ src/linguist/lrelease-pro/CMakeLists.txt             |  4 +++-
+ src/linguist/lrelease/.prev_CMakeLists.txt           |  4 +++-
+ src/linguist/lrelease/CMakeLists.txt                 |  4 +++-
+ src/linguist/lupdate-pro/.prev_CMakeLists.txt        |  6 ++++--
+ src/linguist/lupdate-pro/CMakeLists.txt              |  6 ++++--
+ src/linguist/lupdate/.prev_CMakeLists.txt            | 12 +++++++-----
+ src/linguist/lupdate/CMakeLists.txt                  | 12 +++++++-----
+ src/qdoc/.prev_CMakeLists.txt                        | 12 +++++++-----
+ src/qdoc/CMakeLists.txt                              | 12 +++++++-----
+ src/qtattributionsscanner/.prev_CMakeLists.txt       |  6 +++++-
+ src/qtattributionsscanner/CMakeLists.txt             |  6 +++++-
+ src/windeployqt/.prev_CMakeLists.txt                 | 10 +++++++---
+ src/windeployqt/CMakeLists.txt                       | 12 ++++++++----
+ src/winrtrunner/CMakeLists.txt                       |  6 +++++-
+ 23 files changed, 106 insertions(+), 48 deletions(-)
+
+diff --git a/src/assistant/qcollectiongenerator/.prev_CMakeLists.txt b/src/assistant/qcollectiongenerator/.prev_CMakeLists.txt
+index ba927bd7..cfbcfc0a 100644
+--- a/src/assistant/qcollectiongenerator/.prev_CMakeLists.txt
++++ b/src/assistant/qcollectiongenerator/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qcollectiongenerator Tool:
+ #####################################################################
+ 
+-qt_add_tool(qcollectiongenerator
++qt_get_tool_target_name(target_name qcollectiongenerator)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Help Collection File Generator"
+     SOURCES
+         main.c
+     PUBLIC_LIBRARIES
+diff --git a/src/assistant/qcollectiongenerator/CMakeLists.txt b/src/assistant/qcollectiongenerator/CMakeLists.txt
+index cfd7cd92..97c8740d 100644
+--- a/src/assistant/qcollectiongenerator/CMakeLists.txt
++++ b/src/assistant/qcollectiongenerator/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qcollectiongenerator Tool:
+ #####################################################################
+ 
+-qt_add_tool(qcollectiongenerator
++qt_get_tool_target_name(target_name qcollectiongenerator)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Help Collection File Generator"
+     TOOLS_TARGET Tools # special case
+     SOURCES
+         main.c
+diff --git a/src/assistant/qhelpgenerator/.prev_CMakeLists.txt b/src/assistant/qhelpgenerator/.prev_CMakeLists.txt
+index a9653d99..cbf85063 100644
+--- a/src/assistant/qhelpgenerator/.prev_CMakeLists.txt
++++ b/src/assistant/qhelpgenerator/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qhelpgenerator Tool:
+ #####################################################################
+ 
+-qt_add_tool(qhelpgenerator
++qt_get_tool_target_name(target_name qhelpgenerator)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Compressed Help File Generator"
+     SOURCES
+         ../shared/collectionconfiguration.cpp ../shared/collectionconfiguration.h
+         collectionconfigreader.cpp collectionconfigreader.h
+@@ -21,3 +23,4 @@ qt_add_tool(qhelpgenerator
+ #### Keys ignored in scope 1:.:.:qhelpgenerator.pro:<TRUE>:
+ # QMAKE_TARGET_DESCRIPTION = "Qt Compressed Help File Generator"
+ # QTPLUGIN.platforms = "qminimal"
++# QTPLUGIN.sqldrivers = "qsqlite"
+diff --git a/src/assistant/qhelpgenerator/CMakeLists.txt b/src/assistant/qhelpgenerator/CMakeLists.txt
+index 5f9afc5c..540bb762 100644
+--- a/src/assistant/qhelpgenerator/CMakeLists.txt
++++ b/src/assistant/qhelpgenerator/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qhelpgenerator Tool:
+ #####################################################################
+ 
+-qt_add_tool(qhelpgenerator
++qt_get_tool_target_name(target_name qhelpgenerator)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Compressed Help File Generator"
+     TOOLS_TARGET Tools # special case
+     SOURCES
+         ../shared/collectionconfiguration.cpp ../shared/collectionconfiguration.h
+@@ -22,3 +24,4 @@ qt_add_tool(qhelpgenerator
+ #### Keys ignored in scope 1:.:.:qhelpgenerator.pro:<TRUE>:
+ # QMAKE_TARGET_DESCRIPTION = "Qt Compressed Help File Generator"
+ # QTPLUGIN.platforms = "qminimal"
++# QTPLUGIN.sqldrivers = "qsqlite"
+diff --git a/src/linguist/lconvert/.prev_CMakeLists.txt b/src/linguist/lconvert/.prev_CMakeLists.txt
+index e65bc854..f01e77da 100644
+--- a/src/linguist/lconvert/.prev_CMakeLists.txt
++++ b/src/linguist/lconvert/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lconvert Tool:
+ #####################################################################
+ 
+-qt_add_tool(lconvert
++qt_get_tool_target_name(target_name lconvert)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Converter"
+     SOURCES
+         ../shared/numerus.cpp
+         ../shared/po.cpp
+diff --git a/src/linguist/lconvert/CMakeLists.txt b/src/linguist/lconvert/CMakeLists.txt
+index a5dee94d..aba94640 100644
+--- a/src/linguist/lconvert/CMakeLists.txt
++++ b/src/linguist/lconvert/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lconvert Tool:
+ #####################################################################
+ 
+-qt_add_tool(lconvert
++qt_get_tool_target_name(target_name lconvert)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Converter"
+     TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/numerus.cpp
+diff --git a/src/linguist/lprodump/.prev_CMakeLists.txt b/src/linguist/lprodump/.prev_CMakeLists.txt
+index 2fb6df7f..705b3998 100644
+--- a/src/linguist/lprodump/.prev_CMakeLists.txt
++++ b/src/linguist/lprodump/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lprodump Tool:
+ #####################################################################
+ 
+-qt_add_tool(lprodump
++qt_get_tool_target_name(target_name lprodump)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Linguist QMake Project Dump Tool"
+     SOURCES
+         ../shared/ioutils.cpp ../shared/ioutils.h
+         ../shared/profileevaluator.cpp ../shared/profileevaluator.h
+@@ -37,7 +39,7 @@ set(proparser_resource_files
+     "exclusive_builds.prf"
+ )
+ 
+-qt_add_resource(lprodump "proparser"
++qt_add_resource(${target_name} "proparser"
+     PREFIX
+         "/qmake/override_features"
+     BASE
+diff --git a/src/linguist/lprodump/CMakeLists.txt b/src/linguist/lprodump/CMakeLists.txt
+index 350b4593..a2ed6ba9 100644
+--- a/src/linguist/lprodump/CMakeLists.txt
++++ b/src/linguist/lprodump/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lprodump Tool:
+ #####################################################################
+ 
+-qt_add_tool(lprodump
++qt_get_tool_target_name(target_name lprodump)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Linguist QMake Project Dump Tool"
+     TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/ioutils.cpp ../shared/ioutils.h
+@@ -38,7 +40,7 @@ set(proparser_resource_files
+     "exclusive_builds.prf"
+ )
+ 
+-qt_add_resource(lprodump "proparser"
++qt_add_resource(${target_name} "proparser"
+     PREFIX
+         "/qmake/override_features"
+     BASE
+diff --git a/src/linguist/lrelease-pro/.prev_CMakeLists.txt b/src/linguist/lrelease-pro/.prev_CMakeLists.txt
+index c1961603..9669234a 100644
+--- a/src/linguist/lrelease-pro/.prev_CMakeLists.txt
++++ b/src/linguist/lrelease-pro/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lrelease-pro Tool:
+ #####################################################################
+ 
+-qt_add_tool(lrelease-pro
++qt_get_tool_target_name(target_name lrelease-pro)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Compiler for QMake Projects"
+     SOURCES
+         ../shared/runqttool.cpp ../shared/runqttool.h
+         main.cpp
+diff --git a/src/linguist/lrelease-pro/CMakeLists.txt b/src/linguist/lrelease-pro/CMakeLists.txt
+index 84db24fb..e77fdd3d 100644
+--- a/src/linguist/lrelease-pro/CMakeLists.txt
++++ b/src/linguist/lrelease-pro/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lrelease-pro Tool:
+ #####################################################################
+ 
+-qt_add_tool(lrelease-pro
++qt_get_tool_target_name(target_name lrelease-pro)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Compiler for QMake Projects"
+     TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/runqttool.cpp ../shared/runqttool.h
+diff --git a/src/linguist/lrelease/.prev_CMakeLists.txt b/src/linguist/lrelease/.prev_CMakeLists.txt
+index b0f636ed..238b0e43 100644
+--- a/src/linguist/lrelease/.prev_CMakeLists.txt
++++ b/src/linguist/lrelease/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lrelease Tool:
+ #####################################################################
+ 
+-qt_add_tool(lrelease
++qt_get_tool_target_name(target_name lrelease)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Compiler"
+     SOURCES
+         ../shared/numerus.cpp
+         ../shared/po.cpp
+diff --git a/src/linguist/lrelease/CMakeLists.txt b/src/linguist/lrelease/CMakeLists.txt
+index 22e1dee2..6c3542ce 100644
+--- a/src/linguist/lrelease/CMakeLists.txt
++++ b/src/linguist/lrelease/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lrelease Tool:
+ #####################################################################
+ 
+-qt_add_tool(lrelease
++qt_get_tool_target_name(target_name lrelease)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Compiler"
+     TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/numerus.cpp
+diff --git a/src/linguist/lupdate-pro/.prev_CMakeLists.txt b/src/linguist/lupdate-pro/.prev_CMakeLists.txt
+index 07f7af6f..51f7b8c8 100644
+--- a/src/linguist/lupdate-pro/.prev_CMakeLists.txt
++++ b/src/linguist/lupdate-pro/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lupdate-pro Tool:
+ #####################################################################
+ 
+-qt_add_tool(lupdate-pro
++qt_get_tool_target_name(target_name lupdate-pro)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Update Tool for QMake Projects"
+     SOURCES
+         ../shared/runqttool.cpp ../shared/runqttool.h
+         main.cpp
+@@ -25,5 +27,5 @@ qt_add_tool(lupdate-pro
+ ## Scopes:
+ #####################################################################
+ 
+-#### Keys ignored in scope 2:.:.:lupdate-pro.pro:mingw:
++#### Keys ignored in scope 2:.:.:lupdate-pro.pro:MINGW:
+ # RC_FILE = "lupdate-pro.rc"
+diff --git a/src/linguist/lupdate-pro/CMakeLists.txt b/src/linguist/lupdate-pro/CMakeLists.txt
+index c366a2d6..8df52b7f 100644
+--- a/src/linguist/lupdate-pro/CMakeLists.txt
++++ b/src/linguist/lupdate-pro/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lupdate-pro Tool:
+ #####################################################################
+ 
+-qt_add_tool(lupdate-pro
++qt_get_tool_target_name(target_name lupdate-pro)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Update Tool for QMake Projects"
+     TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/runqttool.cpp ../shared/runqttool.h
+@@ -26,5 +28,5 @@ qt_add_tool(lupdate-pro
+ ## Scopes:
+ #####################################################################
+ 
+-#### Keys ignored in scope 2:.:.:lupdate-pro.pro:mingw:
++#### Keys ignored in scope 2:.:.:lupdate-pro.pro:MINGW:
+ # RC_FILE = "lupdate-pro.rc"
+diff --git a/src/linguist/lupdate/.prev_CMakeLists.txt b/src/linguist/lupdate/.prev_CMakeLists.txt
+index 61d7ad7f..4df4d389 100644
+--- a/src/linguist/lupdate/.prev_CMakeLists.txt
++++ b/src/linguist/lupdate/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lupdate Tool:
+ #####################################################################
+ 
+-qt_add_tool(lupdate
++qt_get_tool_target_name(target_name lupdate)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Update Tool"
+     SOURCES
+         ../shared/numerus.cpp
+         ../shared/po.cpp
+@@ -45,19 +47,19 @@ qt_add_tool(lupdate
+ ## Scopes:
+ #####################################################################
+ 
+-qt_extend_target(lupdate CONDITION TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION TARGET Qt::QmlDevToolsPrivate
+     SOURCES
+         qdeclarative.cpp
+     PUBLIC_LIBRARIES
+         Qt::QmlDevToolsPrivate
+ )
+ 
+-qt_extend_target(lupdate CONDITION NOT TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION NOT TARGET Qt::QmlDevToolsPrivate
+     DEFINES
+         QT_NO_QML
+ )
+ 
+-qt_extend_target(lupdate CONDITION QT_FEATURE_clangcpp
++qt_extend_target(${target_name} CONDITION QT_FEATURE_clangcpp
+     SOURCES
+         clangtoolastreader.cpp clangtoolastreader.h
+         cpp_clang.cpp cpp_clang.h
+@@ -74,5 +76,5 @@ qt_extend_target(lupdate CONDITION QT_FEATURE_clangcpp
+ #### Keys ignored in scope 6:.:.:lupdate.pro:NOT QMAKE_DEFAULT_LIBDIRS___contains____ss_CLANG_LIBDIR AND NOT disable_external_rpath:
+ # QMAKE_RPATHDIR = "$$CLANG_LIBDIR"
+ 
+-#### Keys ignored in scope 9:.:.:lupdate.pro:mingw:
++#### Keys ignored in scope 9:.:.:lupdate.pro:MINGW:
+ # RC_FILE = "lupdate.rc"
+diff --git a/src/linguist/lupdate/CMakeLists.txt b/src/linguist/lupdate/CMakeLists.txt
+index 04515bba..fe2e08a2 100644
+--- a/src/linguist/lupdate/CMakeLists.txt
++++ b/src/linguist/lupdate/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## lupdate Tool:
+ #####################################################################
+ 
+-qt_add_tool(lupdate
++qt_get_tool_target_name(target_name lupdate)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Translation File Update Tool"
+     TOOLS_TARGET Linguist # special case
+     SOURCES
+         ../shared/numerus.cpp
+@@ -46,19 +48,19 @@ qt_add_tool(lupdate
+ ## Scopes:
+ #####################################################################
+ 
+-qt_extend_target(lupdate CONDITION TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION TARGET Qt::QmlDevToolsPrivate
+     SOURCES
+         qdeclarative.cpp
+     PUBLIC_LIBRARIES
+         Qt::QmlDevToolsPrivate
+ )
+ 
+-qt_extend_target(lupdate CONDITION NOT TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION NOT TARGET Qt::QmlDevToolsPrivate
+     DEFINES
+         QT_NO_QML
+ )
+ 
+-qt_extend_target(lupdate CONDITION QT_FEATURE_clangcpp
++qt_extend_target(${target_name} CONDITION QT_FEATURE_clangcpp
+     SOURCES
+         clangtoolastreader.cpp clangtoolastreader.h
+         cpp_clang.cpp cpp_clang.h
+@@ -86,5 +88,5 @@ qt_extend_target(lupdate CONDITION QT_FEATURE_clangcpp
+ #### Keys ignored in scope 6:.:.:lupdate.pro:NOT QMAKE_DEFAULT_LIBDIRS___contains____ss_CLANG_LIBDIR AND NOT disable_external_rpath:
+ # QMAKE_RPATHDIR = "$$CLANG_LIBDIR"
+ 
+-#### Keys ignored in scope 9:.:.:lupdate.pro:mingw:
++#### Keys ignored in scope 9:.:.:lupdate.pro:MINGW:
+ # RC_FILE = "lupdate.rc"
+diff --git a/src/qdoc/.prev_CMakeLists.txt b/src/qdoc/.prev_CMakeLists.txt
+index ce43e470..850edd58 100644
+--- a/src/qdoc/.prev_CMakeLists.txt
++++ b/src/qdoc/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qdoc Tool:
+ #####################################################################
+ 
+-qt_add_tool(qdoc
++qt_get_tool_target_name(target_name qdoc)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Documentation Compiler"
+     SOURCES
+         atom.cpp atom.h
+         clangcodeparser.cpp clangcodeparser.h
+@@ -85,12 +87,12 @@ qt_add_tool(qdoc
+ #### Keys ignored in scope 2:.:.:qdoc.pro:NOT force_bootstrap:
+ # _REQUIREMENTS = "qtConfig(xmlstreamwriter)"
+ 
+-qt_extend_target(qdoc CONDITION TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION TARGET Qt::QmlDevToolsPrivate
+     PUBLIC_LIBRARIES
+         Qt::QmlDevToolsPrivate
+ )
+ 
+-qt_extend_target(qdoc CONDITION NOT TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION NOT TARGET Qt::QmlDevToolsPrivate
+     DEFINES
+         QT_NO_DECLARATIVE
+ )
+@@ -98,7 +100,7 @@ qt_extend_target(qdoc CONDITION NOT TARGET Qt::QmlDevToolsPrivate
+ #### Keys ignored in scope 6:.:.:qdoc.pro:NOT QMAKE_DEFAULT_LIBDIRS___contains____ss_CLANG_LIBDIR AND NOT disable_external_rpath:
+ # QMAKE_RPATHDIR = "$$CLANG_LIBDIR"
+ 
+-qt_extend_target(qdoc CONDITION win32-icc_x_ OR win32-msvc_x_
++qt_extend_target(${target_name} CONDITION win32-icc_x_ OR win32-msvc_x_
+     LINK_OPTIONS
+         "/STACK:4194304"
+ )
+@@ -116,7 +118,7 @@ qt_extend_target(qdoc CONDITION win32-icc_x_ OR win32-msvc_x_
+ #### Keys ignored in scope 11:.:.:qdoc.pro:CMAKE_BIN_DIR___contains___^\\.\\./._x_:
+ # CMAKE_BIN_DIR = "$$[QT_HOST_BINS]/"
+ # CMAKE_BIN_DIR_IS_ABSOLUTE = "True"
+-qt_add_docs(qdoc
++qt_add_docs(${target_name}
+     doc/config/qdoc.qdocconf
+ )
+ 
+diff --git a/src/qdoc/CMakeLists.txt b/src/qdoc/CMakeLists.txt
+index 456af22c..dc279cb5 100644
+--- a/src/qdoc/CMakeLists.txt
++++ b/src/qdoc/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qdoc Tool:
+ #####################################################################
+ 
+-qt_add_tool(qdoc
++qt_get_tool_target_name(target_name qdoc)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Documentation Compiler"
+     TOOLS_TARGET Tools # special case
+     SOURCES
+         atom.cpp atom.h
+@@ -89,12 +91,12 @@ qt_add_tool(qdoc
+ #### Keys ignored in scope 2:.:.:qdoc.pro:NOT force_bootstrap:
+ # _REQUIREMENTS = "qtConfig(xmlstreamwriter)"
+ 
+-qt_extend_target(qdoc CONDITION TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION TARGET Qt::QmlDevToolsPrivate
+     PUBLIC_LIBRARIES
+         Qt::QmlDevToolsPrivate
+ )
+ 
+-qt_extend_target(qdoc CONDITION NOT TARGET Qt::QmlDevToolsPrivate
++qt_extend_target(${target_name} CONDITION NOT TARGET Qt::QmlDevToolsPrivate
+     DEFINES
+         QT_NO_DECLARATIVE
+ )
+@@ -102,7 +104,7 @@ qt_extend_target(qdoc CONDITION NOT TARGET Qt::QmlDevToolsPrivate
+ #### Keys ignored in scope 6:.:.:qdoc.pro:NOT QMAKE_DEFAULT_LIBDIRS___contains____ss_CLANG_LIBDIR AND NOT disable_external_rpath:
+ # QMAKE_RPATHDIR = "$$CLANG_LIBDIR"
+ 
+-qt_extend_target(qdoc CONDITION win32-icc_x_ OR win32-msvc_x_
++qt_extend_target(${target_name} CONDITION win32-icc_x_ OR win32-msvc_x_
+     LINK_OPTIONS
+         "/STACK:4194304"
+ )
+@@ -120,7 +122,7 @@ qt_extend_target(qdoc CONDITION win32-icc_x_ OR win32-msvc_x_
+ #### Keys ignored in scope 11:.:.:qdoc.pro:CMAKE_BIN_DIR___contains___^\\.\\./._x_:
+ # CMAKE_BIN_DIR = "$$[QT_HOST_BINS]/"
+ # CMAKE_BIN_DIR_IS_ABSOLUTE = "True"
+-qt_add_docs(qdoc
++qt_add_docs(${target_name}
+     doc/config/qdoc.qdocconf
+ )
+ 
+diff --git a/src/qtattributionsscanner/.prev_CMakeLists.txt b/src/qtattributionsscanner/.prev_CMakeLists.txt
+index a7e7694e..17cd6482 100644
+--- a/src/qtattributionsscanner/.prev_CMakeLists.txt
++++ b/src/qtattributionsscanner/.prev_CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qtattributionsscanner Tool:
+ #####################################################################
+ 
+-qt_add_tool(qtattributionsscanner
++qt_get_tool_target_name(target_name qtattributionsscanner)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Source Code Attribution Scanner"
+     SOURCES
+         jsongenerator.cpp jsongenerator.h
+         logging.h
+@@ -28,7 +30,9 @@ qt_add_tool(qtattributionsscanner
+ # INSTALLS = "cmake_qattributionsscanner_tools_files"
+ # QMAKE_SUBSTITUTES = "cmake_qattributionsscanner_config_file" "cmake_qattributionsscanner_config_version_file"
+ # QMAKE_TARGET_DESCRIPTION = "Qt Source Code Attribution Scanner"
++# QT_FOR_CONFIG = "tools-private"
+ # _OPTION = "host_build"
++# _REQUIREMENTS = "qtConfig(qtattributionsscanner)"
+ # cmake_qattributionsscanner_config_file.input = "$$PWD/Qt5AttributionsScannerTools.cmake.in"
+ # cmake_qattributionsscanner_config_file.output = "$$MODULE_BASE_OUTDIR/lib/cmake/Qt5AttributionsScannerTools/Qt5AttributionsScannerToolsConfig.cmake"
+ # cmake_qattributionsscanner_config_version_file.input = "$$[QT_HOST_DATA/src]/mkspecs/features/data/cmake/Qt5ConfigVersion.cmake.in"
+diff --git a/src/qtattributionsscanner/CMakeLists.txt b/src/qtattributionsscanner/CMakeLists.txt
+index bee6df30..aef9be70 100644
+--- a/src/qtattributionsscanner/CMakeLists.txt
++++ b/src/qtattributionsscanner/CMakeLists.txt
+@@ -4,7 +4,9 @@
+ ## qtattributionsscanner Tool:
+ #####################################################################
+ 
+-qt_add_tool(qtattributionsscanner
++qt_get_tool_target_name(target_name qtattributionsscanner)
++qt_add_tool(${target_name}
++    TARGET_DESCRIPTION "Qt Source Code Attribution Scanner"
+     TOOLS_TARGET Tools # special case
+     SOURCES
+         jsongenerator.cpp jsongenerator.h
+@@ -29,7 +31,9 @@ qt_add_tool(qtattributionsscanner
+ # INSTALLS = "cmake_qattributionsscanner_tools_files"
+ # QMAKE_SUBSTITUTES = "cmake_qattributionsscanner_config_file" "cmake_qattributionsscanner_config_version_file"
+ # QMAKE_TARGET_DESCRIPTION = "Qt Source Code Attribution Scanner"
++# QT_FOR_CONFIG = "tools-private"
+ # _OPTION = "host_build"
++# _REQUIREMENTS = "qtConfig(qtattributionsscanner)"
+ # cmake_qattributionsscanner_config_file.input = "$$PWD/Qt5AttributionsScannerTools.cmake.in"
+ # cmake_qattributionsscanner_config_file.output = "$$MODULE_BASE_OUTDIR/lib/cmake/Qt5AttributionsScannerTools/Qt5AttributionsScannerToolsConfig.cmake"
+ # cmake_qattributionsscanner_config_version_file.input = "$$[QT_HOST_DATA/src]/mkspecs/features/data/cmake/Qt5ConfigVersion.cmake.in"
+diff --git a/src/windeployqt/.prev_CMakeLists.txt b/src/windeployqt/.prev_CMakeLists.txt
+index b80096eb..e317a64e 100644
+--- a/src/windeployqt/.prev_CMakeLists.txt
++++ b/src/windeployqt/.prev_CMakeLists.txt
+@@ -4,8 +4,10 @@
+ ## windeployqt Tool:
+ #####################################################################
+ 
+-qt_add_tool(windeployqt
++qt_get_tool_target_name(target_name windeployqt)
++qt_add_tool(${target_name}
+     BOOTSTRAP
++    TARGET_DESCRIPTION "Qt Windows Deployment Tool"
+     SOURCES
+         ../shared/winutils/elfreader.cpp ../shared/winutils/elfreader.h
+         ../shared/winutils/qmlutils.cpp ../shared/winutils/qmlutils.h
+@@ -23,17 +25,19 @@ qt_add_tool(windeployqt
+ 
+ #### Keys ignored in scope 1:.:.:windeployqt.pro:<TRUE>:
+ # QMAKE_TARGET_DESCRIPTION = "Qt Windows Deployment Tool"
++# QT_FOR_CONFIG = "tools-private"
+ # _OPTION = "host_build"
++# _REQUIREMENTS = "qtConfig(windeployqt)"
+ 
+ ## Scopes:
+ #####################################################################
+ 
+-qt_extend_target(windeployqt CONDITION WIN32
++qt_extend_target(${target_name} CONDITION WIN32
+     PUBLIC_LIBRARIES
+         shlwapi
+ )
+ 
+-qt_extend_target(windeployqt CONDITION QT_FEATURE_relocatable
++qt_extend_target(${target_name} CONDITION QT_FEATURE_relocatable
+     DEFINES
+         QT_RELOCATABLE
+ )
+diff --git a/src/windeployqt/CMakeLists.txt b/src/windeployqt/CMakeLists.txt
+index f2ae3b51..25c7565b 100644
+--- a/src/windeployqt/CMakeLists.txt
++++ b/src/windeployqt/CMakeLists.txt
+@@ -4,8 +4,10 @@
+ ## windeployqt Tool:
+ #####################################################################
+ 
+-qt_add_tool(windeployqt
+-    #BOOTSTRAP # special case remove
++qt_get_tool_target_name(target_name windeployqt)
++qt_add_tool(${target_name}
++    BOOTSTRAP
++    TARGET_DESCRIPTION "Qt Windows Deployment Tool"
+     SOURCES
+         ../shared/winutils/elfreader.cpp ../shared/winutils/elfreader.h
+         ../shared/winutils/qmlutils.cpp ../shared/winutils/qmlutils.h
+@@ -24,17 +26,19 @@ qt_add_tool(windeployqt
+ 
+ #### Keys ignored in scope 1:.:.:windeployqt.pro:<TRUE>:
+ # QMAKE_TARGET_DESCRIPTION = "Qt Windows Deployment Tool"
++# QT_FOR_CONFIG = "tools-private"
+ # _OPTION = "host_build"
++# _REQUIREMENTS = "qtConfig(windeployqt)"
+ 
+ ## Scopes:
+ #####################################################################
+ 
+-qt_extend_target(windeployqt CONDITION WIN32
++qt_extend_target(${target_name} CONDITION WIN32
+     PUBLIC_LIBRARIES
+         shlwapi
+ )
+ 
+-qt_extend_target(windeployqt CONDITION QT_FEATURE_relocatable
++qt_extend_target(${target_name} CONDITION QT_FEATURE_relocatable
+     DEFINES
+         QT_RELOCATABLE
+ )
+diff --git a/src/winrtrunner/CMakeLists.txt b/src/winrtrunner/CMakeLists.txt
+index 736e4bba..304b67e2 100644
+--- a/src/winrtrunner/CMakeLists.txt
++++ b/src/winrtrunner/CMakeLists.txt
+@@ -4,8 +4,10 @@
+ ## winrtrunner Tool:
+ #####################################################################
+ 
+-qt_add_tool(winrtrunner
++qt_get_tool_target_name(target_name winrtrunner)
++qt_add_tool(${target_name}
+     BOOTSTRAP
++    TARGET_DESCRIPTION "Qt WinRT Runner"
+     SOURCES
+         ../shared/corecon/ccapi.h
+         ../shared/corecon/ccapi_11.h
+@@ -38,4 +40,6 @@ qt_add_tool(winrtrunner
+ 
+ #### Keys ignored in scope 1:.:.:winrtrunner.pro:<TRUE>:
+ # QMAKE_TARGET_DESCRIPTION = "Qt WinRT Runner"
++# QT_FOR_CONFIG = "tools-private"
+ # _OPTION = "host_build"
++# _REQUIREMENTS = "qtConfig(winrtrunner)"
+-- 
+2.25.1
+

@@ -1,0 +1,72 @@
+From 9a26026d2f293af4d9cbd0b1c21aba3073319853 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 2 Jun 2020 14:51:07 +0300
+Subject: [PATCH] Regenerate CMakeLists
+
+Change-Id: I5917b2b86b23ac24a2fa99f8bf55436e7e96a0d2
+---
+ tools/balsam/.prev_CMakeLists.txt    | 3 ++-
+ tools/balsam/CMakeLists.txt          | 3 ++-
+ tools/meshdebug/.prev_CMakeLists.txt | 3 ++-
+ tools/meshdebug/CMakeLists.txt       | 3 ++-
+ 4 files changed, 8 insertions(+), 4 deletions(-)
+
+diff --git a/tools/balsam/.prev_CMakeLists.txt b/tools/balsam/.prev_CMakeLists.txt
+index b42e580..f2736e5 100644
+--- a/tools/balsam/.prev_CMakeLists.txt
++++ b/tools/balsam/.prev_CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## balsam Tool:
+ #####################################################################
+ 
+-qt_add_tool(balsam
++qt_get_tool_target_name(target_name balsam)
++qt_add_tool(${target_name}
+     SOURCES
+         main.cpp
+     PUBLIC_LIBRARIES
+diff --git a/tools/balsam/CMakeLists.txt b/tools/balsam/CMakeLists.txt
+index 55a090d..c8cd1d2 100644
+--- a/tools/balsam/CMakeLists.txt
++++ b/tools/balsam/CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## balsam Tool:
+ #####################################################################
+ 
+-qt_add_tool(balsam
++qt_get_tool_target_name(target_name balsam)
++qt_add_tool(${target_name}
+     TOOLS_TARGET Quick3D # special case
+     SOURCES
+         main.cpp
+diff --git a/tools/meshdebug/.prev_CMakeLists.txt b/tools/meshdebug/.prev_CMakeLists.txt
+index 9ca4153..34815a5 100644
+--- a/tools/meshdebug/.prev_CMakeLists.txt
++++ b/tools/meshdebug/.prev_CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## meshdebug Tool:
+ #####################################################################
+ 
+-qt_add_tool(meshdebug
++qt_get_tool_target_name(target_name meshdebug)
++qt_add_tool(${target_name}
+     SOURCES
+         main.cpp
+     PUBLIC_LIBRARIES
+diff --git a/tools/meshdebug/CMakeLists.txt b/tools/meshdebug/CMakeLists.txt
+index 18872bd..a99ad77 100644
+--- a/tools/meshdebug/CMakeLists.txt
++++ b/tools/meshdebug/CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## meshdebug Tool:
+ #####################################################################
+ 
+-qt_add_tool(meshdebug
++qt_get_tool_target_name(target_name meshdebug)
++qt_add_tool(${target_name}
+     TOOLS_TARGET Quick3D # special case
+     SOURCES
+         main.cpp
+-- 
+2.25.1
+

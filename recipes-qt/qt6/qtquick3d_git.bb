@@ -10,6 +10,7 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI += " \
     git://github.com/assimp/assimp.git;name=assimp;branch=assimp_5.0_release;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
+    file://0001-Regenerate-CMakeLists.patch \
 "
 
 DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native"
@@ -23,7 +24,7 @@ _FILES_${PN}-qmlplugins += " \
   ${OE_QMAKE_PATH_QML}/QtQuick3D/Helpers/meshes/*.mesh \
 "
 
-SRCREV_qtquick3d = "f0bea57820951435e44b1e1aa113617bdcc59622"
+SRCREV_qtquick3d = "1b7b167ede6ca8a19a8dd760458898f1c23abfc3"
 SRCREV_assimp = "8f0c6b04b2257a520aaab38421b2e090204b69df"
 
 SRCREV_FORMAT = "qtquick3d_assimp"

@@ -1,0 +1,42 @@
+From ebaf42e43f5ad04dc0c8aff84777ca626a407ec0 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 2 Jun 2020 12:44:35 +0300
+Subject: [PATCH] Regenerate CMakeLists
+
+Change-Id: I9026f90e41c1e5b9b0927382e65734a5642638b2
+---
+ tools/qsb/.prev_CMakeLists.txt | 3 ++-
+ tools/qsb/CMakeLists.txt       | 3 ++-
+ 2 files changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/tools/qsb/.prev_CMakeLists.txt b/tools/qsb/.prev_CMakeLists.txt
+index a1719c6..34bb64d 100644
+--- a/tools/qsb/.prev_CMakeLists.txt
++++ b/tools/qsb/.prev_CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## qsb Tool:
+ #####################################################################
+ 
+-qt_add_tool(qsb
++qt_get_tool_target_name(target_name qsb)
++qt_add_tool(${target_name}
+     SOURCES
+         qsb.cpp
+     PUBLIC_LIBRARIES
+diff --git a/tools/qsb/CMakeLists.txt b/tools/qsb/CMakeLists.txt
+index 3a0a7b9..8dc8ca6 100644
+--- a/tools/qsb/CMakeLists.txt
++++ b/tools/qsb/CMakeLists.txt
+@@ -11,7 +11,8 @@ endif()
+ ## qsb Tool:
+ #####################################################################
+ 
+-qt_add_tool(qsb
++qt_get_tool_target_name(target_name qsb)
++qt_add_tool(${target_name}
+     TOOLS_TARGET # special case
+         ShaderTools # special case
+     SOURCES
+-- 
+2.25.1
+

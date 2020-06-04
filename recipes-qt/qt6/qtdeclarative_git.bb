@@ -12,11 +12,15 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Regenerate-CMakeLists.patch \
+"
+
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "24abd0d14ebd420c275fa4e49ddb1a43b441c74f"
+SRCREV = "fedc75b518854ecf5ac2360cfc735f2b213d4a1f"
 
 do_install_append() {
     # broken installation of plugins.qmltypes

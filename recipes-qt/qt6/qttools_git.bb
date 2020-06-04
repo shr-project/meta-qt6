@@ -15,8 +15,10 @@ include recipes-qt/qt6/qt6.inc
 DEPENDS += "qtbase qtdeclarative qttools-native"
 
 SRC_URI += "\
+    file://0001-Regenerate-CMakeLists.patch \
+    file://0001-Use-correct-install-location-for-example-plugins.patch \
 "
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "2495c48a93fe0771ee59777a47071d19062d9e4a"
+SRCREV = "30240c68c2c133c464460534081b865344a692ad"
