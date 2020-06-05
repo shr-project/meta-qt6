@@ -26,3 +26,10 @@ EXTRA_OECMAKE += "\
     -DINSTALL_TRANSLATIONSDIR:PATH=${@os.path.relpath(d.getVar('QT6_INSTALL_TRANSLATIONSDIR'), d.getVar('prefix') + '/')} \
     -DINSTALL_MKSPECSDIR:PATH=${@os.path.relpath(d.getVar('QT6_INSTALL_MKSPECSDIR'), d.getVar('prefix') + '/')} \
 "
+
+do_install_append() {
+    # Replace host paths with qmake built-in properties QTBUG-84725
+    find ${D} \( -name "*.pri" -or -name "*.prl" \) -exec \
+        sed -i -e 's|${STAGING_DIR_NATIVE}|$$[QT_HOST_PREFIX/get]|g' \
+               -e 's|${STAGING_DIR_HOST}|$$[QT_SYSROOT]|g' {} \;
+}
