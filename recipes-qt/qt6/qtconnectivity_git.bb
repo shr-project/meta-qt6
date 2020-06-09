@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
 "
 
-inherit qt6-cmake
+inherit qt6-qmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
@@ -19,4 +19,4 @@ PACKAGECONFIG[bluez] = "-DFEATURE_bluez=ON,-DFEATURE_bluez=OFF,bluez5"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "eb2e434dda5c46028474c76ce5f4921a7217b45c"
+SRCREV = "fc21cb73fa73d623d9fa6b088da1bf7538e60200"

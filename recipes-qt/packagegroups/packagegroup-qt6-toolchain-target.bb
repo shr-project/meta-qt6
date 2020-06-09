@@ -12,6 +12,7 @@ RDEPENDS_${PN} += "\
     qt5compat-dev \
     qtbase-dev \
     qtcoap-dev \
+    qtconnectivity-dev \
     qtdeclarative-dev \
     qtgraphicaleffects-dev \
     qtimageformats-dev \
@@ -21,6 +22,7 @@ RDEPENDS_${PN} += "\
     qtquickcontrols2-dev \
     qtserialport-dev \
     qtshadertools-dev \
+    qtspeech-dev \
     qtsvg-dev \
     qttools-dev \
     qttranslations-dev \

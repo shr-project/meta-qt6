@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
 "
 
-inherit qt6-cmake
+inherit qt6-qmake
 inherit features_check
 
 REQUIRED_DISTRO_FEATURES = "x11"
@@ -17,4 +17,4 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase"
 
-SRCREV = "7540e57ea709459bd15c16d25535bb756392f923"
+SRCREV = "66ca8918fd3dc35cbd3f3760c67a4a91a8fc64cc"
