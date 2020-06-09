@@ -121,10 +121,6 @@ do_install_append() {
     # qt-cmake is not needed, remove it and the toolchain file
     rm -f ${D}${QT6_INSTALL_BINDIR}/qt-cmake \
           ${D}{QT6_INSTALL_LIBDIR}/cmake/Qt6/qt.toolchain.cmake
-
-    if [ ! -e ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri ]; then
-        touch ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri
-    fi
 }
 
 do_install_append_class-nativesdk() {

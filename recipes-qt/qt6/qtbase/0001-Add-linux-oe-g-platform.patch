@@ -1,7 +1,7 @@
-From bfec530b6e512e1721eb8de0841f5bf445787597 Mon Sep 17 00:00:00 2001
+From b1b942381095e93e386e4a75f7c5459996097886 Mon Sep 17 00:00:00 2001
 From: Martin Jansa <Martin.Jansa@gmail.com>
 Date: Mon, 15 Apr 2013 04:29:32 +0200
-Subject: [PATCH 1/3] Add linux-oe-g++ platform
+Subject: [PATCH] Add linux-oe-g++ platform
 
 * This qmake.conf unlike other platforms reads most variables from
   shell environment, because it's easier for qt recipes to export
@@ -15,17 +15,17 @@ Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
  mkspecs/features/qt.prf              |  6 ++---
  mkspecs/features/qt_functions.prf    |  2 +-
- mkspecs/linux-oe-g++/qmake.conf      | 39 ++++++++++++++++++++++++++++
+ mkspecs/linux-oe-g++/qmake.conf      | 35 ++++++++++++++++++++++++++++
  mkspecs/linux-oe-g++/qplatformdefs.h |  1 +
- 4 files changed, 44 insertions(+), 4 deletions(-)
+ 4 files changed, 40 insertions(+), 4 deletions(-)
  create mode 100644 mkspecs/linux-oe-g++/qmake.conf
  create mode 100644 mkspecs/linux-oe-g++/qplatformdefs.h
 
 diff --git a/mkspecs/features/qt.prf b/mkspecs/features/qt.prf
-index 3a71376029..dd6020f1fe 100644
+index 4a53b99ca1..4613e1dabc 100644
 --- a/mkspecs/features/qt.prf
 +++ b/mkspecs/features/qt.prf
-@@ -148,7 +148,7 @@ import_plugins:qtConfig(static) {
+@@ -151,7 +151,7 @@ import_plugins:qtConfig(static) {
              plug_name = $$QMAKE_PREFIX_STATICLIB$${plug}$$qtPlatformTargetSuffix().$$QMAKE_EXTENSION_STATICLIB
              plug_path = $$eval(QT_PLUGIN.$${plug}.PATH)
              isEmpty(plug_path): \
@@ -34,7 +34,7 @@ index 3a71376029..dd6020f1fe 100644
              LIBS += $$plug_path/$$plug_type/$$plug_name
          } else {
              LIBS += -l$${plug}$$qtPlatformTargetSuffix()
-@@ -271,8 +271,8 @@ for(ever) {
+@@ -265,8 +265,8 @@ for(ever) {
  # static builds: link qml import plugins into the target.
  contains(all_qt_module_deps, qml): \
          qtConfig(static):import_plugins:!host_build:!no_import_scan {
@@ -46,10 +46,10 @@ index 3a71376029..dd6020f1fe 100644
      # run qmlimportscanner
      qtPrepareTool(QMLIMPORTSCANNER, qmlimportscanner, , system)
 diff --git a/mkspecs/features/qt_functions.prf b/mkspecs/features/qt_functions.prf
-index 45d4492788..b952104d99 100644
+index 7777e615bd..8d792fa70a 100644
 --- a/mkspecs/features/qt_functions.prf
 +++ b/mkspecs/features/qt_functions.prf
-@@ -76,7 +76,7 @@ defineTest(qtHaveModule) {
+@@ -87,7 +87,7 @@ defineTest(qtHaveModule) {
  defineTest(qtPrepareTool) {
      cmd = $$eval(QT_TOOL.$${2}.binary)
      isEmpty(cmd) {
@@ -60,10 +60,10 @@ index 45d4492788..b952104d99 100644
              cmd = perl -w $$system_path($${cmd}.pl)
 diff --git a/mkspecs/linux-oe-g++/qmake.conf b/mkspecs/linux-oe-g++/qmake.conf
 new file mode 100644
-index 0000000000..c202c47fa1
+index 0000000000..8d6b1d4c7e
 --- /dev/null
 +++ b/mkspecs/linux-oe-g++/qmake.conf
-@@ -0,0 +1,39 @@
+@@ -0,0 +1,35 @@
 +#
 +# qmake configuration for linux-g++ with modifications for building with OpenEmbedded
 +#
@@ -96,10 +96,6 @@ index 0000000000..c202c47fa1
 +QMAKE_LINK_C       = $$(OE_QMAKE_LINK)
 +QMAKE_LINK_C_SHLIB = $$(OE_QMAKE_LINK)
 +QMAKE_CFLAGS_ISYSTEM =
-+# for the SDK
-+isEmpty(QMAKE_QT_CONFIG):QMAKE_QT_CONFIG = $$(OE_QMAKE_QT_CONFIG)
-+
-+include(../oe-device-extra.pri)
 +
 +load(device_config)
 +load(qt_config)
