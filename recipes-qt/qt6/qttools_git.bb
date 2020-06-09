@@ -16,9 +16,9 @@ DEPENDS += "qtbase qtdeclarative qttools-native"
 
 SRC_URI += "\
     file://0001-Regenerate-CMakeLists.patch \
-    file://0001-Use-correct-install-location-for-example-plugins.patch \
+    file://0001-DesktopWidget-is-no-more.patch \
 "
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "30240c68c2c133c464460534081b865344a692ad"
+SRCREV = "58902fbd684d39191fbddf3ef5e917e709b38a68"

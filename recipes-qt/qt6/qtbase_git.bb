@@ -122,9 +122,6 @@ do_install_append() {
     if [ ! -e ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri ]; then
         touch ${D}/${QT6_INSTALL_MKSPECSDIR}/oe-device-extra.pri
     fi
-
-    # confligs with qttools module cmake files
-    rm -rf ${D}${libdir}/cmake/Qt6Tools
 }
 
 do_install_append_class-nativesdk() {
@@ -141,4 +138,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "654a3ad08e52dd84dac3a729e06458cfa568f6bb"
+SRCREV = "85c1009dbbb73fc9bee5911d70cdd96469ad8270"
