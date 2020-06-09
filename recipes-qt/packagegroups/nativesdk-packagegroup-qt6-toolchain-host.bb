@@ -9,13 +9,11 @@ RDEPENDS_${PN} += " \
     nativesdk-make \
     nativesdk-cmake \
     nativesdk-ninja \
+    nativesdk-perl-modules \
     nativesdk-qtbase-dev \
     nativesdk-qtbase-tools \
     nativesdk-qtdeclarative-dev \
     nativesdk-qtdeclarative-tools \
     nativesdk-qttools-dev \
     nativesdk-qttools-tools \
-    nativesdk-qtwayland-dev \
-    nativesdk-qtwayland-tools \
-    nativesdk-perl-modules \
 "
