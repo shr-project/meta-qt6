@@ -19,6 +19,7 @@ RDEPENDS_${PN} += " \
     qtnetworkauth \
     qtquick3d \
     qtquickcontrols2 \
+    qtquicktimeline \
     qtserialport \
     qtshadertools \
     qtspeech \

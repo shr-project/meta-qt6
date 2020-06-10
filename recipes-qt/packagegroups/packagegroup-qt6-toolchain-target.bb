@@ -20,6 +20,7 @@ RDEPENDS_${PN} += "\
     qtnetworkauth-dev \
     qtquick3d-dev \
     qtquickcontrols2-dev \
+    qtquicktimeline-dev \
     qtserialport-dev \
     qtshadertools-dev \
     qtspeech-dev \
