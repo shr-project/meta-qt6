@@ -8,6 +8,7 @@ inherit packagegroup
 PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
 RDEPENDS_${PN} += " \
+    qt3d \
     qt5compat \
     qtbase \
     qtcoap \

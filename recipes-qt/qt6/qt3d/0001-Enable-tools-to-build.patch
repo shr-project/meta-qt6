@@ -1,0 +1,24 @@
+From b9d5fd7016a4aef172a87027d35a09ff532f5b4e Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Mon, 15 Jun 2020 15:49:45 +0300
+Subject: [PATCH] Enable tools to build
+
+Change-Id: Ib9f34021dd809fb13bf56f755d2004541d822079
+---
+ tools/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tools/CMakeLists.txt b/tools/CMakeLists.txt
+index d9e4ecd..7086422 100644
+--- a/tools/CMakeLists.txt
++++ b/tools/CMakeLists.txt
+@@ -1,5 +1,5 @@
+ # Generated from tools.pro.
+ 
+ #if(QT_FEATURE_assimp AND QT_FEATURE_commandlineparser AND NOT CMAKE_CROSSCOMPILING)
+-#    add_subdirectory(qgltf)
++    add_subdirectory(qgltf)
+ #endif()
+-- 
+2.7.4
+

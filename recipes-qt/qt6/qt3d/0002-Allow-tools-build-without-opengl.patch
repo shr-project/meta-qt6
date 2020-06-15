@@ -1,0 +1,128 @@
+From c7ec0f5c488a117e05670289894a2871503a4fdc Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 2 Jun 2020 15:44:01 +0300
+Subject: [PATCH 2/2] Allow tools build without opengl
+
+Change-Id: Icf3f60be701e22bd4cc91cd7cba204f5cfd69381
+---
+ .prev_CMakeLists.txt |  4 +++
+ CMakeLists.txt       |  4 +--
+ qt3d.pro             |  3 +-
+ src/CMakeLists.txt   | 66 +++++++++++++++++++++++---------------------
+ 4 files changed, 41 insertions(+), 36 deletions(-)
+
+diff --git a/.prev_CMakeLists.txt b/.prev_CMakeLists.txt
+index aff4dafac..e6d44b1ee 100644
+--- a/.prev_CMakeLists.txt
++++ b/.prev_CMakeLists.txt
+@@ -13,4 +13,8 @@ project(3d_FIXME
+ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS BuildInternals Core SET_ME_TO_SOMETHING_USEFUL)
+ find_package(Qt6 ${PROJECT_VERSION} CONFIG OPTIONAL_COMPONENTS SET_ME_TO_SOMETHING_USEFUL)
+ 
++if(WASM)
++    message(NOTICE "Skipping the build as the condition \"NOT WASM\" is not met.")
++    return()
++endif()
+ qt_build_repo()
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index ac23033e1..9cb2ec168 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -17,8 +17,8 @@ if(NOT TARGET Qt::Gui)
+     message(FATAL_ERROR "Skipping the build as the condition \"TARGET Qt::Gui\" is not met.")
+     return()
+ endif()
+-if(WASM OR NOT QT_FEATURE_opengl)
+-    message(FATAL_ERROR "Skipping the build as the condition \"QT_FEATURE_opengl AND NOT WASM\" is not met.")
++if(WASM)
++    message(NOTICE "Skipping the build as the condition \"NOT WASM\" is not met.")
+     return()
+ endif()
+ 
+diff --git a/qt3d.pro b/qt3d.pro
+index b6ee54fe4..2938d7533 100644
+--- a/qt3d.pro
++++ b/qt3d.pro
+@@ -1,5 +1,4 @@
+-qtHaveModule(gui): \
+-    requires(qtConfig(opengl):!wasm)
++requires(!wasm)
+ 
+ CONFIG += examples_need_tools
+ load(qt_parts)
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index 6ce9c87f7..3c99c731a 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1,37 +1,39 @@
+-# Generated from src.pro.
+-add_subdirectory(core)
+-add_subdirectory(render)
+-add_subdirectory(logic)
+-add_subdirectory(input)
+-add_subdirectory(animation)
+-add_subdirectory(extras)
+-add_subdirectory(doc)
++if (QT_FEATURE_opengl)
++  # Generated from src.pro.
++  add_subdirectory(core)
++  add_subdirectory(render)
++  add_subdirectory(logic)
++  add_subdirectory(input)
++  add_subdirectory(animation)
++  add_subdirectory(extras)
++  add_subdirectory(doc)
+ 
+-if(TARGET Qt::Quick)
+-  # Quick3D libs
+-  add_subdirectory(quick3d/quick3d)
+-  add_subdirectory(quick3d/quick3drender)
+-  add_subdirectory(quick3d/quick3dinput)
+-  add_subdirectory(quick3d/quick3danimation)
+-  add_subdirectory(quick3d/quick3dextras)
+-  add_subdirectory(quick3d/quick3dscene2d)
++  if(TARGET Qt::Quick)
++    # Quick3D libs
++    add_subdirectory(quick3d/quick3d)
++    add_subdirectory(quick3d/quick3drender)
++    add_subdirectory(quick3d/quick3dinput)
++    add_subdirectory(quick3d/quick3danimation)
++    add_subdirectory(quick3d/quick3dextras)
++    add_subdirectory(quick3d/quick3dscene2d)
+ 
+-#  # Quick3D imports
+-  add_subdirectory(quick3d/imports/core)
+-  add_subdirectory(quick3d/imports/render)
+-  add_subdirectory(quick3d/imports/scene3d)
+-  add_subdirectory(quick3d/imports/input)
+-  add_subdirectory(quick3d/imports/logic)
+-  add_subdirectory(quick3d/imports/animation)
+-  add_subdirectory(quick3d/imports/extras)
+-  add_subdirectory(quick3d/imports/scene2d)
+-endif()
++  #  # Quick3D imports
++    add_subdirectory(quick3d/imports/core)
++    add_subdirectory(quick3d/imports/render)
++    add_subdirectory(quick3d/imports/scene3d)
++    add_subdirectory(quick3d/imports/input)
++    add_subdirectory(quick3d/imports/logic)
++    add_subdirectory(quick3d/imports/animation)
++    add_subdirectory(quick3d/imports/extras)
++    add_subdirectory(quick3d/imports/scene2d)
++  endif()
+ 
+-## Plugins
+-add_subdirectory(plugins/sceneparsers)
+-add_subdirectory(plugins/geometryloaders)
+-add_subdirectory(plugins/renderers)
++  ## Plugins
++  add_subdirectory(plugins/sceneparsers)
++  add_subdirectory(plugins/geometryloaders)
++  add_subdirectory(plugins/renderers)
+ 
+-if(TARGET Qt::Quick)
+-  add_subdirectory(plugins/renderplugins)
++  if(TARGET Qt::Quick)
++    add_subdirectory(plugins/renderplugins)
++  endif()
+ endif()

@@ -9,6 +9,7 @@ PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
 
 RDEPENDS_${PN} += "\
+    qt3d-dev \
     qt5compat-dev \
     qtbase-dev \
     qtcoap-dev \

@@ -1,0 +1,30 @@
+From eb543e3470ea75b30991097f318556f741f0c416 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 2 Jun 2020 15:32:47 +0300
+Subject: [PATCH 1/2] Regenerate CMakeLists
+
+Change-Id: Ia0f1643fcdb05507339e57e30be71267ca1c63ae
+---
+ tools/qgltf/CMakeLists.txt | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/tools/qgltf/CMakeLists.txt b/tools/qgltf/CMakeLists.txt
+index be90beda8..ff8d3ec95 100644
+--- a/tools/qgltf/CMakeLists.txt
++++ b/tools/qgltf/CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## qgltf Tool:
+ #####################################################################
+ 
+-qt_add_tool(qgltf
++qt_get_tool_target_name(target_name qgltf)
++qt_add_tool(${target_name}
+     TOOLS_TARGET 3DRender # special case
+     SOURCES
+         qgltf.cpp
+@@ -19,4 +20,4 @@ qt_add_tool(qgltf
+ ## Scopes:
+ #####################################################################
+ include(../../src/3rdparty/assimp/assimp.cmake)
+-qt3d_extend_target_for_assimp(qgltf)
++qt3d_extend_target_for_assimp(${target_name})
