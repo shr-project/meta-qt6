@@ -14,11 +14,11 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI += "\
     file://0001-Regenerate-CMakeLists.patch \
-    file://0001-QSGRhiShaderEffectNode-is-available-only-with-opengl.patch \
+    file://0001-Revert-CMake-Fix-failing-linux-static-build.patch \
 "
 
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "6a48a81319b886c8a3f85e1eb024186b05d0f3af"
+SRCREV = "1f3dd3f5db16892739963168c2a76df6354b178c"

@@ -16,4 +16,4 @@ DEPENDS += "qtbase"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "543e41db0f13f552c5bb36e58b39045b70f369b5"
+SRCREV = "63f9461f69dc00ee26e476f754fa0a65e8c63263"

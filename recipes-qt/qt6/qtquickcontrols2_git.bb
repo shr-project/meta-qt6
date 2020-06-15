@@ -16,4 +16,4 @@ do_configure_prepend() {
     sed -i -e 's/QmlTools//' ${S}/CMakeLists.txt
 }
 
-SRCREV = "135327c494b00bbc9d0c4deffba92d55c08ea93f"
+SRCREV = "5fc8b4aa8ccab9e9a2a5d8891c1b9ef979f70f28"
