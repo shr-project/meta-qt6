@@ -17,7 +17,7 @@ SRC_URI += " \
     file://0001-Enable-tools-to-build.patch \
 "
 
-DEPENDS = "qtbase qtdeclarative qt3d-native"
+DEPENDS = "qtbase qtdeclarative qtshadertools qt3d-native"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG_class-target ?= "system-assimp"
