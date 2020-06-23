@@ -134,6 +134,7 @@ HostSpec = ${OE_QMAKE_PLATFORM_NATIVE}
 TargetSpec = ${OE_QMAKE_PLATFORM}
 ExternalHostBinaries = ${OE_QMAKE_PATH_EXTERNAL_HOST_BINS}
 Sysroot = ${STAGING_DIR_TARGET}
+SysrootifyPrefix=true
 EOF
 }
 
