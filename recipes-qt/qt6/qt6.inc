@@ -1,6 +1,5 @@
 PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,"
 PACKAGECONFIG[tests] = "-DBUILD_TESTING=ON,-DBUILD_TESTING=OFF,"
-PACKAGECONFIG[qtquickcompiler] = "-DFEATURE_qtquickcompiler=ON,-DFEATURE_qtquickcompiler=OFF"
 
 # If Qt6 (qtbase) is machine specific, then everything will be,
 # because the (initial) qtbase configuration becomes part of Qt5/qmake
