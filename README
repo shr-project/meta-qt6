@@ -1,0 +1,22 @@
+Qt6 OpenEmbedded/Yocto Project layer
+====================================
+
+This layer depends on:
+
+URI: https://github.com/openembedded/openembedded-core (branch: master)
+
+Contributing
+------------
+
+To contribute to this layer you should submit the patches for review using
+Qt Gerrit (https://codereview.qt-project.org).
+
+More information about Qt Gerrit and how to use it:
+https://wiki.qt.io/Gerrit_Introduction
+https://wiki.qt.io/Setting_up_Gerrit
+
+Layer maintainers
+-----------------
+
+Samuli Piippo <samuli.piippo@qt.io>
+
