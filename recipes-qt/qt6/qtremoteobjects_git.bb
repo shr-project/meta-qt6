@@ -6,13 +6,17 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
 "
 
-inherit qt6-qmake
+inherit qt6-cmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
+
+SRC_URI =+ "\
+    file://0001-Use-target_name.patch \
+"
 
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 
 BBCLASSEXTEND += "native nativesdk"
 
-SRCREV = "1c3eb63e32499da17a890a87c730c92ce02fcf45"
+SRCREV = "fdedca764c2aec80bc53490ce1380a441c8277c1"

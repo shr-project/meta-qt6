@@ -10,12 +10,12 @@ RDEPENDS_${PN} += " \
     nativesdk-cmake \
     nativesdk-ninja \
     nativesdk-perl-modules \
-    nativesdk-qt3d-dev \
-    nativesdk-qt3d-tools \
     nativesdk-qtbase-dev \
     nativesdk-qtbase-tools \
     nativesdk-qtdeclarative-dev \
     nativesdk-qtdeclarative-tools \
+    nativesdk-qtremoteobjects-dev \
+    nativesdk-qtremoteobjects-tools \
     nativesdk-qttools-dev \
     nativesdk-qttools-tools \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'nativesdk-qtwayland-dev nativesdk-qtwayland-tools', '', d)} \

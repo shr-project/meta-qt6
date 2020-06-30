@@ -18,6 +18,7 @@ SRC_URI += "\
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0004-qtbase-allow-paths-outside-of-prefix.patch \
     file://0005-Allow-build-without-opengl.patch \
+    file://0001-Use-std-memmove.patch \
 "
 
 DEPENDS += "\
@@ -136,4 +137,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "bd793d3c46ec08ff84dd67db467def8578922697"
+SRCREV = "f1638edf4599aa74be439873a7719d9b70c57f54"

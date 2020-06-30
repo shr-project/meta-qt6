@@ -19,4 +19,4 @@ PACKAGECONFIG[bluez] = "-DFEATURE_bluez=ON,-DFEATURE_bluez=OFF,bluez5"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "fc21cb73fa73d623d9fa6b088da1bf7538e60200"
+SRCREV = "fba18bb44a02a58794d3be8e49bddcffbd614f94"

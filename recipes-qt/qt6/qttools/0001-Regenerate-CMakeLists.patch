@@ -1,4 +1,4 @@
-From a4e4a1735c10e592cbffcf77ea847dbc690c4293 Mon Sep 17 00:00:00 2001
+From 9b4db5acdeb1d6b295f7cee38b496af310198192 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Tue, 2 Jun 2020 07:20:46 +0300
 Subject: [PATCH] Regenerate CMakeLists
@@ -23,10 +23,9 @@ Change-Id: I914c1b4c12ad3dbcfade11466b83a632a43a778c
  src/linguist/lupdate/CMakeLists.txt                     | 12 +++++++-----
  src/qtattributionsscanner/.prev_CMakeLists.txt          |  6 +++++-
  src/qtattributionsscanner/CMakeLists.txt                |  6 +++++-
- src/windeployqt/.prev_CMakeLists.txt                    | 10 +++++++---
- src/windeployqt/CMakeLists.txt                          | 12 ++++++++----
+ src/windeployqt/CMakeLists.txt                          |  7 ++++---
  src/winrtrunner/CMakeLists.txt                          |  6 +++++-
- 21 files changed, 92 insertions(+), 38 deletions(-)
+ 20 files changed, 81 insertions(+), 34 deletions(-)
 
 diff --git a/src/assistant/qcollectiongenerator/.prev_CMakeLists.txt b/src/assistant/qcollectiongenerator/.prev_CMakeLists.txt
 index ba927bd..cfbcfc0 100644
@@ -420,69 +419,21 @@ index bee6df3..aef9be7 100644
  # cmake_qattributionsscanner_config_file.input = "$$PWD/Qt5AttributionsScannerTools.cmake.in"
  # cmake_qattributionsscanner_config_file.output = "$$MODULE_BASE_OUTDIR/lib/cmake/Qt5AttributionsScannerTools/Qt5AttributionsScannerToolsConfig.cmake"
  # cmake_qattributionsscanner_config_version_file.input = "$$[QT_HOST_DATA/src]/mkspecs/features/data/cmake/Qt5ConfigVersion.cmake.in"
-diff --git a/src/windeployqt/.prev_CMakeLists.txt b/src/windeployqt/.prev_CMakeLists.txt
-index b80096e..e317a64 100644
---- a/src/windeployqt/.prev_CMakeLists.txt
-+++ b/src/windeployqt/.prev_CMakeLists.txt
-@@ -4,8 +4,10 @@
- ## windeployqt Tool:
- #####################################################################
- 
--qt_add_tool(windeployqt
-+qt_get_tool_target_name(target_name windeployqt)
-+qt_add_tool(${target_name}
-     BOOTSTRAP
-+    TARGET_DESCRIPTION "Qt Windows Deployment Tool"
-     SOURCES
-         ../shared/winutils/elfreader.cpp ../shared/winutils/elfreader.h
-         ../shared/winutils/qmlutils.cpp ../shared/winutils/qmlutils.h
-@@ -23,17 +25,19 @@ qt_add_tool(windeployqt
- 
- #### Keys ignored in scope 1:.:.:windeployqt.pro:<TRUE>:
- # QMAKE_TARGET_DESCRIPTION = "Qt Windows Deployment Tool"
-+# QT_FOR_CONFIG = "tools-private"
- # _OPTION = "host_build"
-+# _REQUIREMENTS = "qtConfig(windeployqt)"
- 
- ## Scopes:
- #####################################################################
- 
--qt_extend_target(windeployqt CONDITION WIN32
-+qt_extend_target(${target_name} CONDITION WIN32
-     PUBLIC_LIBRARIES
-         shlwapi
- )
- 
--qt_extend_target(windeployqt CONDITION QT_FEATURE_relocatable
-+qt_extend_target(${target_name} CONDITION QT_FEATURE_relocatable
-     DEFINES
-         QT_RELOCATABLE
- )
 diff --git a/src/windeployqt/CMakeLists.txt b/src/windeployqt/CMakeLists.txt
-index f2ae3b5..25c7565 100644
+index ba6f454..9165cc1 100644
 --- a/src/windeployqt/CMakeLists.txt
 +++ b/src/windeployqt/CMakeLists.txt
-@@ -4,8 +4,10 @@
+@@ -4,7 +4,8 @@
  ## windeployqt Tool:
  #####################################################################
  
--qt_add_tool(windeployqt
--    #BOOTSTRAP # special case remove
+-qt_add_executable(windeployqt # special case
 +qt_get_tool_target_name(target_name windeployqt)
-+qt_add_tool(${target_name}
-+    BOOTSTRAP
-+    TARGET_DESCRIPTION "Qt Windows Deployment Tool"
++qt_add_executable(${target_name} # special case
+     #BOOTSTRAP # special case remove
      SOURCES
          ../shared/winutils/elfreader.cpp ../shared/winutils/elfreader.h
-         ../shared/winutils/qmlutils.cpp ../shared/winutils/qmlutils.h
-@@ -24,17 +26,19 @@ qt_add_tool(windeployqt
- 
- #### Keys ignored in scope 1:.:.:windeployqt.pro:<TRUE>:
- # QMAKE_TARGET_DESCRIPTION = "Qt Windows Deployment Tool"
-+# QT_FOR_CONFIG = "tools-private"
- # _OPTION = "host_build"
-+# _REQUIREMENTS = "qtConfig(windeployqt)"
- 
+@@ -31,12 +32,12 @@ qt_add_executable(windeployqt # special case
  ## Scopes:
  #####################################################################
  

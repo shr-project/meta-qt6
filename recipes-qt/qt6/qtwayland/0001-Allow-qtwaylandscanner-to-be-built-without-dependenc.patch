@@ -1,20 +1,37 @@
-From 8ff1b137523ea82c7e73e7eded90035a74c75702 Mon Sep 17 00:00:00 2001
+From 00eba054654c8dd5f29fd8c98bfd4e8eafb59fce Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 29 Jan 2020 12:39:09 +0200
 Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
 
 Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
 ---
+ CMakeLists.txt     | 2 +-
  src/CMakeLists.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ 2 files changed, 2 insertions(+), 2 deletions(-)
 
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 340fe9e..cbf58a9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -26,10 +26,10 @@ endif()
+ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
+     Core
+     Gui
+-    OpenGL
+ )
+ 
+ find_package(Qt6 ${PROJECT_VERSION} CONFIG OPTIONAL_COMPONENTS
++    OpenGL
+     EglSupport
+     GlxSupport
+     LinuxAccessibilitySupport
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 62c1adbe..87abb5ac 100644
+index ef145ed..df7b0ca 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
 @@ -3,7 +3,7 @@
  qt_find_package(WaylandScanner PROVIDED_TARGETS Wayland::Scanner)
- qt_find_package(Wayland)
+ qt_find_package(Wayland PROVIDED_TARGETS Wayland::Client Wayland::Server)
  
 -if (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND)
 +if ((QT_FEATURE_wayland_server OR QT_FEATURE_wayland_client) AND (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND))

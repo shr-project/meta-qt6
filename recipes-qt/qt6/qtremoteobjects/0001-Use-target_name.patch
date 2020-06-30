@@ -1,0 +1,45 @@
+From 44b03b1d4e8a9e69f3dbcf0dbb3ef10560ef5c0e Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Mon, 29 Jun 2020 12:44:04 +0300
+Subject: [PATCH] Use target_name
+
+Change-Id: I3b623944bbf6c9048d2c2715d544496b343480c2
+---
+ tools/repc/CMakeLists.txt | 7 ++++---
+ 1 file changed, 4 insertions(+), 3 deletions(-)
+
+diff --git a/tools/repc/CMakeLists.txt b/tools/repc/CMakeLists.txt
+index bc34e22..e69a8ff 100644
+--- a/tools/repc/CMakeLists.txt
++++ b/tools/repc/CMakeLists.txt
+@@ -4,7 +4,8 @@
+ ## repc Tool:
+ #####################################################################
+ 
+-qt_add_tool(repc
++qt_get_tool_target_name(target_name repc)
++qt_add_tool(${target_name}
+     TOOLS_TARGET RemoteObjects # special case
+     SOURCES
+         cppcodegenerator.cpp cppcodegenerator.h
+@@ -33,7 +34,7 @@ qt_add_tool(repc
+ 
+ # QLALR Grammars:
+ qt_process_qlalr(
+-    repc
++    ${target_name}
+     ${CMAKE_SOURCE_DIR}/src/repparser/parser.g
+     ""
+ )
+@@ -45,7 +46,7 @@ qt_process_qlalr(
+ ## Scopes:
+ #####################################################################
+ 
+-qt_extend_target(repc CONDITION MSVC
++qt_extend_target(${target_name} CONDITION MSVC
+     COMPILE_OPTIONS
+         /wd4129
+ )
+-- 
+2.7.4
+

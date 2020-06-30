@@ -21,6 +21,8 @@ RDEPENDS_${PN} += " \
     qtquick3d \
     qtquickcontrols2 \
     qtquicktimeline \
+    qtremoteobjects \
+    qtserialbus \
     qtserialport \
     qtshadertools \
     qtspeech \
