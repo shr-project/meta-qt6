@@ -1,0 +1,348 @@
+From 9be87ece0b3fc412d244716247b64433bd5d0137 Mon Sep 17 00:00:00 2001
+From: Mitch Curtis <mitch.curtis@qt.io>
+Date: Fri, 17 Jul 2020 10:52:46 +0200
+Subject: [PATCH] Fix event refactoring warnings and errors
+
+Change-Id: I426b4f75066c9db72759398e4d76fd5323044d57
+---
+ src/quicktemplates2/qquickcontrol.cpp        | 28 ++++++++++----------
+ src/quicktemplates2/qquickdial.cpp           | 10 +++----
+ src/quicktemplates2/qquickdrawer.cpp         | 12 ++++-----
+ src/quicktemplates2/qquickoverlay.cpp        | 12 ++++-----
+ src/quicktemplates2/qquickpopup.cpp          |  8 +++---
+ src/quicktemplates2/qquickrangeslider.cpp    |  8 +++---
+ src/quicktemplates2/qquickslider.cpp         |  6 ++---
+ src/quicktemplates2/qquickswitch.cpp         |  2 +-
+ src/quicktemplates2/qquickswitchdelegate.cpp |  2 +-
+ 9 files changed, 44 insertions(+), 44 deletions(-)
+
+diff --git a/src/quicktemplates2/qquickcontrol.cpp b/src/quicktemplates2/qquickcontrol.cpp
+index 8463c60d..22b7f922 100644
+--- a/src/quicktemplates2/qquickcontrol.cpp
++++ b/src/quicktemplates2/qquickcontrol.cpp
+@@ -176,15 +176,15 @@ bool QQuickControlPrivate::acceptTouch(const QTouchEvent::TouchPoint &point)
+     if (point.id() == touchId)
+         return true;
+ 
+-    if (touchId == -1 && point.state() == Qt::TouchPointPressed) {
++    if (touchId == -1 && point.state() == QEventPoint::Pressed) {
+         touchId = point.id();
+         return true;
+     }
+ 
+     // If the control is on a Flickable that has a pressDelay, then the press is never
+     // sent as a touch event, therefore we need to check for this case.
+-    if (touchId == -1 && pressWasTouch && point.state() == Qt::TouchPointReleased &&
+-        point.pos() == previousPressPos) {
++    if (touchId == -1 && pressWasTouch && point.state() == QEventPoint::Released &&
++        point.position() == previousPressPos) {
+         return true;
+     }
+     return false;
+@@ -1953,7 +1953,7 @@ void QQuickControl::hoverEnterEvent(QHoverEvent *event)
+ void QQuickControl::hoverMoveEvent(QHoverEvent *event)
+ {
+     Q_D(QQuickControl);
+-    setHovered(d->hoverEnabled && contains(event->pos()));
++    setHovered(d->hoverEnabled && contains(event->position()));
+     event->setAccepted(d->hoverEnabled);
+ }
+ 
+@@ -1968,10 +1968,10 @@ void QQuickControl::hoverLeaveEvent(QHoverEvent *event)
+ void QQuickControl::mousePressEvent(QMouseEvent *event)
+ {
+     Q_D(QQuickControl);
+-    d->handlePress(event->localPos());
++    d->handlePress(event->position());
+     if (event->source() == Qt::MouseEventSynthesizedByQt) {
+         d->pressWasTouch = true;
+-        d->previousPressPos = event->localPos();
++        d->previousPressPos = event->position();
+     }
+     event->accept();
+ }
+@@ -1979,14 +1979,14 @@ void QQuickControl::mousePressEvent(QMouseEvent *event)
+ void QQuickControl::mouseMoveEvent(QMouseEvent *event)
+ {
+     Q_D(QQuickControl);
+-    d->handleMove(event->localPos());
++    d->handleMove(event->position());
+     event->accept();
+ }
+ 
+ void QQuickControl::mouseReleaseEvent(QMouseEvent *event)
+ {
+     Q_D(QQuickControl);
+-    d->handleRelease(event->localPos());
++    d->handleRelease(event->position());
+     event->accept();
+ }
+ 
+@@ -2009,14 +2009,14 @@ void QQuickControl::touchEvent(QTouchEvent *event)
+                 continue;
+ 
+             switch (point.state()) {
+-            case Qt::TouchPointPressed:
+-                d->handlePress(point.pos());
++            case QEventPoint::Pressed:
++                d->handlePress(point.position());
+                 break;
+-            case Qt::TouchPointMoved:
+-                d->handleMove(point.pos());
++            case QEventPoint::Updated:
++                d->handleMove(point.position());
+                 break;
+-            case Qt::TouchPointReleased:
+-                d->handleRelease(point.pos());
++            case QEventPoint::Released:
++                d->handleRelease(point.position());
+                 break;
+             default:
+                 break;
+diff --git a/src/quicktemplates2/qquickdial.cpp b/src/quicktemplates2/qquickdial.cpp
+index 99bd0e98..e011891f 100644
+--- a/src/quicktemplates2/qquickdial.cpp
++++ b/src/quicktemplates2/qquickdial.cpp
+@@ -735,7 +735,7 @@ void QQuickDial::mousePressEvent(QMouseEvent *event)
+ {
+     Q_D(QQuickDial);
+     QQuickControl::mousePressEvent(event);
+-    d->handleMove(event->localPos());
++    d->handleMove(event->position());
+     setKeepMouseGrab(true);
+ }
+ 
+@@ -750,18 +750,18 @@ void QQuickDial::touchEvent(QTouchEvent *event)
+                 continue;
+ 
+             switch (point.state()) {
+-            case Qt::TouchPointMoved:
++            case QEventPoint::Updated:
+                 if (!keepTouchGrab()) {
+-                    bool overXDragThreshold = QQuickWindowPrivate::dragOverThreshold(point.pos().x() - d->pressPoint.x(), Qt::XAxis, &point);
++                    bool overXDragThreshold = QQuickWindowPrivate::dragOverThreshold(point.position().x() - d->pressPoint.x(), Qt::XAxis, &point);
+                     setKeepTouchGrab(overXDragThreshold);
+ 
+                     if (!overXDragThreshold) {
+-                        bool overYDragThreshold = QQuickWindowPrivate::dragOverThreshold(point.pos().y() - d->pressPoint.y(), Qt::YAxis, &point);
++                        bool overYDragThreshold = QQuickWindowPrivate::dragOverThreshold(point.position().y() - d->pressPoint.y(), Qt::YAxis, &point);
+                         setKeepTouchGrab(overYDragThreshold);
+                     }
+                 }
+                 if (keepTouchGrab())
+-                    d->handleMove(point.pos());
++                    d->handleMove(point.position());
+                 break;
+ 
+             default:
+diff --git a/src/quicktemplates2/qquickdrawer.cpp b/src/quicktemplates2/qquickdrawer.cpp
+index 433346ba..47b69161 100644
+--- a/src/quicktemplates2/qquickdrawer.cpp
++++ b/src/quicktemplates2/qquickdrawer.cpp
+@@ -305,7 +305,7 @@ bool QQuickDrawerPrivate::startDrag(QEvent *event)
+ 
+     switch (event->type()) {
+     case QEvent::MouseButtonPress:
+-        if (isWithinDragMargin(q, static_cast<QMouseEvent *>(event)->windowPos())) {
++        if (isWithinDragMargin(q, static_cast<QMouseEvent *>(event)->scenePosition())) {
+             prepareEnterTransition();
+             reposition();
+             return handleMouseEvent(window->contentItem(), static_cast<QMouseEvent *>(event));
+@@ -316,7 +316,7 @@ bool QQuickDrawerPrivate::startDrag(QEvent *event)
+     case QEvent::TouchBegin:
+     case QEvent::TouchUpdate:
+         for (const QTouchEvent::TouchPoint &point : static_cast<QTouchEvent *>(event)->touchPoints()) {
+-            if (point.state() == Qt::TouchPointPressed && isWithinDragMargin(q, point.scenePos())) {
++            if (point.state() == QEventPoint::Pressed && isWithinDragMargin(q, point.scenePosition())) {
+                 prepareEnterTransition();
+                 reposition();
+                 return handleTouchEvent(window->contentItem(), static_cast<QTouchEvent *>(event));
+@@ -345,7 +345,7 @@ bool QQuickDrawerPrivate::grabMouse(QQuickItem *item, QMouseEvent *event)
+     if (!window || !interactive || keepGrab(popupItem) || keepGrab(item))
+         return false;
+ 
+-    const QPointF movePoint = event->windowPos();
++    const QPointF movePoint = event->scenePosition();
+ 
+     // Flickable uses a hard-coded threshold of 15 for flicking, and
+     // QStyleHints::startDragDistance for dragging. Drawer uses a bit
+@@ -384,15 +384,15 @@ bool QQuickDrawerPrivate::grabTouch(QQuickItem *item, QTouchEvent *event)
+     Q_Q(QQuickDrawer);
+     bool handled = handleTouchEvent(item, event);
+ 
+-    if (!window || !interactive || keepGrab(popupItem) || keepGrab(item) || !event->touchPointStates().testFlag(Qt::TouchPointMoved))
++    if (!window || !interactive || keepGrab(popupItem) || keepGrab(item) || !event->touchPointStates().testFlag(QEventPoint::Updated))
+         return handled;
+ 
+     bool overThreshold = false;
+     for (const QTouchEvent::TouchPoint &point : event->touchPoints()) {
+-        if (!acceptTouch(point) || point.state() != Qt::TouchPointMoved)
++        if (!acceptTouch(point) || point.state() != QEventPoint::Updated)
+             continue;
+ 
+-        const QPointF movePoint = point.scenePos();
++        const QPointF movePoint = point.scenePosition();
+ 
+         // Flickable uses a hard-coded threshold of 15 for flicking, and
+         // QStyleHints::startDragDistance for dragging. Drawer uses a bit
+diff --git a/src/quicktemplates2/qquickoverlay.cpp b/src/quicktemplates2/qquickoverlay.cpp
+index 5cb1ab0b..4d272bff 100644
+--- a/src/quicktemplates2/qquickoverlay.cpp
++++ b/src/quicktemplates2/qquickoverlay.cpp
+@@ -217,16 +217,16 @@ bool QQuickOverlayPrivate::handleTouchEvent(QQuickItem *source, QTouchEvent *eve
+     case QEvent::TouchEnd:
+         for (const QTouchEvent::TouchPoint &point : event->touchPoints()) {
+             switch (point.state()) {
+-            case Qt::TouchPointPressed:
++            case QEventPoint::Pressed:
+                 if (!target && startDrag(event, point.scenePosition()))
+                     handled = true;
+                 else
+                     handled |= handlePress(source, event, target);
+                 break;
+-            case Qt::TouchPointMoved:
++            case QEventPoint::Updated:
+                 handled |= handleMove(source, event, target ? target : mouseGrabberPopup.data());
+                 break;
+-            case Qt::TouchPointReleased:
++            case QEventPoint::Released:
+                 handled |= handleRelease(source, event, target ? target : mouseGrabberPopup.data());
+                 break;
+             default:
+@@ -496,15 +496,15 @@ bool QQuickOverlay::eventFilter(QObject *object, QEvent *event)
+     case QEvent::TouchBegin:
+     case QEvent::TouchUpdate:
+     case QEvent::TouchEnd:
+-        if (static_cast<QTouchEvent *>(event)->touchPointStates() & Qt::TouchPointPressed)
++        if (static_cast<QTouchEvent *>(event)->touchPointStates() & QEventPoint::Pressed)
+             emit pressed();
+-        if (static_cast<QTouchEvent *>(event)->touchPointStates() & Qt::TouchPointReleased)
++        if (static_cast<QTouchEvent *>(event)->touchPointStates() & QEventPoint::Released)
+             emit released();
+ 
+         // allow non-modal popups to close on touch release outside
+         if (!d->mouseGrabberPopup) {
+             for (const QTouchEvent::TouchPoint &point : static_cast<QTouchEvent *>(event)->touchPoints()) {
+-                if (point.state() == Qt::TouchPointReleased) {
++                if (point.state() == QEventPoint::Released) {
+                     if (d->handleRelease(d->window->contentItem(), event, nullptr))
+                         break;
+                 }
+diff --git a/src/quicktemplates2/qquickpopup.cpp b/src/quicktemplates2/qquickpopup.cpp
+index 1d6f125e..57b93036 100644
+--- a/src/quicktemplates2/qquickpopup.cpp
++++ b/src/quicktemplates2/qquickpopup.cpp
+@@ -313,7 +313,7 @@ bool QQuickPopupPrivate::acceptTouch(const QTouchEvent::TouchPoint &point)
+     if (point.id() == touchId)
+         return true;
+ 
+-    if (touchId == -1 && point.state() != Qt::TouchPointReleased) {
++    if (touchId == -1 && point.state() != QEventPoint::Released) {
+         touchId = point.id();
+         return true;
+     }
+@@ -395,11 +395,11 @@ bool QQuickPopupPrivate::handleTouchEvent(QQuickItem *item, QTouchEvent *event)
+                 return blockInput(item, point.position());
+ 
+             switch (point.state()) {
+-            case Qt::TouchPointPressed:
++            case QEventPoint::Pressed:
+                 return handlePress(item, item->mapToScene(point.position()), event->timestamp());
+-            case Qt::TouchPointMoved:
++            case QEventPoint::Updated:
+                 return handleMove(item, item->mapToScene(point.position()), event->timestamp());
+-            case Qt::TouchPointReleased:
++            case QEventPoint::Released:
+                 return handleRelease(item, item->mapToScene(point.position()), event->timestamp());
+             default:
+                 break;
+diff --git a/src/quicktemplates2/qquickrangeslider.cpp b/src/quicktemplates2/qquickrangeslider.cpp
+index 2b0f2961..af95d463 100644
+--- a/src/quicktemplates2/qquickrangeslider.cpp
++++ b/src/quicktemplates2/qquickrangeslider.cpp
+@@ -458,7 +458,7 @@ bool QQuickRangeSliderPrivate::acceptTouch(const QTouchEvent::TouchPoint &point)
+     int firstId = QQuickRangeSliderNodePrivate::get(first)->touchId;
+     int secondId = QQuickRangeSliderNodePrivate::get(second)->touchId;
+ 
+-    if (((firstId == -1 || secondId == -1) && point.state() == Qt::TouchPointPressed) || point.id() == firstId || point.id() == secondId) {
++    if (((firstId == -1 || secondId == -1) && point.state() == QEventPoint::Pressed) || point.id() == firstId || point.id() == secondId) {
+         touchId = point.id();
+         return true;
+     }
+@@ -1196,10 +1196,10 @@ void QQuickRangeSlider::touchEvent(QTouchEvent *event)
+                 continue;
+ 
+             switch (point.state()) {
+-            case Qt::TouchPointPressed:
++            case QEventPoint::Pressed:
+                 d->handlePress(point.position());
+                 break;
+-            case Qt::TouchPointMoved:
++            case QEventPoint::Updated:
+                 if (!keepTouchGrab()) {
+                     if (d->orientation == Qt::Horizontal)
+                         setKeepTouchGrab(QQuickWindowPrivate::dragOverThreshold(point.position().x() - point.pressPosition().x(), Qt::XAxis, &point, qRound(d->touchDragThreshold)));
+@@ -1209,7 +1209,7 @@ void QQuickRangeSlider::touchEvent(QTouchEvent *event)
+                 if (keepTouchGrab())
+                     d->handleMove(point.position());
+                 break;
+-            case Qt::TouchPointReleased:
++            case QEventPoint::Released:
+                 d->handleRelease(point.position());
+                 break;
+             default:
+diff --git a/src/quicktemplates2/qquickslider.cpp b/src/quicktemplates2/qquickslider.cpp
+index 9d223f25..dcff5420 100644
+--- a/src/quicktemplates2/qquickslider.cpp
++++ b/src/quicktemplates2/qquickslider.cpp
+@@ -805,10 +805,10 @@ void QQuickSlider::touchEvent(QTouchEvent *event)
+                 continue;
+ 
+             switch (point.state()) {
+-            case Qt::TouchPointPressed:
++            case QEventPoint::Pressed:
+                 d->handlePress(point.position());
+                 break;
+-            case Qt::TouchPointMoved:
++            case QEventPoint::Updated:
+                 if (!keepTouchGrab()) {
+                     if (d->orientation == Qt::Horizontal)
+                         setKeepTouchGrab(QQuickWindowPrivate::dragOverThreshold(point.position().x() - d->pressPoint.x(), Qt::XAxis, &point, qRound(d->touchDragThreshold)));
+@@ -818,7 +818,7 @@ void QQuickSlider::touchEvent(QTouchEvent *event)
+                 if (keepTouchGrab())
+                     d->handleMove(point.position());
+                 break;
+-            case Qt::TouchPointReleased:
++            case QEventPoint::Released:
+                 d->handleRelease(point.position());
+                 break;
+             default:
+diff --git a/src/quicktemplates2/qquickswitch.cpp b/src/quicktemplates2/qquickswitch.cpp
+index 2bba350d..143210ae 100644
+--- a/src/quicktemplates2/qquickswitch.cpp
++++ b/src/quicktemplates2/qquickswitch.cpp
+@@ -193,7 +193,7 @@ void QQuickSwitch::touchEvent(QTouchEvent *event)
+     Q_D(QQuickSwitch);
+     if (!keepTouchGrab() && event->type() == QEvent::TouchUpdate) {
+         for (const QTouchEvent::TouchPoint &point : event->touchPoints()) {
+-            if (point.id() != d->touchId || point.state() != Qt::TouchPointMoved)
++            if (point.id() != d->touchId || point.state() != QEventPoint::Updated)
+                 continue;
+             if (d->canDrag(point.position()))
+                 setKeepTouchGrab(QQuickWindowPrivate::dragOverThreshold(point.position().x() - d->pressPoint.x(), Qt::XAxis, &point));
+diff --git a/src/quicktemplates2/qquickswitchdelegate.cpp b/src/quicktemplates2/qquickswitchdelegate.cpp
+index 3300e252..2e196412 100644
+--- a/src/quicktemplates2/qquickswitchdelegate.cpp
++++ b/src/quicktemplates2/qquickswitchdelegate.cpp
+@@ -190,7 +190,7 @@ void QQuickSwitchDelegate::touchEvent(QTouchEvent *event)
+     Q_D(QQuickSwitchDelegate);
+     if (!keepTouchGrab() && event->type() == QEvent::TouchUpdate) {
+         for (const QTouchEvent::TouchPoint &point : event->touchPoints()) {
+-            if (point.id() != d->touchId || point.state() != Qt::TouchPointMoved)
++            if (point.id() != d->touchId || point.state() != QEventPoint::Updated)
+                 continue;
+             if (d->canDrag(point.position()))
+                 setKeepTouchGrab(QQuickWindowPrivate::dragOverThreshold(point.position().x() - d->pressPoint.x(), Qt::XAxis, &point));
+-- 
+2.17.1
+

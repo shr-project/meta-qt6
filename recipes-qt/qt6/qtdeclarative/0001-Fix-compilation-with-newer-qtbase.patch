@@ -1,0 +1,77 @@
+From b7633a0005b78620fc57a9a869c1b82300e7978a Mon Sep 17 00:00:00 2001
+From: Fabian Kosmale <fabian.kosmale@qt.io>
+Date: Mon, 3 Aug 2020 08:49:37 +0200
+Subject: [PATCH] Fix compilation with newer qtbase
+
+qstrtod  is no longer exported, but instead an inline function. This
+replaces the existing forward declarations with an include of the
+required private header.
+
+Change-Id: I50bd32557c55dddcb197f163609fd7d5a1b2301b
+---
+ src/qml/parser/qqmljslexer.cpp                | 6 ++----
+ src/quick/items/context2d/qquickcontext2d.cpp | 3 +--
+ src/quick/util/qquicksvgparser.cpp            | 4 ++--
+ 3 files changed, 5 insertions(+), 8 deletions(-)
+
+diff --git a/src/qml/parser/qqmljslexer.cpp b/src/qml/parser/qqmljslexer.cpp
+index 601596a9e3..c0ff69c6c4 100644
+--- a/src/qml/parser/qqmljslexer.cpp
++++ b/src/qml/parser/qqmljslexer.cpp
+@@ -43,16 +43,14 @@
+ 
+ #include <private/qqmljsdiagnosticmessage_p.h>
+ #include <private/qqmljsmemorypool_p.h>
++#include <private/qlocale_tools_p.h>
++
+ 
+ #include <QtCore/qcoreapplication.h>
+ #include <QtCore/qvarlengtharray.h>
+ #include <QtCore/qdebug.h>
+ #include <QtCore/QScopedValueRollback>
+ 
+-QT_BEGIN_NAMESPACE
+-Q_CORE_EXPORT double qstrtod(const char *s00, char const **se, bool *ok);
+-QT_END_NAMESPACE
+-
+ using namespace QQmlJS;
+ 
+ static inline int regExpFlagFromChar(const QChar &ch)
+diff --git a/src/quick/items/context2d/qquickcontext2d.cpp b/src/quick/items/context2d/qquickcontext2d.cpp
+index d705d08f71..5a7af4835e 100644
+--- a/src/quick/items/context2d/qquickcontext2d.cpp
++++ b/src/quick/items/context2d/qquickcontext2d.cpp
+@@ -68,6 +68,7 @@
+ #include <private/qv4functionobject_p.h>
+ #include <private/qv4objectproto_p.h>
+ #include <private/qv4scopedvalue_p.h>
++#include <private/qlocale_tools_p.h>
+ 
+ #include <QtCore/qmath.h>
+ #include <QtCore/qvector.h>
+@@ -124,8 +125,6 @@ QT_BEGIN_NAMESPACE
+ 
+ 
+ 
+-Q_CORE_EXPORT double qstrtod(const char *s00, char const **se, bool *ok);
+-
+ #define CHECK_CONTEXT(r)     if (!r || !r->d()->context() || !r->d()->context()->bufferValid()) \
+                                 THROW_GENERIC_ERROR("Not a Context2D object");
+ 
+diff --git a/src/quick/util/qquicksvgparser.cpp b/src/quick/util/qquicksvgparser.cpp
+index 0687913565..3e783b26a8 100644
+--- a/src/quick/util/qquicksvgparser.cpp
++++ b/src/quick/util/qquicksvgparser.cpp
+@@ -43,10 +43,10 @@
+ #include <QtCore/qvarlengtharray.h>
+ #include <QtCore/qstring.h>
+ 
++#include <private/qlocale_tools_p.h>
++
+ QT_BEGIN_NAMESPACE
+ 
+-//copied from Qt SVG (qsvghandler.cpp).
+-Q_CORE_EXPORT double qstrtod(const char *s00, char const **se, bool *ok);
+ // '0' is 0x30 and '9' is 0x39
+ static inline bool isDigit(ushort ch)
+ {

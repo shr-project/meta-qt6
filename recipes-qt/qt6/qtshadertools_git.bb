@@ -8,12 +8,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Regenerate-CMakeLists.patch \
-"
-
 DEPENDS = "qtbase qtshadertools-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "16e53c81807d4c76e8f41bae3b7ffae8789405a7"
+SRCREV = "348efeb67944de06cf162a4d5c221a9f524de17e"

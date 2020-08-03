@@ -11,12 +11,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI =+ "\
-    file://0001-Use-target_name.patch \
-"
-
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 
 BBCLASSEXTEND += "native nativesdk"
 
-SRCREV = "fdedca764c2aec80bc53490ce1380a441c8277c1"
+SRCREV = "4514cea46087a51f25683f36e6fb5ee8069dde21"

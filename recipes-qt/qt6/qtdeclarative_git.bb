@@ -13,11 +13,11 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 SRC_URI += "\
-    file://0001-Regenerate-CMakeLists.patch \
+    file://0001-Fix-compilation-with-newer-qtbase.patch \
 "
 
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "cde7835903812f6629ddcd6c8cdc91f2da195c9b"
+SRCREV = "6826b2decc21cbf390076efa3a0d6c412563f94a"

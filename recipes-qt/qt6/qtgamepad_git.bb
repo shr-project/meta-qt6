@@ -14,4 +14,4 @@ DEPENDS += "qtbase qtdeclarative qtquickcontrols2"
 #PACKAGECONFIG ??= "sdl2"
 PACKAGECONFIG[sdl2] = "-DFEATURE_sdl2=ON,-DFEATURE_sdl2=OFF,libsdl2"
 
-SRCREV = "8213bc7dcfc054ddc7d45779ac1d5d1788e25d1f"
+SRCREV = "5d9b4f172fb0c7115405a34fba10186aa100323d"

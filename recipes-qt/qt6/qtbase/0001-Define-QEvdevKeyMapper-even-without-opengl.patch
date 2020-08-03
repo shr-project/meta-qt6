@@ -1,0 +1,32 @@
+From b30c3d579977dada5637cad03a246f68b9fcf45a Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Mon, 3 Aug 2020 15:28:36 +0300
+Subject: [PATCH] Define platform interfaces also without opengl
+
+Fix build without opengl.
+
+Change-Id: I691fd4112d69b16690915fcf33f5ae30ca2d7a93
+---
+ src/gui/platform/unix/qunixplatforminterface.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/gui/platform/unix/qunixplatforminterface.cpp b/src/gui/platform/unix/qunixplatforminterface.cpp
+index dc8daab217..55650e3efc 100644
+--- a/src/gui/platform/unix/qunixplatforminterface.cpp
++++ b/src/gui/platform/unix/qunixplatforminterface.cpp
+@@ -83,6 +83,8 @@ QOpenGLContext *QPlatformInterface::QEGLContext::fromNative(EGLContext context,
+ }
+ #endif
+ 
++#endif // QT_NO_OPENGL
++
+ #if QT_CONFIG(xcb)
+ QT_DEFINE_PRIVATE_PLATFORM_INTERFACE(QXcbScreen);
+ QT_DEFINE_PRIVATE_PLATFORM_INTERFACE(QXcbWindow);
+@@ -102,6 +104,4 @@ QEvdevKeyMapper *QKeyMapper::platformInterface<QEvdevKeyMapper>() const
+ }
+ #endif
+ 
+-#endif // QT_NO_OPENGL
+-
+ QT_END_NAMESPACE

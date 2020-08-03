@@ -8,6 +8,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Remove-operator-for-QInputMethodEvent-Attribute.patch \
+"
+
 # To enabled Nuance T9 Write support, you need to provide the licensed components
 # and enable "t9write" in PACKAGECONFIG. This can be done in a separate .bbappend file.
 # for example:
@@ -118,4 +122,4 @@ FILES_${PN} += "${OE_QMAKE_PATH_DATA}/qtvirtualkeyboard/lipi_toolkit"
 
 DEPENDS += "qtbase qtdeclarative qtsvg qtdeclarative-native"
 
-SRCREV = "e7228a680411ba6a6fcb7e59c6ad3c2c7143063a"
+SRCREV = "e409ba186bcd670e7741740c410a32f35b1dbe2e"
