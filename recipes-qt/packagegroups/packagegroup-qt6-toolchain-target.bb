@@ -34,5 +34,4 @@ RDEPENDS_${PN} += "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-dev', '', d)} \
     qtwebchannel-dev \
     qtwebsockets-dev \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'qtx11extras-dev', '', d)} \
 "
