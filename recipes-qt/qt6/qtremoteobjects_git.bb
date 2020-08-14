@@ -15,4 +15,4 @@ DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 
 BBCLASSEXTEND += "native nativesdk"
 
-SRCREV = "4514cea46087a51f25683f36e6fb5ee8069dde21"
+SRCREV = "41b9a8f1ea833bc016486c7d1f835b2d6c67d4cd"

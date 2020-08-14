@@ -1,4 +1,4 @@
-From 01785d3180c6f9b65f06a41a339992aa828aedda Mon Sep 17 00:00:00 2001
+From 02e3028f4ea5e39dbc7fbe3032258ed7319b6bc2 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 29 Jan 2020 12:39:09 +0200
 Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
@@ -10,7 +10,7 @@ Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 88223a41..fe218863 100644
+index e72c5e1c..771532da 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
 @@ -26,11 +26,11 @@ endif()
@@ -18,14 +18,14 @@ index 88223a41..fe218863 100644
      Core
      Gui
 -    OpenGL
-     PlatformHeaders
  )
  
  find_package(Qt6 ${PROJECT_VERSION} CONFIG OPTIONAL_COMPONENTS
-+    OpenGL
      Quick
++    OpenGL
  )
  # special case end
+ 
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
 index 8e60f0ba..4b2639e3 100644
 --- a/src/CMakeLists.txt

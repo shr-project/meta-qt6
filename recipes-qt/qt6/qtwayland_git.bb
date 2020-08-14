@@ -13,7 +13,9 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 SRC_URI +="\
+    file://0001-Update-to-match-qtbase-changes-to-platform-headers.patch \
     file://0001-Allow-qtwaylandscanner-to-be-built-without-dependenc.patch \
+    file://0001-Adapt-to-API-change-in-qtdeclarative.patch \
 "
 
 PACKAGECONFIG ?= "\
@@ -37,4 +39,4 @@ DEPENDS += "qtbase qtdeclarative qtwayland-native wayland wayland-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "466a6da2a2667e780f96a461875573fc8e5964da"
+SRCREV = "2e329455193caf40785aa5081f50a2c4f275be88"

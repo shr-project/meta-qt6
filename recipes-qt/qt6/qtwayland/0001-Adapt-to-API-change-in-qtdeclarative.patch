@@ -1,0 +1,23 @@
+From a7defee7a55933ff975a7ebbe564830125d42f0b Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Thu, 13 Aug 2020 10:55:17 +0300
+Subject: [PATCH] Adapt to API change in qtdeclarative
+
+---
+ src/compositor/compositor_api/qwaylandquickitem.cpp | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/src/compositor/compositor_api/qwaylandquickitem.cpp b/src/compositor/compositor_api/qwaylandquickitem.cpp
+index 45431cfa..be1d3012 100644
+--- a/src/compositor/compositor_api/qwaylandquickitem.cpp
++++ b/src/compositor/compositor_api/qwaylandquickitem.cpp
+@@ -300,7 +300,8 @@ public:
+                 auto texture = buffer.toOpenGLTexture();
+                 GLuint textureId = texture->textureId();
+                 auto size = surface->bufferSize();
+-                m_sgTex = surfaceItem->window()->createTextureFromNativeObject(QQuickWindow::NativeObjectTexture, textureId, 0, size, opt);
++                auto *windowPriv = QQuickWindowPrivate::get(surfaceItem->window());
++                m_sgTex = windowPriv->createTextureFromNativeTexture(textureId, 0, size, opt);
+ #else
+                 qCWarning(qLcWaylandCompositor) << "Without OpenGL support only shared memory textures are supported";
+ #endif

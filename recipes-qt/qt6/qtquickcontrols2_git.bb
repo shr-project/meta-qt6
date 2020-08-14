@@ -10,14 +10,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Fix-event-refactoring-warnings-and-errors.patch \
-"
-
 DEPENDS = "qtbase qtdeclarative"
 
 do_configure_prepend() {
     sed -i -e 's/QmlTools//' ${S}/CMakeLists.txt
 }
 
-SRCREV = "49ffc6e6af83b295c67fd119b79c925879cc292e"
+SRCREV = "0ba45442f3f1102af73ec2666e4e5c24ed516331"

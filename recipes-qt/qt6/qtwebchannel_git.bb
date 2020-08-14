@@ -14,4 +14,4 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtdeclarative qtwebsockets"
 
-SRCREV = "db70dab3c1b6ac099fc33b0aeb8de8b574073548"
+SRCREV = "a1d717d881f6f1e72cf2643826b6025c1d16d7f6"
