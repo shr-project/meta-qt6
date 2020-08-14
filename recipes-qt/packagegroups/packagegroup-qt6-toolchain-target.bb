@@ -19,6 +19,7 @@ RDEPENDS_${PN} += "\
     qtimageformats-dev \
     qtmqtt-dev \
     qtnetworkauth-dev \
+    qtopcua-dev \
     qtquick3d-dev \
     qtquickcontrols2-dev \
     qtquicktimeline-dev \
