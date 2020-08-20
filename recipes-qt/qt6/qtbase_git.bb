@@ -107,7 +107,7 @@ EXTRA_OECMAKE += "\
 "
 
 EXTRA_OECMAKE_append_class-target = "\
-    -DCMAKE_SKIP_RPATH=ON \
+    -DFEATURE_rpath=OFF \
 "
 
 SYSROOT_DIRS += "${prefix}/mkspecs"
