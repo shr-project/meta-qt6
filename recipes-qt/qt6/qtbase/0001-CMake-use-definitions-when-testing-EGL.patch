@@ -1,0 +1,24 @@
+From 1c1a22552ab587408d8c5775847e72891f698c90 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Mon, 24 Aug 2020 11:10:17 +0300
+Subject: [PATCH] CMake: use definitions when testing EGL
+
+Use any definition from pkgconfig for the EGL compilation test.
+
+Change-Id: I95c659b87ab7b0de81f000e3f52195161a493ef5
+---
+ cmake/3rdparty/extra-cmake-modules/find-modules/FindEGL.cmake | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/cmake/3rdparty/extra-cmake-modules/find-modules/FindEGL.cmake b/cmake/3rdparty/extra-cmake-modules/find-modules/FindEGL.cmake
+index 55ca2a99bd..16dc1768ea 100644
+--- a/cmake/3rdparty/extra-cmake-modules/find-modules/FindEGL.cmake
++++ b/cmake/3rdparty/extra-cmake-modules/find-modules/FindEGL.cmake
+@@ -118,6 +118,7 @@ endif()
+ cmake_push_check_state(RESET)
+ list(APPEND CMAKE_REQUIRED_LIBRARIES "${EGL_LIBRARY}")
+ list(APPEND CMAKE_REQUIRED_INCLUDES "${EGL_INCLUDE_DIR}")
++list(APPEND CMAKE_REQUIRED_DEFINITIONS "${EGL_DEFINITIONS}")
+ 
+ check_cxx_source_compiles("
+ #include <EGL/egl.h>

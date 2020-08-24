@@ -17,6 +17,7 @@ SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0005-Allow-build-without-opengl.patch \
+    file://0001-CMake-use-definitions-when-testing-EGL.patch \
 "
 
 DEPENDS += "\
@@ -56,6 +57,10 @@ PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev gui widgets icu openssl  \
 BUILD_TYPE ?= "Release"
 # OpenSSL linking mode: runtime, linked
 OPENSSL_LINKING_MODE ?= "runtime"
+
+# Default platform plugin
+QT_QPA_DEFAULT_PLATFORM ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb', \
+    bb.utils.contains('DISTRO_FEATURES', 'opengl', 'eglfs', 'linuxfb', d), d)}"
 
 PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
@@ -108,6 +113,7 @@ EXTRA_OECMAKE += "\
 
 EXTRA_OECMAKE_append_class-target = "\
     -DFEATURE_rpath=OFF \
+    -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
 "
 
 SYSROOT_DIRS += "${prefix}/mkspecs"
