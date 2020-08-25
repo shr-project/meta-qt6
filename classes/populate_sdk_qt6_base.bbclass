@@ -26,6 +26,7 @@ create_sdk_files_prepend () {
     echo 'Sysroot = ${SDKTARGETSYSROOT}' >> $qtconf
     echo 'HostSpec = linux-oe-g++' >> $qtconf
     echo 'TargetSpec = linux-oe-g++' >> $qtconf
+    echo 'SysrootifyPrefix = true' >> $qtconf
 
     install -d ${SDK_OUTPUT}${SDKPATHNATIVE}/environment-setup.d
     script=${SDK_OUTPUT}${SDKPATHNATIVE}/environment-setup.d/qt6.sh
