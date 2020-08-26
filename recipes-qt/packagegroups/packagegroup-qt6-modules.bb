@@ -8,18 +8,18 @@ inherit packagegroup
 PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
 RDEPENDS_${PN} += " \
-    qt3d \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d', '', d)} \
     qt5compat \
     qtbase \
     qtcoap \
     qtconnectivity \
     qtdeclarative \
-    qtgraphicaleffects \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtgraphicaleffects', '', d)} \
     qtimageformats \
     qtmqtt \
     qtnetworkauth \
     qtopcua \
-    qtquick3d \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtquick3d', '', d)} \
     qtquickcontrols2 \
     qtquicktimeline \
     qtremoteobjects \

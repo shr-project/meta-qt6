@@ -9,7 +9,7 @@ PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
 
 RDEPENDS_${PN} += "\
-    qt3d-dev \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d-dev', '', d)} \
     qt5compat-dev \
     qtbase-dev \
     qtcoap-dev \
@@ -20,6 +20,7 @@ RDEPENDS_${PN} += "\
     qtmqtt-dev \
     qtnetworkauth-dev \
     qtopcua-dev \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtquick3d-dev', '', d)} \
     qtquick3d-dev \
     qtquickcontrols2-dev \
     qtquicktimeline-dev \
