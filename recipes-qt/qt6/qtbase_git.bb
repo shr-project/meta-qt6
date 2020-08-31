@@ -95,7 +95,7 @@ PACKAGECONFIG[xkbcommon] = "-DFEATURE_xkbcommon=ON,-DFEATURE_xkbcommon=OFF,libxk
 
 # widgets
 PACKAGECONFIG[widgets] = "-DFEATURE_widgets=ON,-DFEATURE_widgets=OFF"
-PACKAGECONFIG[gtk] = "-DFEATURE_gtk3=ON,-DFEATUER_gtk3=OFF,gtk+3"
+PACKAGECONFIG[gtk] = "-DFEATURE_gtk3=ON,-DFEATURE_gtk3=OFF,gtk+3"
 
 # network
 PACKAGECONFIG[gssapi] = "-DFEATURE_gssapi=ON,-DFEATURE_gssapi=OFF,krb5"
