@@ -1,0 +1,138 @@
+version: 2
+accept_configuration:
+  condition: and
+  conditions:
+    - condition: property
+      property: host.compiler
+      equals_value: Yocto
+    - condition: property
+      property: target.arch
+      in_values: [TARGET1, TARGET2, TARGET3, TARGET4]
+
+machine_type:
+  Build:
+    cores: 8
+
+environment: &environment
+  type: Group
+  instructions:
+    - type: EnvironmentVariable
+      variableName: POKY_SHA1
+      variableValue: 569b1f5d67c57de957e243997c53ec2f81dc8dfe
+    - type: EnvironmentVariable
+      variableName: OE_SHA1
+      variableValue: 654ad8bea49f142d20b2b96c0dd44810a6be233a
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemuarm64
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET1
+    - type: EnvironmentVariable
+      variableName: USE_X11
+      variableValue: false
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET1
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemux86
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET2
+    - type: EnvironmentVariable
+      variableName: USE_X11
+      variableValue: false
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET2
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemuarm
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET3
+    - type: EnvironmentVariable
+      variableName: USE_X11
+      variableValue: true
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET3
+    - type: EnvironmentVariable
+      variableName: MACHINE
+      variableValue: qemux86-64
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET4
+    - type: EnvironmentVariable
+      variableName: USE_X11
+      variableValue: true
+      enable_if:
+        condition: property
+        property: target.arch
+        equals_value: TARGET4
+
+instructions:
+  Build:
+  - *environment
+  - type: EnvironmentVariable
+    variableName: DL_DIR
+    variableValue: "/mnt/yocto-cache/downloads"
+  - type: EnvironmentVariable
+    variableName: SOURCE_DIR
+    variableValue: "{{.SourceDir}}"
+  - type: SetBuildDirectory
+    directory: "{{.AgentWorkingDir}}/build"
+  - type: MakeDirectory
+    directory: "{{.BuildDir}}"
+  - type: ChangeDirectory
+    directory: "{{.BuildDir}}"
+  - type: ExecuteCommand
+    command: ["sudo", "mkdir", "-p", "/mnt/yocto-cache"]
+    userMessageOnFailure: "Could not create '/mnt/yocto-cache' directory"
+  - type: ExecuteCommand
+    command: ["sudo", "mount", "yocto-cache.intra.qt.io:/srv/yocto-cache", "/mnt/yocto-cache"]
+    userMessageOnFailure: "Could not mount yocto cache."
+  - type: WriteFile
+    fileContents: |
+      #!/bin/bash -xe
+
+      git clone git://git.yoctoproject.org/poky --reference /mnt/yocto-cache/mirror/poky.git
+      (cd poky; git checkout ${POKY_SHA1})
+      git clone git://github.com/openembedded/meta-openembedded --reference /mnt/yocto-cache/mirror/meta-openembedded.git
+      (cd meta-openembedded; git checkout ${OE_SHA1})
+
+      source ./poky/oe-init-build-env
+      export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
+      export DL_DIR=/mnt/yocto-cache/downloads
+      export BB_GENERATE_MIRROR_TARBALLS=1
+      export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)
+      bitbake-layers add-layer ../meta-openembedded/meta-oe
+      bitbake-layers add-layer ${SOURCE_DIR}
+
+      if ! ${USE_X11} ; then
+        echo "DISTRO_FEATURES_remove = \"x11\"" >> conf/local.conf
+      fi
+      echo "require ${SOURCE_DIR}/coin/test-configs.inc" >> conf/local.conf
+
+      # build all recipes found in the layer
+      bitbake $(find ${SOURCE_DIR} -name *.bb | xargs -n1 basename | sed -e 's/\([^._]*\).*/\1/')
+    filename: "{{.BuildDir}}/start-build"
+    fileMode: 420
+  - type: ExecuteCommand
+    command: ["bash", "{{.BuildDir}}/start-build"]
+    maxTimeInSeconds: 28800
+    maxTimeBetweenOutput: 28800
+    userMessageOnFailure: "Build failed."
+  - type: ExecuteCommand
+    command: ["sudo", "umount", "/mnt/yocto-cache"]
+    userMessageOnFailure: "Unmounting cache failed."
+
+  Test: []
