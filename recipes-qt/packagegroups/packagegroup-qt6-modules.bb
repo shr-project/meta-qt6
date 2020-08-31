@@ -12,7 +12,6 @@ RDEPENDS_${PN} += " \
     qt5compat \
     qtbase \
     qtcoap \
-    qtconnectivity \
     qtdeclarative \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtgraphicaleffects', '', d)} \
     qtimageformats \
@@ -22,7 +21,6 @@ RDEPENDS_${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtquick3d', '', d)} \
     qtquickcontrols2 \
     qtquicktimeline \
-    qtremoteobjects \
     qtserialbus \
     qtserialport \
     qtshadertools \
@@ -32,6 +30,5 @@ RDEPENDS_${PN} += " \
     qttranslations \
     qtvirtualkeyboard \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
-    qtwebchannel \
     qtwebsockets \
 "

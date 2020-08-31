@@ -14,8 +14,6 @@ RDEPENDS_${PN} += " \
     nativesdk-qtbase-tools \
     nativesdk-qtdeclarative-dev \
     nativesdk-qtdeclarative-tools \
-    nativesdk-qtremoteobjects-dev \
-    nativesdk-qtremoteobjects-tools \
     nativesdk-qttools-dev \
     nativesdk-qttools-tools \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'nativesdk-qtwayland-dev nativesdk-qtwayland-tools', '', d)} \

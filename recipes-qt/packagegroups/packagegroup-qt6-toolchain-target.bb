@@ -13,7 +13,6 @@ RDEPENDS_${PN} += "\
     qt5compat-dev \
     qtbase-dev \
     qtcoap-dev \
-    qtconnectivity-dev \
     qtdeclarative-dev \
     qtgraphicaleffects-dev \
     qtimageformats-dev \
@@ -24,7 +23,6 @@ RDEPENDS_${PN} += "\
     qtquick3d-dev \
     qtquickcontrols2-dev \
     qtquicktimeline-dev \
-    qtremoteobjects-dev \
     qtserialbus-dev \
     qtserialport-dev \
     qtshadertools-dev \
@@ -34,6 +32,5 @@ RDEPENDS_${PN} += "\
     qttranslations-dev \
     qtvirtualkeyboard-dev \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland-dev', '', d)} \
-    qtwebchannel-dev \
     qtwebsockets-dev \
 "

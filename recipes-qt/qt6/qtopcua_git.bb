@@ -23,6 +23,6 @@ PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,,qtquickcont
 # cc1: error: -Wformat-security ignored without -Wformat [-Werror=format-security]
 SECURITY_STRINGFORMAT = ""
 
-DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
+DEPENDS += "qtbase qtdeclarative"
 
 SRCREV = "71a9fe798178633cc0b9a12d20ad7b609546d1e0"
