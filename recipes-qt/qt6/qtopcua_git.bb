@@ -10,10 +10,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Add-missing-include.patch \
-"
-
 PACKAGECONFIG ?= "qtdeclarative"
 PACKAGECONFIG[qtdeclarative] = ",,qtdeclarative"
 PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,,qtquickcontrols2"
@@ -23,6 +19,6 @@ PACKAGECONFIG[examples] = "-DBUILD_EXAMPLES=ON,-DBUILD_EXAMPLES=OFF,,qtquickcont
 # cc1: error: -Wformat-security ignored without -Wformat [-Werror=format-security]
 SECURITY_STRINGFORMAT = ""
 
-DEPENDS += "qtbase qtdeclarative"
+DEPENDS += "qtbase"
 
-SRCREV = "71a9fe798178633cc0b9a12d20ad7b609546d1e0"
+SRCREV = "e851fb766021277d64b013a1594c5471f4fba55a"

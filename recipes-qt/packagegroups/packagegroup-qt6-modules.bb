@@ -18,7 +18,7 @@ RDEPENDS_${PN} += " \
     qtmqtt \
     qtnetworkauth \
     qtopcua \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtquick3d', '', d)} \
+    qtquick3d \
     qtquickcontrols2 \
     qtquicktimeline \
     qtserialbus \

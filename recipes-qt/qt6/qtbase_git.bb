@@ -17,7 +17,6 @@ SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0005-Allow-build-without-opengl.patch \
-    file://0001-CMake-use-definitions-when-testing-EGL.patch \
 "
 
 DEPENDS += "\
@@ -141,4 +140,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "57b94b58df474ebc268993291a669dbad21a1300"
+SRCREV = "eb7d1cf098df56f8ebf62f02af611a627435a4a1"

@@ -12,8 +12,4 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS = "qtbase qtdeclarative"
 
-do_configure_prepend() {
-    sed -i -e 's/QmlTools//' ${S}/CMakeLists.txt
-}
-
-SRCREV = "0ba45442f3f1102af73ec2666e4e5c24ed516331"
+SRCREV = "2ba4a895a48be6927818008580ab0a88cc8c4e12"

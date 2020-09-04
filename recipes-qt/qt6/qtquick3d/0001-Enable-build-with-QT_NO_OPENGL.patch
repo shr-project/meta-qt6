@@ -1,0 +1,187 @@
+From 6ec1aee97dd54d03212aede9449ad60448826d1e Mon Sep 17 00:00:00 2001
+From: Andy Nichols <andy.nichols@qt.io>
+Date: Mon, 31 Aug 2020 09:26:17 +0200
+Subject: [PATCH] Enable build with QT_NO_OPENGL
+
+Change-Id: I35ea1aaea8b941bb5d81a5081e54d6f249bec324
+Reviewed-by: Laszlo Agocs <laszlo.agocs@qt.io>
+---
+ CMakeLists.txt                                  |  4 ----
+ src/quick3d/qquick3d.cpp                        | 17 ++++++++++++-----
+ src/quick3d/qquick3dscenerenderer_p.h           |  2 --
+ src/quick3d/qquick3dviewport.cpp                |  3 +--
+ src/quick3d/qquick3dviewport_p.h                |  1 -
+ src/runtimerender/qssgrendershadercache.cpp     | 11 ++++++++---
+ .../qssgrendershadercodegenerator.cpp           |  2 --
+ .../resourcemanager/qssgrenderloadedtexture.cpp |  1 -
+ 8 files changed, 21 insertions(+), 20 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index a9392af7..8f527d7d 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -27,8 +27,4 @@ if(NOT TARGET Qt::Quick)
+     message(NOTICE "Skipping the build as the condition \"TARGET Qt::Quick\" is not met.")
+     return()
+ endif()
+-if(NOT QT_FEATURE_opengl)
+-    message(NOTICE "Skipping the build as the condition \"QT_FEATURE_opengl\" is not met.")
+-    return()
+-endif()
+ qt_build_repo()
+diff --git a/src/quick3d/qquick3d.cpp b/src/quick3d/qquick3d.cpp
+index f46215fb..65bdc8a7 100644
+--- a/src/quick3d/qquick3d.cpp
++++ b/src/quick3d/qquick3d.cpp
+@@ -29,8 +29,10 @@
+ 
+ #include "qquick3d.h"
+ 
+-#include <QtGui/qopenglcontext.h>
+-#include <QtGui/qopenglfunctions.h>
++#if QT_CONFIG(opengl)
++# include <QtGui/qopenglcontext.h>
++# include <QtGui/qopenglfunctions.h>
++#endif
+ #include <QtGui/qoffscreensurface.h>
+ #include <QtCore/qstring.h>
+ #include <QtQuick/qquickwindow.h>
+@@ -50,7 +52,7 @@
+ */
+ 
+ QT_BEGIN_NAMESPACE
+-
++#if QT_CONFIG(opengl)
+ static QSurfaceFormat findIdealGLVersion(int samples)
+ {
+     QSurfaceFormat fmt;
+@@ -214,7 +216,7 @@ static QSurfaceFormat findIdealGLESVersion(int samples)
+     qDebug("Unable to find ideal GLES version.");
+     return fmt;
+ }
+-
++#endif // #if QT_CONFIG(opengl)
+ /*!
+     Returns an ideal surface format for the platform. Optionally, \a samples can be specified
+     to select the number of multisamples for antialiasing.
+@@ -226,7 +228,7 @@ QSurfaceFormat QQuick3D::idealSurfaceFormat(int samples)
+         fmt.setSamples(samples);
+         return fmt;
+     }
+-
++#if QT_CONFIG(opengl)
+     static const QSurfaceFormat f = [samples] {
+         QSurfaceFormat fmt;
+         if (QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGL) { // works in dynamic gl builds too because there's a qguiapp already
+@@ -239,6 +241,11 @@ QSurfaceFormat QQuick3D::idealSurfaceFormat(int samples)
+         // Ignore MSAA here as that is a per-layer setting.
+         return fmt;
+     }();
++#else
++    // It really shouldn't be possible to get but if we do
++    // but at least return something if we do.
++    QSurfaceFormat f = QSurfaceFormat::defaultFormat();
++#endif //#if QT_CONFIG(opengl)
+     return f;
+ }
+ 
+diff --git a/src/quick3d/qquick3dscenerenderer_p.h b/src/quick3d/qquick3dscenerenderer_p.h
+index 19833525..391556e6 100644
+--- a/src/quick3d/qquick3dscenerenderer_p.h
++++ b/src/quick3d/qquick3dscenerenderer_p.h
+@@ -130,8 +130,6 @@ private:
+     friend class QQuick3DViewport;
+ };
+ 
+-class QOpenGLVertexArrayObjectHelper;
+-
+ namespace QQuick3DRenderLayerHelpers {
+ Q_QUICK3D_EXPORT void updateLayerNodeHelper(const QQuick3DViewport &view3D, QSSGRenderLayer &layerNode, bool &aaIsDirty, bool &temporalIsDirty, float &ssaaMultiplier);
+ }
+diff --git a/src/quick3d/qquick3dviewport.cpp b/src/quick3d/qquick3dviewport.cpp
+index d4d1aaaf..b9f29aa8 100644
+--- a/src/quick3d/qquick3dviewport.cpp
++++ b/src/quick3d/qquick3dviewport.cpp
+@@ -38,7 +38,6 @@
+ #include "qquick3dmodel_p.h"
+ #include "qquick3drenderstats_p.h"
+ #include <QtQuick3DRuntimeRender/private/qssgrenderlayer_p.h>
+-#include <QOpenGLFunctions>
+ 
+ #include <qsgtextureprovider.h>
+ #include <QSGSimpleTextureNode>
+@@ -278,7 +277,7 @@ QSGTextureProvider *QQuick3DViewport::textureProvider() const
+         return nullptr;
+ 
+     QQuickWindow *w = window();
+-    if (!w /* || !w->openglContext() || QThread::currentThread() != w->openglContext()->thread() */) {
++    if (!w) {
+         qWarning("QSSGView3D::textureProvider: can only be queried on the rendering thread of an exposed window");
+         return nullptr;
+     }
+diff --git a/src/quick3d/qquick3dviewport_p.h b/src/quick3d/qquick3dviewport_p.h
+index 1562052e..34a4197b 100644
+--- a/src/quick3d/qquick3dviewport_p.h
++++ b/src/quick3d/qquick3dviewport_p.h
+@@ -41,7 +41,6 @@
+ // We mean it.
+ //
+ 
+-#include <QOpenGLFramebufferObject>
+ #include <QtQuick/QQuickItem>
+ #include <QtCore/qurl.h>
+ 
+diff --git a/src/runtimerender/qssgrendershadercache.cpp b/src/runtimerender/qssgrendershadercache.cpp
+index 4e5a357e..8690ac3a 100644
+--- a/src/runtimerender/qssgrendershadercache.cpp
++++ b/src/runtimerender/qssgrendershadercache.cpp
+@@ -40,8 +40,9 @@
+ #include <QtCore/qfile.h>
+ 
+ #include <QtGui/qsurfaceformat.h>
+-
+-#include <QtGui/qopenglcontext.h>
++#if QT_CONFIG(opengl)
++# include <QtGui/qopenglcontext.h>
++#endif
+ 
+ #include <QtShaderTools/private/qshaderbaker_p.h>
+ 
+@@ -99,7 +100,11 @@ static void initBaker(QShaderBaker *baker, QRhi::Implementation target)
+         if (format.profile() == QSurfaceFormat::CoreProfile) {
+             outputs.append({ QShader::GlslShader, QShaderVersion(330) }); // OpenGL 3.3+
+         } else {
+-            if (format.renderableType() == QSurfaceFormat::OpenGLES || QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGLES) {
++            bool isGLESModule = false;
++#if QT_CONFIG(opengl)
++            isGLESModule = QOpenGLContext::openGLModuleType() == QOpenGLContext::LibGLES;
++#endif
++            if (format.renderableType() == QSurfaceFormat::OpenGLES || isGLESModule) {
+                 if (format.majorVersion() >= 3)
+                     outputs.append({ QShader::GlslShader, QShaderVersion(300, QShaderVersion::GlslEs) }); // GLES 3.0+
+                 else
+diff --git a/src/runtimerender/qssgrendershadercodegenerator.cpp b/src/runtimerender/qssgrendershadercodegenerator.cpp
+index 718cc7a6..2fc23a39 100644
+--- a/src/runtimerender/qssgrendershadercodegenerator.cpp
++++ b/src/runtimerender/qssgrendershadercodegenerator.cpp
+@@ -36,8 +36,6 @@
+ #include <QtQuick3DRuntimeRender/private/qssgrendershaderlibrarymanager_p.h>
+ #include <QtQuick3DRuntimeRender/private/qssgshaderresourcemergecontext_p.h>
+ 
+-#include <QtGui/qopengl.h>
+-
+ QT_BEGIN_NAMESPACE
+ 
+ template<typename T>
+diff --git a/src/runtimerender/resourcemanager/qssgrenderloadedtexture.cpp b/src/runtimerender/resourcemanager/qssgrenderloadedtexture.cpp
+index e09c3827..ac7a57e6 100644
+--- a/src/runtimerender/resourcemanager/qssgrenderloadedtexture.cpp
++++ b/src/runtimerender/resourcemanager/qssgrenderloadedtexture.cpp
+@@ -34,7 +34,6 @@
+ #include <QtQuick3DRuntimeRender/private/qssgruntimerenderlogging_p.h>
+ #include <QtQuick3DRuntimeRender/private/qssgrendertexturedata_p.h>
+ #include <QtGui/QImage>
+-#include <QOpenGLTexture>
+ #include <QtMath>
+ 
+ #include <QtQuick3DUtils/private/qssgutils_p.h>

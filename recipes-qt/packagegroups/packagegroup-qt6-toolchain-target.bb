@@ -19,7 +19,6 @@ RDEPENDS_${PN} += "\
     qtmqtt-dev \
     qtnetworkauth-dev \
     qtopcua-dev \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtquick3d-dev', '', d)} \
     qtquick3d-dev \
     qtquickcontrols2-dev \
     qtquicktimeline-dev \
