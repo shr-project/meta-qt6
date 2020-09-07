@@ -30,7 +30,7 @@ PREFERRED_ARM_INSTRUCTION_SET              ?= "thumb"
 ARM_INSTRUCTION_SET = "${PREFERRED_ARM_INSTRUCTION_SET}"
 
 PACKAGECONFIG_append_pn-qtbase = "\
-    tslib kms gbm zstd lttng libproxy gssapi vulkan mtdev cups \
+    tslib kms gbm zstd libproxy gssapi vulkan mtdev cups \
     sql-mysql sql-psql sql-sqlite journald \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'gtk', '', d)} \
 "

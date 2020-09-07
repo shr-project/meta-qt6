@@ -15,6 +15,7 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI += " \
     git://github.com/assimp/assimp.git;name=assimp;branch=assimp_5.0_release;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
+    file://0001-Fix-build-with-latest-QtBase.patch \
 "
 
 DEPENDS = "qtbase qtdeclarative qtshadertools-native"
@@ -24,6 +25,6 @@ PACKAGECONFIG_class-target ?= "system-assimp"
 PACKAGECONFIG[system-assimp] = "-DFEATURE_system_assimp=ON,-DQT_FEATURE_system_assimp=OFF,assimp"
 PACKAGECONFIG[qtgamepad] = ",,qtgamepad"
 
-SRCREV_qt3d = "f248b8a3bce2e7f0842f51ab7665f3efc3c9274e"
-SRCREV_assimp = "8f0c6b04b2257a520aaab38421b2e090204b69df"
 SRCREV_FORMAT = "qt3d_assimp"
+SRCREV_qt3d = "befd2091a6a2f667eddabd35b8c6d7c0783b72ec"
+SRCREV_assimp = "4e5017df696cf92301e75b200927c8c0dbeeb56d"
