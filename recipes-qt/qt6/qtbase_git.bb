@@ -59,7 +59,7 @@ OPENSSL_LINKING_MODE ?= "runtime"
 
 # Default platform plugin
 QT_QPA_DEFAULT_PLATFORM ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb', \
-    bb.utils.contains('DISTRO_FEATURES', 'opengl', 'eglfs', 'linuxfb', d), d)}"
+    bb.utils.contains('PACKAGECONFIG', 'gles2', 'eglfs', 'linuxfb', d), d)}"
 
 PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
