@@ -4,7 +4,6 @@ LIC_FILES_CHKSUM = " \
 "
 
 inherit qt6-cmake
-inherit features_check
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
