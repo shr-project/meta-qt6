@@ -13,6 +13,8 @@ INHERIT += "rm_work"
 # fast compression of SDK tar package
 SDK_XZ_COMPRESSION_LEVEL = "-1"
 
+SDK_ARCHIVE_TYPE_sdkmingw32 = "zip"
+
 # be more strict with QA warnings, turn them all to errors:
 EXTRA_QA = "\
     ldflags useless-rpaths rpaths staticdev libdir xorg-driver-abi \

@@ -17,71 +17,71 @@ environment: &environment
   type: Group
   instructions:
     - type: EnvironmentVariable
-      variableName: POKY_SHA1
-      variableValue: 569b1f5d67c57de957e243997c53ec2f81dc8dfe
+      variableName: POKY_REF
+      variableValue: dunfell
     - type: EnvironmentVariable
-      variableName: OE_SHA1
-      variableValue: 654ad8bea49f142d20b2b96c0dd44810a6be233a
+      variableName: OE_REF
+      variableValue: dunfell
+    - type: EnvironmentVariable
+      variableName: MINGW_REF
+      variableValue: dunfell
+target1: &target1
+  type: Group
+  instructions:
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemuarm64
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET1
     - type: EnvironmentVariable
-      variableName: USE_X11
-      variableValue: false
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET1
+      variableName: DISABLE_X11
+      variableValue: true
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET1
+target2: &target2
+  type: Group
+  instructions:
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemux86
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET2
     - type: EnvironmentVariable
-      variableName: USE_X11
-      variableValue: false
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET2
+      variableName: DISABLE_X11
+      variableValue: true
+    - type: EnvironmentVariable
+      variableName: MINGW
+      variableValue: true
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET2
+target3: &target3
+  type: Group
+  instructions:
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemuarm
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET3
-    - type: EnvironmentVariable
-      variableName: USE_X11
-      variableValue: true
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET3
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET3
+target4: &target4
+  type: Group
+  instructions:
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemux86-64
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET4
-    - type: EnvironmentVariable
-      variableName: USE_X11
-      variableValue: true
-      enable_if:
-        condition: property
-        property: target.arch
-        equals_value: TARGET4
+  enable_if:
+      condition: property
+      property: target.arch
+      equals_value: TARGET4
 
 instructions:
   Build:
   - *environment
+  - *target1
+  - *target2
+  - *target3
+  - *target4
   - type: EnvironmentVariable
     variableName: DL_DIR
     variableValue: "/mnt/yocto-cache/downloads"
@@ -105,9 +105,11 @@ instructions:
       #!/bin/bash -xe
 
       git clone git://git.yoctoproject.org/poky --reference /mnt/yocto-cache/mirror/poky.git
-      (cd poky; git checkout ${POKY_SHA1})
+      (cd poky; git checkout ${POKY_REF})
       git clone git://github.com/openembedded/meta-openembedded --reference /mnt/yocto-cache/mirror/meta-openembedded.git
-      (cd meta-openembedded; git checkout ${OE_SHA1})
+      (cd meta-openembedded; git checkout ${OE_REF})
+      git clone git://git.yoctoproject.org/meta-mingw --reference /mnt/yocto-cache/mirror/meta-mingw.git
+      (cd meta-mingw; git checkout ${MINGW_REF})
 
       source ./poky/oe-init-build-env
       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
@@ -115,11 +117,16 @@ instructions:
       export BB_GENERATE_MIRROR_TARBALLS=1
       export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)
       bitbake-layers add-layer ../meta-openembedded/meta-oe
+      bitbake-layers add-layer ../meta-mingw
       bitbake-layers add-layer ${SOURCE_DIR}
 
-      if ! ${USE_X11} ; then
+      if [ -n "${DISABLE_X11}" ] ; then
         echo "DISTRO_FEATURES_remove = \"x11\"" >> conf/local.conf
       fi
+      if [ -n "${MINGW}" ]; then
+        export SDKMACHINE=x86_64-mingw32
+      fi
+
       echo "require ${SOURCE_DIR}/coin/test-configs.inc" >> conf/local.conf
 
       # build all recipes found in the layer
