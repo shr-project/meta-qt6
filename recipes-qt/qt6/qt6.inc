@@ -26,6 +26,8 @@ python __anonymous() {
 INSANE_SKIP_${PN}-dbg += "libdir"
 INSANE_SKIP_${PN}-examples += "libdir"
 
+SYSROOT_DIRS_append_mingw32 = " ${QT6_INSTALL_BINDIR}"
+
 PACKAGES =. "${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples "
 
 ALLOW_EMPTY_${PN} = "1"
@@ -54,6 +56,11 @@ FILES_${PN}-plugins = " \
     ${QT6_INSTALL_PLUGINSDIR}/*/*${SOLIBSDEV} \
     ${QT6_INSTALL_PLUGINSDIR}/*/*/*${SOLIBSDEV} \
     ${QT6_INSTALL_PLUGINSDIR}/*/*/*/*${SOLIBSDEV} \
+"
+FILES_${PN}-plugins_mingw32 = " \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*.dll \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*/*.dll \
+    ${QT6_INSTALL_PLUGINSDIR}/*/*/*/*.dll \
 "
 
 FILES_${PN} += " \

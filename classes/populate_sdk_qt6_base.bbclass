@@ -1,6 +1,12 @@
 inherit qt6-paths
 
-create_sdk_files_prepend () {
+SDK_POSTPROCESS_COMMAND_prepend = "create_qt6_sdk_files;"
+
+
+PATH_DELIM = ":"
+PATH_DELIM_sdkmingw32 = ";"
+
+create_qt6_sdk_files () {
     # Generate a qt.conf file to be deployed with the SDK
     qtconf=${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}/qt.conf
     touch $qtconf
@@ -55,7 +61,7 @@ create_sdk_files_prepend () {
 
     # Generate a toolchain file for using Qt without running setup-environment script
     cat > ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
-set(ENV{PATH} "${SDKPATHNATIVE}${bindir}/${TARGET_SYS}:\$ENV{PATH}")
+set(ENV{PATH} "${SDKPATHNATIVE}${bindir}/${TARGET_SYS}${PATH_DELIM}\$ENV{PATH}")
 set(ENV{CC} "${TARGET_PREFIX}gcc ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}")
 set(ENV{CXX} "${TARGET_PREFIX}g++ ${TARGET_CC_ARCH} --sysroot=${SDKTARGETSYSROOT}")
 
@@ -69,6 +75,11 @@ set(ENV{SDKTARGETSYSROOT} "${SDKTARGETSYSROOT}")
 set(CMAKE_TOOLCHAIN_FILE "${SDKPATHNATIVE}/usr/share/cmake/OEToolchainConfig.cmake")
 include("\${CMAKE_TOOLCHAIN_FILE}")
 EOF
+}
+
+create_qt6_sdk_files_append_sdkmingw32() {
+    sed -i -e 's|${SDKPATH}|$ENV{SDKPATH}|g' \
+        ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake
 }
 
 # default debug prefix map isn't valid in the SDK
