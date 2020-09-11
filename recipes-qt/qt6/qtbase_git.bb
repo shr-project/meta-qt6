@@ -115,7 +115,7 @@ EXTRA_OECMAKE_append_class-target = "\
     -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
 "
 
-SYSROOT_DIRS += "${prefix}/mkspecs"
+SYSROOT_DIRS += "${QT6_INSTALL_MKSPECSDIR}"
 
 do_install_append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
