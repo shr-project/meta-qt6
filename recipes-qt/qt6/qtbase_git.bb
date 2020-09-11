@@ -120,10 +120,6 @@ SYSROOT_DIRS += "${prefix}/mkspecs"
 do_install_append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
         -e '/QT_SOURCE_TREE/,+2d'
-
-    # qt-cmake is not needed, remove it and the toolchain file
-    rm -f ${D}${QT6_INSTALL_BINDIR}/qt-cmake \
-          ${D}{QT6_INSTALL_LIBDIR}/cmake/Qt6/qt.toolchain.cmake
 }
 
 do_install_append_class-nativesdk() {
