@@ -1,19 +1,27 @@
-From 02e3028f4ea5e39dbc7fbe3032258ed7319b6bc2 Mon Sep 17 00:00:00 2001
+From 942a41618d12f45e8803cfe995fdf3f9fb9fb081 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 29 Jan 2020 12:39:09 +0200
 Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
 
 Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
 ---
- CMakeLists.txt     | 2 +-
+ CMakeLists.txt     | 7 +------
  src/CMakeLists.txt | 2 +-
- 2 files changed, 2 insertions(+), 2 deletions(-)
+ 2 files changed, 2 insertions(+), 7 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index e72c5e1c..771532da 100644
+index e72c5e1c..232450ed 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -26,11 +26,11 @@ endif()
+@@ -18,19 +18,14 @@ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
+     BuildInternals
+ )
+ 
+-if(NOT MACOS AND NOT QNX AND (ANDROID OR NOT LINUX))
+-    message(NOTICE "Skipping the build as the condition \"LINUX OR MACOS OR QNX\" is not met.")
+-    return()
+-endif()
+-
  find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
      Core
      Gui
