@@ -10,10 +10,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Adapt-to-rename-of-QFont-QPalette-resolve-to-resolve.patch \
-"
-
 DEPENDS = "qtbase qtdeclarative"
 
-SRCREV = "52ae6b1a506bea501ac7db424edddfa18383d20a"
+SRCREV = "fbc629892461662a20e12c38f182fddb1fcc3a81"
