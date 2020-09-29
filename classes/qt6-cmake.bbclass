@@ -4,9 +4,14 @@ DEPENDS_prepend = "qtbase-native "
 
 EXTRA_OECMAKE += "\
     -DQT_CMAKE_DEBUG_EXTEND_TARGET=ON \
-    -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}/usr/ \
     -DQT_BUILD_TOOLS_WHEN_CROSSCOMPILING=ON \
     -DQT_BUILD_INTERNALS_NO_FORCE_SET_INSTALL_PREFIX=ON \
+"
+EXTRA_OECMAKE_append_class-target = "\
+    -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}/${prefix_native}/ \
+"
+EXTRA_OECMAKE_append_class-nativesdk = "\
+    -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}/${prefix_native}/ \
 "
 
 EXTRA_OECMAKE += "\
