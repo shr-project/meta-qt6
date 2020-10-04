@@ -14,7 +14,6 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI +="\
     file://0001-Allow-qtwaylandscanner-to-be-built-without-dependenc.patch \
-    file://0001-Fix-compilation-after-mime-data-API-changes.patch \
 "
 
 PACKAGECONFIG ?= "\
@@ -38,4 +37,4 @@ DEPENDS += "qtbase qtdeclarative qtwayland-native wayland wayland-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "7ae0ccc3fcd565da0d36ad07ffd67bce5d75df07"
+SRCREV = "e823131e6fbd3e6e4c089b0ec860285cc4994195"
