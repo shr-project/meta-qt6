@@ -1,0 +1,33 @@
+From d2d892396346ee622d26196c5ab29a8df942654d Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Mon, 12 Oct 2020 08:26:19 +0300
+Subject: [PATCH] Update QStringConverter usage
+
+Change-Id: Ic30656ad1cd9c9d49377b43da1ac77c661863f52
+---
+ src/websockets/qwebsocketdataprocessor.cpp | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
+
+diff --git a/src/websockets/qwebsocketdataprocessor.cpp b/src/websockets/qwebsocketdataprocessor.cpp
+index 3ffc084..c881056 100644
+--- a/src/websockets/qwebsocketdataprocessor.cpp
++++ b/src/websockets/qwebsocketdataprocessor.cpp
+@@ -199,8 +199,7 @@ bool QWebSocketDataProcessor::process(QIODevice *pIoDevice)
+                 }
+ 
+                 if (m_opCode == QWebSocketProtocol::OpCodeText) {
+-                    QString frameTxt = m_decoder(frame.payload().constData(),
+-                                                 frame.payload().size());
++                    QString frameTxt = m_decoder(frame.payload());
+                     if (Q_UNLIKELY(m_decoder.hasError())) {
+                         clear();
+                         Q_EMIT errorEncountered(QWebSocketProtocol::CloseCodeWrongDatatype,
+@@ -290,7 +289,7 @@ bool QWebSocketDataProcessor::processControlFrame(const QWebSocketFrame &frame)
+                 if (payload.size() > 2) {
+                     auto toUtf16 = QStringDecoder(QStringDecoder::Utf8,
+                         QStringDecoder::Flag::Stateless | QStringDecoder::Flag::ConvertInvalidToNull);
+-                    closeReason = toUtf16(payload.constData() + 2, payload.size() - 2);
++                    closeReason = toUtf16(payload.right(payload.size() - 2));
+                     if (Q_UNLIKELY(toUtf16.hasError())) {
+                         closeCode = QWebSocketProtocol::CloseCodeWrongDatatype;
+                         closeReason = tr("Invalid UTF-8 code encountered.");

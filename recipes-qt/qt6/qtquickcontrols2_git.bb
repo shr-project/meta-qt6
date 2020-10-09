@@ -10,6 +10,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Update-QStringConverter-usage.patch \
+"
+
 DEPENDS = "qtbase qtdeclarative"
 
-SRCREV = "cd669f1f216e54fa59eee77459d608a41f5df290"
+SRCREV = "e1d2073ddbd81e926640babe94e6d64076ce8eaa"

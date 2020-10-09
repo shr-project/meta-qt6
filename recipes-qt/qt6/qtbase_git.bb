@@ -17,9 +17,6 @@ SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0005-Allow-build-without-opengl.patch \
-    file://0001-CMake-use-HostInfo-when-QT_HOST_PATH-is-set.patch \
-    file://0001-CMake-enable-egl_viv-plugins.patch \
-    file://0001-CMake-set-default-eglfs-device-integration-plugin.patch \
 "
 
 DEPENDS += "\
@@ -139,4 +136,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "8059632fbdd656a4892918745244fd84a746ee93"
+SRCREV = "56af9fb917b811a4e98c92364c6953f7f58adc45"

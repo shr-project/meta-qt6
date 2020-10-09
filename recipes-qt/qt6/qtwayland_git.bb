@@ -37,4 +37,4 @@ DEPENDS += "qtbase qtdeclarative qtwayland-native wayland wayland-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "e823131e6fbd3e6e4c089b0ec860285cc4994195"
+SRCREV = "98aea22d839000a377d0fc646133f76e08b44f6e"
