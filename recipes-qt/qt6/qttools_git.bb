@@ -12,14 +12,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Update-QStringConverter-usage.patch \
-    file://0001-Remove-pixelDensity.patch \
-    file://0001-QPlatformInterface-was-renamed-to-QNativeInterface.patch \
-"
-
 DEPENDS += "qtbase qtdeclarative qttools-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "05ffeba75e90e226cd6ddf7d72cb9b9d0ad5f172"
+SRCREV = "973a988b8120c4326a21b4b578d0248ebb7ddb23"

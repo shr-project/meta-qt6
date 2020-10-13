@@ -12,12 +12,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Update-QStringConverter-usage.patch \
-"
-
 DEPENDS += "qtbase qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "d17b2ae269b0cee63c3b34e493a108a188d27087"
+SRCREV = "aba1bf6fca24ec6ee21ffc4417ef05d5d2cfdfeb"
