@@ -80,6 +80,16 @@ set(CMAKE_INSTALL_PREFIX "${prefix}" CACHE PATH "Install path prefix")
 set(CMAKE_TOOLCHAIN_FILE "${SDKPATHNATIVE}/usr/share/cmake/OEToolchainConfig.cmake")
 include("\${CMAKE_TOOLCHAIN_FILE}")
 EOF
+
+    # override qt-cmake
+    cat > ${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}/qt-cmake <<EOF
+#!/bin/sh
+
+cmake_path="${SDKPATHNATIVE}${bindir}/cmake"
+toolchain_path="${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake"
+exec "\$cmake_path" -DCMAKE_TOOLCHAIN_FILE="\$toolchain_path" "\$@"
+EOF
+
 }
 
 create_qt6_sdk_files_append_sdkmingw32() {
