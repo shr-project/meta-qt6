@@ -6,13 +6,10 @@ LIC_FILES_CHKSUM = " \
 "
 
 inherit qt6-cmake
-inherit features_check
-
-REQUIRED_DISTRO_FEATURES = "opengl"
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtdeclarative"
 
-SRCREV = "3a7181de414b4952ac93e9f148a98f7e69773718"
+SRCREV = "54a6382d0d26ed0854eea673d5dbf9d971fbeb3b"
