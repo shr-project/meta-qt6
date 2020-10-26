@@ -1,0 +1,22 @@
+From 1c7c8ce10b76afa98f46e98523c0cb91211dba85 Mon Sep 17 00:00:00 2001
+From: Mikko Gronoff <mikko.gronoff@qt.io>
+Date: Wed, 28 Oct 2020 12:21:27 +0200
+Subject: [PATCH] Fix compilation with latest QMutexLocker changed
+
+---
+ src/core/resources/qresourcemanager_p.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/core/resources/qresourcemanager_p.h b/src/core/resources/qresourcemanager_p.h
+index 82e8ad17f..954f7b5e4 100644
+--- a/src/core/resources/qresourcemanager_p.h
++++ b/src/core/resources/qresourcemanager_p.h
+@@ -165,7 +165,7 @@ public :
+         }
+ 
+     private:
+-        QMutexLocker m_locker;
++        QMutexLocker<QMutex> m_locker;
+     };
+ 
+ private:

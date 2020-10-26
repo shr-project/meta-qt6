@@ -115,6 +115,9 @@ EXTRA_OECMAKE_append_class-target = "\
     -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
 "
 
+# mkspecs have mac specific scripts that depend on perl and bash
+SKIP_FILEDEPS_${PN}-dev = "1"
+
 SYSROOT_DIRS += "${QT6_INSTALL_MKSPECSDIR}"
 
 do_install_append() {
@@ -136,4 +139,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "86d2f7f365c35f9833f3cf5c5731a8c258ad8ec4"
+SRCREV = "b6cd3bca280bd81e932ff51a3ec2b9fc70231646"
