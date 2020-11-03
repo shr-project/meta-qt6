@@ -28,7 +28,7 @@ INSANE_SKIP_${PN}-examples += "libdir"
 
 SYSROOT_DIRS_append_mingw32 = " ${QT6_INSTALL_BINDIR}"
 
-PACKAGES =. "${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples "
+PACKAGE_BEFORE_PN = "${PN}-qmlplugins ${PN}-tools ${PN}-plugins ${PN}-examples"
 
 ALLOW_EMPTY_${PN} = "1"
 ALLOW_EMPTY_${PN}-plugins = "1"
@@ -98,6 +98,11 @@ FILES_${PN}-staticdev += " \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*.prl \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.a \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.prl \
+    ${QT6_INSTALL_LIBDIR}/objects* \
+    ${QT6_INSTALL_QMLDIR}/*/objects*/ \
+    ${QT6_INSTALL_QMLDIR}/*/*/objects*/ \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/objects*/ \
+    ${QT6_INSTALL_QMLDIR}/*/*/*/*/objects*/ \
 "
 
 # Note: INSTALL_EXAMPLESDIR is not used

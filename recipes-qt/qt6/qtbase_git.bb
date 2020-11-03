@@ -50,7 +50,6 @@ PACKAGECONFIG_DISTRO ?= ""
 PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev gui widgets icu openssl  \
     jpeg png dbus libinput fontconfig harfbuzz \
     ${@bb.utils.contains('SELECTED_OPTIMIZATION', '-Os', 'optimize-size ltcg', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'qt5-static', 'static', '', d)} \
 "
 # Build type: Debug, Release, MinSizeRel, RelWithDebInfo
 BUILD_TYPE ?= "Release"
@@ -60,6 +59,8 @@ OPENSSL_LINKING_MODE ?= "runtime"
 # Default platform plugin
 QT_QPA_DEFAULT_PLATFORM ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb', \
     bb.utils.contains('PACKAGECONFIG', 'gles2', 'eglfs', 'linuxfb', d), d)}"
+
+PACKAGECONFIG[static] = "-DBUILD_SHARED_LIBS=OFF,-DBUILD_SHARED_LIBS=ON"
 
 PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
