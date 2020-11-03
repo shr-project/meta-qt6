@@ -20,8 +20,8 @@ BBCLASSEXTEND =+ "native nativesdk"
 PACKAGECONFIG ??= ""
 PACKAGECONFIG[system-assimp] = "-DFEATURE_system-assimp=ON,-DFEATURE_system-assimp=OFF,assimp"
 
-_FILES_${PN}-qmlplugins += " \
-  ${OE_QMAKE_PATH_QML}/QtQuick3D/Helpers/meshes/*.mesh \
+FILES_${PN}-qmlplugins += " \
+  ${QT6_INSTALL_QMLDIR}/QtQuick3D/Helpers/meshes/*.mesh \
 "
 
 SRCREV_FORMAT = "qtquick3d_assimp"
