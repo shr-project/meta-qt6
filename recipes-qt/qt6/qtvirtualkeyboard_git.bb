@@ -113,8 +113,8 @@ PACKAGECONFIG[lang-zh_TW] = "-DFEATURE_vkb_lang_zh_TW=ON,-DFEATURE_vkb_lang_zh_T
 
 PACKAGES += "${PN}-dictionaries"
 RRECOMMENDS_${PN} += "${PN}-dictionaries"
-FILES_${PN}-dictionaries = "${OE_QMAKE_PATH_DATA}/qtvirtualkeyboard/*/*.dat"
-FILES_${PN} += "${OE_QMAKE_PATH_DATA}/qtvirtualkeyboard/lipi_toolkit"
+FILES_${PN}-dictionaries = "${QT6_INSTALL_DATADIR}/qtvirtualkeyboard/*/*.dat"
+FILES_${PN} += "${QT6_INSTALL_DATADIR}/qtvirtualkeyboard/lipi_toolkit"
 
 DEPENDS += "qtbase qtdeclarative qtsvg qtdeclarative-native"
 
