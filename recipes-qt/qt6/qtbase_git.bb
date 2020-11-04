@@ -60,6 +60,8 @@ OPENSSL_LINKING_MODE ?= "runtime"
 QT_QPA_DEFAULT_PLATFORM ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb', \
     bb.utils.contains('PACKAGECONFIG', 'gles2', 'eglfs', 'linuxfb', d), d)}"
 
+PACKAGECONFIG[ltcg] = "-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON,-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=OFF"
+PACKAGECONFIG[optimize-size] = "-DFEATURE_optimize_size=ON,-DFEATURE_optimize_size=OFF"
 PACKAGECONFIG[static] = "-DBUILD_SHARED_LIBS=OFF,-DBUILD_SHARED_LIBS=ON"
 
 PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
