@@ -13,24 +13,24 @@ machine_type:
   Build:
     cores: 8
 
-environment: &environment
-  type: Group
-  instructions:
-    - type: EnvironmentVariable
-      variableName: POKY_REF
-      variableValue: dunfell
-    - type: EnvironmentVariable
-      variableName: OE_REF
-      variableValue: dunfell
-    - type: EnvironmentVariable
-      variableName: MINGW_REF
-      variableValue: dunfell
+# Target build matrix:
+#
+#           [target1]       [target2]   [target3]       [target4]
+# [machine] qemuarm64       qemux86     qemuarm         qemux86-64
+# [yocto]   gatesgarth      dunfell     gatesgarth      master
+# [X11]     no              no          yes             yes
+# [mingw]   no              yes         no              no
+#
+
 target1: &target1
   type: Group
   instructions:
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemuarm64
+    - type: EnvironmentVariable
+      variableName: YOCTO_BRANCH
+      variableValue: gatesgarth
     - type: EnvironmentVariable
       variableName: DISABLE_X11
       variableValue: true
@@ -44,6 +44,9 @@ target2: &target2
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemux86
+    - type: EnvironmentVariable
+      variableName: YOCTO_BRANCH
+      variableValue: dunfell
     - type: EnvironmentVariable
       variableName: DISABLE_X11
       variableValue: true
@@ -60,6 +63,9 @@ target3: &target3
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemuarm
+    - type: EnvironmentVariable
+      variableName: YOCTO_BRANCH
+      variableValue: gatesgarth
   enable_if:
       condition: property
       property: target.arch
@@ -70,6 +76,9 @@ target4: &target4
     - type: EnvironmentVariable
       variableName: MACHINE
       variableValue: qemux86-64
+    - type: EnvironmentVariable
+      variableName: YOCTO_BRANCH
+      variableValue: master
   enable_if:
       condition: property
       property: target.arch
@@ -77,7 +86,6 @@ target4: &target4
 
 instructions:
   Build:
-  - *environment
   - *target1
   - *target2
   - *target3
@@ -105,17 +113,17 @@ instructions:
       #!/bin/bash -xe
 
       git clone git://git.yoctoproject.org/poky --reference /mnt/yocto-cache/mirror/poky.git
-      (cd poky; git checkout ${POKY_REF})
+      (cd poky; git checkout ${YOCTO_BRANCH})
       git clone git://github.com/openembedded/meta-openembedded --reference /mnt/yocto-cache/mirror/meta-openembedded.git
-      (cd meta-openembedded; git checkout ${OE_REF})
+      (cd meta-openembedded; git checkout ${YOCTO_BRANCH})
       git clone git://git.yoctoproject.org/meta-mingw --reference /mnt/yocto-cache/mirror/meta-mingw.git
-      (cd meta-mingw; git checkout ${MINGW_REF})
+      (cd meta-mingw; git checkout ${YOCTO_BRANCH})
 
       source ./poky/oe-init-build-env
       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
       export DL_DIR=/mnt/yocto-cache/downloads
       export BB_GENERATE_MIRROR_TARBALLS=1
-      export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)
+      export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)-meta-qt6
       bitbake-layers add-layer ../meta-openembedded/meta-oe
       bitbake-layers add-layer ../meta-mingw
       bitbake-layers add-layer ${SOURCE_DIR}
