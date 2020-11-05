@@ -15,4 +15,6 @@ include recipes-qt/qt6/qt6-git.inc
 
 DEPENDS += "qtbase"
 
+PACKAGECONFIG[iconv] = "-DFEATURE_iconv=ON,-DFEATURE_iconv=OFF,virtual/libiconv"
+
 SRCREV = "a892088d556b99fbcf1ceb00753f72d18fb00a71"
