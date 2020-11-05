@@ -111,6 +111,7 @@ PACKAGECONFIG[sql-sqlite] = "-DFEATURE_sql_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sq
 
 EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
+    -DQT_EDITION=${QT_EDITION} \
 "
 
 EXTRA_OECMAKE_append_class-target = "\
