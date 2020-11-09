@@ -111,6 +111,7 @@ PACKAGECONFIG[sql-sqlite] = "-DFEATURE_sql_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sq
 EXTRA_OECMAKE += "\
     -DCMAKE_BUILD_TYPE=${BUILD_TYPE} \
     -DQT_EDITION=${QT_EDITION} \
+    -DQT_FORCE_MIN_CMAKE_VERSION=3.16 \
 "
 
 EXTRA_OECMAKE_append_class-target = "\
@@ -142,4 +143,4 @@ FILES_${PN}-tools += "\
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "8040d3dce12a7c0ccc71dd1e1f2f018fdbcbf4dc"
+SRCREV = "46a552583f99ed04945ccf949afbdff58dcdfa1f"
