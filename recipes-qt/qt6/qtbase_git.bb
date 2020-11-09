@@ -117,6 +117,7 @@ EXTRA_OECMAKE += "\
 EXTRA_OECMAKE_append_class-target = "\
     -DFEATURE_rpath=OFF \
     -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
+    -DQT_AVOID_CMAKE_ARCHIVING_API=ON \
 "
 
 # mkspecs have mac specific scripts that depend on perl and bash
