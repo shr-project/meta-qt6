@@ -21,4 +21,4 @@ SECURITY_STRINGFORMAT = ""
 
 DEPENDS += "qtbase"
 
-SRCREV = "b9a84ff15bd9c7ab23eeaceeec05cfb45192b3ed"
+SRCREV = "c228f1fa0cc09a6c0d147e4fa9ea751b0ad599a8"
