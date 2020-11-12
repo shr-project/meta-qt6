@@ -15,6 +15,7 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI += " \
     git://github.com/assimp/assimp.git;name=assimp;branch=assimp_5.0_release;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
+    file://0001-Follow-up-on-change-of-QQmlListProperty-to-qsizetype.patch \
 "
 
 DEPENDS = "qtbase qtdeclarative qtshadertools-native"

@@ -1,0 +1,1451 @@
+From 0c3c297c2aff81cf0806d960b175692cf79d54aa Mon Sep 17 00:00:00 2001
+From: Mike Krus <mike.krus@kdab.com>
+Date: Sat, 14 Nov 2020 10:17:35 +0000
+Subject: [PATCH] Follow up on change of QQmlListProperty to qsizetype
+
+Update dependencies.
+
+Change-Id: Ie7fdd9626653e89ad43e8bdb22b0e764618b1e9e
+---
+ dependencies.yaml                                    |  6 +++---
+ src/quick3d/quick3d/items/quick3dentity.cpp          |  4 ++--
+ src/quick3d/quick3d/items/quick3dentity_p.h          |  4 ++--
+ src/quick3d/quick3d/items/quick3dgeometry.cpp        |  4 ++--
+ src/quick3d/quick3d/items/quick3dgeometry_p.h        |  4 ++--
+ src/quick3d/quick3d/items/quick3djoint.cpp           |  4 ++--
+ src/quick3d/quick3d/items/quick3djoint_p.h           |  4 ++--
+ src/quick3d/quick3d/items/quick3dnode.cpp            |  8 ++++----
+ src/quick3d/quick3d/items/quick3dnode_p.h            |  8 ++++----
+ .../items/quick3danimationcontroller.cpp             |  4 ++--
+ .../items/quick3danimationcontroller_p.h             |  4 ++--
+ .../quick3danimation/items/quick3danimationgroup.cpp |  4 ++--
+ .../quick3danimation/items/quick3danimationgroup_p.h |  4 ++--
+ .../quick3danimation/items/quick3dchannelmapper.cpp  |  4 ++--
+ .../quick3danimation/items/quick3dchannelmapper_p.h  |  4 ++--
+ .../items/quick3dkeyframeanimation.cpp               | 12 ++++++------
+ .../items/quick3dkeyframeanimation_p.h               |  4 ++--
+ .../items/quick3dmorphinganimation.cpp               |  4 ++--
+ .../items/quick3dmorphinganimation_p.h               |  4 ++--
+ .../quick3danimation/items/quick3dmorphtarget.cpp    |  4 ++--
+ .../quick3danimation/items/quick3dmorphtarget_p.h    |  4 ++--
+ .../items/quick3dvertexblendanimation.cpp            |  4 ++--
+ .../items/quick3dvertexblendanimation_p.h            |  7 +++----
+ .../quick3dextras/items/quick3dspritesheet.cpp       |  4 ++--
+ .../quick3dextras/items/quick3dspritesheet_p.h       |  4 ++--
+ src/quick3d/quick3dinput/items/quick3daction.cpp     |  4 ++--
+ src/quick3d/quick3dinput/items/quick3daction_p.h     |  4 ++--
+ src/quick3d/quick3dinput/items/quick3daxis.cpp       |  4 ++--
+ src/quick3d/quick3dinput/items/quick3daxis_p.h       |  4 ++--
+ src/quick3d/quick3dinput/items/quick3dinputchord.cpp | 12 ++++++------
+ src/quick3d/quick3dinput/items/quick3dinputchord_p.h |  4 ++--
+ .../quick3dinput/items/quick3dinputsequence.cpp      |  4 ++--
+ .../quick3dinput/items/quick3dinputsequence_p.h      |  4 ++--
+ .../quick3dinput/items/quick3dlogicaldevice.cpp      |  8 ++++----
+ .../quick3dinput/items/quick3dlogicaldevice_p.h      |  8 ++++----
+ .../quick3dinput/items/quick3dphysicaldevice.cpp     |  4 ++--
+ .../quick3dinput/items/quick3dphysicaldevice_p.h     |  4 ++--
+ src/quick3d/quick3drender/items/quick3deffect.cpp    |  8 ++++----
+ src/quick3d/quick3drender/items/quick3deffect_p.h    |  8 ++++----
+ .../quick3drender/items/quick3dlayerfilter.cpp       |  4 ++--
+ .../quick3drender/items/quick3dlayerfilter_p.h       |  4 ++--
+ src/quick3d/quick3drender/items/quick3dmaterial.cpp  |  4 ++--
+ src/quick3d/quick3drender/items/quick3dmaterial_p.h  |  4 ++--
+ src/quick3d/quick3drender/items/quick3draycaster.cpp |  4 ++--
+ .../quick3drender/items/quick3draycaster_p_p.h       |  4 ++--
+ .../quick3drender/items/quick3drenderpass.cpp        | 12 ++++++------
+ .../quick3drender/items/quick3drenderpass_p.h        | 12 ++++++------
+ .../quick3drender/items/quick3drenderpassfilter.cpp  |  8 ++++----
+ .../quick3drender/items/quick3drenderpassfilter_p.h  |  8 ++++----
+ .../items/quick3drendertargetoutput.cpp              |  4 ++--
+ .../items/quick3drendertargetoutput_p.h              |  4 ++--
+ .../quick3drender/items/quick3dshaderdataarray.cpp   |  4 ++--
+ .../quick3drender/items/quick3dshaderdataarray_p.h   |  4 ++--
+ src/quick3d/quick3drender/items/quick3dstateset.cpp  |  4 ++--
+ src/quick3d/quick3drender/items/quick3dstateset_p.h  |  4 ++--
+ src/quick3d/quick3drender/items/quick3dtechnique.cpp | 12 ++++++------
+ src/quick3d/quick3drender/items/quick3dtechnique_p.h | 12 ++++++------
+ .../quick3drender/items/quick3dtechniquefilter.cpp   |  8 ++++----
+ .../quick3drender/items/quick3dtechniquefilter_p.h   |  8 ++++----
+ src/quick3d/quick3drender/items/quick3dtexture.cpp   |  4 ++--
+ src/quick3d/quick3drender/items/quick3dtexture_p.h   |  4 ++--
+ .../quick3dscene2d/items/qt3dquick3dscene2d.cpp      |  4 ++--
+ .../quick3dscene2d/items/qt3dquick3dscene2d_p.h      |  4 ++--
+ 63 files changed, 172 insertions(+), 173 deletions(-)
+
+diff --git a/dependencies.yaml b/dependencies.yaml
+index 0ccf70157..390f150e4 100644
+--- a/dependencies.yaml
++++ b/dependencies.yaml
+@@ -1,10 +1,10 @@
+ dependencies:
+   ../qtbase:
+-    ref: 46a552583f99ed04945ccf949afbdff58dcdfa1f
++    ref: 4e935e35f1abdc8fb8313c04b1605b78b75a50be
+     required: true
+   ../qtdeclarative:
+-    ref: 3037e442d289b1c4ff037ee02f683c199673af6f
++    ref: 88ac03de3dccc7f70f9a39b03e1405495cff8ba7
+     required: false
+   ../qtshadertools:
+-    ref: 52734496e036413a030de950a8f824e42c169d96
++    ref: cb5c2d28c2b28a7448897439b00269f890cd7eb4
+     required: false
+diff --git a/src/quick3d/quick3d/items/quick3dentity.cpp b/src/quick3d/quick3d/items/quick3dentity.cpp
+index c2814a79e..da87cbf1c 100644
+--- a/src/quick3d/quick3d/items/quick3dentity.cpp
++++ b/src/quick3d/quick3d/items/quick3dentity.cpp
+@@ -97,13 +97,13 @@ void Quick3DEntity::qmlAppendComponent(QQmlListProperty<QComponent> *list, QComp
+     self->parentEntity()->addComponent(comp);
+ }
+ 
+-QComponent *Quick3DEntity::qmlComponentAt(QQmlListProperty<QComponent> *list, int index)
++QComponent *Quick3DEntity::qmlComponentAt(QQmlListProperty<QComponent> *list, qsizetype index)
+ {
+     Quick3DEntity *self = static_cast<Quick3DEntity *>(list->object);
+     return self->parentEntity()->components().at(index);
+ }
+ 
+-int Quick3DEntity::qmlComponentsCount(QQmlListProperty<QComponent> *list)
++qsizetype Quick3DEntity::qmlComponentsCount(QQmlListProperty<QComponent> *list)
+ {
+     Quick3DEntity *self = static_cast<Quick3DEntity *>(list->object);
+     return self->parentEntity()->components().count();
+diff --git a/src/quick3d/quick3d/items/quick3dentity_p.h b/src/quick3d/quick3d/items/quick3dentity_p.h
+index 2ced2d141..ee62ecf59 100644
+--- a/src/quick3d/quick3d/items/quick3dentity_p.h
++++ b/src/quick3d/quick3d/items/quick3dentity_p.h
+@@ -80,8 +80,8 @@ public:
+ private:
+ 
+     static void qmlAppendComponent(QQmlListProperty<Qt3DCore::QComponent> *list, Qt3DCore::QComponent *comp);
+-    static QComponent *qmlComponentAt(QQmlListProperty<Qt3DCore::QComponent> *list, int index);
+-    static int qmlComponentsCount(QQmlListProperty<Qt3DCore::QComponent> *list);
++    static QComponent *qmlComponentAt(QQmlListProperty<Qt3DCore::QComponent> *list, qsizetype index);
++    static qsizetype qmlComponentsCount(QQmlListProperty<Qt3DCore::QComponent> *list);
+     static void qmlClearComponents(QQmlListProperty<Qt3DCore::QComponent> *list);
+ 
+     QList<Qt3DCore::QComponent *> m_managedComponents;
+diff --git a/src/quick3d/quick3d/items/quick3dgeometry.cpp b/src/quick3d/quick3d/items/quick3dgeometry.cpp
+index 8e9e56fab..192b17b7e 100644
+--- a/src/quick3d/quick3d/items/quick3dgeometry.cpp
++++ b/src/quick3d/quick3d/items/quick3dgeometry.cpp
+@@ -65,13 +65,13 @@ void Quick3DGeometry::appendAttribute(QQmlListProperty<Qt3DCore::QAttribute> *li
+     geometry->parentGeometry()->addAttribute(attribute);
+ }
+ 
+-Qt3DCore::QAttribute *Quick3DGeometry::attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, int index)
++Qt3DCore::QAttribute *Quick3DGeometry::attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, qsizetype index)
+ {
+     Quick3DGeometry *geometry = static_cast<Quick3DGeometry *>(list->object);
+     return geometry->parentGeometry()->attributes().at(index);
+ }
+ 
+-int Quick3DGeometry::attributesCount(QQmlListProperty<Qt3DCore::QAttribute> *list)
++qsizetype Quick3DGeometry::attributesCount(QQmlListProperty<Qt3DCore::QAttribute> *list)
+ {
+     Quick3DGeometry *geometry = static_cast<Quick3DGeometry *>(list->object);
+     return geometry->parentGeometry()->attributes().count();
+diff --git a/src/quick3d/quick3d/items/quick3dgeometry_p.h b/src/quick3d/quick3d/items/quick3dgeometry_p.h
+index 5f7b001d6..8a4e5e16a 100644
+--- a/src/quick3d/quick3d/items/quick3dgeometry_p.h
++++ b/src/quick3d/quick3d/items/quick3dgeometry_p.h
+@@ -75,8 +75,8 @@ public:
+ 
+ private:
+     static void appendAttribute(QQmlListProperty<Qt3DCore::QAttribute> *list, Qt3DCore::QAttribute *provider);
+-    static Qt3DCore::QAttribute *attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, int index);
+-    static int attributesCount(QQmlListProperty<Qt3DCore::QAttribute> *list);
++    static Qt3DCore::QAttribute *attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, qsizetype index);
++    static qsizetype attributesCount(QQmlListProperty<Qt3DCore::QAttribute> *list);
+     static void clearAttributes(QQmlListProperty<Qt3DCore::QAttribute> *list);
+ 
+     QList<Qt3DCore::QAttribute *> m_managedAttributes;
+diff --git a/src/quick3d/quick3d/items/quick3djoint.cpp b/src/quick3d/quick3d/items/quick3djoint.cpp
+index 810e37e1a..f59f3451e 100644
+--- a/src/quick3d/quick3d/items/quick3djoint.cpp
++++ b/src/quick3d/quick3d/items/quick3djoint.cpp
+@@ -69,13 +69,13 @@ void Quick3DJoint::appendJoint(QQmlListProperty<QJoint> *list, QJoint *joint)
+     jointExtension->parentJoint()->addChildJoint(joint);
+ }
+ 
+-QJoint *Quick3DJoint::jointAt(QQmlListProperty<QJoint> *list, int index)
++QJoint *Quick3DJoint::jointAt(QQmlListProperty<QJoint> *list, qsizetype index)
+ {
+     Quick3DJoint *jointExtension = qobject_cast<Quick3DJoint *>(list->object);
+     return jointExtension->parentJoint()->childJoints().at(index);
+ }
+ 
+-int Quick3DJoint::jointCount(QQmlListProperty<QJoint> *list)
++qsizetype Quick3DJoint::jointCount(QQmlListProperty<QJoint> *list)
+ {
+     Quick3DJoint *jointExtension = qobject_cast<Quick3DJoint *>(list->object);
+     return jointExtension->parentJoint()->childJoints().count();
+diff --git a/src/quick3d/quick3d/items/quick3djoint_p.h b/src/quick3d/quick3d/items/quick3djoint_p.h
+index d66419433..73dccc39d 100644
+--- a/src/quick3d/quick3d/items/quick3djoint_p.h
++++ b/src/quick3d/quick3d/items/quick3djoint_p.h
+@@ -75,8 +75,8 @@ public:
+ 
+ private:
+     static void appendJoint(QQmlListProperty<Qt3DCore::QJoint> *list, Qt3DCore::QJoint *obj);
+-    static QJoint *jointAt(QQmlListProperty<Qt3DCore::QJoint> *list, int index);
+-    static int jointCount(QQmlListProperty<Qt3DCore::QJoint> *list);
++    static QJoint *jointAt(QQmlListProperty<Qt3DCore::QJoint> *list, qsizetype index);
++    static qsizetype jointCount(QQmlListProperty<Qt3DCore::QJoint> *list);
+     static void clearJoints(QQmlListProperty<Qt3DCore::QJoint> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3d/items/quick3dnode.cpp b/src/quick3d/quick3d/items/quick3dnode.cpp
+index fb91f4ae0..67fe26b63 100644
+--- a/src/quick3d/quick3d/items/quick3dnode.cpp
++++ b/src/quick3d/quick3d/items/quick3dnode.cpp
+@@ -97,13 +97,13 @@ void Quick3DNode::appendData(QQmlListProperty<QObject> *list, QObject *obj)
+     self->childAppended(0, obj);
+ }
+ 
+-QObject *Quick3DNode::dataAt(QQmlListProperty<QObject> *list, int index)
++QObject *Quick3DNode::dataAt(QQmlListProperty<QObject> *list, qsizetype index)
+ {
+     Quick3DNode *self = static_cast<Quick3DNode *>(list->object);
+     return self->parentNode()->children().at(index);
+ }
+ 
+-int Quick3DNode::dataCount(QQmlListProperty<QObject> *list)
++qsizetype Quick3DNode::dataCount(QQmlListProperty<QObject> *list)
+ {
+     Quick3DNode *self = static_cast<Quick3DNode *>(list->object);
+     return self->parentNode()->children().count();
+@@ -127,13 +127,13 @@ void Quick3DNode::appendChild(QQmlListProperty<Qt3DCore::QNode> *list, Qt3DCore:
+     self->childAppended(0, obj);
+ }
+ 
+-Qt3DCore::QNode *Quick3DNode::childAt(QQmlListProperty<Qt3DCore::QNode> *list, int index)
++Qt3DCore::QNode *Quick3DNode::childAt(QQmlListProperty<Qt3DCore::QNode> *list, qsizetype index)
+ {
+     Quick3DNode *self = static_cast<Quick3DNode *>(list->object);
+     return qobject_cast<QNode *>(self->parentNode()->children().at(index));
+ }
+ 
+-int Quick3DNode::childCount(QQmlListProperty<Qt3DCore::QNode> *list)
++qsizetype Quick3DNode::childCount(QQmlListProperty<Qt3DCore::QNode> *list)
+ {
+     Quick3DNode *self = static_cast<Quick3DNode *>(list->object);
+     return self->parentNode()->children().count();
+diff --git a/src/quick3d/quick3d/items/quick3dnode_p.h b/src/quick3d/quick3d/items/quick3dnode_p.h
+index 6b146d691..aa6cb788e 100644
+--- a/src/quick3d/quick3d/items/quick3dnode_p.h
++++ b/src/quick3d/quick3d/items/quick3dnode_p.h
+@@ -77,13 +77,13 @@ public:
+ 
+ private:
+     static void appendData(QQmlListProperty<QObject> *list, QObject *obj);
+-    static QObject *dataAt(QQmlListProperty<QObject> *list, int index);
+-    static int dataCount(QQmlListProperty<QObject> *list);
++    static QObject *dataAt(QQmlListProperty<QObject> *list, qsizetype index);
++    static qsizetype dataCount(QQmlListProperty<QObject> *list);
+     static void clearData(QQmlListProperty<QObject> *list);
+ 
+     static void appendChild(QQmlListProperty<Qt3DCore::QNode> *list, Qt3DCore::QNode *obj);
+-    static QNode *childAt(QQmlListProperty<Qt3DCore::QNode> *list, int index);
+-    static int childCount(QQmlListProperty<Qt3DCore::QNode> *list);
++    static QNode *childAt(QQmlListProperty<Qt3DCore::QNode> *list, qsizetype index);
++    static qsizetype childCount(QQmlListProperty<Qt3DCore::QNode> *list);
+     static void clearChildren(QQmlListProperty<Qt3DCore::QNode> *list);
+ 
+ private Q_SLOTS:
+diff --git a/src/quick3d/quick3danimation/items/quick3danimationcontroller.cpp b/src/quick3d/quick3danimation/items/quick3danimationcontroller.cpp
+index 23f39460c..3d2fef555 100644
+--- a/src/quick3d/quick3danimation/items/quick3danimationcontroller.cpp
++++ b/src/quick3d/quick3danimation/items/quick3danimationcontroller.cpp
+@@ -63,7 +63,7 @@ void QQuick3DAnimationController::appendAnimationGroup(QQmlListProperty<QAnimati
+         controller->parentAnimationController()->addAnimationGroup(bar);
+ }
+ 
+-int QQuick3DAnimationController::animationGroupCount(QQmlListProperty<QAnimationGroup> *list)
++qsizetype QQuick3DAnimationController::animationGroupCount(QQmlListProperty<QAnimationGroup> *list)
+ {
+     QQuick3DAnimationController *controller = qobject_cast<QQuick3DAnimationController *>(list->object);
+     if (controller)
+@@ -71,7 +71,7 @@ int QQuick3DAnimationController::animationGroupCount(QQmlListProperty<QAnimation
+     return 0;
+ }
+ 
+-QAnimationGroup *QQuick3DAnimationController::animationGroupAt(QQmlListProperty<QAnimationGroup> *list, int index)
++QAnimationGroup *QQuick3DAnimationController::animationGroupAt(QQmlListProperty<QAnimationGroup> *list, qsizetype index)
+ {
+     QQuick3DAnimationController *controller = qobject_cast<QQuick3DAnimationController *>(list->object);
+     if (controller)
+diff --git a/src/quick3d/quick3danimation/items/quick3danimationcontroller_p.h b/src/quick3d/quick3danimation/items/quick3danimationcontroller_p.h
+index d6add010d..ee5d643c6 100644
+--- a/src/quick3d/quick3danimation/items/quick3danimationcontroller_p.h
++++ b/src/quick3d/quick3danimation/items/quick3danimationcontroller_p.h
+@@ -76,8 +76,8 @@ public:
+ private:
+ 
+     static void appendAnimationGroup(QQmlListProperty<Qt3DAnimation::QAnimationGroup> *list, Qt3DAnimation::QAnimationGroup *bar);
+-    static QAnimationGroup *animationGroupAt(QQmlListProperty<Qt3DAnimation::QAnimationGroup> *list, int index);
+-    static int animationGroupCount(QQmlListProperty<Qt3DAnimation::QAnimationGroup> *list);
++    static QAnimationGroup *animationGroupAt(QQmlListProperty<Qt3DAnimation::QAnimationGroup> *list, qsizetype index);
++    static qsizetype animationGroupCount(QQmlListProperty<Qt3DAnimation::QAnimationGroup> *list);
+     static void clearAnimationGroups(QQmlListProperty<Qt3DAnimation::QAnimationGroup> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3danimation/items/quick3danimationgroup.cpp b/src/quick3d/quick3danimation/items/quick3danimationgroup.cpp
+index b7ad3b3bc..090b7a959 100644
+--- a/src/quick3d/quick3danimation/items/quick3danimationgroup.cpp
++++ b/src/quick3d/quick3danimation/items/quick3danimationgroup.cpp
+@@ -66,7 +66,7 @@ void QQuick3DAnimationGroup::appendAnimation(QQmlListProperty<Qt3DAnimation::QAb
+         animationGroup->parentAnimationGroup()->addAnimation(animation);
+ }
+ 
+-int QQuick3DAnimationGroup::animationCount(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list)
++qsizetype QQuick3DAnimationGroup::animationCount(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list)
+ {
+     QQuick3DAnimationGroup *animationGroup = qobject_cast<QQuick3DAnimationGroup *>(list->object);
+     if (animationGroup)
+@@ -74,7 +74,7 @@ int QQuick3DAnimationGroup::animationCount(QQmlListProperty<Qt3DAnimation::QAbst
+     return 0;
+ }
+ 
+-Qt3DAnimation::QAbstractAnimation *QQuick3DAnimationGroup::animationAt(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list, int index)
++Qt3DAnimation::QAbstractAnimation *QQuick3DAnimationGroup::animationAt(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list, qsizetype index)
+ {
+     QQuick3DAnimationGroup *animationGroup = qobject_cast<QQuick3DAnimationGroup *>(list->object);
+     if (animationGroup) {
+diff --git a/src/quick3d/quick3danimation/items/quick3danimationgroup_p.h b/src/quick3d/quick3danimation/items/quick3danimationgroup_p.h
+index 53b25cf67..6c7f634a3 100644
+--- a/src/quick3d/quick3danimation/items/quick3danimationgroup_p.h
++++ b/src/quick3d/quick3danimation/items/quick3danimationgroup_p.h
+@@ -78,8 +78,8 @@ public:
+ private:
+ 
+     static void appendAnimation(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list, Qt3DAnimation::QAbstractAnimation *animation);
+-    static Qt3DAnimation::QAbstractAnimation *animationAt(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list, int index);
+-    static int animationCount(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list);
++    static Qt3DAnimation::QAbstractAnimation *animationAt(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list, qsizetype index);
++    static qsizetype animationCount(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list);
+     static void clearAnimation(QQmlListProperty<Qt3DAnimation::QAbstractAnimation> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3danimation/items/quick3dchannelmapper.cpp b/src/quick3d/quick3danimation/items/quick3dchannelmapper.cpp
+index 66ee7faef..a2bc51d45 100644
+--- a/src/quick3d/quick3danimation/items/quick3dchannelmapper.cpp
++++ b/src/quick3d/quick3danimation/items/quick3dchannelmapper.cpp
+@@ -65,13 +65,13 @@ void Quick3DChannelMapper::appendMapping(QQmlListProperty<QAbstractChannelMappin
+     extension->parentMapper()->addMapping(mapping);
+ }
+ 
+-QAbstractChannelMapping *Quick3DChannelMapper::mappingAt(QQmlListProperty<QAbstractChannelMapping> *list, int index)
++QAbstractChannelMapping *Quick3DChannelMapper::mappingAt(QQmlListProperty<QAbstractChannelMapping> *list, qsizetype index)
+ {
+     Quick3DChannelMapper *extension = qobject_cast<Quick3DChannelMapper *>(list->object);
+     return extension->parentMapper()->mappings().at(index);
+ }
+ 
+-int Quick3DChannelMapper::mappingCount(QQmlListProperty<QAbstractChannelMapping> *list)
++qsizetype Quick3DChannelMapper::mappingCount(QQmlListProperty<QAbstractChannelMapping> *list)
+ {
+     Quick3DChannelMapper *extension = qobject_cast<Quick3DChannelMapper *>(list->object);
+     return extension->parentMapper()->mappings().count();
+diff --git a/src/quick3d/quick3danimation/items/quick3dchannelmapper_p.h b/src/quick3d/quick3danimation/items/quick3dchannelmapper_p.h
+index a21a67411..ab7b6fdbe 100644
+--- a/src/quick3d/quick3danimation/items/quick3dchannelmapper_p.h
++++ b/src/quick3d/quick3danimation/items/quick3dchannelmapper_p.h
+@@ -76,8 +76,8 @@ public:
+ 
+ private:
+     static void appendMapping(QQmlListProperty<QAbstractChannelMapping> *list, QAbstractChannelMapping *mapping);
+-    static QAbstractChannelMapping *mappingAt(QQmlListProperty<QAbstractChannelMapping> *list, int index);
+-    static int mappingCount(QQmlListProperty<QAbstractChannelMapping> *list);
++    static QAbstractChannelMapping *mappingAt(QQmlListProperty<QAbstractChannelMapping> *list, qsizetype index);
++    static qsizetype mappingCount(QQmlListProperty<QAbstractChannelMapping> *list);
+     static void clearMappings(QQmlListProperty<QAbstractChannelMapping> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3danimation/items/quick3dkeyframeanimation.cpp b/src/quick3d/quick3danimation/items/quick3dkeyframeanimation.cpp
+index 0137f85ff..61bc14a4f 100644
+--- a/src/quick3d/quick3danimation/items/quick3dkeyframeanimation.cpp
++++ b/src/quick3d/quick3danimation/items/quick3dkeyframeanimation.cpp
+@@ -49,10 +49,10 @@ QQuick3DKeyframeAnimation::QQuick3DKeyframeAnimation(QObject *parent)
+ QQmlListProperty<Qt3DCore::QTransform> QQuick3DKeyframeAnimation::keyframes()
+ {
+     return QQmlListProperty<Qt3DCore::QTransform>(this, 0,
+-                                       &QQuick3DKeyframeAnimation::appendKeyframe,
+-                                       &QQuick3DKeyframeAnimation::keyframeCount,
+-                                       &QQuick3DKeyframeAnimation::keyframeAt,
+-                                       &QQuick3DKeyframeAnimation::clearKeyframes);
++                                                  &QQuick3DKeyframeAnimation::appendKeyframe,
++                                                  &QQuick3DKeyframeAnimation::keyframeCount,
++                                                  &QQuick3DKeyframeAnimation::keyframeAt,
++                                                  &QQuick3DKeyframeAnimation::clearKeyframes);
+ }
+ 
+ void QQuick3DKeyframeAnimation::appendKeyframe(QQmlListProperty<Qt3DCore::QTransform> *list,
+@@ -64,7 +64,7 @@ void QQuick3DKeyframeAnimation::appendKeyframe(QQmlListProperty<Qt3DCore::QTrans
+         keyframeAnimation->parentKeyframeAnimation()->addKeyframe(transform);
+ }
+ 
+-int QQuick3DKeyframeAnimation::keyframeCount(QQmlListProperty<Qt3DCore::QTransform> *list)
++qsizetype QQuick3DKeyframeAnimation::keyframeCount(QQmlListProperty<Qt3DCore::QTransform> *list)
+ {
+     QQuick3DKeyframeAnimation *keyframeAnimation
+             = qobject_cast<QQuick3DKeyframeAnimation *>(list->object);
+@@ -74,7 +74,7 @@ int QQuick3DKeyframeAnimation::keyframeCount(QQmlListProperty<Qt3DCore::QTransfo
+ }
+ 
+ Qt3DCore::QTransform *QQuick3DKeyframeAnimation::keyframeAt(QQmlListProperty<Qt3DCore::QTransform> *list,
+-                                                            int index)
++                                                            qsizetype index)
+ {
+     QQuick3DKeyframeAnimation *keyframeAnimation
+             = qobject_cast<QQuick3DKeyframeAnimation *>(list->object);
+diff --git a/src/quick3d/quick3danimation/items/quick3dkeyframeanimation_p.h b/src/quick3d/quick3danimation/items/quick3dkeyframeanimation_p.h
+index b4eda766c..488d91c39 100644
+--- a/src/quick3d/quick3danimation/items/quick3dkeyframeanimation_p.h
++++ b/src/quick3d/quick3danimation/items/quick3dkeyframeanimation_p.h
+@@ -79,8 +79,8 @@ private:
+     static void appendKeyframe(QQmlListProperty<Qt3DCore::QTransform> *list,
+                                Qt3DCore::QTransform *transform);
+     static Qt3DCore::QTransform *keyframeAt(QQmlListProperty<Qt3DCore::QTransform> *list,
+-                                            int index);
+-    static int keyframeCount(QQmlListProperty<Qt3DCore::QTransform> *list);
++                                            qsizetype index);
++    static qsizetype keyframeCount(QQmlListProperty<Qt3DCore::QTransform> *list);
+     static void clearKeyframes(QQmlListProperty<Qt3DCore::QTransform> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3danimation/items/quick3dmorphinganimation.cpp b/src/quick3d/quick3danimation/items/quick3dmorphinganimation.cpp
+index afe15b914..5e25c00c5 100644
+--- a/src/quick3d/quick3danimation/items/quick3dmorphinganimation.cpp
++++ b/src/quick3d/quick3danimation/items/quick3dmorphinganimation.cpp
+@@ -63,7 +63,7 @@ void QQuick3DMorphingAnimation::appendMorphTarget(QQmlListProperty<Qt3DAnimation
+         animation->parentMorphingAnimation()->addMorphTarget(morphTarget);
+ }
+ 
+-int QQuick3DMorphingAnimation::morphTargetCount(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list)
++qsizetype QQuick3DMorphingAnimation::morphTargetCount(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list)
+ {
+     QQuick3DMorphingAnimation *animation = qobject_cast<QQuick3DMorphingAnimation *>(list->object);
+     if (animation)
+@@ -72,7 +72,7 @@ int QQuick3DMorphingAnimation::morphTargetCount(QQmlListProperty<Qt3DAnimation::
+ }
+ 
+ Qt3DAnimation::QMorphTarget *QQuick3DMorphingAnimation::morphTargetAt(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
+-                                                                   int index)
++                                                                      qsizetype index)
+ {
+     QQuick3DMorphingAnimation *animation = qobject_cast<QQuick3DMorphingAnimation *>(list->object);
+     if (animation) {
+diff --git a/src/quick3d/quick3danimation/items/quick3dmorphinganimation_p.h b/src/quick3d/quick3danimation/items/quick3dmorphinganimation_p.h
+index 3ba018473..465addead 100644
+--- a/src/quick3d/quick3danimation/items/quick3dmorphinganimation_p.h
++++ b/src/quick3d/quick3danimation/items/quick3dmorphinganimation_p.h
+@@ -79,8 +79,8 @@ private:
+     static void appendMorphTarget(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
+                                   Qt3DAnimation::QMorphTarget *morphTarget);
+     static Qt3DAnimation::QMorphTarget *morphTargetAt(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
+-                                                   int index);
+-    static int morphTargetCount(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list);
++                                                      qsizetype index);
++    static qsizetype morphTargetCount(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list);
+     static void clearMorphTargets(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3danimation/items/quick3dmorphtarget.cpp b/src/quick3d/quick3danimation/items/quick3dmorphtarget.cpp
+index b1bb76f1c..06933331f 100644
+--- a/src/quick3d/quick3danimation/items/quick3dmorphtarget.cpp
++++ b/src/quick3d/quick3danimation/items/quick3dmorphtarget.cpp
+@@ -62,7 +62,7 @@ void QQuick3DMorphTarget::appendAttribute(QQmlListProperty<Qt3DCore::QAttribute>
+         target->parentMorphTarget()->addAttribute(bar);
+ }
+ 
+-int QQuick3DMorphTarget::attributeCount(QQmlListProperty<Qt3DCore::QAttribute> *list)
++qsizetype QQuick3DMorphTarget::attributeCount(QQmlListProperty<Qt3DCore::QAttribute> *list)
+ {
+     QQuick3DMorphTarget *target = qobject_cast<QQuick3DMorphTarget *>(list->object);
+     if (target)
+@@ -70,7 +70,7 @@ int QQuick3DMorphTarget::attributeCount(QQmlListProperty<Qt3DCore::QAttribute> *
+     return 0;
+ }
+ 
+-Qt3DCore::QAttribute *QQuick3DMorphTarget::attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, int index)
++Qt3DCore::QAttribute *QQuick3DMorphTarget::attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, qsizetype index)
+ {
+     QQuick3DMorphTarget *target = qobject_cast<QQuick3DMorphTarget *>(list->object);
+     if (target)
+diff --git a/src/quick3d/quick3danimation/items/quick3dmorphtarget_p.h b/src/quick3d/quick3danimation/items/quick3dmorphtarget_p.h
+index d68a795e9..172202e5c 100644
+--- a/src/quick3d/quick3danimation/items/quick3dmorphtarget_p.h
++++ b/src/quick3d/quick3danimation/items/quick3dmorphtarget_p.h
+@@ -72,8 +72,8 @@ public:
+ private:
+ 
+     static void appendAttribute(QQmlListProperty<Qt3DCore::QAttribute> *list, Qt3DCore::QAttribute *bar);
+-    static Qt3DCore::QAttribute *attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, int index);
+-    static int attributeCount(QQmlListProperty<Qt3DCore::QAttribute> *list);
++    static Qt3DCore::QAttribute *attributeAt(QQmlListProperty<Qt3DCore::QAttribute> *list, qsizetype index);
++    static qsizetype attributeCount(QQmlListProperty<Qt3DCore::QAttribute> *list);
+     static void clearAttributes(QQmlListProperty<Qt3DCore::QAttribute> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3danimation/items/quick3dvertexblendanimation.cpp b/src/quick3d/quick3danimation/items/quick3dvertexblendanimation.cpp
+index 48b361e39..bd62e35e4 100644
+--- a/src/quick3d/quick3danimation/items/quick3dvertexblendanimation.cpp
++++ b/src/quick3d/quick3danimation/items/quick3dvertexblendanimation.cpp
+@@ -65,7 +65,7 @@ void QQuick3DVertexBlendAnimation::appendMorphTarget(
+         animation->parentVertexBlendAnimation()->addMorphTarget(morphTarget);
+ }
+ 
+-int QQuick3DVertexBlendAnimation::morphTargetCount(
++qsizetype QQuick3DVertexBlendAnimation::morphTargetCount(
+                                             QQmlListProperty<Qt3DAnimation::QMorphTarget> *list)
+ {
+     QQuick3DVertexBlendAnimation *animation
+@@ -77,7 +77,7 @@ int QQuick3DVertexBlendAnimation::morphTargetCount(
+ 
+ Qt3DAnimation::QMorphTarget *QQuick3DVertexBlendAnimation::morphTargetAt(
+                                             QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
+-                                            int index)
++                                            qsizetype index)
+ {
+     QQuick3DVertexBlendAnimation *animation
+             = qobject_cast<QQuick3DVertexBlendAnimation *>(list->object);
+diff --git a/src/quick3d/quick3danimation/items/quick3dvertexblendanimation_p.h b/src/quick3d/quick3danimation/items/quick3dvertexblendanimation_p.h
+index f33730fb5..bea39deb7 100644
+--- a/src/quick3d/quick3danimation/items/quick3dvertexblendanimation_p.h
++++ b/src/quick3d/quick3danimation/items/quick3dvertexblendanimation_p.h
+@@ -78,10 +78,9 @@ private:
+ 
+     static void appendMorphTarget(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
+                                   Qt3DAnimation::QMorphTarget *morphTarget);
+-    static Qt3DAnimation::QMorphTarget *morphTargetAt(
+-                                  QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
+-                                  int index);
+-    static int morphTargetCount(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list);
++    static Qt3DAnimation::QMorphTarget *morphTargetAt(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list,
++                                  qsizetype index);
++    static qsizetype morphTargetCount(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list);
+     static void clearMorphTargets(QQmlListProperty<Qt3DAnimation::QMorphTarget> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dextras/items/quick3dspritesheet.cpp b/src/quick3d/quick3dextras/items/quick3dspritesheet.cpp
+index a38581cc7..e0b5d77b6 100644
+--- a/src/quick3d/quick3dextras/items/quick3dspritesheet.cpp
++++ b/src/quick3d/quick3dextras/items/quick3dspritesheet.cpp
+@@ -72,13 +72,13 @@ void Quick3DSpriteSheet::appendSprite(QQmlListProperty<Qt3DExtras::QSpriteSheetI
+     spritesheet->parentSpriteSheet()->addSprite(sprite);
+ }
+ 
+-Qt3DExtras::QSpriteSheetItem *Quick3DSpriteSheet::spriteAt(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list, int index)
++Qt3DExtras::QSpriteSheetItem *Quick3DSpriteSheet::spriteAt(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list, qsizetype index)
+ {
+     Quick3DSpriteSheet *spritesheet = qobject_cast<Quick3DSpriteSheet *>(list->object);
+     return spritesheet->parentSpriteSheet()->sprites().at(index);
+ }
+ 
+-int Quick3DSpriteSheet::spriteCount(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list)
++qsizetype Quick3DSpriteSheet::spriteCount(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list)
+ {
+     Quick3DSpriteSheet *spritesheet = qobject_cast<Quick3DSpriteSheet *>(list->object);
+     return spritesheet->parentSpriteSheet()->sprites().count();
+diff --git a/src/quick3d/quick3dextras/items/quick3dspritesheet_p.h b/src/quick3d/quick3dextras/items/quick3dspritesheet_p.h
+index 82409b755..e04231417 100644
+--- a/src/quick3d/quick3dextras/items/quick3dspritesheet_p.h
++++ b/src/quick3d/quick3dextras/items/quick3dspritesheet_p.h
+@@ -75,8 +75,8 @@ public:
+ 
+ private:
+     static void appendSprite(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list, Qt3DExtras::QSpriteSheetItem *state);
+-    static Qt3DExtras::QSpriteSheetItem *spriteAt(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list, int index);
+-    static int spriteCount(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list);
++    static Qt3DExtras::QSpriteSheetItem *spriteAt(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list, qsizetype index);
++    static qsizetype spriteCount(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list);
+     static void clearSprites(QQmlListProperty<Qt3DExtras::QSpriteSheetItem> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dinput/items/quick3daction.cpp b/src/quick3d/quick3dinput/items/quick3daction.cpp
+index 33752c6e0..e46153551 100644
+--- a/src/quick3d/quick3dinput/items/quick3daction.cpp
++++ b/src/quick3d/quick3dinput/items/quick3daction.cpp
+@@ -65,13 +65,13 @@ void Quick3DAction::appendActionInput(QQmlListProperty<QAbstractActionInput> *li
+     action->parentAction()->addInput(input);
+ }
+ 
+-QAbstractActionInput *Quick3DAction::actionInputAt(QQmlListProperty<QAbstractActionInput> *list, int index)
++QAbstractActionInput *Quick3DAction::actionInputAt(QQmlListProperty<QAbstractActionInput> *list, qsizetype index)
+ {
+     Quick3DAction *action = qobject_cast<Quick3DAction *>(list->object);
+     return action->parentAction()->inputs().at(index);
+ }
+ 
+-int Quick3DAction::actionInputCount(QQmlListProperty<QAbstractActionInput> *list)
++qsizetype Quick3DAction::actionInputCount(QQmlListProperty<QAbstractActionInput> *list)
+ {
+     Quick3DAction *action = qobject_cast<Quick3DAction *>(list->object);
+     return action->parentAction()->inputs().count();
+diff --git a/src/quick3d/quick3dinput/items/quick3daction_p.h b/src/quick3d/quick3dinput/items/quick3daction_p.h
+index 8fb91ed40..8d3b233ca 100644
+--- a/src/quick3d/quick3dinput/items/quick3daction_p.h
++++ b/src/quick3d/quick3dinput/items/quick3daction_p.h
+@@ -76,8 +76,8 @@ public:
+ 
+ private:
+     static void appendActionInput(QQmlListProperty<QAbstractActionInput> *list, QAbstractActionInput *input);
+-    static QAbstractActionInput *actionInputAt(QQmlListProperty<QAbstractActionInput> *list, int index);
+-    static int actionInputCount(QQmlListProperty<QAbstractActionInput> *list);
++    static QAbstractActionInput *actionInputAt(QQmlListProperty<QAbstractActionInput> *list, qsizetype index);
++    static qsizetype actionInputCount(QQmlListProperty<QAbstractActionInput> *list);
+     static void clearActionInputs(QQmlListProperty<QAbstractActionInput> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dinput/items/quick3daxis.cpp b/src/quick3d/quick3dinput/items/quick3daxis.cpp
+index 966aa250d..86ad22f25 100644
+--- a/src/quick3d/quick3dinput/items/quick3daxis.cpp
++++ b/src/quick3d/quick3dinput/items/quick3daxis.cpp
+@@ -65,13 +65,13 @@ void Quick3DAxis::appendAxisInput(QQmlListProperty<QAbstractAxisInput> *list, QA
+     axis->parentAxis()->addInput(input);
+ }
+ 
+-QAbstractAxisInput *Quick3DAxis::axisInputAt(QQmlListProperty<QAbstractAxisInput> *list, int index)
++QAbstractAxisInput *Quick3DAxis::axisInputAt(QQmlListProperty<QAbstractAxisInput> *list, qsizetype index)
+ {
+     Quick3DAxis *axis = qobject_cast<Quick3DAxis *>(list->object);
+     return axis->parentAxis()->inputs().at(index);
+ }
+ 
+-int Quick3DAxis::axesInputCount(QQmlListProperty<QAbstractAxisInput> *list)
++qsizetype Quick3DAxis::axesInputCount(QQmlListProperty<QAbstractAxisInput> *list)
+ {
+     Quick3DAxis *axis = qobject_cast<Quick3DAxis *>(list->object);
+     return axis->parentAxis()->inputs().count();
+diff --git a/src/quick3d/quick3dinput/items/quick3daxis_p.h b/src/quick3d/quick3dinput/items/quick3daxis_p.h
+index 631139212..5f7785a3b 100644
+--- a/src/quick3d/quick3dinput/items/quick3daxis_p.h
++++ b/src/quick3d/quick3dinput/items/quick3daxis_p.h
+@@ -76,8 +76,8 @@ public:
+ 
+ private:
+     static void appendAxisInput(QQmlListProperty<QAbstractAxisInput> *list, QAbstractAxisInput *input);
+-    static QAbstractAxisInput *axisInputAt(QQmlListProperty<QAbstractAxisInput> *list, int index);
+-    static int axesInputCount(QQmlListProperty<QAbstractAxisInput> *list);
++    static QAbstractAxisInput *axisInputAt(QQmlListProperty<QAbstractAxisInput> *list, qsizetype index);
++    static qsizetype axesInputCount(QQmlListProperty<QAbstractAxisInput> *list);
+     static void clearAxisInputs(QQmlListProperty<QAbstractAxisInput> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dinput/items/quick3dinputchord.cpp b/src/quick3d/quick3dinput/items/quick3dinputchord.cpp
+index 16a5e8181..684e2f283 100644
+--- a/src/quick3d/quick3dinput/items/quick3dinputchord.cpp
++++ b/src/quick3d/quick3dinput/items/quick3dinputchord.cpp
+@@ -53,10 +53,10 @@ Quick3DInputChord::Quick3DInputChord(QObject *parent)
+ QQmlListProperty<QAbstractActionInput> Quick3DInputChord::qmlActionInputs()
+ {
+     return QQmlListProperty<QAbstractActionInput>(this, 0,
+-                                        &Quick3DInputChord::appendActionInput,
+-                                        &Quick3DInputChord::actionInputCount,
+-                                        &Quick3DInputChord::actionInputAt,
+-                                        &Quick3DInputChord::clearActionInputs);
++                                                  &Quick3DInputChord::appendActionInput,
++                                                  &Quick3DInputChord::actionInputCount,
++                                                  &Quick3DInputChord::actionInputAt,
++                                                  &Quick3DInputChord::clearActionInputs);
+ }
+ 
+ void Quick3DInputChord::appendActionInput(QQmlListProperty<QAbstractActionInput> *list, QAbstractActionInput *input)
+@@ -65,13 +65,13 @@ void Quick3DInputChord::appendActionInput(QQmlListProperty<QAbstractActionInput>
+     action->parentChord()->addChord(input);
+ }
+ 
+-QAbstractActionInput *Quick3DInputChord::actionInputAt(QQmlListProperty<QAbstractActionInput> *list, int index)
++QAbstractActionInput *Quick3DInputChord::actionInputAt(QQmlListProperty<QAbstractActionInput> *list, qsizetype index)
+ {
+     Quick3DInputChord *action = qobject_cast<Quick3DInputChord *>(list->object);
+     return action->parentChord()->chords().at(index);
+ }
+ 
+-int Quick3DInputChord::actionInputCount(QQmlListProperty<QAbstractActionInput> *list)
++qsizetype Quick3DInputChord::actionInputCount(QQmlListProperty<QAbstractActionInput> *list)
+ {
+     Quick3DInputChord *action = qobject_cast<Quick3DInputChord *>(list->object);
+     return action->parentChord()->chords().count();
+diff --git a/src/quick3d/quick3dinput/items/quick3dinputchord_p.h b/src/quick3d/quick3dinput/items/quick3dinputchord_p.h
+index 5bfd15b09..1ce165cf1 100644
+--- a/src/quick3d/quick3dinput/items/quick3dinputchord_p.h
++++ b/src/quick3d/quick3dinput/items/quick3dinputchord_p.h
+@@ -74,8 +74,8 @@ public:
+ 
+ private:
+     static void appendActionInput(QQmlListProperty<QAbstractActionInput> *list, QAbstractActionInput *input);
+-    static QAbstractActionInput *actionInputAt(QQmlListProperty<QAbstractActionInput> *list, int index);
+-    static int actionInputCount(QQmlListProperty<QAbstractActionInput> *list);
++    static QAbstractActionInput *actionInputAt(QQmlListProperty<QAbstractActionInput> *list, qsizetype index);
++    static qsizetype actionInputCount(QQmlListProperty<QAbstractActionInput> *list);
+     static void clearActionInputs(QQmlListProperty<QAbstractActionInput> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dinput/items/quick3dinputsequence.cpp b/src/quick3d/quick3dinput/items/quick3dinputsequence.cpp
+index 4f4eed9d3..eaf3582b6 100644
+--- a/src/quick3d/quick3dinput/items/quick3dinputsequence.cpp
++++ b/src/quick3d/quick3dinput/items/quick3dinputsequence.cpp
+@@ -65,13 +65,13 @@ void Quick3DInputSequence::appendActionInput(QQmlListProperty<QAbstractActionInp
+     action->parentSequence()->addSequence(input);
+ }
+ 
+-QAbstractActionInput *Quick3DInputSequence::actionInputAt(QQmlListProperty<QAbstractActionInput> *list, int index)
++QAbstractActionInput *Quick3DInputSequence::actionInputAt(QQmlListProperty<QAbstractActionInput> *list, qsizetype index)
+ {
+     Quick3DInputSequence *action = qobject_cast<Quick3DInputSequence *>(list->object);
+     return action->parentSequence()->sequences().at(index);
+ }
+ 
+-int Quick3DInputSequence::actionInputCount(QQmlListProperty<QAbstractActionInput> *list)
++qsizetype Quick3DInputSequence::actionInputCount(QQmlListProperty<QAbstractActionInput> *list)
+ {
+     Quick3DInputSequence *action = qobject_cast<Quick3DInputSequence *>(list->object);
+     return action->parentSequence()->sequences().count();
+diff --git a/src/quick3d/quick3dinput/items/quick3dinputsequence_p.h b/src/quick3d/quick3dinput/items/quick3dinputsequence_p.h
+index 54e40ec42..9aedce8a0 100644
+--- a/src/quick3d/quick3dinput/items/quick3dinputsequence_p.h
++++ b/src/quick3d/quick3dinput/items/quick3dinputsequence_p.h
+@@ -74,8 +74,8 @@ public:
+ 
+ private:
+     static void appendActionInput(QQmlListProperty<QAbstractActionInput> *list, QAbstractActionInput *input);
+-    static QAbstractActionInput *actionInputAt(QQmlListProperty<QAbstractActionInput> *list, int index);
+-    static int actionInputCount(QQmlListProperty<QAbstractActionInput> *list);
++    static QAbstractActionInput *actionInputAt(QQmlListProperty<QAbstractActionInput> *list, qsizetype index);
++    static qsizetype actionInputCount(QQmlListProperty<QAbstractActionInput> *list);
+     static void clearActionInputs(QQmlListProperty<QAbstractActionInput> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dinput/items/quick3dlogicaldevice.cpp b/src/quick3d/quick3dinput/items/quick3dlogicaldevice.cpp
+index 50218dd25..df52cf8c8 100644
+--- a/src/quick3d/quick3dinput/items/quick3dlogicaldevice.cpp
++++ b/src/quick3d/quick3dinput/items/quick3dlogicaldevice.cpp
+@@ -74,13 +74,13 @@ void Quick3DLogicalDevice::appendAxis(QQmlListProperty<QAxis> *list, QAxis *axes
+     device->parentLogicalDevice()->addAxis(axes);
+ }
+ 
+-QAxis *Quick3DLogicalDevice::axisAt(QQmlListProperty<QAxis> *list, int index)
++QAxis *Quick3DLogicalDevice::axisAt(QQmlListProperty<QAxis> *list, qsizetype index)
+ {
+     Quick3DLogicalDevice *device = qobject_cast<Quick3DLogicalDevice *>(list->object);
+     return device->parentLogicalDevice()->axes().at(index);
+ }
+ 
+-int Quick3DLogicalDevice::axesCount(QQmlListProperty<QAxis> *list)
++qsizetype Quick3DLogicalDevice::axesCount(QQmlListProperty<QAxis> *list)
+ {
+     Quick3DLogicalDevice *device = qobject_cast<Quick3DLogicalDevice *>(list->object);
+     return device->parentLogicalDevice()->axes().count();
+@@ -100,13 +100,13 @@ void Quick3DLogicalDevice::appendAction(QQmlListProperty<QAction> *list, QAction
+     device->parentLogicalDevice()->addAction(action);
+ }
+ 
+-QAction *Quick3DLogicalDevice::actionAt(QQmlListProperty<QAction> *list, int index)
++QAction *Quick3DLogicalDevice::actionAt(QQmlListProperty<QAction> *list, qsizetype index)
+ {
+     Quick3DLogicalDevice *device = qobject_cast<Quick3DLogicalDevice *>(list->object);
+     return device->parentLogicalDevice()->actions().at(index);
+ }
+ 
+-int Quick3DLogicalDevice::actionCount(QQmlListProperty<QAction> *list)
++qsizetype Quick3DLogicalDevice::actionCount(QQmlListProperty<QAction> *list)
+ {
+     Quick3DLogicalDevice *device = qobject_cast<Quick3DLogicalDevice *>(list->object);
+     return device->parentLogicalDevice()->actions().count();
+diff --git a/src/quick3d/quick3dinput/items/quick3dlogicaldevice_p.h b/src/quick3d/quick3dinput/items/quick3dlogicaldevice_p.h
+index e544bbc14..6e28ce349 100644
+--- a/src/quick3d/quick3dinput/items/quick3dlogicaldevice_p.h
++++ b/src/quick3d/quick3dinput/items/quick3dlogicaldevice_p.h
+@@ -78,13 +78,13 @@ public:
+ 
+ private:
+     static void appendAxis(QQmlListProperty<QAxis> *list, QAxis *axes);
+-    static QAxis *axisAt(QQmlListProperty<QAxis> *list, int index);
+-    static int axesCount(QQmlListProperty<QAxis> *list);
++    static QAxis *axisAt(QQmlListProperty<QAxis> *list, qsizetype index);
++    static qsizetype axesCount(QQmlListProperty<QAxis> *list);
+     static void clearAxes(QQmlListProperty<QAxis> *list);
+ 
+     static void appendAction(QQmlListProperty<QAction> *list, QAction *action);
+-    static QAction *actionAt(QQmlListProperty<QAction> *list, int index);
+-    static int actionCount(QQmlListProperty<QAction> *list);
++    static QAction *actionAt(QQmlListProperty<QAction> *list, qsizetype index);
++    static qsizetype actionCount(QQmlListProperty<QAction> *list);
+     static void clearActions(QQmlListProperty<QAction> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dinput/items/quick3dphysicaldevice.cpp b/src/quick3d/quick3dinput/items/quick3dphysicaldevice.cpp
+index 5c8d55b54..dc1fdcf6d 100644
+--- a/src/quick3d/quick3dinput/items/quick3dphysicaldevice.cpp
++++ b/src/quick3d/quick3dinput/items/quick3dphysicaldevice.cpp
+@@ -65,13 +65,13 @@ void Quick3DPhysicalDevice::appendAxisSetting(QQmlListProperty<QAxisSetting> *li
+     device->parentPhysicalDevice()->addAxisSetting(axisSetting);
+ }
+ 
+-QAxisSetting *Quick3DPhysicalDevice::axisSettingAt(QQmlListProperty<QAxisSetting> *list, int index)
++QAxisSetting *Quick3DPhysicalDevice::axisSettingAt(QQmlListProperty<QAxisSetting> *list, qsizetype index)
+ {
+     Quick3DPhysicalDevice *device = qobject_cast<Quick3DPhysicalDevice *>(list->object);
+     return device->parentPhysicalDevice()->axisSettings().at(index);
+ }
+ 
+-int Quick3DPhysicalDevice::axisSettingsCount(QQmlListProperty<QAxisSetting> *list)
++qsizetype Quick3DPhysicalDevice::axisSettingsCount(QQmlListProperty<QAxisSetting> *list)
+ {
+     Quick3DPhysicalDevice *device = qobject_cast<Quick3DPhysicalDevice *>(list->object);
+     return device->parentPhysicalDevice()->axisSettings().count();
+diff --git a/src/quick3d/quick3dinput/items/quick3dphysicaldevice_p.h b/src/quick3d/quick3dinput/items/quick3dphysicaldevice_p.h
+index 0c0940952..fff0deca7 100644
+--- a/src/quick3d/quick3dinput/items/quick3dphysicaldevice_p.h
++++ b/src/quick3d/quick3dinput/items/quick3dphysicaldevice_p.h
+@@ -76,8 +76,8 @@ public:
+ 
+ private:
+     static void appendAxisSetting(QQmlListProperty<QAxisSetting> *list, QAxisSetting *axes);
+-    static QAxisSetting *axisSettingAt(QQmlListProperty<QAxisSetting> *list, int index);
+-    static int axisSettingsCount(QQmlListProperty<QAxisSetting> *list);
++    static QAxisSetting *axisSettingAt(QQmlListProperty<QAxisSetting> *list, qsizetype index);
++    static qsizetype axisSettingsCount(QQmlListProperty<QAxisSetting> *list);
+     static void clearAxisSettings(QQmlListProperty<QAxisSetting> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3deffect.cpp b/src/quick3d/quick3drender/items/quick3deffect.cpp
+index fa82c6eff..617b52e85 100644
+--- a/src/quick3d/quick3drender/items/quick3deffect.cpp
++++ b/src/quick3d/quick3drender/items/quick3deffect.cpp
+@@ -78,7 +78,7 @@ void Quick3DEffect::appendTechnique(QQmlListProperty<QTechnique> *list, QTechniq
+ }
+ 
+ // TO DO : Return a QAbstractTechnique once properly defined
+-QTechnique *Quick3DEffect::techniqueAt(QQmlListProperty<QTechnique> *list, int index)
++QTechnique *Quick3DEffect::techniqueAt(QQmlListProperty<QTechnique> *list, qsizetype index)
+ {
+     Quick3DEffect *eff = qobject_cast<Quick3DEffect*>(list->object);
+     if (eff)
+@@ -86,7 +86,7 @@ QTechnique *Quick3DEffect::techniqueAt(QQmlListProperty<QTechnique> *list, int i
+     return nullptr;
+ }
+ 
+-int Quick3DEffect::techniqueCount(QQmlListProperty<QTechnique> *list)
++qsizetype Quick3DEffect::techniqueCount(QQmlListProperty<QTechnique> *list)
+ {
+     Quick3DEffect *eff = qobject_cast<Quick3DEffect*>(list->object);
+     if (eff)
+@@ -112,13 +112,13 @@ void Quick3DEffect::appendParameter(QQmlListProperty<QParameter> *list, QParamet
+     qobject_cast<QEffect *>(effect->parentEffect())->addParameter(param);
+ }
+ 
+-QParameter *Quick3DEffect::parameterAt(QQmlListProperty<QParameter> *list, int index)
++QParameter *Quick3DEffect::parameterAt(QQmlListProperty<QParameter> *list, qsizetype index)
+ {
+     Quick3DEffect *effect = qobject_cast<Quick3DEffect *>(list->object);
+     return qobject_cast<QEffect *>(effect->parentEffect())->parameters().at(index);
+ }
+ 
+-int Quick3DEffect::parametersCount(QQmlListProperty<QParameter> *list)
++qsizetype Quick3DEffect::parametersCount(QQmlListProperty<QParameter> *list)
+ {
+     Quick3DEffect *effect = qobject_cast<Quick3DEffect *>(list->object);
+     return qobject_cast<QEffect *>(effect->parentEffect())->parameters().count();
+diff --git a/src/quick3d/quick3drender/items/quick3deffect_p.h b/src/quick3d/quick3drender/items/quick3deffect_p.h
+index 69c5b2be6..fb6fa2bdd 100644
+--- a/src/quick3d/quick3drender/items/quick3deffect_p.h
++++ b/src/quick3d/quick3drender/items/quick3deffect_p.h
+@@ -79,13 +79,13 @@ public:
+ 
+ private:
+     static void appendTechnique(QQmlListProperty<QTechnique> *list, QTechnique *bar);
+-    static QTechnique *techniqueAt(QQmlListProperty<QTechnique> *list, int index);
+-    static int techniqueCount(QQmlListProperty<QTechnique> *list);
++    static QTechnique *techniqueAt(QQmlListProperty<QTechnique> *list, qsizetype index);
++    static qsizetype techniqueCount(QQmlListProperty<QTechnique> *list);
+     static void clearTechniqueList(QQmlListProperty<QTechnique> *list);
+ 
+     static void appendParameter(QQmlListProperty<QParameter> *list, QParameter *param);
+-    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, int index);
+-    static int parametersCount(QQmlListProperty<QParameter> *list);
++    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, qsizetype index);
++    static qsizetype parametersCount(QQmlListProperty<QParameter> *list);
+     static void clearParameterList(QQmlListProperty<QParameter> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3dlayerfilter.cpp b/src/quick3d/quick3drender/items/quick3dlayerfilter.cpp
+index 951b4f82f..505495eb3 100644
+--- a/src/quick3d/quick3drender/items/quick3dlayerfilter.cpp
++++ b/src/quick3d/quick3drender/items/quick3dlayerfilter.cpp
+@@ -71,7 +71,7 @@ void Quick3DLayerFilter::appendLayer(QQmlListProperty<QLayer> *list, QLayer *lay
+     }
+ }
+ 
+-QLayer *Quick3DLayerFilter::layerAt(QQmlListProperty<QLayer> *list, int index)
++QLayer *Quick3DLayerFilter::layerAt(QQmlListProperty<QLayer> *list, qsizetype index)
+ {
+     Quick3DLayerFilter *filter = qobject_cast<Quick3DLayerFilter *>(list->object);
+     if (filter) {
+@@ -80,7 +80,7 @@ QLayer *Quick3DLayerFilter::layerAt(QQmlListProperty<QLayer> *list, int index)
+     return 0;
+ }
+ 
+-int Quick3DLayerFilter::layerCount(QQmlListProperty<QLayer> *list)
++qsizetype Quick3DLayerFilter::layerCount(QQmlListProperty<QLayer> *list)
+ {
+     Quick3DLayerFilter *filter = qobject_cast<Quick3DLayerFilter *>(list->object);
+     if (filter) {
+diff --git a/src/quick3d/quick3drender/items/quick3dlayerfilter_p.h b/src/quick3d/quick3drender/items/quick3dlayerfilter_p.h
+index 6294d2b98..3bcb6aaa2 100644
+--- a/src/quick3d/quick3drender/items/quick3dlayerfilter_p.h
++++ b/src/quick3d/quick3drender/items/quick3dlayerfilter_p.h
+@@ -77,8 +77,8 @@ public:
+ 
+ private:
+     static void appendLayer(QQmlListProperty<QLayer> *list, QLayer *bar);
+-    static QLayer *layerAt(QQmlListProperty<QLayer> *list, int index);
+-    static int layerCount(QQmlListProperty<QLayer> *list);
++    static QLayer *layerAt(QQmlListProperty<QLayer> *list, qsizetype index);
++    static qsizetype layerCount(QQmlListProperty<QLayer> *list);
+     static void clearLayers(QQmlListProperty<QLayer> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3dmaterial.cpp b/src/quick3d/quick3drender/items/quick3dmaterial.cpp
+index 3dfbec83e..4e5cc1947 100644
+--- a/src/quick3d/quick3drender/items/quick3dmaterial.cpp
++++ b/src/quick3d/quick3drender/items/quick3dmaterial.cpp
+@@ -72,7 +72,7 @@ void Quick3DMaterial::appendParameter(QQmlListProperty<QParameter> *list, QParam
+     }
+ }
+ 
+-QParameter *Quick3DMaterial::parameterAt(QQmlListProperty<QParameter> *list, int index)
++QParameter *Quick3DMaterial::parameterAt(QQmlListProperty<QParameter> *list, qsizetype index)
+ {
+     Quick3DMaterial *mat = qobject_cast<Quick3DMaterial *>(list->object);
+     if (mat)
+@@ -80,7 +80,7 @@ QParameter *Quick3DMaterial::parameterAt(QQmlListProperty<QParameter> *list, int
+     return 0;
+ }
+ 
+-int Quick3DMaterial::parameterCount(QQmlListProperty<QParameter> *list)
++qsizetype Quick3DMaterial::parameterCount(QQmlListProperty<QParameter> *list)
+ {
+     Quick3DMaterial *mat = qobject_cast<Quick3DMaterial *>(list->object);
+     if (mat)
+diff --git a/src/quick3d/quick3drender/items/quick3dmaterial_p.h b/src/quick3d/quick3drender/items/quick3dmaterial_p.h
+index 2069ba9c6..adb0d066b 100644
+--- a/src/quick3d/quick3drender/items/quick3dmaterial_p.h
++++ b/src/quick3d/quick3drender/items/quick3dmaterial_p.h
+@@ -83,8 +83,8 @@ public:
+ private:
+     // FIXME - remove when we have a custom QML parser
+     static void appendParameter(QQmlListProperty<QParameter> *list, QParameter *bar);
+-    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, int index);
+-    static int parameterCount(QQmlListProperty<QParameter> *list);
++    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, qsizetype index);
++    static qsizetype parameterCount(QQmlListProperty<QParameter> *list);
+     static void clearParameters(QQmlListProperty<QParameter> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3draycaster.cpp b/src/quick3d/quick3drender/items/quick3draycaster.cpp
+index d0c282a1c..dad28bbbe 100644
+--- a/src/quick3d/quick3drender/items/quick3draycaster.cpp
++++ b/src/quick3d/quick3drender/items/quick3draycaster.cpp
+@@ -56,7 +56,7 @@ void Quick3DRayCasterPrivate::appendLayer(QQmlListProperty<QLayer> *list, QLayer
+         filter->addLayer(layer);
+ }
+ 
+-QLayer *Quick3DRayCasterPrivate::layerAt(QQmlListProperty<QLayer> *list, int index)
++QLayer *Quick3DRayCasterPrivate::layerAt(QQmlListProperty<QLayer> *list, qsizetype index)
+ {
+     QAbstractRayCaster *filter = qobject_cast<QAbstractRayCaster *>(list->object);
+     if (filter)
+@@ -64,7 +64,7 @@ QLayer *Quick3DRayCasterPrivate::layerAt(QQmlListProperty<QLayer> *list, int ind
+     return nullptr;
+ }
+ 
+-int Quick3DRayCasterPrivate::layerCount(QQmlListProperty<QLayer> *list)
++qsizetype Quick3DRayCasterPrivate::layerCount(QQmlListProperty<QLayer> *list)
+ {
+     QAbstractRayCaster *filter = qobject_cast<QAbstractRayCaster *>(list->object);
+     if (filter)
+diff --git a/src/quick3d/quick3drender/items/quick3draycaster_p_p.h b/src/quick3d/quick3drender/items/quick3draycaster_p_p.h
+index dec8dcfb6..096cae351 100644
+--- a/src/quick3d/quick3drender/items/quick3draycaster_p_p.h
++++ b/src/quick3d/quick3drender/items/quick3draycaster_p_p.h
+@@ -69,8 +69,8 @@ public:
+     explicit Quick3DRayCasterPrivate() : QAbstractRayCasterPrivate() { }
+ 
+     static void appendLayer(QQmlListProperty<QLayer> *list, QLayer *bar);
+-    static QLayer *layerAt(QQmlListProperty<QLayer> *list, int index);
+-    static int layerCount(QQmlListProperty<QLayer> *list);
++    static QLayer *layerAt(QQmlListProperty<QLayer> *list, qsizetype index);
++    static qsizetype layerCount(QQmlListProperty<QLayer> *list);
+     static void clearLayers(QQmlListProperty<QLayer> *list);
+ 
+     Q_DECLARE_PUBLIC(Quick3DRayCaster)
+diff --git a/src/quick3d/quick3drender/items/quick3drenderpass.cpp b/src/quick3d/quick3drender/items/quick3drenderpass.cpp
+index 7bd50a0d5..e05bd9c74 100644
+--- a/src/quick3d/quick3drender/items/quick3drenderpass.cpp
++++ b/src/quick3d/quick3drender/items/quick3drenderpass.cpp
+@@ -84,13 +84,13 @@ void Quick3DRenderPass::appendFilterKey(QQmlListProperty<QFilterKey> *list, QFil
+     rPass->parentRenderPass()->addFilterKey(filterKey);
+ }
+ 
+-QFilterKey *Quick3DRenderPass::filterKeyAt(QQmlListProperty<QFilterKey> *list, int index)
++QFilterKey *Quick3DRenderPass::filterKeyAt(QQmlListProperty<QFilterKey> *list, qsizetype index)
+ {
+     Quick3DRenderPass *rPass = qobject_cast<Quick3DRenderPass *>(list->object);
+     return rPass->parentRenderPass()->filterKeys().at(index);
+ }
+ 
+-int Quick3DRenderPass::filterKeysCount(QQmlListProperty<QFilterKey> *list)
++qsizetype Quick3DRenderPass::filterKeysCount(QQmlListProperty<QFilterKey> *list)
+ {
+     Quick3DRenderPass *rPass = qobject_cast<Quick3DRenderPass *>(list->object);
+     return rPass->parentRenderPass()->filterKeys().count();
+@@ -110,13 +110,13 @@ void Quick3DRenderPass::appendRenderState(QQmlListProperty<QRenderState> *list,
+     rPass->parentRenderPass()->addRenderState(state);
+ }
+ 
+-QRenderState *Quick3DRenderPass::renderStateAt(QQmlListProperty<QRenderState> *list, int index)
++QRenderState *Quick3DRenderPass::renderStateAt(QQmlListProperty<QRenderState> *list, qsizetype index)
+ {
+     Quick3DRenderPass *rPass = qobject_cast<Quick3DRenderPass *>(list->object);
+     return rPass->parentRenderPass()->renderStates().at(index);
+ }
+ 
+-int Quick3DRenderPass::renderStateCount(QQmlListProperty<QRenderState> *list)
++qsizetype Quick3DRenderPass::renderStateCount(QQmlListProperty<QRenderState> *list)
+ {
+     Quick3DRenderPass *rPass = qobject_cast<Quick3DRenderPass *>(list->object);
+     return rPass->parentRenderPass()->renderStates().count();
+@@ -136,13 +136,13 @@ void Quick3DRenderPass::appendParameter(QQmlListProperty<QParameter> *list, QPar
+     rPass->parentRenderPass()->addParameter(param);
+ }
+ 
+-QParameter *Quick3DRenderPass::parameterAt(QQmlListProperty<QParameter> *list, int index)
++QParameter *Quick3DRenderPass::parameterAt(QQmlListProperty<QParameter> *list, qsizetype index)
+ {
+     Quick3DRenderPass *rPass = qobject_cast<Quick3DRenderPass *>(list->object);
+     return rPass->parentRenderPass()->parameters().at(index);
+ }
+ 
+-int Quick3DRenderPass::parametersCount(QQmlListProperty<QParameter> *list)
++qsizetype Quick3DRenderPass::parametersCount(QQmlListProperty<QParameter> *list)
+ {
+     Quick3DRenderPass *rPass = qobject_cast<Quick3DRenderPass *>(list->object);
+     return rPass->parentRenderPass()->parameters().count();
+diff --git a/src/quick3d/quick3drender/items/quick3drenderpass_p.h b/src/quick3d/quick3drender/items/quick3drenderpass_p.h
+index 982cab9f4..58ef251ff 100644
+--- a/src/quick3d/quick3drender/items/quick3drenderpass_p.h
++++ b/src/quick3d/quick3drender/items/quick3drenderpass_p.h
+@@ -80,18 +80,18 @@ public:
+ 
+ private:
+     static void appendFilterKey(QQmlListProperty<QFilterKey> *list, QFilterKey *filterKey);
+-    static QFilterKey *filterKeyAt(QQmlListProperty<QFilterKey> *list, int index);
+-    static int filterKeysCount(QQmlListProperty<QFilterKey> *list);
++    static QFilterKey *filterKeyAt(QQmlListProperty<QFilterKey> *list, qsizetype index);
++    static qsizetype filterKeysCount(QQmlListProperty<QFilterKey> *list);
+     static void clearFilterKey(QQmlListProperty<QFilterKey> *list);
+ 
+     static void appendRenderState(QQmlListProperty<QRenderState> *list, QRenderState *state);
+-    static QRenderState *renderStateAt(QQmlListProperty<QRenderState> *list, int index);
+-    static int renderStateCount(QQmlListProperty<QRenderState> *list);
++    static QRenderState *renderStateAt(QQmlListProperty<QRenderState> *list, qsizetype index);
++    static qsizetype renderStateCount(QQmlListProperty<QRenderState> *list);
+     static void clearRenderStates(QQmlListProperty<QRenderState> *list);
+ 
+     static void appendParameter(QQmlListProperty<QParameter> *list, QParameter *param);
+-    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, int index);
+-    static int parametersCount(QQmlListProperty<QParameter> *list);
++    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, qsizetype index);
++    static qsizetype parametersCount(QQmlListProperty<QParameter> *list);
+     static void clearParameterList(QQmlListProperty<QParameter> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3drenderpassfilter.cpp b/src/quick3d/quick3drender/items/quick3drenderpassfilter.cpp
+index 0a8fa8a3a..5cf45b4a8 100644
+--- a/src/quick3d/quick3drender/items/quick3drenderpassfilter.cpp
++++ b/src/quick3d/quick3drender/items/quick3drenderpassfilter.cpp
+@@ -78,7 +78,7 @@ void Quick3DRenderPassFilter::appendInclude(QQmlListProperty<QFilterKey> *list,
+     }
+ }
+ 
+-QFilterKey *Quick3DRenderPassFilter::includeAt(QQmlListProperty<QFilterKey> *list, int index)
++QFilterKey *Quick3DRenderPassFilter::includeAt(QQmlListProperty<QFilterKey> *list, qsizetype index)
+ {
+     Quick3DRenderPassFilter *filter = qobject_cast<Quick3DRenderPassFilter *>(list->object);
+     if (filter)
+@@ -86,7 +86,7 @@ QFilterKey *Quick3DRenderPassFilter::includeAt(QQmlListProperty<QFilterKey> *lis
+     return 0;
+ }
+ 
+-int Quick3DRenderPassFilter::includesCount(QQmlListProperty<QFilterKey> *list)
++qsizetype Quick3DRenderPassFilter::includesCount(QQmlListProperty<QFilterKey> *list)
+ {
+     Quick3DRenderPassFilter *filter = qobject_cast<Quick3DRenderPassFilter *>(list->object);
+     if (filter)
+@@ -110,13 +110,13 @@ void Quick3DRenderPassFilter::appendParameter(QQmlListProperty<QParameter> *list
+     rPassFilter->parentRenderPassFilter()->addParameter(param);
+ }
+ 
+-QParameter *Quick3DRenderPassFilter::parameterAt(QQmlListProperty<QParameter> *list, int index)
++QParameter *Quick3DRenderPassFilter::parameterAt(QQmlListProperty<QParameter> *list, qsizetype index)
+ {
+     Quick3DRenderPassFilter *rPassFilter = qobject_cast<Quick3DRenderPassFilter *>(list->object);
+     return rPassFilter->parentRenderPassFilter()->parameters().at(index);
+ }
+ 
+-int Quick3DRenderPassFilter::parametersCount(QQmlListProperty<QParameter> *list)
++qsizetype Quick3DRenderPassFilter::parametersCount(QQmlListProperty<QParameter> *list)
+ {
+     Quick3DRenderPassFilter *rPassFilter = qobject_cast<Quick3DRenderPassFilter *>(list->object);
+     return rPassFilter->parentRenderPassFilter()->parameters().count();
+diff --git a/src/quick3d/quick3drender/items/quick3drenderpassfilter_p.h b/src/quick3d/quick3drender/items/quick3drenderpassfilter_p.h
+index 8f81766ef..1f13f1d2f 100644
+--- a/src/quick3d/quick3drender/items/quick3drenderpassfilter_p.h
++++ b/src/quick3d/quick3drender/items/quick3drenderpassfilter_p.h
+@@ -80,13 +80,13 @@ public:
+ 
+ private:
+     static void appendInclude(QQmlListProperty<QFilterKey> *list, QFilterKey *criterion);
+-    static QFilterKey *includeAt(QQmlListProperty<QFilterKey> *list, int index);
+-    static int includesCount(QQmlListProperty<QFilterKey> *list);
++    static QFilterKey *includeAt(QQmlListProperty<QFilterKey> *list, qsizetype index);
++    static qsizetype includesCount(QQmlListProperty<QFilterKey> *list);
+     static void clearIncludes(QQmlListProperty<QFilterKey> *list);
+ 
+     static void appendParameter(QQmlListProperty<QParameter> *list, QParameter *param);
+-    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, int index);
+-    static int parametersCount(QQmlListProperty<QParameter> *list);
++    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, qsizetype index);
++    static qsizetype parametersCount(QQmlListProperty<QParameter> *list);
+     static void clearParameterList(QQmlListProperty<QParameter> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3drendertargetoutput.cpp b/src/quick3d/quick3drender/items/quick3drendertargetoutput.cpp
+index 024789a4c..5d35e7e00 100644
+--- a/src/quick3d/quick3drender/items/quick3drendertargetoutput.cpp
++++ b/src/quick3d/quick3drender/items/quick3drendertargetoutput.cpp
+@@ -66,7 +66,7 @@ void Quick3DRenderTargetOutput::appendRenderAttachment(QQmlListProperty<QRenderT
+         rT->parentRenderTarget()->addOutput(output);
+ }
+ 
+-QRenderTargetOutput *Quick3DRenderTargetOutput::renderAttachmentAt(QQmlListProperty<QRenderTargetOutput> *list, int index)
++QRenderTargetOutput *Quick3DRenderTargetOutput::renderAttachmentAt(QQmlListProperty<QRenderTargetOutput> *list, qsizetype index)
+ {
+     Quick3DRenderTargetOutput *rT = qobject_cast<Quick3DRenderTargetOutput *>(list->object);
+     if (rT)
+@@ -74,7 +74,7 @@ QRenderTargetOutput *Quick3DRenderTargetOutput::renderAttachmentAt(QQmlListPrope
+     return nullptr;
+ }
+ 
+-int Quick3DRenderTargetOutput::renderAttachmentCount(QQmlListProperty<QRenderTargetOutput> *list)
++qsizetype Quick3DRenderTargetOutput::renderAttachmentCount(QQmlListProperty<QRenderTargetOutput> *list)
+ {
+     Quick3DRenderTargetOutput *rT = qobject_cast<Quick3DRenderTargetOutput *>(list->object);
+     if (rT)
+diff --git a/src/quick3d/quick3drender/items/quick3drendertargetoutput_p.h b/src/quick3d/quick3drender/items/quick3drendertargetoutput_p.h
+index f7b15b0cb..076d034ed 100644
+--- a/src/quick3d/quick3drender/items/quick3drendertargetoutput_p.h
++++ b/src/quick3d/quick3drender/items/quick3drendertargetoutput_p.h
+@@ -75,8 +75,8 @@ public:
+ 
+ private:
+     static void appendRenderAttachment(QQmlListProperty<QRenderTargetOutput> *list, QRenderTargetOutput *attachment);
+-    static QRenderTargetOutput *renderAttachmentAt(QQmlListProperty<QRenderTargetOutput> *list, int index);
+-    static int renderAttachmentCount(QQmlListProperty<QRenderTargetOutput> *list);
++    static QRenderTargetOutput *renderAttachmentAt(QQmlListProperty<QRenderTargetOutput> *list, qsizetype index);
++    static qsizetype renderAttachmentCount(QQmlListProperty<QRenderTargetOutput> *list);
+     static void clearRenderAttachments(QQmlListProperty<QRenderTargetOutput> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3dshaderdataarray.cpp b/src/quick3d/quick3drender/items/quick3dshaderdataarray.cpp
+index 36681b021..51e8911a6 100644
+--- a/src/quick3d/quick3drender/items/quick3dshaderdataarray.cpp
++++ b/src/quick3d/quick3drender/items/quick3dshaderdataarray.cpp
+@@ -91,13 +91,13 @@ void Quick3DShaderDataArray::appendValue(QQmlListProperty<QShaderData> *list, QS
+     static_cast<Quick3DShaderDataArrayPrivate *>(Quick3DShaderDataArrayPrivate::get(self))->m_values.append(bar);
+ }
+ 
+-QShaderData *Quick3DShaderDataArray::valueAt(QQmlListProperty<QShaderData> *list, int index)
++QShaderData *Quick3DShaderDataArray::valueAt(QQmlListProperty<QShaderData> *list, qsizetype index)
+ {
+     Quick3DShaderDataArray *self = static_cast<Quick3DShaderDataArray *>(list->object);
+     return static_cast<Quick3DShaderDataArrayPrivate *>(Quick3DShaderDataArrayPrivate::get(self))->m_values.at(index);
+ }
+ 
+-int Quick3DShaderDataArray::valueCount(QQmlListProperty<QShaderData> *list)
++qsizetype Quick3DShaderDataArray::valueCount(QQmlListProperty<QShaderData> *list)
+ {
+     Quick3DShaderDataArray *self = static_cast<Quick3DShaderDataArray *>(list->object);
+     return static_cast<Quick3DShaderDataArrayPrivate *>(Quick3DShaderDataArrayPrivate::get(self))->m_values.count();
+diff --git a/src/quick3d/quick3drender/items/quick3dshaderdataarray_p.h b/src/quick3d/quick3drender/items/quick3dshaderdataarray_p.h
+index a7c7ae833..4a1347cf8 100644
+--- a/src/quick3d/quick3drender/items/quick3dshaderdataarray_p.h
++++ b/src/quick3d/quick3drender/items/quick3dshaderdataarray_p.h
+@@ -82,8 +82,8 @@ public:
+ 
+ private:
+     static void appendValue(QQmlListProperty<QShaderData> *list, QShaderData *bar);
+-    static QShaderData *valueAt(QQmlListProperty<QShaderData> *list, int index);
+-    static int valueCount(QQmlListProperty<QShaderData> *list);
++    static QShaderData *valueAt(QQmlListProperty<QShaderData> *list, qsizetype index);
++    static qsizetype valueCount(QQmlListProperty<QShaderData> *list);
+     static void clearValues(QQmlListProperty<QShaderData> *list);
+     Q_DECLARE_PRIVATE(Quick3DShaderDataArray)
+ };
+diff --git a/src/quick3d/quick3drender/items/quick3dstateset.cpp b/src/quick3d/quick3drender/items/quick3dstateset.cpp
+index 468364493..49fa0b96a 100644
+--- a/src/quick3d/quick3drender/items/quick3dstateset.cpp
++++ b/src/quick3d/quick3drender/items/quick3dstateset.cpp
+@@ -70,13 +70,13 @@ void Quick3DStateSet::appendRenderState(QQmlListProperty<QRenderState> *list, QR
+     stateSet->parentStateSet()->addRenderState(state);
+ }
+ 
+-QRenderState *Quick3DStateSet::renderStateAt(QQmlListProperty<QRenderState> *list, int index)
++QRenderState *Quick3DStateSet::renderStateAt(QQmlListProperty<QRenderState> *list, qsizetype index)
+ {
+     Quick3DStateSet *stateSet = qobject_cast<Quick3DStateSet *>(list->object);
+     return stateSet->parentStateSet()->renderStates().at(index);
+ }
+ 
+-int Quick3DStateSet::renderStateCount(QQmlListProperty<QRenderState> *list)
++qsizetype Quick3DStateSet::renderStateCount(QQmlListProperty<QRenderState> *list)
+ {
+     Quick3DStateSet *stateSet = qobject_cast<Quick3DStateSet *>(list->object);
+     return stateSet->parentStateSet()->renderStates().count();
+diff --git a/src/quick3d/quick3drender/items/quick3dstateset_p.h b/src/quick3d/quick3drender/items/quick3dstateset_p.h
+index 7b532ec83..4d060e149 100644
+--- a/src/quick3d/quick3drender/items/quick3dstateset_p.h
++++ b/src/quick3d/quick3drender/items/quick3dstateset_p.h
+@@ -75,8 +75,8 @@ public:
+ 
+ private:
+     static void appendRenderState(QQmlListProperty<QRenderState> *list, QRenderState *state);
+-    static QRenderState *renderStateAt(QQmlListProperty<QRenderState> *list, int index);
+-    static int renderStateCount(QQmlListProperty<QRenderState> *list);
++    static QRenderState *renderStateAt(QQmlListProperty<QRenderState> *list, qsizetype index);
++    static qsizetype renderStateCount(QQmlListProperty<QRenderState> *list);
+     static void clearRenderStates(QQmlListProperty<QRenderState> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3dtechnique.cpp b/src/quick3d/quick3drender/items/quick3dtechnique.cpp
+index 0a15c9f7e..805748a1c 100644
+--- a/src/quick3d/quick3drender/items/quick3dtechnique.cpp
++++ b/src/quick3d/quick3drender/items/quick3dtechnique.cpp
+@@ -74,13 +74,13 @@ void Quick3DTechnique::appendParameter(QQmlListProperty<QParameter> *list, QPara
+     technique->parentTechnique()->addParameter(param);
+ }
+ 
+-QParameter *Quick3DTechnique::parameterAt(QQmlListProperty<QParameter> *list, int index)
++QParameter *Quick3DTechnique::parameterAt(QQmlListProperty<QParameter> *list, qsizetype index)
+ {
+     Quick3DTechnique *technique = qobject_cast<Quick3DTechnique *>(list->object);
+     return technique->parentTechnique()->parameters().at(index);
+ }
+ 
+-int Quick3DTechnique::parametersCount(QQmlListProperty<QParameter> *list)
++qsizetype Quick3DTechnique::parametersCount(QQmlListProperty<QParameter> *list)
+ {
+     Quick3DTechnique *technique = qobject_cast<Quick3DTechnique *>(list->object);
+     return technique->parentTechnique()->parameters().count();
+@@ -102,7 +102,7 @@ void Quick3DTechnique::appendRenderPass(QQmlListProperty<QRenderPass> *list, QRe
+     }
+ }
+ 
+-QRenderPass *Quick3DTechnique::renderPassAt(QQmlListProperty<QRenderPass> *list, int index)
++QRenderPass *Quick3DTechnique::renderPassAt(QQmlListProperty<QRenderPass> *list, qsizetype index)
+ {
+     Quick3DTechnique *technique = qobject_cast<Quick3DTechnique *>(list->object);
+     if (technique)
+@@ -110,7 +110,7 @@ QRenderPass *Quick3DTechnique::renderPassAt(QQmlListProperty<QRenderPass> *list,
+     return 0;
+ }
+ 
+-int Quick3DTechnique::renderPassCount(QQmlListProperty<QRenderPass> *list)
++qsizetype Quick3DTechnique::renderPassCount(QQmlListProperty<QRenderPass> *list)
+ {
+     Quick3DTechnique *technique = qobject_cast<Quick3DTechnique *>(list->object);
+     if (technique)
+@@ -147,7 +147,7 @@ void Quick3DTechnique::appendFilterKey(QQmlListProperty<QFilterKey> *list, QFilt
+     }
+ }
+ 
+-QFilterKey *Quick3DTechnique::filterKeyAt(QQmlListProperty<QFilterKey> *list, int index)
++QFilterKey *Quick3DTechnique::filterKeyAt(QQmlListProperty<QFilterKey> *list, qsizetype index)
+ {
+     Quick3DTechnique *technique = qobject_cast<Quick3DTechnique *>(list->object);
+     if (technique)
+@@ -155,7 +155,7 @@ QFilterKey *Quick3DTechnique::filterKeyAt(QQmlListProperty<QFilterKey> *list, in
+     return 0;
+ }
+ 
+-int Quick3DTechnique::filterKeyCount(QQmlListProperty<QFilterKey> *list)
++qsizetype Quick3DTechnique::filterKeyCount(QQmlListProperty<QFilterKey> *list)
+ {
+     Quick3DTechnique *technique = qobject_cast<Quick3DTechnique *>(list->object);
+     if (technique)
+diff --git a/src/quick3d/quick3drender/items/quick3dtechnique_p.h b/src/quick3d/quick3drender/items/quick3dtechnique_p.h
+index 0c02e07c3..425eb0b25 100644
+--- a/src/quick3d/quick3drender/items/quick3dtechnique_p.h
++++ b/src/quick3d/quick3drender/items/quick3dtechnique_p.h
+@@ -81,18 +81,18 @@ public:
+ private:
+ 
+     static void appendParameter(QQmlListProperty<QParameter> *list, QParameter *param);
+-    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, int index);
+-    static int parametersCount(QQmlListProperty<QParameter> *list);
++    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, qsizetype index);
++    static qsizetype parametersCount(QQmlListProperty<QParameter> *list);
+     static void clearParameterList(QQmlListProperty<QParameter> *list);
+ 
+     static void appendFilterKey(QQmlListProperty<QFilterKey> *list, QFilterKey *filterKey);
+-    static QFilterKey *filterKeyAt(QQmlListProperty<QFilterKey> *list, int index);
+-    static int filterKeyCount(QQmlListProperty<QFilterKey> *list);
++    static QFilterKey *filterKeyAt(QQmlListProperty<QFilterKey> *list, qsizetype index);
++    static qsizetype filterKeyCount(QQmlListProperty<QFilterKey> *list);
+     static void clearFilterKeyList(QQmlListProperty<QFilterKey> *list);
+ 
+     static void appendRenderPass(QQmlListProperty<QRenderPass> *list, QRenderPass* renderPass);
+-    static QRenderPass *renderPassAt(QQmlListProperty<QRenderPass> *list, int index);
+-    static int renderPassCount(QQmlListProperty<QRenderPass> *list);
++    static QRenderPass *renderPassAt(QQmlListProperty<QRenderPass> *list, qsizetype index);
++    static qsizetype renderPassCount(QQmlListProperty<QRenderPass> *list);
+     static void clearRenderPasses( QQmlListProperty<QRenderPass> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3dtechniquefilter.cpp b/src/quick3d/quick3drender/items/quick3dtechniquefilter.cpp
+index 2019093c9..01e114fab 100644
+--- a/src/quick3d/quick3drender/items/quick3dtechniquefilter.cpp
++++ b/src/quick3d/quick3drender/items/quick3dtechniquefilter.cpp
+@@ -77,7 +77,7 @@ void Quick3DTechniqueFilter::appendRequire(QQmlListProperty<QFilterKey> *list, Q
+     }
+ }
+ 
+-QFilterKey *Quick3DTechniqueFilter::requireAt(QQmlListProperty<QFilterKey> *list, int index)
++QFilterKey *Quick3DTechniqueFilter::requireAt(QQmlListProperty<QFilterKey> *list, qsizetype index)
+ {
+     Quick3DTechniqueFilter *filter = qobject_cast<Quick3DTechniqueFilter *>(list->object);
+     if (filter)
+@@ -85,7 +85,7 @@ QFilterKey *Quick3DTechniqueFilter::requireAt(QQmlListProperty<QFilterKey> *list
+     return 0;
+ }
+ 
+-int Quick3DTechniqueFilter::requiresCount(QQmlListProperty<QFilterKey> *list)
++qsizetype Quick3DTechniqueFilter::requiresCount(QQmlListProperty<QFilterKey> *list)
+ {
+     Quick3DTechniqueFilter *filter = qobject_cast<Quick3DTechniqueFilter *>(list->object);
+     if (filter)
+@@ -109,13 +109,13 @@ void Quick3DTechniqueFilter::appendParameter(QQmlListProperty<QParameter> *list,
+     techniqueFilter->parentTechniqueFilter()->addParameter(param);
+ }
+ 
+-QParameter *Quick3DTechniqueFilter::parameterAt(QQmlListProperty<QParameter> *list, int index)
++QParameter *Quick3DTechniqueFilter::parameterAt(QQmlListProperty<QParameter> *list, qsizetype index)
+ {
+     Quick3DTechniqueFilter *techniqueFilter = qobject_cast<Quick3DTechniqueFilter *>(list->object);
+     return techniqueFilter->parentTechniqueFilter()->parameters().at(index);
+ }
+ 
+-int Quick3DTechniqueFilter::parametersCount(QQmlListProperty<QParameter> *list)
++qsizetype Quick3DTechniqueFilter::parametersCount(QQmlListProperty<QParameter> *list)
+ {
+     Quick3DTechniqueFilter *techniqueFilter = qobject_cast<Quick3DTechniqueFilter *>(list->object);
+     return techniqueFilter->parentTechniqueFilter()->parameters().count();
+diff --git a/src/quick3d/quick3drender/items/quick3dtechniquefilter_p.h b/src/quick3d/quick3drender/items/quick3dtechniquefilter_p.h
+index 9cd776827..9a2b396ac 100644
+--- a/src/quick3d/quick3drender/items/quick3dtechniquefilter_p.h
++++ b/src/quick3d/quick3drender/items/quick3dtechniquefilter_p.h
+@@ -80,13 +80,13 @@ public:
+ 
+ private:
+     static void appendRequire(QQmlListProperty<QFilterKey> *list, QFilterKey *criterion);
+-    static QFilterKey *requireAt(QQmlListProperty<QFilterKey> *list, int index);
+-    static int requiresCount(QQmlListProperty<QFilterKey> *list);
++    static QFilterKey *requireAt(QQmlListProperty<QFilterKey> *list, qsizetype index);
++    static qsizetype requiresCount(QQmlListProperty<QFilterKey> *list);
+     static void clearRequires(QQmlListProperty<QFilterKey> *list);
+ 
+     static void appendParameter(QQmlListProperty<QParameter> *list, QParameter *param);
+-    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, int index);
+-    static int parametersCount(QQmlListProperty<QParameter> *list);
++    static QParameter *parameterAt(QQmlListProperty<QParameter> *list, qsizetype index);
++    static qsizetype parametersCount(QQmlListProperty<QParameter> *list);
+     static void clearParameterList(QQmlListProperty<QParameter> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3drender/items/quick3dtexture.cpp b/src/quick3d/quick3drender/items/quick3dtexture.cpp
+index 7627a3283..01f36542d 100644
+--- a/src/quick3d/quick3drender/items/quick3dtexture.cpp
++++ b/src/quick3d/quick3drender/items/quick3dtexture.cpp
+@@ -68,7 +68,7 @@ void Quick3DTextureExtension::appendTextureImage(QQmlListProperty<QAbstractTextu
+         self->parentTexture()->addTextureImage(textureImage);
+ }
+ 
+-QAbstractTextureImage *Quick3DTextureExtension::textureImageAt(QQmlListProperty<QAbstractTextureImage> *list, int index)
++QAbstractTextureImage *Quick3DTextureExtension::textureImageAt(QQmlListProperty<QAbstractTextureImage> *list, qsizetype index)
+ {
+     Quick3DTextureExtension *self = qobject_cast<Quick3DTextureExtension *>(list->object);
+     if (self)
+@@ -76,7 +76,7 @@ QAbstractTextureImage *Quick3DTextureExtension::textureImageAt(QQmlListProperty<
+     return nullptr;
+ }
+ 
+-int Quick3DTextureExtension::textureImageCount(QQmlListProperty<QAbstractTextureImage> *list)
++qsizetype Quick3DTextureExtension::textureImageCount(QQmlListProperty<QAbstractTextureImage> *list)
+ {
+     Quick3DTextureExtension *self = qobject_cast<Quick3DTextureExtension *>(list->object);
+     if (self)
+diff --git a/src/quick3d/quick3drender/items/quick3dtexture_p.h b/src/quick3d/quick3drender/items/quick3dtexture_p.h
+index 54d23a16b..2f22d404e 100644
+--- a/src/quick3d/quick3drender/items/quick3dtexture_p.h
++++ b/src/quick3d/quick3drender/items/quick3dtexture_p.h
+@@ -77,8 +77,8 @@ public:
+ 
+ private:
+     static void appendTextureImage(QQmlListProperty<QAbstractTextureImage> *list, QAbstractTextureImage *textureImage);
+-    static QAbstractTextureImage *textureImageAt(QQmlListProperty<QAbstractTextureImage> *list, int index);
+-    static int textureImageCount(QQmlListProperty<QAbstractTextureImage> *list);
++    static QAbstractTextureImage *textureImageAt(QQmlListProperty<QAbstractTextureImage> *list, qsizetype index);
++    static qsizetype textureImageCount(QQmlListProperty<QAbstractTextureImage> *list);
+     static void clearTextureImageList(QQmlListProperty<QAbstractTextureImage> *list);
+ };
+ 
+diff --git a/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d.cpp b/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d.cpp
+index 8a8577713..a1b8c96de 100644
+--- a/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d.cpp
++++ b/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d.cpp
+@@ -65,7 +65,7 @@ void QQuick3DScene2D::appendEntity(QQmlListProperty<Qt3DCore::QEntity> *list,
+         scene2d->parentScene2D()->addEntity(entity);
+ }
+ 
+-int QQuick3DScene2D::entityCount(QQmlListProperty<Qt3DCore::QEntity> *list)
++qsizetype QQuick3DScene2D::entityCount(QQmlListProperty<Qt3DCore::QEntity> *list)
+ {
+     QQuick3DScene2D *scene2d = qobject_cast<QQuick3DScene2D *>(list->object);
+     if (scene2d)
+@@ -73,7 +73,7 @@ int QQuick3DScene2D::entityCount(QQmlListProperty<Qt3DCore::QEntity> *list)
+     return 0;
+ }
+ 
+-Qt3DCore::QEntity *QQuick3DScene2D::entityAt(QQmlListProperty<Qt3DCore::QEntity> *list, int index)
++Qt3DCore::QEntity *QQuick3DScene2D::entityAt(QQmlListProperty<Qt3DCore::QEntity> *list, qsizetype index)
+ {
+     QQuick3DScene2D *scene2d = qobject_cast<QQuick3DScene2D *>(list->object);
+     if (scene2d) {
+diff --git a/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d_p.h b/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d_p.h
+index fe4dd157c..26887cd3a 100644
+--- a/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d_p.h
++++ b/src/quick3d/quick3dscene2d/items/qt3dquick3dscene2d_p.h
+@@ -78,8 +78,8 @@ public:
+ private:
+ 
+     static void appendEntity(QQmlListProperty<Qt3DCore::QEntity> *list, Qt3DCore::QEntity *entity);
+-    static Qt3DCore::QEntity *entityAt(QQmlListProperty<Qt3DCore::QEntity> *list, int index);
+-    static int entityCount(QQmlListProperty<Qt3DCore::QEntity> *list);
++    static Qt3DCore::QEntity *entityAt(QQmlListProperty<Qt3DCore::QEntity> *list, qsizetype index);
++    static qsizetype entityCount(QQmlListProperty<Qt3DCore::QEntity> *list);
+     static void clearEntities(QQmlListProperty<Qt3DCore::QEntity> *list);
+ };
+ 
