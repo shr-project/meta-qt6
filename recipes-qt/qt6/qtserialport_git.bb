@@ -9,6 +9,8 @@ LIC_FILES_CHKSUM = " \
 
 inherit qt6-qmake
 
+QT_MODULE_BRANCH = "dev"
+
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
