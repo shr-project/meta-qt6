@@ -35,7 +35,7 @@ ARM_INSTRUCTION_SET = "${PREFERRED_ARM_INSTRUCTION_SET}"
 
 PACKAGECONFIG_append_pn-qtbase = "\
     tslib kms gbm zstd libproxy gssapi vulkan mtdev cups \
-    sql-mysql sql-psql sql-sqlite journald \
+    sql-mysql sql-odbc sql-psql sql-sqlite journald brotli \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'gtk', '', d)} \
 "
 
