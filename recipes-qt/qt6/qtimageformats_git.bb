@@ -20,4 +20,10 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase"
 
+PACKAGECONFIG ?= "tiff webp"
+PACKAGECONFIG[jasper] = "-DFEATURE_jasper=ON,-DFEATURE_jasper=OFF,jasper"
+PACKAGECONFIG[mng] = "-DFEATURE_mng=ON,-DFEATURE_mng=OFF,libmng"
+PACKAGECONFIG[tiff] = "-DFEATURE_tiff=ON,-DFEATURE_libtiff=OFF,tiff"
+PACKAGECONFIG[webp] = "-DFEATURE_webp=ON,-DFEATURE_webp=OFF,libwebp"
+
 SRCREV = "9b0b68488ac75668da339bdcd1ab358db03f2932"

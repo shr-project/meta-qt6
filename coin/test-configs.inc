@@ -39,6 +39,9 @@ PACKAGECONFIG_append_pn-qtbase = "\
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'gtk', '', d)} \
 "
 
+# imageformats mng FIXME
+PACKAGECONFIG_append_pn-qtimageformats = " jasper"
+
 # Use latest uninative package
 UNINATIVE_MAXGLIBCVERSION = "2.32"
 
