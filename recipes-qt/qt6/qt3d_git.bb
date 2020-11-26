@@ -18,7 +18,7 @@ SRC_URI += " \
     git://github.com/assimp/assimp.git;name=assimp;branch=assimp_5.0_release;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
 "
 
-DEPENDS = "qtbase qtdeclarative qtshadertools-native"
+DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG_class-target ?= "system-assimp"
