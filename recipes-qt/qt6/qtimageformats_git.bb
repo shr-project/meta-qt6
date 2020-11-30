@@ -13,8 +13,6 @@ LIC_FILES_CHKSUM = " \
 
 inherit qt6-cmake
 
-QT_MODULE_BRANCH = "dev"
-
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
@@ -26,4 +24,4 @@ PACKAGECONFIG[mng] = "-DFEATURE_mng=ON,-DFEATURE_mng=OFF,libmng"
 PACKAGECONFIG[tiff] = "-DFEATURE_tiff=ON,-DFEATURE_libtiff=OFF,tiff"
 PACKAGECONFIG[webp] = "-DFEATURE_webp=ON,-DFEATURE_webp=OFF,libwebp"
 
-SRCREV = "9b0b68488ac75668da339bdcd1ab358db03f2932"
+SRCREV = "ea2eed7930a5ae28c57a46afbc9f2a174b1d8c6c"

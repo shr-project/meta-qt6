@@ -8,7 +8,6 @@ LIC_FILES_CHKSUM = " \
 inherit qt6-cmake
 inherit features_check
 
-QT_MODULE_BRANCH = "dev"
 REQUIRED_DISTRO_FEATURES = "opengl"
 
 include recipes-qt/qt6/qt6-git.inc
@@ -26,5 +25,5 @@ PACKAGECONFIG[system-assimp] = "-DFEATURE_system_assimp=ON,-DQT_FEATURE_system_a
 PACKAGECONFIG[qtgamepad] = ",,qtgamepad"
 
 SRCREV_FORMAT = "qt3d_assimp"
-SRCREV_qt3d = "34e3fa58dcd1b746e0f890b6a78823f8cfee9b12"
+SRCREV_qt3d = "0c26a37fc0156069b51b7a617a1555d37371f72c"
 SRCREV_assimp = "8f0c6b04b2257a520aaab38421b2e090204b69df"

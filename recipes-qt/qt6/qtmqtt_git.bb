@@ -6,8 +6,6 @@ LIC_FILES_CHKSUM = " \
 
 inherit qt6-cmake
 
-QT_MODULE_BRANCH = "dev"
-
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
@@ -15,4 +13,4 @@ DEPENDS += "qtbase"
 
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative qtwebsockets"
 
-SRCREV = "841b2de545466c8f9306a599d7b1b9647c2711d0"
+SRCREV = "3ed510028391bbb16f7a9b4ff5aa658e5d2a3c4f"

@@ -7,8 +7,6 @@ LIC_FILES_CHKSUM = " \
 
 inherit qt6-cmake
 
-QT_MODULE_BRANCH = "dev"
-
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
@@ -23,4 +21,4 @@ SECURITY_STRINGFORMAT = ""
 
 DEPENDS += "qtbase"
 
-SRCREV = "65c13447a503f01d6a8bdf6cff8967d14fb3cf89"
+SRCREV = "e32a176b8a663ac767d5d1ed41fbafe240bfff20"
