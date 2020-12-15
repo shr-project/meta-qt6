@@ -14,6 +14,8 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtdeclarative qttools-native"
 
+FILES_${PN}-tools += "${QT6_INSTALL_DATADIR}/phrasebooks"
+
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "3fd594493c3ba31639a7515b901554456a90b4c7"
+SRCREV = "266b9fa04c65a00b45c7dc56fa205ff1388375d5"

@@ -5,8 +5,6 @@ LIC_FILES_CHKSUM = " \
 
 inherit qt6-cmake
 
-QT_MODULE_BRANCH = "dev"
-
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
@@ -120,4 +118,4 @@ FILES_${PN} += "${QT6_INSTALL_DATADIR}/qtvirtualkeyboard/lipi_toolkit"
 
 DEPENDS += "qtbase qtdeclarative qtsvg qtdeclarative-native"
 
-SRCREV = "84a790bad0ad171948cba02ef2f60559598ba36a"
+SRCREV = "516aeec45e2a43edde8b80369ca62156e27b7f5b"
