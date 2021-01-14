@@ -11,6 +11,7 @@ RDEPENDS_${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d', '', d)} \
     qt5compat \
     qtbase \
+    qtcharts \
     qtcoap \
     qtdeclarative \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtgraphicaleffects', '', d)} \
