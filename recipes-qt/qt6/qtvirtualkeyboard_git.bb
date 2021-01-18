@@ -67,7 +67,6 @@ PACKAGECONFIG[desktop] = "-DFEATURE_vkb_desktop=ON,-DFEATURE_vkb_desktop=OFF"
 PACKAGECONFIG[arrow-keynavigation] = "-DFEATURE_vkb_arrow_keynavigation=ON,-DFEATURE_vkb_arrow_keynavigation=OFF"
 PACKAGECONFIG[hunspell] = "-DFEATURE_hunspell=ON,-DFEATURE_hunspell=OFF,hunspell"
 PACKAGECONFIG[t9write] = "-DFEATURE_t9write=ON,-DFEATURE_t9write=OFF"
-PACKAGECONFIG[lipi-toolkit] = "-DFEATURE_lipi_toolkit=ON,-DFEATURE_lipi_toolkit=OFF"
 PACKAGECONFIG[lang-ar_AR] = "-DFEATURE_vkb_lang_ar_AR=ON,-DFEATURE_vkb_lang_ar_AR=OFF"
 PACKAGECONFIG[lang-bg_BG] = "-DFEATURE_vkb_lang_bg_BG=ON,-DFEATURE_vkb_lang_bg_BG=OFF"
 PACKAGECONFIG[lang-cs_CZ] = "-DFEATURE_vkb_lang_cs_CZ=ON,-DFEATURE_vkb_lang_cs_CZ=OFF"
@@ -114,8 +113,7 @@ PACKAGECONFIG[lang-zh_TW] = "-DFEATURE_vkb_lang_zh_TW=ON,-DFEATURE_vkb_lang_zh_T
 PACKAGES += "${PN}-dictionaries"
 RRECOMMENDS_${PN} += "${PN}-dictionaries"
 FILES_${PN}-dictionaries = "${QT6_INSTALL_DATADIR}/qtvirtualkeyboard/*/*.dat"
-FILES_${PN} += "${QT6_INSTALL_DATADIR}/qtvirtualkeyboard/lipi_toolkit"
 
 DEPENDS += "qtbase qtdeclarative qtsvg qtdeclarative-native"
 
-SRCREV = "7f0be1ead67451adb80949d70d6c2e9d6448fa2c"
+SRCREV = "90d64dea7d0370abcb5b787bcc77dc4770f491ed"
