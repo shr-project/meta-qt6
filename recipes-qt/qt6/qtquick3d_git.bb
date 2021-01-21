@@ -9,7 +9,7 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 SRC_URI += " \
-    git://github.com/assimp/assimp.git;name=assimp;branch=master;protocol=https;destsuffix=git/src/3rdparty/assimp/src \
+    ${QT_GIT}/${QT_GIT_PROJECT}/qtquick3d-assimp.git;name=assimp;branch=upstream/master;protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty/assimp/src \
     file://0001-CMake-allow-tools-build-without-opengl.patch \
 "
 
