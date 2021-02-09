@@ -13,4 +13,4 @@ DEPENDS += "qtbase"
 
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative qtwebsockets"
 
-SRCREV = "cfd837ee491f82cffb5c137a35dec958dd25fd15"
+SRCREV = "7f387ede31cb3b770014938be49f472692570c04"
