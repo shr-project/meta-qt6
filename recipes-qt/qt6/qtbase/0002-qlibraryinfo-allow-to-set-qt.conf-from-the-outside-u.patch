@@ -1,4 +1,4 @@
-From 99262593f035192b95cfa9f3ee643405bef7e307 Mon Sep 17 00:00:00 2001
+From 279fcae5069fb6802df0298144a90d8e155b3bdf Mon Sep 17 00:00:00 2001
 From: Holger Freyther <zecke@selfish.org>
 Date: Wed, 26 Sep 2012 17:22:30 +0200
 Subject: [PATCH] qlibraryinfo: allow to set qt.conf from the outside using the
@@ -16,23 +16,25 @@ Upstream-Status: Inappropriate [embedded specific]
 Change-Id: I41595c6ce7514e8f197d0a19a1308c9460037d1b
 Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- src/corelib/global/qlibraryinfo.cpp | 6 +++++-
+ qmake/qmakelibraryinfo.cpp | 6 +++++-
  1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
-index b48b1b5d95..a4d70b4b6f 100644
---- a/src/corelib/global/qlibraryinfo.cpp
-+++ b/src/corelib/global/qlibraryinfo.cpp
-@@ -131,7 +131,11 @@ void QLibrarySettings::load()
- 
- QSettings *QLibraryInfoPrivate::findConfiguration()
+diff --git a/qmake/qmakelibraryinfo.cpp b/qmake/qmakelibraryinfo.cpp
+index e8bb70071e..c6449cb81d 100644
+--- a/qmake/qmakelibraryinfo.cpp
++++ b/qmake/qmakelibraryinfo.cpp
+@@ -292,9 +292,13 @@ QString QMakeLibraryInfo::libraryInfoFile()
  {
--    QString qtconfig = QStringLiteral(":/qt/etc/qt.conf");
+     if (!qtconfManualPath.isEmpty())
+         return qtconfManualPath;
 +    QByteArray config = getenv("OE_QMAKE_QTCONF_PATH");
 +    QString qtconfig = QFile::decodeName(config);
 +    if (QFile::exists(qtconfig))
-+        return new QSettings(qtconfig, QSettings::IniFormat);
-+    qtconfig = QStringLiteral(":/qt/etc/qt.conf");
-     if (QFile::exists(qtconfig))
-         return new QSettings(qtconfig, QSettings::IniFormat);
- #ifdef Q_OS_DARWIN
++        return qtconfig;
+     if (!binaryAbsLocation.isEmpty()) {
+         QDir dir(QFileInfo(binaryAbsLocation).absolutePath());
+-        QString qtconfig = dir.filePath("qt" QT_STRINGIFY(QT_VERSION_MAJOR) ".conf");
++        qtconfig = dir.filePath("qt" QT_STRINGIFY(QT_VERSION_MAJOR) ".conf");
+         if (QFile::exists(qtconfig))
+             return qtconfig;
+         qtconfig = dir.filePath("qt.conf");
