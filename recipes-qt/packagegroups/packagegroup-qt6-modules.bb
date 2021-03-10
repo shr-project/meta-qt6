@@ -35,5 +35,6 @@ RDEPENDS_${PN} += " \
     qttranslations \
     qtvirtualkeyboard \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
+    qtwebchannel \
     qtwebsockets \
 "
