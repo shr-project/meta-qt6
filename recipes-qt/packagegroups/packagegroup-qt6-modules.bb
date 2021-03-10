@@ -25,6 +25,7 @@ RDEPENDS_${PN} += " \
     qtquickdesigner-components \
     qtquicktimeline \
     qtremoteobjects \
+    qtsensors \
     qtserialbus \
     qtserialport \
     qtshadertools \
