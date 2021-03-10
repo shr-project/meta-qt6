@@ -22,6 +22,7 @@ RDEPENDS_${PN} += "\
     qtopcua-dev \
     qtquick3d-dev \
     qtquickcontrols2-dev \
+    qtquickdesigner-components-dev \
     qtquicktimeline-dev \
     qtserialbus-dev \
     qtserialport-dev \
