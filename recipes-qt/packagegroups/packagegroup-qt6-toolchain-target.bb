@@ -21,6 +21,7 @@ RDEPENDS_${PN} += "\
     qtmqtt-dev \
     qtnetworkauth-dev \
     qtopcua-dev \
+    qtpositioning-dev \
     qtquick3d-dev \
     qtquickcontrols2-dev \
     qtquickdesigner-components-dev \
