@@ -13,6 +13,7 @@ RDEPENDS_${PN} += " \
     qtbase \
     qtcharts \
     qtcoap \
+    qtconnectivity \
     qtdeclarative \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtgraphicaleffects', '', d)} \
     qtimageformats \

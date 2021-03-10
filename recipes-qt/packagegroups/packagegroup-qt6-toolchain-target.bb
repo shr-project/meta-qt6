@@ -14,6 +14,7 @@ RDEPENDS_${PN} += "\
     qtbase-dev \
     qtcharts-dev \
     qtcoap-dev \
+    qtconnectivity-dev \
     qtdeclarative-dev \
     qtgraphicaleffects-dev \
     qtimageformats-dev \
