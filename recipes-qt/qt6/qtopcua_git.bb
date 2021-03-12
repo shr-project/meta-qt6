@@ -10,8 +10,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-PACKAGECONFIG ?= "qtdeclarative"
-PACKAGECONFIG[qtdeclarative] = ",,qtdeclarative"
+PACKAGECONFIG ?= "qml"
+PACKAGECONFIG[qml] = ",,qtdeclarative"
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,,qtquickcontrols2"
 
 # src/3rdparty/open62541.pri adds -Wno-format, causing following error
