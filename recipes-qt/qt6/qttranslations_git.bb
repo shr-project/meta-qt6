@@ -18,4 +18,4 @@ python populate_packages_prepend () {
                       'Qt translations for %s', extra_depends='')
 }
 
-SRCREV = "5d8adb072920813c85d9ded0fd064b29d957e277"
+SRCREV = "f18b950b45c93c96fc2974624b0f945b06314ab8"

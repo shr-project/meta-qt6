@@ -1,4 +1,4 @@
-From 279fcae5069fb6802df0298144a90d8e155b3bdf Mon Sep 17 00:00:00 2001
+From e483cdd14d5485109d2f160e7d4eb2bfa6e8212e Mon Sep 17 00:00:00 2001
 From: Holger Freyther <zecke@selfish.org>
 Date: Wed, 26 Sep 2012 17:22:30 +0200
 Subject: [PATCH] qlibraryinfo: allow to set qt.conf from the outside using the
@@ -16,25 +16,24 @@ Upstream-Status: Inappropriate [embedded specific]
 Change-Id: I41595c6ce7514e8f197d0a19a1308c9460037d1b
 Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
 ---
- qmake/qmakelibraryinfo.cpp | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ src/corelib/global/qlibraryinfo.cpp | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
-diff --git a/qmake/qmakelibraryinfo.cpp b/qmake/qmakelibraryinfo.cpp
-index e8bb70071e..c6449cb81d 100644
---- a/qmake/qmakelibraryinfo.cpp
-+++ b/qmake/qmakelibraryinfo.cpp
-@@ -292,9 +292,13 @@ QString QMakeLibraryInfo::libraryInfoFile()
- {
-     if (!qtconfManualPath.isEmpty())
-         return qtconfManualPath;
+diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
+index fccefa8008..956636ed77 100644
+--- a/src/corelib/global/qlibraryinfo.cpp
++++ b/src/corelib/global/qlibraryinfo.cpp
+@@ -120,7 +120,12 @@ static QSettings *findConfiguration()
+     if (!QLibraryInfoPrivate::qtconfManualPath.isEmpty())
+         return new QSettings(QLibraryInfoPrivate::qtconfManualPath, QSettings::IniFormat);
+ 
+-    QString qtconfig = QStringLiteral(":/qt/etc/qt.conf");
 +    QByteArray config = getenv("OE_QMAKE_QTCONF_PATH");
 +    QString qtconfig = QFile::decodeName(config);
 +    if (QFile::exists(qtconfig))
-+        return qtconfig;
-     if (!binaryAbsLocation.isEmpty()) {
-         QDir dir(QFileInfo(binaryAbsLocation).absolutePath());
--        QString qtconfig = dir.filePath("qt" QT_STRINGIFY(QT_VERSION_MAJOR) ".conf");
-+        qtconfig = dir.filePath("qt" QT_STRINGIFY(QT_VERSION_MAJOR) ".conf");
-         if (QFile::exists(qtconfig))
-             return qtconfig;
-         qtconfig = dir.filePath("qt.conf");
++        return new QSettings(qtconfig, QSettings::IniFormat);
++
++    qtconfig = QStringLiteral(":/qt/etc/qt.conf");
+     if (QFile::exists(qtconfig))
+         return new QSettings(qtconfig, QSettings::IniFormat);
+ #ifdef Q_OS_DARWIN

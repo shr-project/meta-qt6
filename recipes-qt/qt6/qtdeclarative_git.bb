@@ -12,8 +12,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-DEPENDS += "qtbase qtdeclarative-native"
+DEPENDS += "qtbase qtshadertools qtshadertools-native qtdeclarative-native"
 
 BBCLASSEXTEND =+ "native nativesdk"
 
-SRCREV = "1cf0c1193ad2ff8812baa36e68ca81872d7d3d40"
+SRCREV = "a7b32a3e893892fc96d58af110af568043f09e72"

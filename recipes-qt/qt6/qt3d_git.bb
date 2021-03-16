@@ -21,9 +21,9 @@ DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native"
 
 PACKAGECONFIG ??= ""
 PACKAGECONFIG_class-target ?= "system-assimp"
-PACKAGECONFIG[system-assimp] = "-DFEATURE_system_assimp=ON,-DQT_FEATURE_system_assimp=OFF,assimp"
+PACKAGECONFIG[system-assimp] = "-DFEATURE_qt3d_system_assimp=ON,-DQT_FEATURE_qt3d_system_assimp=OFF,assimp"
 PACKAGECONFIG[qtgamepad] = ",,qtgamepad"
 
 SRCREV_FORMAT = "qt3d_assimp"
-SRCREV_qt3d = "9c9284ce7f0d4ea3dda6d6bc6b602f5d4d6016d4"
+SRCREV_qt3d = "598b72dac2f467fcc244e0b7ef348c034daf428b"
 SRCREV_assimp = "4e5017df696cf92301e75b200927c8c0dbeeb56d"
