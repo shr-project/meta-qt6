@@ -19,6 +19,7 @@ RDEPENDS_${PN} += " \
     qtimageformats \
     qtlottie \
     qtmqtt \
+    qtmultimedia \
     qtnetworkauth \
     qtopcua \
     qtpositioning \
