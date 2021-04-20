@@ -14,6 +14,6 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase"
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "d8f276627a788d435169008952fc75c693c21c79"

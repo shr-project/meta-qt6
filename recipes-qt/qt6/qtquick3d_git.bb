@@ -18,7 +18,7 @@ SRC_URI += " \
 
 DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native qtquick3d-native"
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 PACKAGECONFIG[system-assimp] = "-DFEATURE_system_assimp=ON,-DFEATURE_system_assimp=OFF,assimp"
 

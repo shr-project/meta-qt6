@@ -150,6 +150,6 @@ FILES_${PN}-tools += "\
     ${QT6_INSTALL_LIBEXECDIR}/syncqt.pl \
 "
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "d05118bf10e9a8ab419248a31d45a694a4622cb0"

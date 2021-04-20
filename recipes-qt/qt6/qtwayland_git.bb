@@ -35,6 +35,6 @@ PACKAGECONFIG[dmabuf-server-buffer] = "-DFEATURE_wayland_dmabuf_server_buffer=ON
 
 DEPENDS += "qtbase qtdeclarative qtwayland-native wayland wayland-native"
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "30393c9d5e1ddcb13ea5f29bc63343dd6746c51f"

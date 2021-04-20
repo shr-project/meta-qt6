@@ -10,6 +10,6 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS = "qtbase qtshadertools-native"
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "b9949c1d097a8189cd0239d6dd6ab73e49db8d17"

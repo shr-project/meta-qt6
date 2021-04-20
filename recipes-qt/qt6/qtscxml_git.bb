@@ -16,6 +16,6 @@ PACKAGECONFIG ?= "qml"
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtscxml-native"
 PACKAGECONFIG[qml] = ",,qtdeclarative qtdeclarative-native"
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "bc8d968ec242fc4d05aa72ce980847a948fbf328"

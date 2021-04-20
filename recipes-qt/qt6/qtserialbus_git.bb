@@ -13,6 +13,6 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtserialport qtserialbus-native"
 
-BBCLASSEXTEND =+ "native nativesdk"
+BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "6c2cca7060ea039f5d64c3bba6bd23e9a3d034d8"
