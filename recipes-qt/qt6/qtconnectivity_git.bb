@@ -17,4 +17,4 @@ DEPENDS += "qtbase qtdeclarative"
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)}"
 PACKAGECONFIG[bluez] = "-DFEATURE_bluez=ON,-DFEATURE_bluez=OFF,bluez5"
 
-SRCREV = "1617f94cfc46d21790795033adfc0673bf61a660"
+SRCREV = "2423f9da789b3a7be9e76c94884f791254cedb43"

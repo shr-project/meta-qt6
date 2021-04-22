@@ -13,4 +13,4 @@ DEPENDS += "qtbase"
 PACKAGECONFIG ?= "qml"
 PACKAGECONFIG[qml] = ",,qtdeclarative"
 
-SRCREV = "dbed0f536014fc07524910b62bca89e3f1458753"
+SRCREV = "b18aff8da6550ac02171bc70116110df5456ac08"
