@@ -14,11 +14,7 @@ include recipes-qt/qt6/qt6.inc
 
 QT_MODULE_BRANCH = "wip/qt6"
 
-SRC_URI += "\
-    file://0001-CMake-deploy-libfftreal.patch \
-"
-
-DEPENDS += "qtbase"
+DEPENDS += "qtbase qtshadertools qtshadertools-native"
 
 PACKAGECONFIG ?= "gstreamer qml"
 PACKAGECONFIG[alsa] = "-DFEATURE_alsa=ON,-DFEATURE_alsa=OFF,alsa-lib"
@@ -26,4 +22,4 @@ PACKAGECONFIG[pulseaudio] = "-DFEATURE_pulseaudio=ON,-DFEATURE_pulseaudio=OFF,pu
 PACKAGECONFIG[gstreamer] = "-DFEATURE_gstreamer=ON,-DFEATURE_gstreamer=OFF,gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad"
 PACKAGECONFIG[qml] = ",,qtdeclarative"
 
-SRCREV = "6d2c0dd4ecd437baedea43c92f47ec8f5f268514"
+SRCREV = "21b7de9216abcec737c9a3f9564a6465395d8e5a"

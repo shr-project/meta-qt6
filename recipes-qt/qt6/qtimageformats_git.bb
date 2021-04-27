@@ -24,4 +24,4 @@ PACKAGECONFIG[mng] = "-DFEATURE_mng=ON,-DFEATURE_mng=OFF,libmng"
 PACKAGECONFIG[tiff] = "-DFEATURE_tiff=ON,-DFEATURE_libtiff=OFF,tiff"
 PACKAGECONFIG[webp] = "-DFEATURE_webp=ON,-DFEATURE_webp=OFF,libwebp"
 
-SRCREV = "dcc601a0aff2ce24c06eb9bf5ec7b4f18b28f786"
+SRCREV = "4d3097722d6448adb582acefcf8372568af2ffcc"

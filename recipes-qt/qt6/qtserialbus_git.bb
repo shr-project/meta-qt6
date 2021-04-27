@@ -15,4 +15,4 @@ DEPENDS += "qtbase qtserialport qtserialbus-native"
 
 BBCLASSEXTEND = "native nativesdk"
 
-SRCREV = "93c5fedba1618bad1e6e3aaeff279a51c75f5e81"
+SRCREV = "ab7449bbbee034fe3850088bd9c3d80bfac7709e"

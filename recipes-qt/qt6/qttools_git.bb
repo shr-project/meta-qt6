@@ -12,10 +12,19 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += " \
+    ${QT_GIT}/playground/qlitehtml.git;name=qlitehtml;branch=master;protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/assistant/qlitehtml \
+    git://github.com/litehtml/litehtml.git;name=litehtml;branch=master;destsuffix=git/src/assistant/qlitehtml/src/3rdparty/litehtml \
+"
+
 DEPENDS += "qtbase qtdeclarative qttools-native"
 
 FILES_${PN}-tools += "${QT6_INSTALL_DATADIR}/phrasebooks"
 
 BBCLASSEXTEND = "native nativesdk"
 
-SRCREV = "ed92701d67becc93e8ed16bc697d438918e701d9"
+SRCREV_FORMAT = "qttools_qlitehtml_litehtml"
+
+SRCREV_qttools = "0de5a1d53e2efa0c75c8a02a09f176a7bcc1988f"
+SRCREV_qlitehtml = "03e1be309c35d8d8653966fa0fe999f978ef679d"
+SRCREV_litehtml = "b4c815c0ed7e2140bc4a239be01f01c00b9cf431"

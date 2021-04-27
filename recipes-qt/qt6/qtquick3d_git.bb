@@ -1,7 +1,7 @@
 LICENSE = "BSD-3-Clause & ( GFDL-1.3 & BSD & GPL-3.0 | The-Qt-Company-Commercial )"
 LIC_FILES_CHKSUM = " \
     file://LICENSE.GPL3;md5=d32239bcb673463ab874e80d47fae504 \
-    file://src/3rdparty/assimp/src/LICENSE;md5=de63670479d9e7a0c4bbf593b7e1c1cd \
+    file://src/3rdparty/assimp/src/LICENSE;md5=d9d5275cab4fb13ae624d42ce64865de \
 "
 
 inherit qt6-cmake
@@ -9,7 +9,7 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-ASSIMP_BRANCH = "qt6.1_assimp"
+ASSIMP_BRANCH = "upstream/master"
 
 SRC_URI += " \
     ${QT_GIT}/${QT_GIT_PROJECT}/qtquick3d-assimp.git;name=assimp;branch=${ASSIMP_BRANCH};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty/assimp/src \
@@ -27,5 +27,5 @@ FILES_${PN}-qmlplugins += " \
 "
 
 SRCREV_FORMAT = "qtquick3d_assimp"
-SRCREV_qtquick3d = "86ba4c1f6843db0b8fa3884832cb128a6ee81cef"
-SRCREV_assimp = "1620a72e5820d7c680f6f5da10a3481ceb4e53c2"
+SRCREV_qtquick3d = "a78b3771b6e24166674e66193c2320fd3014c40a"
+SRCREV_assimp = "38dc92c5c94442d4eeedf2012450079fd0e63c48"
