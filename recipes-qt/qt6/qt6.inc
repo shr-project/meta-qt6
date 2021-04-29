@@ -1,5 +1,7 @@
 inherit srcrev-update
 
+include recipes-qt/qt6/qt6-ptest.inc
+
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,"
 PACKAGECONFIG[tests] = "-DQT_BUILD_TESTS=ON,-DQT_BUILD_TESTS=OFF,"
 

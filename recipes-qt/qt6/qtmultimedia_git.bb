@@ -14,6 +14,8 @@ include recipes-qt/qt6/qt6.inc
 
 QT_MODULE_BRANCH = "wip/qt6"
 
+PTEST_ENABLED = "0"
+
 DEPENDS += "qtbase qtshadertools qtshadertools-native"
 
 PACKAGECONFIG ?= "gstreamer qml"

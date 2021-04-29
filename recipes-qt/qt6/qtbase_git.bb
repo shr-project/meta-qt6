@@ -10,8 +10,8 @@ LIC_FILES_CHKSUM = " \
 
 inherit qt6-cmake
 
-include recipes-qt/qt6/qt6.inc
 include recipes-qt/qt6/qt6-git.inc
+include recipes-qt/qt6/qt6.inc
 
 SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
@@ -146,6 +146,13 @@ set(QT_HOST_PATH "\$ENV{OECORE_NATIVE_SYSROOT}/usr" CACHE PATH "")
 set(QT_BUILD_TOOLS_WHEN_CROSSCOMPILING "TRUE" CACHE BOOL "")
 EOF
 }
+
+INSANE_SKIP_${PN}-ptest += "arch"
+INHIBIT_PACKAGE_STRIP_FILES = "\
+    ${PKGD}${PTEST_PATH}/tests/auto/corelib/plugin/qpluginloader/elftest/corrupt2.elf64.so \
+    ${PKGD}${PTEST_PATH}/tests/auto/corelib/plugin/qpluginloader/elftest/corrupt3.elf64.so \
+    ${PKGD}${PTEST_PATH}/tests/auto/corelib/plugin/qpluginloader/elftest/debugobj.so \
+"
 
 FILES_${PN}-tools += "\
     ${QT6_INSTALL_LIBEXECDIR} \
