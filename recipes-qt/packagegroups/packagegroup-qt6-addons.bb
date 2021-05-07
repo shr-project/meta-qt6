@@ -13,6 +13,7 @@ RDEPENDS_${PN} += " \
     qtcharts \
     qtcoap \
     qtconnectivity \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'qtconnectivity-tools', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtdatavis3d', '', d)} \
     qtdeviceutilities \
     qtgraphicaleffects \
