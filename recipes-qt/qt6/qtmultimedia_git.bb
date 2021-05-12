@@ -24,4 +24,6 @@ PACKAGECONFIG[pulseaudio] = "-DFEATURE_pulseaudio=ON,-DFEATURE_pulseaudio=OFF,pu
 PACKAGECONFIG[gstreamer] = "-DFEATURE_gstreamer=ON,-DFEATURE_gstreamer=OFF,gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad"
 PACKAGECONFIG[qml] = ",,qtdeclarative"
 
+EXTRA_OECMAKE += "-DFEATURE_gpu_vivante=OFF"
+
 SRCREV = "21b7de9216abcec737c9a3f9564a6465395d8e5a"
