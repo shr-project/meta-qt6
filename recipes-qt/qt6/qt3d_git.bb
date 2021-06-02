@@ -14,7 +14,7 @@ REQUIRED_DISTRO_FEATURES = "opengl"
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-ASSIMP_BRANCH = "upstream/master"
+ASSIMP_BRANCH = "qt6_assimp"
 
 SRC_URI += " \
     ${QT_GIT}/${QT_GIT_PROJECT}/qtquick3d-assimp.git;name=assimp;branch=${ASSIMP_BRANCH};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty/assimp/src \
@@ -27,5 +27,5 @@ PACKAGECONFIG[system-assimp] = "-DFEATURE_qt3d_system_assimp=ON,-DQT_FEATURE_qt3
 PACKAGECONFIG[qtgamepad] = ",,qtgamepad"
 
 SRCREV_FORMAT = "qt3d_assimp"
-SRCREV_qt3d = "1880d0eb8c3a2f4482e7e03b16c18612c1f10d7b"
-SRCREV_assimp = "38dc92c5c94442d4eeedf2012450079fd0e63c48"
+SRCREV_qt3d = "b4a6597ce8311e650f686c1c04ff2cf9800c2426"
+SRCREV_assimp = "5a38cd0a03015ceabbd5bc6efb0730dde1ef74e5"

@@ -12,10 +12,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-QT_MODULE_BRANCH = "wip/qt6"
-
-PTEST_ENABLED = "0"
-
 DEPENDS += "qtbase qtshadertools qtshadertools-native"
 
 PACKAGECONFIG ?= "gstreamer qml"
@@ -26,4 +22,4 @@ PACKAGECONFIG[qml] = ",,qtdeclarative"
 
 EXTRA_OECMAKE += "-DFEATURE_gpu_vivante=OFF"
 
-SRCREV = "9c3be78dacfad5817fba1afa8bba44b1c05652d2"
+SRCREV = "7d3e538096384ce996ec948068f8e7efa52e0868"

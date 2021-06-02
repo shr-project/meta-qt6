@@ -116,4 +116,4 @@ FILES_${PN}-dictionaries = "${QT6_INSTALL_DATADIR}/qtvirtualkeyboard/*/*.dat"
 
 DEPENDS += "qtbase qtdeclarative qtsvg qtdeclarative-native"
 
-SRCREV = "bb8de5bb1efe1245b9ac316beff959cd0d7129dd"
+SRCREV = "63a944ff12580f2c333a162ecaecd12419a39c10"

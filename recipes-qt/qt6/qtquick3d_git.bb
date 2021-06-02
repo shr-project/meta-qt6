@@ -9,11 +9,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-ASSIMP_BRANCH = "upstream/master"
+ASSIMP_BRANCH = "qt6_assimp"
 
 SRC_URI += " \
     ${QT_GIT}/${QT_GIT_PROJECT}/qtquick3d-assimp.git;name=assimp;branch=${ASSIMP_BRANCH};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty/assimp/src \
-    file://0001-CMake-allow-tools-build-without-opengl.patch \
 "
 
 DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native qtquick3d-native"
@@ -27,5 +26,5 @@ FILES_${PN}-qmlplugins += " \
 "
 
 SRCREV_FORMAT = "qtquick3d_assimp"
-SRCREV_qtquick3d = "a78b3771b6e24166674e66193c2320fd3014c40a"
-SRCREV_assimp = "38dc92c5c94442d4eeedf2012450079fd0e63c48"
+SRCREV_qtquick3d = "7c817ba5423e98af3635c3b6a3d5741379bcd796"
+SRCREV_assimp = "5a38cd0a03015ceabbd5bc6efb0730dde1ef74e5"

@@ -1,4 +1,4 @@
-From 8922a1847147a2902077be7237d67eb79917fd9c Mon Sep 17 00:00:00 2001
+From 7e15934773ea428c2a35f80a0485f700ad9891cf Mon Sep 17 00:00:00 2001
 From: Martin Jansa <Martin.Jansa@gmail.com>
 Date: Mon, 15 Apr 2013 04:29:32 +0200
 Subject: [PATCH] Add linux-oe-g++ platform
@@ -24,7 +24,7 @@ Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
  create mode 100644 mkspecs/oe-device-extra.pri
 
 diff --git a/mkspecs/features/qt.prf b/mkspecs/features/qt.prf
-index 55a51293ac..7b7a8758eb 100644
+index 729f3ac73d..84efd90d47 100644
 --- a/mkspecs/features/qt.prf
 +++ b/mkspecs/features/qt.prf
 @@ -150,7 +150,7 @@ import_plugins:qtConfig(static) {
@@ -46,7 +46,7 @@ index 55a51293ac..7b7a8758eb 100644
 +        QMLPATHS *= $$[QT_INSTALL_QML]
  
      # run qmlimportscanner
-     qtPrepareTool(QMLIMPORTSCANNER, qmlimportscanner, , system)
+     qtPrepareLibExecTool(QMLIMPORTSCANNER, qmlimportscanner, , system)
 diff --git a/mkspecs/features/qt_functions.prf b/mkspecs/features/qt_functions.prf
 index dd780ad556..0664ef789e 100644
 --- a/mkspecs/features/qt_functions.prf
