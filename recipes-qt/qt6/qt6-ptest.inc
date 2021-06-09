@@ -21,7 +21,7 @@ fakeroot do_install_ptest() {
             -DCMAKE_TOOLCHAIN_FILE=${WORKDIR}/toolchain.cmake \
             ${EXTRA_OECMAKE} \
             -DQT_BUILD_STANDALONE_TESTS=ON \
-            -DQT_ADDITIONAL_PACKAGES_PREFIX_PATH=${D}${QT6_INSTALL_LIBDIR}/cmake \
+            -DQT_ADDITIONAL_PACKAGES_PREFIX_PATH="${D}${QT6_INSTALL_LIBDIR}/cmake;${RECIPE_SYSROOT}/${QT6_INSTALL_LIBDIR}/cmake" \
             -DCMAKE_STAGING_PREFIX=${D}${prefix} \
             ${S} \
             -Wno-dev
