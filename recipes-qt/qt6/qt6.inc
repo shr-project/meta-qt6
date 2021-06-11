@@ -56,6 +56,7 @@ FILES_${PN}-qmlplugins = " \
 
 FILES_${PN}-tools = " \
     ${QT6_INSTALL_BINDIR} \
+    ${QT6_INSTALL_LIBEXECDIR} \
 "
 
 FILES_${PN}-plugins = " \
@@ -71,7 +72,6 @@ FILES_${PN}-plugins_mingw32 = " \
 
 FILES_${PN} += " \
     ${QT6_INSTALL_LIBDIR}/lib*${SOLIBS} \
-    ${QT6_INSTALL_LIBEXECDIR} \
 "
 
 FILES_${PN}-dev += " \

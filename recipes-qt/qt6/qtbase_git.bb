@@ -154,10 +154,6 @@ INHIBIT_PACKAGE_STRIP_FILES = "\
     ${PKGD}${PTEST_PATH}/tests/auto/corelib/plugin/qpluginloader/elftest/debugobj.so \
 "
 
-FILES_${PN}-tools += "\
-    ${QT6_INSTALL_LIBEXECDIR} \
-"
-
 BBCLASSEXTEND = "native nativesdk"
 
 SRCREV = "9ef816e13a63c1932f3464119796bdbb07c7e893"
