@@ -18,4 +18,4 @@ PACKAGECONFIG ?= "qml"
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative qtwebsockets"
 PACKAGECONFIG[qml] = ",,qtdeclarative"
 
-SRCREV = "2daa001e1e9b1dc50a28e6ac20b1eb900e8b68d6"
+SRCREV = "e7734de220b863f7975e912ade4be290d05acf5f"

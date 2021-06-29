@@ -13,6 +13,6 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtdeclarative qtremoteobjects-native"
 
-SRCREV = "7989e08db8f6d6f6ddec46d6d2495e4bd7a6b3db"
+SRCREV = "bb33966d5348a5df06756adeb05bc2f72b783980"
 
 BBCLASSEXTEND += "native nativesdk"

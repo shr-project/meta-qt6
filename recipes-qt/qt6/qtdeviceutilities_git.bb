@@ -8,4 +8,4 @@ include recipes-qt/qt6/qt6-git.inc
 DEPENDS = "qtbase qtdeclarative qtdeclarative-native qtvirtualkeyboard"
 RDEPENDS_${PN} = "connman"
 
-SRCREV = "10c59319e196f717e569a9a0bfc45ae73d88d1fd"
+SRCREV = "c0c3066d25678a92bcb2932b6595d019e9613d27"
