@@ -3,11 +3,12 @@ Qt6 OpenEmbedded/Yocto Project layer
 
 This layer depends on:
 
-URI: https://github.com/openembedded/openembedded-core
+URI: https://git.openembedded.org/openembedded-core/
 
 and optionally:
 
-URI: https://github.com/openembedded/meta-openembedded
+URI: https://git.openembedded.org/meta-openembedded/
+URI: https://git.openembedded.org/meta-python2
 
 Yocto version support
 ---------------------
@@ -24,6 +25,12 @@ Qt version.
 | hardknott  |     |  x  |  x  |  x  |
 | gatesgarth |     |  x  |  x  |  x  |
 | dunfell    |     |  x  |  x  |  x  |
+
+QtWebEngine
+-----------
+
+QtWebEngine needs at least CMake 3.19, which is available starting from Hardknott.
+For this reason QtWebEngine is not tested on older releases.
 
 Contributing
 ------------

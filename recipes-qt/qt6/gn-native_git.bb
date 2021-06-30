@@ -1,0 +1,11 @@
+require recipes-qt/qt6/qtwebengine.inc
+
+inherit native
+
+OECMAKE_SOURCEPATH = "${S}/src/gn"
+
+cmake_do_install() {
+    eval DESTDIR='${D}' ${CMAKE_VERBOSE} cmake --install '${B}'
+}
+
+INSANE_SKIP_${PN} += "already-stripped"
