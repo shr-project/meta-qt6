@@ -1,0 +1,25 @@
+From 2ddd0a26eaf583ac9f11c8b0a97602c4f3a86e4c Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 31 Aug 2021 18:27:48 +0300
+Subject: [PATCH] Enable examples
+
+The bug mentioned does not affect bitbake builds.
+
+Change-Id: I076763d9241061f9cdb4d46bcd88e46bd4f783aa
+---
+ examples/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/examples/CMakeLists.txt b/examples/CMakeLists.txt
+index 06e36ecc..035a14f6 100644
+--- a/examples/CMakeLists.txt
++++ b/examples/CMakeLists.txt
+@@ -1,7 +1,7 @@
+ cmake_minimum_required(VERSION 3.16)
+ 
+ qt_examples_build_begin()
+-if(NOT CMAKE_CROSSCOMPILING) #QTBUG-86533
++if(TRUE) #QTBUG-86533
+     if(TARGET Qt::WebEngineCore)
+         add_subdirectory(webenginequick)
+     endif()

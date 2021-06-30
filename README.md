@@ -3,11 +3,12 @@ Qt6 OpenEmbedded/Yocto Project layer
 
 This layer depends on:
 
-URI: https://github.com/openembedded/openembedded-core
+URI: https://git.openembedded.org/openembedded-core/
 
 and optionally:
 
-URI: https://github.com/openembedded/meta-openembedded
+URI: https://git.openembedded.org/meta-openembedded/
+URI: https://git.openembedded.org/meta-python2
 
 Yocto version support
 ---------------------

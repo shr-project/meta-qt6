@@ -1,0 +1,41 @@
+From ba24cb211c85c28833554d674d43b88b72e9a488 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Wed, 18 Aug 2021 15:09:41 +0300
+Subject: [PATCH] CMake: use generated yocto toolchains
+
+Bitbake knows how to generate working toolchains, use those instead of
+ones done by webengine. No need to use separate host pkg-wrapper with
+these toolchain.
+
+Upstream-Status: Inappropriate [embedder specific]
+Change-Id: I217c9122144f25bb2d28717e7248c2a51b149127
+---
+ cmake/Functions.cmake | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/cmake/Functions.cmake b/cmake/Functions.cmake
+index b7c386fc..a75dfc30 100644
+--- a/cmake/Functions.cmake
++++ b/cmake/Functions.cmake
+@@ -630,7 +630,7 @@ endfunction()
+ 
+ macro(create_pkg_config_host_wrapper buildDir)
+     find_package(PkgConfigHost)
+-        if(CMAKE_CROSSCOMPILING)
++        if(FALSE)
+             create_pkg_config_wrapper("${buildDir}/pkg-config-host_wrapper.sh" "${PKG_CONFIG_HOST_EXECUTABLE}")
+             set(PKG_CONFIG_HOST_EXECUTABLE "${buildDir}/pkg-config-host_wrapper.sh")
+         endif()
+@@ -818,9 +818,9 @@ endmacro()
+ macro(append_toolchain_setup)
+     if(LINUX)
+         list(APPEND gnArgArg
+-            custom_toolchain="${buildDir}/target_toolchain:target"
+-            host_toolchain="${buildDir}/host_toolchain:host"
+-            v8_snapshot_toolchain="${buildDir}/v8_toolchain:v8"
++            custom_toolchain="//build/toolchain/yocto:yocto_target"
++            host_toolchain="//build/toolchain/yocto:yocto_native"
++            v8_snapshot_toolchain="//build/toolchain/yocto:yocto_target"
+         )
+         get_gn_arch(cpu ${TEST_architecture_arch})
+         if(CMAKE_CROSSCOMPILING)

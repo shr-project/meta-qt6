@@ -33,6 +33,11 @@ WARN_QA:remove = "${EXTRA_QA}"
 PREFERRED_ARM_INSTRUCTION_SET              ?= "thumb"
 ARM_INSTRUCTION_SET = "${PREFERRED_ARM_INSTRUCTION_SET}"
 
+# enable webengine with commercial/proprietary features
+DISTRO_FEATURES:append = " webengine"
+LICENSE_FLAGS_WHITELIST = "commercial"
+PACKAGECONFIG:append:pn-qtwebengine = " proprietary-codecs ffmpeg"
+
 PACKAGECONFIG:append:pn-qtbase = "\
     tslib kms gbm zstd libproxy gssapi vulkan mtdev cups \
     sql-mysql sql-odbc sql-psql sql-sqlite journald brotli \
@@ -73,4 +78,5 @@ PACKAGECONFIG:append:pn-qttranslations = " examples"
 PACKAGECONFIG:append:pn-qtvirtualkeyboard = " examples"
 PACKAGECONFIG:append:pn-qtwayland = " examples"
 PACKAGECONFIG:append:pn-qtwebchannel = " examples"
+PACKAGECONFIG:append:pn-qtwebengine = " examples"
 PACKAGECONFIG:append:pn-qtwebsockets = " examples"
