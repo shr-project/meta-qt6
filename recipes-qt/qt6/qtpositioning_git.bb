@@ -23,4 +23,4 @@ PACKAGECONFIG[gypsy] = "-DFEATURE_gypsy=ON,-DFEATURE_gypsy=OFF,gconf gypsy"
 PACKAGECONFIG[nmea] = ",,qtserialport"
 PACKAGECONFIG[qml] = ",,qtdeclarative"
 
-SRCREV = "b7d64fc06fb7c8681bf3a09ce8c5729a52e301b6"
+SRCREV = "33764b5f2b741cbf654109728f807e73dd2eed69"
