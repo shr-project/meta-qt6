@@ -13,4 +13,4 @@ QT_MODULE_BRANCH = "dev"
 
 DEPENDS += "qtbase qtdeclarative qtquickcontrols2"
 
-SRCREV = "6bb7c0f52c7f4d355abc09c955f6b6b0ee66b98a"
+SRCREV = "57ac8b13654796256e6a20913d74e6bca2965a14"

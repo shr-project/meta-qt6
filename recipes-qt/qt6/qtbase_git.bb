@@ -156,4 +156,4 @@ INHIBIT_PACKAGE_STRIP_FILES = "\
 
 BBCLASSEXTEND = "native nativesdk"
 
-SRCREV = "f57bfa3ba0b3cc6a4f53eebebbe16c0e41ccee3a"
+SRCREV = "55b2a1e4fc7c3fc1369c0832c375af056eef1eea"
