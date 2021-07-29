@@ -1,13 +1,13 @@
 inherit qt6-paths
 
-SDK_POSTPROCESS_COMMAND_prepend = "create_qt6_sdk_files;"
+SDK_POSTPROCESS_COMMAND:prepend = "create_qt6_sdk_files;"
 
 
 PATH_DELIM = ":"
-PATH_DELIM_sdkmingw32 = ";"
+PATH_DELIM:sdkmingw32 = ";"
 
 QT6_INSTALL_HOST_LIBEXECDIR = "${QT6_INSTALL_LIBEXECDIR}"
-QT6_INSTALL_HOST_LIBEXECDIR_sdkmingw32 = "${QT6_INSTALL_LIBEXECDIR_mingw32}"
+QT6_INSTALL_HOST_LIBEXECDIR:sdkmingw32 = "${QT6_INSTALL_LIBEXECDIR:mingw32}"
 
 create_qt6_sdk_files () {
     # Generate a qt.conf file to be deployed with the SDK
@@ -107,7 +107,7 @@ EOF
 
 }
 
-create_qt6_sdk_files_append_sdkmingw32() {
+create_qt6_sdk_files:append:sdkmingw32() {
     sed -i -e 's|${SDKPATH}|$ENV{SDKPATH}|g' \
         ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake
 }

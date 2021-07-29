@@ -1,13 +1,13 @@
 PREFERRED_PROVIDER_udev = "systemd"
 # use gold
-DISTRO_FEATURES_append = " ld-is-gold"
+DISTRO_FEATURES:append = " ld-is-gold"
 # use systemd
-DISTRO_FEATURES_append = " systemd"
+DISTRO_FEATURES:append = " systemd"
 DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
 VIRTUAL-RUNTIME_init_manager = "systemd"
 VIRTUAL-RUNTIME_initscripts = ""
 # use wayland
-DISTRO_FEATURES_append = " wayland"
+DISTRO_FEATURES:append = " wayland"
 
 INHERIT += "buildstats buildstats-summary"
 INHERIT += "rm_work"
@@ -15,7 +15,7 @@ INHERIT += "rm_work"
 # fast compression of SDK tar package
 SDK_XZ_COMPRESSION_LEVEL = "-1"
 
-SDK_ARCHIVE_TYPE_sdkmingw32 = "zip"
+SDK_ARCHIVE_TYPE:sdkmingw32 = "zip"
 
 # be more strict with QA warnings, turn them all to errors:
 EXTRA_QA = "\
@@ -26,21 +26,21 @@ EXTRA_QA = "\
     unknown-configure-option symlink-to-sysroot multilib \
     invalid-packageconfig host-user-contaminated uppercase-pn \
 "
-ERROR_QA_append = "${EXTRA_QA}"
-WARN_QA_remove = "${EXTRA_QA}"
+ERROR_QA:append = "${EXTRA_QA}"
+WARN_QA:remove = "${EXTRA_QA}"
 
 # enable thumb for broader test coverage (oe-core autobuilder doesn't have thumb enabled)
 PREFERRED_ARM_INSTRUCTION_SET              ?= "thumb"
 ARM_INSTRUCTION_SET = "${PREFERRED_ARM_INSTRUCTION_SET}"
 
-PACKAGECONFIG_append_pn-qtbase = "\
+PACKAGECONFIG:append:pn-qtbase = "\
     tslib kms gbm zstd libproxy gssapi vulkan mtdev cups \
     sql-mysql sql-odbc sql-psql sql-sqlite journald brotli \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'gtk', '', d)} \
 "
 
 # imageformats mng FIXME
-PACKAGECONFIG_append_pn-qtimageformats = " jasper"
+PACKAGECONFIG:append:pn-qtimageformats = " jasper"
 
 # Use latest uninative package
 UNINATIVE_MAXGLIBCVERSION = "2.32"
@@ -51,35 +51,35 @@ UNINATIVE_CHECKSUM[i686] ?= "cae5d73245d95b07cf133b780ba3f6c8d0adca3ffc4e7e7fab9
 UNINATIVE_CHECKSUM[x86_64] ?= "d07916b95c419c81541a19c8ef0ed8cbd78ae18437ff28a4c8a60ef40518e423"
 
 # enable examples for all Qt modules
-PACKAGECONFIG_append_pn-qt3d = " examples"
-PACKAGECONFIG_append_pn-qt5compat = " examples"
-PACKAGECONFIG_append_pn-qtbase = " examples"
-PACKAGECONFIG_append_pn-qtcharts = " examples"
-PACKAGECONFIG_append_pn-qtcoap = " examples"
-PACKAGECONFIG_append_pn-qtconnectivity = " examples"
-PACKAGECONFIG_append_pn-qtdatavis3d = " examples"
-PACKAGECONFIG_append_pn-qtdeclarative = " examples"
-PACKAGECONFIG_append_pn-qtimageformats = " examples"
-PACKAGECONFIG_append_pn-qtmqtt = " examples"
-PACKAGECONFIG_append_pn-qtmultimedia = " examples"
-PACKAGECONFIG_append_pn-qtnetworkauth = " examples"
-PACKAGECONFIG_append_pn-qtopcua = " examples"
-PACKAGECONFIG_append_pn-qtpositioning = " examples"
-PACKAGECONFIG_append_pn-qtquick3d = " examples"
-PACKAGECONFIG_append_pn-qtquickcontrols2 = " examples"
-PACKAGECONFIG_append_pn-qtquickdesigner-components = " examples"
-PACKAGECONFIG_append_pn-qtquicktimeline = " examples"
-PACKAGECONFIG_append_pn-qtremoteobjects = " examples"
-PACKAGECONFIG_append_pn-qtscxml = " examples"
-PACKAGECONFIG_append_pn-qtsensors = " examples"
-PACKAGECONFIG_append_pn-qtserialbus = " examples"
-PACKAGECONFIG_append_pn-qtserialport = " examples"
-PACKAGECONFIG_append_pn-qtshadertools = " examples"
-PACKAGECONFIG_append_pn-qtspeech = " examples"
-PACKAGECONFIG_append_pn-qtsvg = " examples"
-PACKAGECONFIG_append_pn-qttools = " examples"
-PACKAGECONFIG_append_pn-qttranslations = " examples"
-PACKAGECONFIG_append_pn-qtvirtualkeyboard = " examples"
-PACKAGECONFIG_append_pn-qtwayland = " examples"
-PACKAGECONFIG_append_pn-qtwebchannel = " examples"
-PACKAGECONFIG_append_pn-qtwebsockets = " examples"
+PACKAGECONFIG:append:pn-qt3d = " examples"
+PACKAGECONFIG:append:pn-qt5compat = " examples"
+PACKAGECONFIG:append:pn-qtbase = " examples"
+PACKAGECONFIG:append:pn-qtcharts = " examples"
+PACKAGECONFIG:append:pn-qtcoap = " examples"
+PACKAGECONFIG:append:pn-qtconnectivity = " examples"
+PACKAGECONFIG:append:pn-qtdatavis3d = " examples"
+PACKAGECONFIG:append:pn-qtdeclarative = " examples"
+PACKAGECONFIG:append:pn-qtimageformats = " examples"
+PACKAGECONFIG:append:pn-qtmqtt = " examples"
+PACKAGECONFIG:append:pn-qtmultimedia = " examples"
+PACKAGECONFIG:append:pn-qtnetworkauth = " examples"
+PACKAGECONFIG:append:pn-qtopcua = " examples"
+PACKAGECONFIG:append:pn-qtpositioning = " examples"
+PACKAGECONFIG:append:pn-qtquick3d = " examples"
+PACKAGECONFIG:append:pn-qtquickcontrols2 = " examples"
+PACKAGECONFIG:append:pn-qtquickdesigner-components = " examples"
+PACKAGECONFIG:append:pn-qtquicktimeline = " examples"
+PACKAGECONFIG:append:pn-qtremoteobjects = " examples"
+PACKAGECONFIG:append:pn-qtscxml = " examples"
+PACKAGECONFIG:append:pn-qtsensors = " examples"
+PACKAGECONFIG:append:pn-qtserialbus = " examples"
+PACKAGECONFIG:append:pn-qtserialport = " examples"
+PACKAGECONFIG:append:pn-qtshadertools = " examples"
+PACKAGECONFIG:append:pn-qtspeech = " examples"
+PACKAGECONFIG:append:pn-qtsvg = " examples"
+PACKAGECONFIG:append:pn-qttools = " examples"
+PACKAGECONFIG:append:pn-qttranslations = " examples"
+PACKAGECONFIG:append:pn-qtvirtualkeyboard = " examples"
+PACKAGECONFIG:append:pn-qtwayland = " examples"
+PACKAGECONFIG:append:pn-qtwebchannel = " examples"
+PACKAGECONFIG:append:pn-qtwebsockets = " examples"
