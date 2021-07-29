@@ -7,7 +7,7 @@ inherit packagegroup
 
 PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     packagegroup-qt6-essentials \
     packagegroup-qt6-addons \
 "

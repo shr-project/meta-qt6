@@ -3,12 +3,12 @@ require gn-utils.inc
 inherit qemu
 
 COMPATIBLE_MACHINE = "(-)"
-COMPATIBLE_MACHINE_aarch64 = "(.*)"
-COMPATIBLE_MACHINE_armv6 = "(.*)"
-COMPATIBLE_MACHINE_armv7a = "(.*)"
-COMPATIBLE_MACHINE_armv7ve = "(.*)"
-COMPATIBLE_MACHINE_x86 = "(.*)"
-COMPATIBLE_MACHINE_x86-64 = "(.*)"
+COMPATIBLE_MACHINE:aarch64 = "(.*)"
+COMPATIBLE_MACHINE:armv6 = "(.*)"
+COMPATIBLE_MACHINE:armv7a = "(.*)"
+COMPATIBLE_MACHINE:armv7ve = "(.*)"
+COMPATIBLE_MACHINE:x86 = "(.*)"
+COMPATIBLE_MACHINE:x86-64 = "(.*)"
 
 # By default, passing is_official_build=true to GN causes its symbol_level
 # variable to be set to "2". This means the compiler will be passed "-g2" and
@@ -24,24 +24,24 @@ COMPATIBLE_MACHINE_x86-64 = "(.*)"
 #    instead, so that if DEBUG_BUILD is not set GN will not create a huge debug
 #    binary anyway. Since our compiler flags are passed after GN's, -g0 does
 #    not cause any issues if DEBUG_BUILD is set, as -g1 will be passed later.
-DEBUG_FLAGS_remove_arm = "-g"
-DEBUG_FLAGS_append_arm = "-g1"
-DEBUG_FLAGS_remove_x86 = "-g"
-DEBUG_FLAGS_append_x86 = "-g1"
+DEBUG_FLAGS:remove:arm = "-g"
+DEBUG_FLAGS:append:arm = "-g1"
+DEBUG_FLAGS:remove:x86 = "-g"
+DEBUG_FLAGS:append:x86 = "-g1"
 
 # As of Chromium 62.0.3202.94 and Yocto Rocko (GCC 7, binutils 2.29), passing
 # -g to the compiler results in many linker errors on aarch64, such as:
 # obj/third_party/WebKit/Source/modules/payments/libpayments.a(PaymentEventDataConversion.o)(.debug_loc+0x4e25): error: relocation overflow in R_AARCH64_ABS32
-DEBUG_FLAGS_remove_aarch64 = "-g"
-DEBUG_FLAGS_append_aarch64 = "-g1"
+DEBUG_FLAGS:remove:aarch64 = "-g"
+DEBUG_FLAGS:append:aarch64 = "-g1"
 
 # As of Chromium 60.0.3112.101 and Yocto Pyro (GCC 6, binutils 2.28), passing
 # -g to the compiler results in many linker errors on x86_64, such as:
 # obj/third_party/WebKit/Source/core/loader/libloader.a(ModuleTreeLinker.o)(.debug_loc+0x1e9a5): error: relocation overflow: reference to local symbol 82 in obj/third_party/WebKit/Source/core/loader/libloader.a(ModuleTreeLinker.o)
 # obj/third_party/WebKit/Source/core/libcore_generated.a(ScriptModule.o)(.debug_loc+0x253c): error: relocation overflow: reference to local symbol 31 in obj/third_party/WebKit/Source/core/libcore_generated.a(ScriptModule.o)
 # so we have to use the same hack described above.
-DEBUG_FLAGS_remove_x86-64 = "-g"
-DEBUG_FLAGS_append_x86-64 = "-g1"
+DEBUG_FLAGS:remove:x86-64 = "-g"
+DEBUG_FLAGS:append:x86-64 = "-g1"
 
 # V8's JIT infrastructure requires binaries such as mksnapshot and
 # mkpeephole to be run in the host during the build. However, these
@@ -76,7 +76,7 @@ python do_create_v8_qemu_wrapper () {
 # This causes the build tools to crash with QEMU when they are ran during
 # to build. Instead of using QEMU, change the wrapper to try to run the
 # tools directly, using the target dynloader.
-python do_create_v8_qemu_wrapper_x86-64 () {
+python do_create_v8_qemu_wrapper:x86-64 () {
     wrapper_path = d.expand('${B}/src/core/Release/${TARGET_ARCH}')
     bb.utils.mkdirhier(wrapper_path)
     wrapper_path = os.path.join(wrapper_path, "v8-qemu-wrapper.sh")
@@ -109,4 +109,4 @@ do_compile[progress] = "outof:^\[(\d+)/(\d+)\]\s+"
 PACKAGE_DEBUG_SPLIT_STYLE = "debug-without-src"
 
 # There is no need to ship empty -dev packages.
-ALLOW_EMPTY_${PN}-dev = "0"
+ALLOW_EMPTY:${PN}-dev = "0"

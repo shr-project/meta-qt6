@@ -13,7 +13,7 @@ OE_QMAKE_PATH_SETTINGS = "${sysconfdir}"
 OE_QMAKE_PATH_EXAMPLES = "${QT6_INSTALL_EXAMPLESDIR}"
 OE_QMAKE_PATH_TESTS = "${QT6_INSTALL_TESTSDIR}"
 OE_QMAKE_PATH_HOST_PREFIX = ""
-OE_QMAKE_PATH_HOST_PREFIX_class-target = "${STAGING_DIR_NATIVE}"
+OE_QMAKE_PATH_HOST_PREFIX:class-target = "${STAGING_DIR_NATIVE}"
 OE_QMAKE_PATH_HOST_BINS = "${QT6_INSTALL_BINDIR}"
 OE_QMAKE_PATH_HOST_DATA = "${QMAKE_MKSPEC_PATH_TARGET}"
 OE_QMAKE_PATH_HOST_LIBS = "${STAGING_LIBDIR}"
@@ -25,13 +25,13 @@ QMAKE_MKSPEC_PATH_NATIVE = "${STAGING_LIBDIR_NATIVE}"
 QMAKE_MKSPEC_PATH_TARGET = "${STAGING_LIBDIR}"
 
 QMAKE_MKSPEC_PATH = "${QMAKE_MKSPEC_PATH_TARGET}"
-QMAKE_MKSPEC_PATH_class-native = "${QMAKE_MKSPEC_PATH_NATIVE}"
-QMAKE_MKSPEC_PATH_class-nativesdk = "${QMAKE_MKSPEC_PATH_NATIVE}"
+QMAKE_MKSPEC_PATH:class-native = "${QMAKE_MKSPEC_PATH_NATIVE}"
+QMAKE_MKSPEC_PATH:class-nativesdk = "${QMAKE_MKSPEC_PATH_NATIVE}"
 
-DEPENDS_prepend = "qtbase-native "
+DEPENDS:prepend = "qtbase-native "
 
 # hardcode linux, because that's what 0001-Add-linux-oe-g-platform.patch adds
-XPLATFORM_toolchain-clang = "linux-oe-clang"
+XPLATFORM:toolchain-clang = "linux-oe-clang"
 XPLATFORM ?= "linux-oe-g++"
 
 OE_QMAKE_PLATFORM_NATIVE = "${XPLATFORM}"
@@ -239,7 +239,7 @@ do_configure () {
     ${OE_QMAKE_QMAKE} -makefile -o Makefile ${OE_QMAKE_DEBUG_OUTPUT} ${OE_QMAKE_RECURSIVE} $QMAKE_VARSUBST_PRE $AFTER $PROFILES $QMAKE_VARSUBST_POST -- $QMAKE_VARSUBST_CONFIGURE || die "Error calling $CMD"
 }
 
-do_install_class-native() {
+do_install:class-native() {
     oe_runmake install INSTALL_ROOT=${D}
     find "${D}" -ignore_readdir_race -name "*.la" -delete
     if ls ${D}${libdir}/pkgconfig/Qt5*.pc >/dev/null 2>/dev/null; then
