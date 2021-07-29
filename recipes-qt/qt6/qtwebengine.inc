@@ -30,7 +30,7 @@ def gettext_oeconf(d):
 QT_MODULE = "qtwebengine"
 QT_MODULE_BRANCH_CHROMIUM = "90-based"
 
-FILESEXTRAPATHS_prepend := "${THISDIR}/qtwebengine:"
+FILESEXTRAPATHS:prepend := "${THISDIR}/qtwebengine:"
 
 SRC_URI += " \
     ${QT_GIT}/${QT_GIT_PROJECT}/qtwebengine-chromium.git;name=qtwebengine-chromium;branch=${QT_MODULE_BRANCH_CHROMIUM};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty \

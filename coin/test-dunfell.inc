@@ -1,2 +1,2 @@
 # disable examples for qtbase (QTBUG-96197)
-PACKAGECONFIG_remove_pn-qtbase = "examples"
+PACKAGECONFIG:remove:pn-qtbase = "examples"
