@@ -1,4 +1,4 @@
-FILESEXTRAPATHS_append := ":${THISDIR}/ptest"
+FILESEXTRAPATHS:append := ":${THISDIR}/ptest"
 SRC_URI += "file://run-ptest"
 
 inherit ptest
@@ -49,4 +49,4 @@ fakeroot do_install_ptest() {
     fi
 }
 
-INSANE_SKIP_${PN}-ptest += "file-rdeps"
+INSANE_SKIP:${PN}-ptest += "file-rdeps"
