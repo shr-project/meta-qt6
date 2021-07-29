@@ -129,7 +129,7 @@ instructions:
       bitbake-layers add-layer ${SOURCE_DIR}
 
       if [ -n "${DISABLE_X11}" ] ; then
-        echo "DISTRO_FEATURES_remove = \"x11\"" >> conf/local.conf
+        echo "DISTRO_FEATURES:remove = \"x11\"" >> conf/local.conf
       fi
       if [ -n "${MINGW}" ]; then
         export SDKMACHINE=x86_64-mingw32

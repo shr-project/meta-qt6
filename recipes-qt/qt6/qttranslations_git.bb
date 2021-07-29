@@ -12,7 +12,7 @@ DEPENDS += "qtbase qttools qttools-native"
 
 PACKAGES = "${PN}"
 PACKAGES_DYNAMIC = "${PN}-*"
-PACKAGESPLITFUNCS_prepend = "split_translation_packages "
+PACKAGESPLITFUNCS:prepend = "split_translation_packages "
 
 python split_translation_packages () {
     do_split_packages(d, d.expand('${QT6_INSTALL_TRANSLATIONSDIR}'),
@@ -22,7 +22,7 @@ python split_translation_packages () {
     # Add dynamic packages to the rrecommends of the main packages
     pn = d.getVar('PN')
     pkgs = oe.utils.packages_filter_out_system(d)
-    d.setVar('RRECOMMENDS_' + pn, ' '.join(pkgs))
+    d.setVar('RRECOMMENDS:' + pn, ' '.join(pkgs))
 }
 
 SRCREV = "e5a524371af4b7dedaa65ea78450fa1851f42988"
