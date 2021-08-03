@@ -18,12 +18,12 @@ The branching of meta-qt6 layer follows Qt branching scheme, that is
 Following table shows the Yocto branches which are used to test each
 Qt version.
 
-| Yocto \ Qt | dev | 6.1 | 6.0 |
-| ---------- |:---:|:---:|:---:|
-| master     |  x  |     |     |
-| hardknott  |  x  |  x  |  x  |
-| gatesgarth |  x  |  x  |  x  |
-| dunfell    |  x  |  x  |  x  |
+| Yocto \ Qt | dev | 6.2 | 6.1 | 6.0 |
+| ---------- |:---:|:---:|:---:|:---:|
+| master     |  x  |     |     |     |
+| hardknott  |     |  x  |  x  |  x  |
+| gatesgarth |     |  x  |  x  |  x  |
+| dunfell    |     |  x  |  x  |  x  |
 
 Contributing
 ------------
