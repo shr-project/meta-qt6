@@ -17,6 +17,7 @@ SRC_URI += "\
     file://0001-Add-linux-oe-g-platform.patch \
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0003-tests-disable-failing-tests.patch \
+    file://0001-catch_p_p.h-don-t-use-MINSIGSTKSZ.patch \
 "
 
 DEPENDS += "\
