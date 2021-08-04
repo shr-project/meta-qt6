@@ -1,0 +1,58 @@
+From bc7f6334c9ffca560d349c2939f5ef87793f97de Mon Sep 17 00:00:00 2001
+From: Martin Jansa <martin.jansa@lge.com>
+Date: Wed, 4 Aug 2021 14:05:09 -0700
+Subject: [PATCH] catch_p_p.h: don't use MINSIGSTKSZ
+
+* as https://sourceware.org/pipermail/libc-alpha/2021-August/129718.html says:
+  * Add _SC_MINSIGSTKSZ and _SC_SIGSTKSZ.  When _DYNAMIC_STACK_SIZE_SOURCE
+    or _GNU_SOURCE are defined, MINSIGSTKSZ and SIGSTKSZ are no longer
+    constant on Linux.  MINSIGSTKSZ is redefined to sysconf(_SC_MINSIGSTKSZ)
+    and SIGSTKSZ is redefined to sysconf (_SC_SIGSTKSZ).  This supports
+    dynamic sized register sets for modern architectural features like
+    Arm SVE.
+
+* fixes:
+FAILED: tests/auto/testlib/selftests/CMakeFiles/tst_selftests.dir/catch.cpp.o
+/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot-native/usr/bin/arm-webos-linux-gnueabi/arm-webos-linux-gnueabi-g++ -DQT_CORE_LIB -DQT_NO_DEBUG -DQT_TESTCASE_BUILDDIR=\"/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/build-ptest/tests/auto/testlib/selftests\" -DQT_TESTCASE_SOURCEDIR=\"/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests\" -DSUBPROGRAMS="assert badxml benchlibcallgrind benchlibcounting benchlibeventcounter benchliboptions benchlibtickcounter benchlibwalltime blacklisted cmptest commandlinedata counting crashes datatable datetime deleteLater deleteLater_noApp differentexec exceptionthrow expectfail failcleanup faildatatype failfetchtype failinit failinitdata fetchbogus findtestdata float globaldata longstring maxwarnings multiexec pass pairdiagnostics printdatatags printdatatagswithglobaltags qexecstringlist silent signaldumper singleskip skip skipcleanup skipinit skipinitdata sleep strcmp subtest testlib tuplediagnostics verbose1 verbose2 verifyexceptionthrown warnings watchdog xunit keyboard mouse" -D_LARGEFILE64_SOURCE -D_LARGEFILE_SOURCE -I/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/build-ptest/tests/auto/testlib/selftests/tst_selftests_autogen/include -I/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests -I/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/build-ptest/tests/auto/testlib/selftests -I/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/build-ptest/include -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include/QtCore -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/lib/mkspecs/linux-g++ -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include/QtTest -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include/QtTest/6.2.0 -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include/QtTest/6.2.0/QtTest -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include/QtCore/6.2.0 -isystem /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/image/usr/include/QtCore/6.2.0/QtCore -mthumb -mfpu=neon-vfpv4 -mfloat-abi=hard -mcpu=cortex-a7 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security -Werror=return-type  --sysroot=/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot  -O2 -pipe -g -feliminate-unused-debug-types -fmacro-prefix-map=/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0=/usr/src/debug/qtbase/6.2.0-r0                      -fdebug-prefix-map=/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0=/usr/src/debug/qtbase/6.2.0-r0                      -fdebug-prefix-map=/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot=                      -fdebug-prefix-map=/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot-native=  -D__WEBOS__ -D__WEBOS__     -DQFONTCACHE_MIN_COST=512  -fvisibility-inlines-hidden   -mthumb -mfpu=neon-vfpv4 -mfloat-abi=hard -mcpu=cortex-a7 -fstack-protector-strong  -O2 -D_FORTIFY_SOURCE=2 -Wformat -Wformat-security -Werror=format-security -Werror=return-type  --sysroot=/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot -DNDEBUG -O2 -fPIE -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -pthread -Wsuggest-override -std=gnu++17 -MD -MT tests/auto/testlib/selftests/CMakeFiles/tst_selftests.dir/catch.cpp.o -MF tests/auto/testlib/selftests/CMakeFiles/tst_selftests.dir/catch.cpp.o.d -o tests/auto/testlib/selftests/CMakeFiles/tst_selftests.dir/catch.cpp.o -c /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch.cpp
+In file included from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot/usr/include/signal.h:328,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p_p.h:7903,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p.h:56,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch.cpp:47:
+/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p_p.h:10766:58: error: call to non-'constexpr' function 'long int sysconf(int)'
+10766 |     static constexpr std::size_t sigStackSize = 32768 >= MINSIGSTKSZ ? 32768 : MINSIGSTKSZ;
+      |                                                          ^~~~~~~~~~~
+In file included from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot/usr/include/bits/sigstksz.h:24,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot/usr/include/signal.h:328,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p_p.h:7903,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p.h:56,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch.cpp:47:
+/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/recipe-sysroot/usr/include/unistd.h:641:17: note: 'long int sysconf(int)' declared here
+  641 | extern long int sysconf (int __name) __THROW;
+      |                 ^~~~~~~
+In file included from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p.h:56,
+                 from /jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch.cpp:47:
+/jenkins/mjansa/build/webos/honister/BUILD/work/raspberrypi4-webos-linux-gnueabi/qtbase/6.2.0-r0/git/tests/auto/testlib/selftests/catch_p_p.h:10825:45: error: size of array 'altStackMem' is not an integral constant-expression
+10825 |     char FatalConditionHandler::altStackMem[sigStackSize] = {};
+      |                                             ^~~~~~~~~~~~
+
+Later, Catch2 should be updated to v2.13.5 or newer with proper fix for
+https://github.com/catchorg/Catch2/issues/2178 as in
+https://codereview.qt-project.org/c/qt/qtbase/+/374291
+
+---
+ tests/auto/testlib/selftests/catch_p_p.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/auto/testlib/selftests/catch_p_p.h b/tests/auto/testlib/selftests/catch_p_p.h
+index 596bfe63dd..3ef42343b3 100644
+--- a/tests/auto/testlib/selftests/catch_p_p.h
++++ b/tests/auto/testlib/selftests/catch_p_p.h
+@@ -10763,7 +10763,7 @@ namespace Catch {
+ 
+     // 32kb for the alternate stack seems to be sufficient. However, this value
+     // is experimentally determined, so that's not guaranteed.
+-    static constexpr std::size_t sigStackSize = 32768 >= MINSIGSTKSZ ? 32768 : MINSIGSTKSZ;
++    static constexpr std::size_t sigStackSize = 32768;
+ 
+     static SignalDefs signalDefs[] = {
+         { SIGINT,  "SIGINT - Terminal interrupt signal" },
