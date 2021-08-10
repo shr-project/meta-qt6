@@ -12,7 +12,7 @@ QT6_INSTALL_ARCHDATADIR ?= "${libdir}"
 QT6_INSTALL_PLUGINSDIR ?= "${libdir}/plugins"
 # Helper programs [ARCHDATADIR/bin on Windows, ARCHDATADIR/libexec otherwise]
 QT6_INSTALL_LIBEXECDIR ?= "${libexecdir}"
-QT6_INSTALL_LIBEXECDIR_mingw32 ?= "${bindir}"
+QT6_INSTALL_LIBEXECDIR:mingw32 ?= "${bindir}"
 # QML2 imports [ARCHDATADIR/qml]
 QT6_INSTALL_QMLDIR ?= "${libdir}/qml"
 # "Arch-independent data [PREFIX]

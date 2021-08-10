@@ -22,10 +22,10 @@ DEPENDS += "\
     freetype \
     pcre2 \
 "
-DEPENDS_remove_class-native = "qtbase-native"
+DEPENDS:remove:class-native = "qtbase-native"
 
-PACKAGECONFIG_class-native ?= "gui widgets png dbus no-opengl"
-PACKAGECONFIG_class-nativesdk ?= "gui widgets png dbus no-opengl"
+PACKAGECONFIG:class-native ?= "gui widgets png dbus no-opengl"
+PACKAGECONFIG:class-nativesdk ?= "gui widgets png dbus no-opengl"
 PACKAGECONFIG ?= "\
     ${PACKAGECONFIG_DEFAULT} \
     ${PACKAGECONFIG_GRAPHICS} \
@@ -118,7 +118,7 @@ EXTRA_OECMAKE += "\
     -DQT_EDITION=${QT_EDITION} \
 "
 
-EXTRA_OECMAKE_append_class-target = "\
+EXTRA_OECMAKE:append:class-target = "\
     -DFEATURE_rpath=OFF \
     -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
     -DQT_AVOID_CMAKE_ARCHIVING_API=ON \
@@ -127,7 +127,7 @@ EXTRA_OECMAKE_append_class-target = "\
 
 SYSROOT_DIRS += "${QT6_INSTALL_MKSPECSDIR}"
 
-do_install_append() {
+do_install:append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
         -e '/QT_SOURCE_TREE/,+2d'
 
@@ -139,7 +139,7 @@ do_install_append() {
     rm -f ${D}${QT6_INSTALL_MKSPECSDIR}/features/data/mac/objc_namespace.sh
 }
 
-do_install_append_class-nativesdk() {
+do_install:append:class-nativesdk() {
     install -d ${D}${datadir}/cmake/OEToolchainConfig.cmake.d
     cat > ${D}${datadir}/cmake/OEToolchainConfig.cmake.d/OEQt6Toolchain.cmake <<EOF
 set(QT_HOST_PATH "\$ENV{OECORE_NATIVE_SYSROOT}/usr" CACHE PATH "")
@@ -147,7 +147,7 @@ set(QT_BUILD_TOOLS_WHEN_CROSSCOMPILING "TRUE" CACHE BOOL "")
 EOF
 }
 
-INSANE_SKIP_${PN}-ptest += "arch"
+INSANE_SKIP:${PN}-ptest += "arch"
 INHIBIT_PACKAGE_STRIP_FILES = "\
     ${PKGD}${PTEST_PATH}/tests/auto/corelib/plugin/qpluginloader/elftest/corrupt2.elf64.so \
     ${PKGD}${PTEST_PATH}/tests/auto/corelib/plugin/qpluginloader/elftest/corrupt3.elf64.so \

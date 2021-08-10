@@ -5,7 +5,7 @@ inherit packagegroup nativesdk
 
 PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
-RDEPENDS_${PN} += " \
+RDEPENDS:${PN} += " \
     nativesdk-make \
     nativesdk-cmake \
     nativesdk-ninja \
@@ -25,7 +25,7 @@ RDEPENDS_${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'nativesdk-qtwayland-dev nativesdk-qtwayland-tools', '', d)} \
 "
 
-RDEPENDS_${PN}_remove_mingw32 = " \
+RDEPENDS:${PN}:remove:mingw32 = " \
     nativesdk-cmake \
     nativesdk-ninja \
     nativesdk-perl-modules \

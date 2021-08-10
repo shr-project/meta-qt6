@@ -21,7 +21,7 @@ BBCLASSEXTEND = "native nativesdk"
 
 PACKAGECONFIG[system-assimp] = "-DFEATURE_system_assimp=ON,-DFEATURE_system_assimp=OFF,assimp"
 
-FILES_${PN}-qmlplugins += " \
+FILES:${PN}-qmlplugins += " \
   ${QT6_INSTALL_QMLDIR}/QtQuick3D/Helpers/meshes/*.mesh \
 "
 
