@@ -12,8 +12,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "file://0001-Use-private-permission-API.patch"
-
 DEPENDS += "qtbase qtshadertools qtshadertools-native"
 
 PACKAGECONFIG ?= "gstreamer qml"
@@ -24,4 +22,4 @@ PACKAGECONFIG[qml] = ",,qtdeclarative"
 
 EXTRA_OECMAKE += "-DFEATURE_gpu_vivante=OFF"
 
-SRCREV = "ae315bc2017151232a9e1ce22104a9b179f82d0f"
+SRCREV = "1f8bc05b30e7a3bcf3c721a95915e5adb691db61"

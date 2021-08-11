@@ -12,8 +12,12 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Fix-build-without-accessibility.patch \
+"
+
 DEPENDS += "qtbase qtshadertools qtshadertools-native qtdeclarative-native"
 
 BBCLASSEXTEND = "native nativesdk"
 
-SRCREV = "e47556661b0208f6201e2eb1d9d61094586cd845"
+SRCREV = "533a262e0b332b72481929420914d527f2a83599"
