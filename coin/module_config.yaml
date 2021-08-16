@@ -137,8 +137,8 @@ instructions:
 
       echo "require ${SOURCE_DIR}/coin/test-configs.inc" >> conf/local.conf
 
-      # build all recipes found in the layer
-      bitbake $(find ${SOURCE_DIR} -name *.bb | xargs -n1 basename | sed -e 's/\([^._]*\).*/\1/')
+      # build toolchain which should include all supported recipes
+      bitbake meta-toolchain-qt6
     filename: "{{.BuildDir}}/start-build"
     fileMode: 420
   - type: ExecuteCommand
