@@ -1,0 +1,26 @@
+From 7156d983f688c803cb3fe3cd4015e555a2dae459 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Tue, 17 Aug 2021 07:37:47 +0300
+Subject: [PATCH] qtestlib: skip selftest
+
+Compilation fails with GCC 11
+
+Task-number: QTBUG-95842
+Change-Id: I9f617af75e9730f7327032c20c415fbb8deb1703
+---
+ tests/auto/testlib/CMakeLists.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/auto/testlib/CMakeLists.txt b/tests/auto/testlib/CMakeLists.txt
+index ad895108e7..4bdcf48b30 100644
+--- a/tests/auto/testlib/CMakeLists.txt
++++ b/tests/auto/testlib/CMakeLists.txt
+@@ -5,7 +5,7 @@
+ add_subdirectory(qsignalspy)
+ # QTBUG-88507 # special case
+ if(NOT ANDROID)
+-    add_subdirectory(selftests)
++#    add_subdirectory(selftests)
+ endif()
+ if(TARGET Qt::Widgets)
+     add_subdirectory(qabstractitemmodeltester)
