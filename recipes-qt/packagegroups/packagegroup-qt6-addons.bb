@@ -11,6 +11,7 @@ RDEPENDS:${PN} += " \
     ${@bb.utils.contains('ENABLE_QMLCOMPILER', '1', 'qmlcompilerplus', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d', '', d)} \
     qt5compat \
+    qtapplicationmanager \
     qtcharts \
     qtcoap \
     qtconnectivity \

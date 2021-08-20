@@ -14,6 +14,8 @@ RDEPENDS:${PN} += " \
     nativesdk-ninja \
     nativesdk-perl-modules \
     ${@bb.utils.contains('ENABLE_QMLCOMPILER', '1', 'nativesdk-qmlcompilerplus-dev nativesdk-qmlcompilerplus-tools', '', d)} \
+    nativesdk-qtapplicationmanager-dev \
+    nativesdk-qtapplicationmanager-tools \
     nativesdk-qtbase-dev \
     nativesdk-qtbase-tools \
     nativesdk-qtdeclarative-dev \
