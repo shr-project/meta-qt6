@@ -25,8 +25,8 @@ DEPENDS += "\
 "
 DEPENDS:remove:class-native = "qtbase-native"
 
-PACKAGECONFIG:class-native ?= "gui widgets png dbus no-opengl"
-PACKAGECONFIG:class-nativesdk ?= "gui widgets png dbus no-opengl"
+PACKAGECONFIG:class-native ?= "gui widgets png dbus no-opengl openssl"
+PACKAGECONFIG:class-nativesdk ?= "${PACKAGECONFIG:class-native}"
 PACKAGECONFIG ?= "\
     ${PACKAGECONFIG_DEFAULT} \
     ${PACKAGECONFIG_GRAPHICS} \
@@ -53,6 +53,9 @@ PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev gui widgets icu openssl  \
     ${@bb.utils.contains('SELECTED_OPTIMIZATION', '-Os', 'optimize-size ltcg', '', d)} \
     ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'zstd', '', d)} \
 "
+
+PACKAGECONFIG:remove:mingw32 = "openssl"
+
 # Build type: Debug, Release, MinSizeRel, RelWithDebInfo
 BUILD_TYPE ?= "Release"
 # OpenSSL linking mode: runtime, linked
