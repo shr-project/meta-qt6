@@ -10,6 +10,8 @@ RDEPENDS:${PN} += " \
     nativesdk-cmake \
     nativesdk-ninja \
     nativesdk-perl-modules \
+    nativesdk-qtapplicationmanager-dev \
+    nativesdk-qtapplicationmanager-tools \
     nativesdk-qtbase-dev \
     nativesdk-qtbase-tools \
     nativesdk-qtdeclarative-dev \

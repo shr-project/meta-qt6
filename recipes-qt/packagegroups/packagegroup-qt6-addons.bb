@@ -10,6 +10,7 @@ PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 RDEPENDS:${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qt3d', '', d)} \
     qt5compat \
+    qtapplicationmanager \
     qtcharts \
     qtcoap \
     qtconnectivity \
