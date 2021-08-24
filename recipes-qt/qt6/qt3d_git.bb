@@ -22,7 +22,6 @@ SRC_URI += " \
 
 DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native"
 
-PACKAGECONFIG ?= "system-assimp"
 PACKAGECONFIG[system-assimp] = "-DFEATURE_qt3d_system_assimp=ON,-DQT_FEATURE_qt3d_system_assimp=OFF,assimp"
 PACKAGECONFIG[qtgamepad] = ",,qtgamepad"
 
