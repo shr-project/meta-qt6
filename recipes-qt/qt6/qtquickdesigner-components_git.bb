@@ -11,6 +11,6 @@ include recipes-qt/qt6/qt6.inc
 QT_GIT_PROJECT = "qt-labs"
 QT_MODULE_BRANCH = "dev"
 
-DEPENDS += "qtbase qtdeclarative qtquickcontrols2"
+DEPENDS += "qtbase qtdeclarative"
 
 SRCREV = "13617652eec2e7cae989c1707fd591e7685d7241"

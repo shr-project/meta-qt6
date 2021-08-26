@@ -12,7 +12,6 @@ include recipes-qt/qt6/qt6.inc
 
 PACKAGECONFIG ?= "qml"
 PACKAGECONFIG[qml] = ",,qtdeclarative"
-PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,,qtquickcontrols2"
 
 # src/3rdparty/open62541.pri adds -Wno-format, causing following error
 # because -Wformat-security cannot be used together with -Wno-format

@@ -17,7 +17,7 @@ QT_MODULE = "qtlocation"
 DEPENDS += "qtbase"
 
 PACKAGECONFIG ?= "nmea qml"
-PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative,qtquickcontrols2"
+PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative"
 PACKAGECONFIG[geoclue] = ",,,geoclue"
 PACKAGECONFIG[gypsy] = "-DFEATURE_gypsy=ON,-DFEATURE_gypsy=OFF,gconf gypsy"
 PACKAGECONFIG[nmea] = ",,qtserialport"

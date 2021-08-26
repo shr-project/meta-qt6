@@ -62,7 +62,6 @@ VKB_LANGUAGES ?= "\
 
 PACKAGECONFIG ?= "${VKB_LANGUAGES} ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'desktop', '', d)}"
 
-PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtquickcontrols2"
 PACKAGECONFIG[desktop] = "-DFEATURE_vkb_desktop=ON,-DFEATURE_vkb_desktop=OFF"
 PACKAGECONFIG[arrow-keynavigation] = "-DFEATURE_vkb_arrow_keynavigation=ON,-DFEATURE_vkb_arrow_keynavigation=OFF"
 PACKAGECONFIG[hunspell] = "-DFEATURE_hunspell=ON,-DFEATURE_hunspell=OFF,hunspell"
