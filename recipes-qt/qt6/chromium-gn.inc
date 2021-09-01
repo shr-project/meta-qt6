@@ -70,6 +70,28 @@ python do_create_v8_qemu_wrapper () {
 """ % qemu_cmd)
     os.chmod(wrapper_path, 0o755)
 }
+
+# Some x86-64 target, such as intel-skylake-64, use AVX instructions that are
+# not supported by QEMU (https://gitlab.com/qemu-project/qemu/-/issues/164).
+# This causes the build tools to crash with QEMU when they are ran during
+# to build. Instead of using QEMU, change the wrapper to try to run the
+# tools directly, using the target dynloader.
+python do_create_v8_qemu_wrapper_x86-64 () {
+    wrapper_path = d.expand('${B}/src/core/Release/${TARGET_ARCH}')
+    bb.utils.mkdirhier(wrapper_path)
+    wrapper_path = os.path.join(wrapper_path, "v8-qemu-wrapper.sh")
+    with open(wrapper_path, 'w') as wrapper_file:
+        wrapper_file.write("""#!/bin/sh
+
+# This file has been generated automatically.
+# It invokes target dynloader to run binaries built for the x86-64 target in the host during the
+# build process.
+
+LD_LIBRARY_PATH=%s:%s %s%s "$@"
+""" % (d.expand('${STAGING_DIR_HOST}${libdir}'), d.expand('${STAGING_DIR_HOST}${base_libdir}'),
+       d.expand('${STAGING_DIR_HOST}'), d.expand(get_glibc_loader(d))))
+    os.chmod(wrapper_path, 0o755)
+}
 do_create_v8_qemu_wrapper[dirs] = "${B}"
 addtask create_v8_qemu_wrapper after do_configure before do_compile
 
