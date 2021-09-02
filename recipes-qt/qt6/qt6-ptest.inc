@@ -19,6 +19,7 @@ fakeroot do_install_ptest() {
         cmake \
             ${OECMAKE_GENERATOR_ARGS} \
             -DCMAKE_TOOLCHAIN_FILE=${WORKDIR}/toolchain.cmake \
+            -DPython3_EXECUTABLE=${PYTHON} \
             ${EXTRA_OECMAKE} \
             -DQT_BUILD_STANDALONE_TESTS=ON \
             -DQT_ADDITIONAL_PACKAGES_PREFIX_PATH="${D}${QT6_INSTALL_LIBDIR}/cmake;${RECIPE_SYSROOT}/${QT6_INSTALL_LIBDIR}/cmake" \
