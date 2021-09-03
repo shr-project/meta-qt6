@@ -124,7 +124,8 @@ instructions:
       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
       export DL_DIR=/mnt/yocto-cache/downloads
       export BB_GENERATE_MIRROR_TARBALLS=1
-      export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)-meta-qt6
+      DISTRO_CODENAME=$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)
+      export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/${DISTRO_CODENAME}-meta-qt6
       bitbake-layers add-layer ../meta-openembedded/meta-oe
       bitbake-layers add-layer ../meta-mingw
       bitbake-layers add-layer ${SOURCE_DIR}
@@ -137,6 +138,7 @@ instructions:
       fi
 
       echo "require ${SOURCE_DIR}/coin/test-configs.inc" >> conf/local.conf
+      echo "include ${SOURCE_DIR}/coin/test-${DISTRO_CODENAME}.inc" >> conf/local.conf
 
       # build toolchain which should include all supported recipes
       bitbake meta-toolchain-qt6
