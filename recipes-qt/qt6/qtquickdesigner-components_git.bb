@@ -13,4 +13,3 @@ QT_MODULE_BRANCH = "dev"
 
 DEPENDS += "qtbase qtdeclarative"
 
-SRCREV = "decdf79401763670419c45cd33e38390d46d8db4"

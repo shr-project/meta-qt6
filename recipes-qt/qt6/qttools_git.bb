@@ -13,8 +13,8 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 SRC_URI += " \
-    ${QT_GIT}/playground/qlitehtml.git;name=qlitehtml;branch=master;protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/assistant/qlitehtml \
-    git://github.com/litehtml/litehtml.git;name=litehtml;branch=master;destsuffix=git/src/assistant/qlitehtml/src/3rdparty/litehtml \
+    ${QT_GIT}/playground/qlitehtml.git;name=qttools-qlitehtml;branch=master;protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/assistant/qlitehtml \
+    git://github.com/litehtml/litehtml.git;name=qttools-litehtml;branch=master;destsuffix=git/src/assistant/qlitehtml/src/3rdparty/litehtml \
 "
 
 DEPENDS += "qtbase qtdeclarative qttools-native"
@@ -23,8 +23,4 @@ FILES_${PN}-tools += "${QT6_INSTALL_DATADIR}/phrasebooks"
 
 BBCLASSEXTEND = "native nativesdk"
 
-SRCREV_FORMAT = "qttools_qlitehtml_litehtml"
-
-SRCREV_qttools = "8b3c7447d691d708e7f6ae19158041531be5cab7"
-SRCREV_qlitehtml = "908670c5b68d3bcf4712019a028079b8b2042dd4"
-SRCREV_litehtml = "db7f59d5886fd50f84d48720c79dc2e6152efa83"
+SRCREV_FORMAT = "qttools_qttools-qlitehtml_qttools-litehtml"

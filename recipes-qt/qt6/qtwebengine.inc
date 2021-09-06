@@ -33,7 +33,7 @@ QT_MODULE_BRANCH_CHROMIUM = "90-based"
 FILESEXTRAPATHS_prepend := "${THISDIR}/qtwebengine:"
 
 SRC_URI += " \
-    ${QT_GIT}/${QT_GIT_PROJECT}/qtwebengine-chromium.git;name=chromium;branch=${QT_MODULE_BRANCH_CHROMIUM};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty \
+    ${QT_GIT}/${QT_GIT_PROJECT}/qtwebengine-chromium.git;name=qtwebengine-chromium;branch=${QT_MODULE_BRANCH_CHROMIUM};protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/3rdparty \
     file://0001-CMake-use-generated-yocto-toolchains.patch \
     file://0002-Enable-examples.patch \
 "
@@ -43,6 +43,4 @@ SRC_URI += " \
     file://chromium/0002-chromium-workaround-for-too-long-.rps-file-name.patch;patchdir=src/3rdparty \
 "
 
-SRCREV_qtwebengine = "9d319982178a13d7c4195a6bc383b2f58c9f8468"
-SRCREV_chromium = "202e34476e934633b3c2e4679a53c4b0847364a8"
-SRCREV = "${SRCREV_qtwebengine}"
+SRCREV_FORMAT = "qtwebengine_qtwebengine-chromium"
