@@ -25,6 +25,6 @@ BBCLASSEXTEND = "native nativesdk"
 
 SRCREV_FORMAT = "qttools_qlitehtml_litehtml"
 
-SRCREV_qttools = "300b4db42bd2e4f2755f9900cc2edb3fc1c13273"
+SRCREV_qttools = "e247e19184c27b116ecda25c8b22e1c864da4c55"
 SRCREV_qlitehtml = "2fbaad08a01d611858bef5e747addea7f42318b3"
 SRCREV_litehtml = "2c033bff0ba2d93e5d58303523800d03c21903d4"
