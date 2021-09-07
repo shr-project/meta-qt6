@@ -14,6 +14,8 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtshadertools qtshadertools-native"
 
+SRC_URI += "file://0001-Fix-build-issue-with-conflicting-declarations-in-GL-.patch"
+
 PACKAGECONFIG ?= "gstreamer qml"
 PACKAGECONFIG[alsa] = "-DFEATURE_alsa=ON,-DFEATURE_alsa=OFF,alsa-lib"
 PACKAGECONFIG[pulseaudio] = "-DFEATURE_pulseaudio=ON,-DFEATURE_pulseaudio=OFF,pulseaudio"
