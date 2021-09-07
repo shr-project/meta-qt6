@@ -19,7 +19,7 @@ RDEPENDS_${PN} += " \
     qtimageformats \
     qtlottie \
     qtmqtt \
-    qtmultimedia \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtmultimedia', '', d)} \
     qtnetworkauth \
     qtopcua \
     qtpositioning \
