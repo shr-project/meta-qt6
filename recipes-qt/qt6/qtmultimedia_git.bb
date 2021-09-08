@@ -22,4 +22,4 @@ PACKAGECONFIG[qml] = ",,qtdeclarative"
 
 EXTRA_OECMAKE += "-DFEATURE_gpu_vivante=OFF"
 
-SRCREV = "69380a8befe71f96aaad79b7438805d7f0483aeb"
+SRCREV = "912fe1cc33b7c1e526db123b576dbb856db8ecd9"
