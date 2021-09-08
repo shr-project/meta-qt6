@@ -1,0 +1,50 @@
+From c1745b55d0ea99f2730b13769c1a2d69c5426077 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Wed, 8 Sep 2021 07:47:42 +0300
+Subject: [PATCH] Only use available gstreamer video formats
+
+Check the gstreamer version before using video format that were added
+after GStreamer 1.14 release.
+
+ * @GST_VIDEO_FORMAT_VUYA: packed 4:4:4 YUV with alpha channel (V0-U0-Y0-A0...) (Since: 1.16)
+ * @GST_VIDEO_FORMAT_BGR10A2_LE: packed 4:4:4 RGB with alpha channel(B-G-R-A), 10 bits for R/G/B channel and MSB 2 bits for alpha channel (Since: 1.16)
+
+Pick-to: 6.2
+Change-Id: Ib2cc5265f43e4fcb059e897ef96969154f27c297
+---
+ src/multimedia/platform/gstreamer/common/qgstvideobuffer.cpp | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/src/multimedia/platform/gstreamer/common/qgstvideobuffer.cpp b/src/multimedia/platform/gstreamer/common/qgstvideobuffer.cpp
+index 7cd022a82..b93cb9eac 100644
+--- a/src/multimedia/platform/gstreamer/common/qgstvideobuffer.cpp
++++ b/src/multimedia/platform/gstreamer/common/qgstvideobuffer.cpp
+@@ -46,6 +46,7 @@
+ #include <gst/video/video.h>
+ #include <gst/video/video-frame.h>
+ #include <gst/video/gstvideometa.h>
++#include <gst/pbutils/gstpluginsbaseversion.h>
+ 
+ #include "qgstutils_p.h"
+ 
+@@ -208,7 +209,9 @@ fourccFromVideoInfo(const GstVideoInfo * info, int plane)
+     case GST_VIDEO_FORMAT_ABGR:
+     case GST_VIDEO_FORMAT_xBGR:
+     case GST_VIDEO_FORMAT_AYUV:
++#if GST_CHECK_PLUGINS_BASE_VERSION(1,16,0)
+     case GST_VIDEO_FORMAT_VUYA:
++#endif
+         return rgba_fourcc;
+ 
+     case GST_VIDEO_FORMAT_GRAY8:
+@@ -231,8 +234,10 @@ fourccFromVideoInfo(const GstVideoInfo * info, int plane)
+     case GST_VIDEO_FORMAT_Y444:
+         return DRM_FORMAT_R8;
+ 
++#if GST_CHECK_PLUGINS_BASE_VERSION(1,16,0)
+     case GST_VIDEO_FORMAT_BGR10A2_LE:
+         return DRM_FORMAT_BGRA1010102;
++#endif
+ 
+ //    case GST_VIDEO_FORMAT_RGB10A2_LE:
+ //        return DRM_FORMAT_RGBA1010102;
