@@ -146,8 +146,8 @@ instructions:
     fileMode: 420
   - type: ExecuteCommand
     command: ["bash", "-xe", "{{.BuildDir}}/start-build"]
-    maxTimeInSeconds: 28800
-    maxTimeBetweenOutput: 28800
+    maxTimeInSeconds: 43200
+    maxTimeBetweenOutput: 7200
     userMessageOnFailure: "Build failed."
   - type: ExecuteCommand
     command: ["sudo", "umount", "/mnt/yocto-cache"]
