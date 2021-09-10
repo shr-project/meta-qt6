@@ -1,0 +1,110 @@
+From 2ffd1ffb0e0ee6028849a279d36fe3f68fed1e99 Mon Sep 17 00:00:00 2001
+From: Mitch Curtis <mitch.curtis@qt.io>
+Date: Fri, 13 Aug 2021 11:07:57 +0200
+Subject: [PATCH] Fix build without accessibility
+
+Amends 4b1acb290dc8869d0d2d1250dc1ed415d6b6e202 and friends.
+
+Pick-to: 6.2
+Change-Id: Ida44dd5e1865673878601da97685fd1aa19c40c3
+Reviewed-by: Fabian Kosmale <fabian.kosmale@qt.io>
+---
+ src/quicknativestyle/qstyle/qquickstylehelper.cpp | 3 ++-
+ src/quicknativestyle/qstyle/qquickstylehelper_p.h | 4 ++++
+ src/quicktemplates2/CMakeLists.txt                | 6 +++++-
+ src/quicktemplates2/qtquicktemplates2global.cpp   | 7 +++++++
+ 4 files changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/src/quicknativestyle/qstyle/qquickstylehelper.cpp b/src/quicknativestyle/qstyle/qquickstylehelper.cpp
+index ebc82864f9..fdc60b6468 100644
+--- a/src/quicknativestyle/qstyle/qquickstylehelper.cpp
++++ b/src/quicknativestyle/qstyle/qquickstylehelper.cpp
+@@ -114,6 +114,7 @@ qreal dpiScaled(qreal value, const QStyleOption *option)
+     return dpiScaled(value, dpi(option));
+ }
+ 
++#if QT_CONFIG(accessibility)
+ bool isInstanceOf(QObject *obj, QAccessible::Role role)
+ {
+     bool match = false;
+@@ -134,7 +135,7 @@ bool hasAncestor(QObject *obj, QAccessible::Role role)
+     }
+     return found;
+ }
+-
++#endif
+ 
+ int calcBigLineSize(int radius)
+ {
+diff --git a/src/quicknativestyle/qstyle/qquickstylehelper_p.h b/src/quicknativestyle/qstyle/qquickstylehelper_p.h
+index 757d647d36..d2a9636be9 100644
+--- a/src/quicknativestyle/qstyle/qquickstylehelper_p.h
++++ b/src/quicknativestyle/qstyle/qquickstylehelper_p.h
+@@ -39,7 +39,9 @@
+ #include <QtGui/qpaintdevice.h>
+ #include <QtGui/qpolygon.h>
+ #include <QtCore/qstringbuilder.h>
++#if QT_CONFIG(accessibility)
+ #include <QtGui/qaccessible.h>
++#endif
+ 
+ #ifndef QSTYLEHELPER_P_H
+ #define QSTYLEHELPER_P_H
+@@ -84,8 +86,10 @@ namespace QStyleHelper
+                      int left = 0, int top = 0, int right = 0,
+                      int bottom = 0);
+ 
++#if QT_CONFIG(accessibility)
+     bool isInstanceOf(QObject *obj, QAccessible::Role role);
+     bool hasAncestor(QObject *obj, QAccessible::Role role);
++#endif
+     QColor backgroundColor(const QPalette &pal);
+ 
+     enum WidgetSizePolicy { SizeLarge = 0, SizeSmall = 1, SizeMini = 2, SizeDefault = -1 };
+diff --git a/src/quicktemplates2/CMakeLists.txt b/src/quicktemplates2/CMakeLists.txt
+index 80b05013ad..3ddb994cc1 100644
+--- a/src/quicktemplates2/CMakeLists.txt
++++ b/src/quicktemplates2/CMakeLists.txt
+@@ -12,7 +12,6 @@ qt_internal_add_qml_module(QuickTemplates2
+     NO_PLUGIN_OPTIONAL
+     NO_GENERATE_PLUGIN_SOURCE
+     SOURCES
+-        accessible/qaccessiblequickpage.cpp accessible/qaccessiblequickpage_p.h
+         qquickabstractbutton.cpp qquickabstractbutton_p.h
+         qquickabstractbutton_p_p.h
+         qquickaction.cpp qquickaction_p.h
+@@ -144,6 +143,11 @@ qt_internal_extend_target(QuickTemplates2 CONDITION TARGET Qt::QmlModels
+         Qt::QmlModelsPrivate
+ )
+ 
++qt_internal_extend_target(QuickTemplates2 CONDITION QT_FEATURE_accessibility
++    SOURCES
++        accessible/qaccessiblequickpage.cpp accessible/qaccessiblequickpage_p.h
++)
++
+ qt_internal_extend_target(QuickTemplates2 CONDITION QT_FEATURE_quick_tableview
+     SOURCES
+         qquickheaderview.cpp qquickheaderview_p.h
+diff --git a/src/quicktemplates2/qtquicktemplates2global.cpp b/src/quicktemplates2/qtquicktemplates2global.cpp
+index 5d7816b411..5100e610bc 100644
+--- a/src/quicktemplates2/qtquicktemplates2global.cpp
++++ b/src/quicktemplates2/qtquicktemplates2global.cpp
+@@ -36,8 +36,15 @@
+ ** $QT_END_LICENSE$
+ **
+ ****************************************************************************/
++
++#include "qtquicktemplates2global_p.h"
++
++#include <QtGui/qtguiglobal.h>
++
++#if QT_CONFIG(accessibility)
+ #include "qquickpage_p.h"
+ #include "accessible/qaccessiblequickpage_p.h"
++#endif
+ 
+ QT_BEGIN_NAMESPACE
+ 
+-- 
+2.25.1
+
