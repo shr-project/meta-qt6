@@ -41,9 +41,8 @@ SRC_URI += " \
 SRC_URI += " \
     file://chromium/0001-v8-qemu-wrapper.patch;patchdir=src/3rdparty \
     file://chromium/0002-chromium-workaround-for-too-long-.rps-file-name.patch;patchdir=src/3rdparty \
-    file://chromium/0003-BUILD-do-not-specify-march-on-arm.patch;patchdir=src/3rdparty \
 "
 
-SRCREV_qtwebengine = "7ba87489eed4acce903bc10ec14162c426641bd9"
-SRCREV_chromium = "f41bb66fa5f499b4e5eae8ea08661aaa75f2d5df"
+SRCREV_qtwebengine = "9d319982178a13d7c4195a6bc383b2f58c9f8468"
+SRCREV_chromium = "202e34476e934633b3c2e4679a53c4b0847364a8"
 SRCREV = "${SRCREV_qtwebengine}"

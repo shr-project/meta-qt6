@@ -14,11 +14,6 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtshadertools qtshadertools-native"
 
-SRC_URI += "\
-    file://0001-Fix-build-issue-with-conflicting-declarations-in-GL-.patch \
-    file://0001-Only-use-available-gstreamer-video-formats.patch \
-"
-
 PACKAGECONFIG ?= "gstreamer qml"
 PACKAGECONFIG[alsa] = "-DFEATURE_alsa=ON,-DFEATURE_alsa=OFF,alsa-lib"
 PACKAGECONFIG[pulseaudio] = "-DFEATURE_pulseaudio=ON,-DFEATURE_pulseaudio=OFF,pulseaudio"
@@ -27,4 +22,4 @@ PACKAGECONFIG[qml] = ",,qtdeclarative"
 
 EXTRA_OECMAKE += "-DFEATURE_gpu_vivante=OFF"
 
-SRCREV = "c5e10ab0413b35aff30567b7df360bb995e66bc7"
+SRCREV = "e3543802e6ac47906de5b2dbba01ae32bb669b18"
