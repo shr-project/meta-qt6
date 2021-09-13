@@ -12,6 +12,12 @@ DISTRO_FEATURES:append = " wayland"
 INHERIT += "buildstats buildstats-summary"
 INHERIT += "rm_work"
 
+# default to commercial Qt
+QT_EDITION = "commercial"
+
+# enable Qt QML Compiler
+ENABLE_QMLCOMPILER = "1"
+
 # fast compression of SDK tar package
 SDK_XZ_COMPRESSION_LEVEL = "-1"
 
@@ -48,6 +54,7 @@ PACKAGECONFIG:append:pn-qtbase = "\
 PACKAGECONFIG:append:pn-qtimageformats = " jasper"
 
 # enable examples for all Qt modules
+PACKAGECONFIG:append:pn-qmlcompilerplus = " examples"
 PACKAGECONFIG:append:pn-qt3d = " examples"
 PACKAGECONFIG:append:pn-qt5compat = " examples"
 PACKAGECONFIG:append:pn-qtbase = " examples"

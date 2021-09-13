@@ -15,6 +15,7 @@ PV = "6.3.0"
 
 SRCREV = "${SRCREV_${QT_MODULE}}"
 
+SRCREV_tqtc-qmlcompilerplus = "3bbf266e41dd980692db03582ef4205123e9b1ac"
 SRCREV_qt3d = "ae1320d9862c22b44e50866e91a80d4bfe7dd47b"
 SRCREV_qt3d-assimp = "5a38cd0a03015ceabbd5bc6efb0730dde1ef74e5"
 SRCREV_qt5compat = "11edb2a27f5ee731ca24da6a54dd157ead5eb190"

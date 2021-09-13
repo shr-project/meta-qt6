@@ -1,6 +1,8 @@
 require recipes-qt/qt6/qtwebengine.inc
 require recipes-qt/qt6/chromium-gn.inc
 
+ENABLE_QMLCOMPILER = "0"
+
 DEPENDS += " \
     nodejs-native \
     gperf-native \
