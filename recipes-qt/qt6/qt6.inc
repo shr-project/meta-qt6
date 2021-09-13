@@ -21,6 +21,16 @@ python __anonymous() {
             d.setVar("PACKAGE_ARCH", tarch)
 }
 
+python __anonymous() {
+    if (d.getVar('QT_EDITION', True) != 'commercial' or
+        d.getVar('ENABLE_QMLCOMPILER', True) == '0' or
+        d.getVar('BPN', True) == 'qmlcompilerplus' or
+        d.getVar('CLASSOVERRIDE', True) != 'class-target'):
+        return
+    if bb.utils.contains('DEPENDS', "qtdeclarative-native", True, False, d):
+        d.appendVar("DEPENDS", " qmlcompilerplus-native")
+}
+
 # Many examples come with libraries installed outside of standard libdir,
 # suppress QA check complaining
 INSANE_SKIP:${PN}-dbg += "libdir"
