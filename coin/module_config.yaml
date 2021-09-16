@@ -11,7 +11,7 @@ accept_configuration:
 
 machine_type:
   Build:
-    cores: 8
+    cores: 16
 
 # Target build matrix:
 #
@@ -124,6 +124,7 @@ instructions:
       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
       export DL_DIR=/mnt/yocto-cache/downloads
       export BB_GENERATE_MIRROR_TARBALLS=1
+      export BB_NUMBER_THREADS=8
       DISTRO_CODENAME=$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)
       export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/${DISTRO_CODENAME}-meta-qt6
       bitbake-layers add-layer ../meta-openembedded/meta-oe
