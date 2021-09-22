@@ -41,7 +41,7 @@ FILES:${PN}-refapi-vehiclefuntions = "\
 
 DEPENDS += "qtbase qtinterfaceframework-native"
 
-SRCREV = "2cbe1c72a6c48bf1ca6bb2fd739496f7f9a3e233"
+SRCREV = "6263b4d5c399e2a850d3280aa6a54b6a739b4555"
 
 PACKAGECONFIG ?= "ifcodegen remoteobjects interfaceframework \
     ${PACKAGECONFIG_REFERENCE_API} \
@@ -50,7 +50,7 @@ PACKAGECONFIG ?= "ifcodegen remoteobjects interfaceframework \
 
 PACKAGECONFIG[taglib] = "-DFEATURE_taglib=ON,-DFEATURE_taglib=OFF,taglib"
 PACKAGECONFIG[host-tools-only] = "-DFEATURE_host_tools_only=ON,-DFEATURE_host_tools_only=OFF"
-PACKAGECONFIG[ifcodegen] = "-DFEATURE_ifcodegen=ON,-DFEATURE_ifcodegen=OFF,qface,qface"
+PACKAGECONFIG[ifcodegen] = "-DFEATURE_ifcodegen=ON,-DFEATURE_ifcodegen=OFF,python3-qface,python3-qface"
 PACKAGECONFIG[remoteobjects] = "-DFEATURE_remoteobjects=ON,-DFEATURE_remoteobjects=OFF,qtremoteobjects qtremoteobjects-native"
 
 #interfaceframework only

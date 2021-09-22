@@ -128,6 +128,7 @@ instructions:
       DISTRO_CODENAME=$(sed -n -e "s/DISTRO_CODENAME.*\"\(.*\)\"/\1/p" ../poky/meta-*/conf/distro/poky.conf)
       export SSTATE_DIR=/mnt/yocto-cache/sstate-caches/${DISTRO_CODENAME}-meta-qt6
       bitbake-layers add-layer ../meta-openembedded/meta-oe
+      bitbake-layers add-layer ../meta-openembedded/meta-python
       bitbake-layers add-layer ../meta-mingw
       bitbake-layers add-layer ${SOURCE_DIR}
 
