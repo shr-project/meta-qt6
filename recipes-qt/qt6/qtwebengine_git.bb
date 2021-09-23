@@ -81,5 +81,4 @@ PACKAGECONFIG[zlib] = "-DFEATURE_webengine_system_zlib=ON,-DFEATURE_webengine_sy
 FILES_${PN} += "\
     ${QT6_INSTALL_TRANSLATIONSDIR} \
     ${QT6_INSTALL_DATADIR}/resources \
-    ${QT6_INSTALL_LIBEXECDIR}/QtWebEngineProcess \
 "
