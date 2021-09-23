@@ -1,5 +1,6 @@
 require gn-utils.inc
 
+inherit linuxloader
 inherit qemu
 
 COMPATIBLE_MACHINE = "(-)"
@@ -89,7 +90,7 @@ python do_create_v8_qemu_wrapper_x86-64 () {
 
 LD_LIBRARY_PATH=%s:%s %s%s "$@"
 """ % (d.expand('${STAGING_DIR_HOST}${libdir}'), d.expand('${STAGING_DIR_HOST}${base_libdir}'),
-       d.expand('${STAGING_DIR_HOST}'), d.expand(get_glibc_loader(d))))
+       d.expand('${STAGING_DIR_HOST}'), d.expand(get_linuxloader(d))))
     os.chmod(wrapper_path, 0o755)
 }
 do_create_v8_qemu_wrapper[dirs] = "${B}"
