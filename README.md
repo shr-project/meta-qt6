@@ -17,14 +17,21 @@ The branching of meta-qt6 layer follows Qt branching scheme, that is
 `dev` for the development branch, and `6.x` for each minor release.
 
 Following table shows the Yocto branches which are used to test each
-Qt version.
+Qt version (x) and any additional Yocto release that are stated in
+the LAYERSERIES_COMPAT (c).
 
 | Yocto \ Qt | dev | 6.2 | 6.1 | 6.0 |
 | ---------- |:---:|:---:|:---:|:---:|
-| master     |  x  |     |     |     |
-| hardknott  |     |  x  |  x  |  x  |
-| gatesgarth |     |  x  |  x  |  x  |
-| dunfell    |     |  x  |  x  |  x  |
+| master     |  x  |  x  |     |     |
+| hardknott  |  x  |  x  |  x  |  x  |
+| gatesgarth |  c  |  x  |  x  |  x  |
+| dunfell    |  x  |  x  |  x  |  x  |
+
+QtWebEngine
+-----------
+
+QtWebEngine needs at least CMake 3.19, which is available starting from Hardknott.
+For this reason QtWebEngine is not tested on older releases.
 
 Contributing
 ------------

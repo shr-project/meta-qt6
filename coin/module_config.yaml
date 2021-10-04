@@ -17,7 +17,7 @@ machine_type:
 #
 #           [target1]       [target2]   [target3]       [target4]
 # [machine] qemuarm64       qemux86     qemuarm         qemux86-64
-# [yocto]   master          master      master          master
+# [yocto]   master          master      hardknott       dunfell
 # [X11]     no              no          yes             yes
 # [mingw]   no              yes         no              no
 #
@@ -65,7 +65,7 @@ target3: &target3
       variableValue: qemuarm
     - type: EnvironmentVariable
       variableName: YOCTO_BRANCH
-      variableValue: master
+      variableValue: hardknott
   enable_if:
       condition: property
       property: target.arch
@@ -78,7 +78,7 @@ target4: &target4
       variableValue: qemux86-64
     - type: EnvironmentVariable
       variableName: YOCTO_BRANCH
-      variableValue: master
+      variableValue: dunfell
   enable_if:
       condition: property
       property: target.arch
