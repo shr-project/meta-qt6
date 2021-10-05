@@ -25,6 +25,7 @@ DEPENDS += "\
     pcre2 \
 "
 DEPENDS:remove:class-native = "qtbase-native"
+RDEPENDS_${PN}:remove:class-native = "libssl-native"
 
 PACKAGECONFIG:class-native ?= "gui widgets png dbus no-opengl openssl"
 PACKAGECONFIG:class-nativesdk ?= "${PACKAGECONFIG:class-native}"
