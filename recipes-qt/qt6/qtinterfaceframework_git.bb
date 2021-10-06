@@ -41,8 +41,6 @@ FILES:${PN}-refapi-vehiclefuntions = "\
 
 DEPENDS += "qtbase qtinterfaceframework-native"
 
-SRCREV = "6263b4d5c399e2a850d3280aa6a54b6a739b4555"
-
 PACKAGECONFIG ?= "ifcodegen remoteobjects interfaceframework \
     ${PACKAGECONFIG_REFERENCE_API} \
     ${PACKAGECONFIG_SIMULATION} \
