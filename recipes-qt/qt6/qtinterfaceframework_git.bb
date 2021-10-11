@@ -39,7 +39,7 @@ FILES:${PN}-refapi-vehiclefuntions = "\
     ${QT6_INSTALL_LIBDIR}/qml/QtInterfaceFramework/VehicleFunctions \
     "
 
-DEPENDS += "qtbase qtinterfaceframework-native"
+DEPENDS += "qtbase qtdeclarative qtdeclarative-native qtinterfaceframework-native"
 
 PACKAGECONFIG ?= "ifcodegen remoteobjects interfaceframework \
     ${PACKAGECONFIG_REFERENCE_API} \
@@ -55,8 +55,8 @@ PACKAGECONFIG[remoteobjects] = "-DFEATURE_remoteobjects=ON,-DFEATURE_remoteobjec
 PACKAGECONFIG[interfaceframework] = "-DFEATURE_interfaceframework=ON,-DFEATURE_interfaceframework=OFF"
 
 # reference API's
-PACKAGECONFIG[ifmedia] = "-DFEATURE_ifmedia=ON,-DFEATURE_ifmedia=OFF, qtmultimedia qtdeclarative"
-PACKAGECONFIG[ifvehiclefunctions] = "-DFEATURE_ifvehiclefunctions=ON,-DFEATURE_ifvehiclefunctions=OFF, qtdeclarative"
+PACKAGECONFIG[ifmedia] = "-DFEATURE_ifmedia=ON,-DFEATURE_ifmedia=OFF,qtmultimedia"
+PACKAGECONFIG[ifvehiclefunctions] = "-DFEATURE_ifvehiclefunctions=ON,-DFEATURE_ifvehiclefunctions=OFF"
 
 PACKAGECONFIG_REFERENCE_API ?= "${@bb.utils.contains('REFERENCE_API', '1', 'ifvehiclefunctions ifmedia taglib', '', d)}"
 
