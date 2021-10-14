@@ -1,4 +1,4 @@
-From ba24cb211c85c28833554d674d43b88b72e9a488 Mon Sep 17 00:00:00 2001
+From 7c16e38b85e514991d57802136de498ac1201bca Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 18 Aug 2021 15:09:41 +0300
 Subject: [PATCH] CMake: use generated yocto toolchains
@@ -14,10 +14,10 @@ Change-Id: I217c9122144f25bb2d28717e7248c2a51b149127
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/cmake/Functions.cmake b/cmake/Functions.cmake
-index b7c386fc..a75dfc30 100644
+index 37fd593a..2654cdc3 100644
 --- a/cmake/Functions.cmake
 +++ b/cmake/Functions.cmake
-@@ -630,7 +630,7 @@ endfunction()
+@@ -642,7 +642,7 @@ endfunction()
  
  macro(create_pkg_config_host_wrapper buildDir)
      find_package(PkgConfigHost)
@@ -26,7 +26,7 @@ index b7c386fc..a75dfc30 100644
              create_pkg_config_wrapper("${buildDir}/pkg-config-host_wrapper.sh" "${PKG_CONFIG_HOST_EXECUTABLE}")
              set(PKG_CONFIG_HOST_EXECUTABLE "${buildDir}/pkg-config-host_wrapper.sh")
          endif()
-@@ -818,9 +818,9 @@ endmacro()
+@@ -855,9 +855,9 @@ endmacro()
  macro(append_toolchain_setup)
      if(LINUX)
          list(APPEND gnArgArg
