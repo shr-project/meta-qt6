@@ -19,6 +19,8 @@ DEPENDS = "qtbase qtdeclarative qtshadertools qtshadertools-native qtquick3d-nat
 
 BBCLASSEXTEND = "native nativesdk"
 
+PACKAGECONFIG:class-target ?= "qtquicktimeline"
+PACKAGECONFIG[qtquicktimeline] = ",,qtquicktimeline"
 PACKAGECONFIG[system-assimp] = "-DFEATURE_system_assimp=ON,-DFEATURE_system_assimp=OFF,assimp"
 
 FILES:${PN}-qmlplugins += " \
