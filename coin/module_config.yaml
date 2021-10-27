@@ -143,7 +143,7 @@ instructions:
       echo "include ${SOURCE_DIR}/coin/test-${DISTRO_CODENAME}.inc" >> conf/local.conf
 
       # build toolchain which should include all supported recipes
-      bitbake meta-toolchain-qt6
+      bitbake meta-toolchain-qt6 nativesdk-packagegroup-qt6-toolchain-host packagegroup-qt6-modules
     filename: "{{.BuildDir}}/start-build"
     fileMode: 420
   - type: ExecuteCommand
