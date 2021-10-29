@@ -23,9 +23,9 @@ the LAYERSERIES_COMPAT (c).
 | Yocto \ Qt | 6.2 | 6.1 | 6.0 |
 | ---------- |:---:|:---:|:---:|
 | master     |  x  |     |     |
-| honister   |  c  |     |     |
+| honister   |  x  |     |     |
 | hardknott  |  x  |  x  |  x  |
-| gatesgarth |  x  |  x  |  x  |
+| gatesgarth |  c  |  x  |  x  |
 | dunfell    |  x  |  x  |  x  |
 
 QtWebEngine
