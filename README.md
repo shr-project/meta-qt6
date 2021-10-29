@@ -17,14 +17,15 @@ The branching of meta-qt6 layer follows Qt branching scheme, that is
 `dev` for the development branch, and `6.x` for each minor release.
 
 Following table shows the Yocto branches which are used to test each
-Qt version (x) and any additional Yocto release that are stated in
+Qt version (x) and any additional Yocto releases that are stated in
 the LAYERSERIES_COMPAT (c).
 
 | Yocto \ Qt | dev | 6.2 | 6.1 | 6.0 |
 | ---------- |:---:|:---:|:---:|:---:|
 | master     |  x  |  x  |     |     |
+| honister   |  x  |  x  |     |     |
 | hardknott  |  x  |  x  |  x  |  x  |
-| gatesgarth |  c  |  x  |  x  |  x  |
+| gatesgarth |  c  |  c  |  x  |  x  |
 | dunfell    |  x  |  x  |  x  |  x  |
 
 QtWebEngine
