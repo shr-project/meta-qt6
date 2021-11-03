@@ -14,7 +14,7 @@ include recipes-qt/qt6/qt6.inc
 
 SRC_URI += " \
     ${QT_GIT}/playground/qlitehtml.git;name=qttools-qlitehtml;branch=master;protocol=${QT_GIT_PROTOCOL};destsuffix=git/src/assistant/qlitehtml \
-    git://github.com/litehtml/litehtml.git;name=qttools-qlitehtml-litehtml;branch=master;destsuffix=git/src/assistant/qlitehtml/src/3rdparty/litehtml \
+    git://github.com/litehtml/litehtml.git;name=qttools-qlitehtml-litehtml;branch=master;destsuffix=git/src/assistant/qlitehtml/src/3rdparty/litehtml;protocol=https \
 "
 
 DEPENDS += "qtbase qtdeclarative qttools-native"
