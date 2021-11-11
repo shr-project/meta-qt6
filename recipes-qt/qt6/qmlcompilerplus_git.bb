@@ -1,6 +1,6 @@
 LICENSE = "The-Qt-Company-Commercial"
 LIC_FILES_CHKSUM = " \
-    file://src/qmlcompilerplus/cppcodegen_p.h;endline=27;md5=35a959124a01f6c4cd862f7953372cba \
+    file://src/qmlcompilerplus/cppcodegen_p.h;endline=27;md5=6a1dccd03d0d5864357e72b67def8ff2 \
 "
 
 inherit qt6-cmake
