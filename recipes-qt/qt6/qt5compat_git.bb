@@ -13,6 +13,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+ENABLE_QMLCOMPILER = "0"
+
 DEPENDS += "qtbase"
 
 PACKAGECONFIG ?= "qml"
