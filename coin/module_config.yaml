@@ -111,7 +111,7 @@ instructions:
       sudo hostname $(hostname -s)-$(date +%s%N)
 
       sudo mkdir -p /mnt/yocto-cache
-      sudo mount yocto-cache.intra.qt.io:/srv/yocto-cache /mnt/yocto-cache
+      sudo mount yocto-cache.ci.qt.io:/srv/yocto-cache /mnt/yocto-cache
 
       git clone git://git.yoctoproject.org/poky --reference /mnt/yocto-cache/mirror/poky.git -b ${YOCTO_BRANCH}
       git clone git://git.openembedded.org/meta-openembedded --reference /mnt/yocto-cache/mirror/meta-openembedded.git -b ${YOCTO_BRANCH}
