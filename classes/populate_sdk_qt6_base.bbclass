@@ -12,8 +12,7 @@ QT6_INSTALL_HOST_LIBEXECDIR:sdkmingw32 = "${QT6_INSTALL_LIBEXECDIR:mingw32}"
 create_qt6_sdk_files () {
     # Generate a qt.conf file to be deployed with the SDK
     qtconf=${WORKDIR}/qt.conf
-    touch $qtconf
-    echo '[Paths]' >> $qtconf
+    echo '[Paths]' > $qtconf
     echo 'Prefix = ${prefix}' >> $qtconf
     echo 'Headers = ${QT6_INSTALL_INCLUDEDIR}' >> $qtconf
     echo 'Libraries = ${QT6_INSTALL_LIBDIR}' >> $qtconf
