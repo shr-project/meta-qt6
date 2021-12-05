@@ -69,7 +69,7 @@ create_qt6_sdk_files () {
     echo "isEmpty(QMAKE_LFLAGS): QMAKE_LFLAGS = ${LDFLAGS}" >> $mkspec
     sed -i $mkspec \
         -e 's:${RECIPE_SYSROOT}:$$[QT_SYSROOT]:' \
-        -e 's:${TARGET_PREFIX}:$$[QT_HOST_BINS]/${TARGET_SYS}/${TARGET_PREFIX}:'
+        -e 's:${TARGET_PREFIX}:$$[QT_HOST_PREFIX]${bindir}/${TARGET_SYS}/${TARGET_PREFIX}:'
 
     # Generate a toolchain file for using Qt without running setup-environment script
     cat > ${SDK_OUTPUT}${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake <<EOF
