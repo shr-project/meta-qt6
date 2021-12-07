@@ -25,6 +25,7 @@ RDEPENDS:${PN} += " \
     qtmultimedia \
     qtnetworkauth \
     qtopcua \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtpdf', '', d)} \
     qtpositioning \
     qtquick3d \
     qtquickdesigner-components \

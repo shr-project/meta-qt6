@@ -23,7 +23,7 @@ index 6e86a543558..eee89b37064 100644
      output_path = rebase_path(output_file, root_build_dir)
  
      args = [
-+      "./v8-qemu-wrapper.sh",
++      "../../../../v8-qemu-wrapper.sh",
        "./" + rebase_path(
                get_label_info(
                        ":v8_context_snapshot_generator($v8_snapshot_toolchain)",
@@ -35,7 +35,7 @@ index db762c8c300..11e96d1ea3b 100644
      }
  
      args = [
-+      "./v8-qemu-wrapper.sh",
++      "../../../../v8-qemu-wrapper.sh",
        "./" + rebase_path(
                get_label_info(":torque($toolchain)", "root_out_dir") + "/torque",
                root_build_dir),
@@ -43,7 +43,7 @@ index db762c8c300..11e96d1ea3b 100644
    outputs = [ "$target_gen_dir/builtins-generated/bytecodes-builtins-list.h" ]
    deps = [ ":bytecode_builtins_list_generator($v8_generator_toolchain)" ]
    args = [
-+    "./v8-qemu-wrapper.sh",
++      "../../../../v8-qemu-wrapper.sh",
      "./" + rebase_path(
              get_label_info(
                      ":bytecode_builtins_list_generator($v8_generator_toolchain)",
@@ -51,7 +51,7 @@ index db762c8c300..11e96d1ea3b 100644
      data = []
  
      args = [
-+      "./v8-qemu-wrapper.sh",
++      "../../../../v8-qemu-wrapper.sh",
        "./" + rebase_path(get_label_info(":mksnapshot($v8_snapshot_toolchain)",
                                          "root_out_dir") + "/mksnapshot",
                           root_build_dir),
@@ -59,7 +59,7 @@ index db762c8c300..11e96d1ea3b 100644
      outputs = [ output_file ]
  
      args = [
-+      "./v8-qemu-wrapper.sh",
++      "../../../../v8-qemu-wrapper.sh",
        "./" + rebase_path(
                get_label_info(
                        ":gen-regexp-special-case($v8_generator_toolchain)",
