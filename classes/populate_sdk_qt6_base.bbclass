@@ -40,6 +40,7 @@ create_qt6_sdk_files () {
     # add qt.conf to both bin and libexec dirs
     cp ${WORKDIR}/qt.conf ${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}/
     cp ${WORKDIR}/qt.conf ${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_HOST_LIBEXECDIR}/
+    cp ${WORKDIR}/qt.conf ${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_BINDIR}/target_qt.conf
 
     install -d ${SDK_OUTPUT}${SDKPATHNATIVE}/environment-setup.d
     script=${SDK_OUTPUT}${SDKPATHNATIVE}/environment-setup.d/qt6.sh
