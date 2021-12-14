@@ -117,7 +117,7 @@ PACKAGECONFIG[openssl] = "-DFEATURE_openssl_${OPENSSL_LINKING_MODE}=ON,-DFEATURE
 # sqldrivers
 PACKAGECONFIG[sql-mysql] = "-DFEATURE_sql_mysql=ON,-DFEATURE_sql_mysql=OFF,mysql5"
 PACKAGECONFIG[sql-odbc] = "-DFEATURE_sql_odbc=ON,-DFEATURE_sql_odbc=OFF,unixodbc"
-PACKAGECONFIG[sql-psql] = "-DFEATURE_sql_psql=ON,-DFEATURE_sql-psql=OFF,postgresql"
+PACKAGECONFIG[sql-psql] = "-DFEATURE_sql_psql=ON,-DFEATURE_sql_psql=OFF,postgresql"
 PACKAGECONFIG[sql-sqlite] = "-DFEATURE_system_sqlite=ON,-DFEATURE_sql_sqlite=OFF,sqlite3"
 
 
