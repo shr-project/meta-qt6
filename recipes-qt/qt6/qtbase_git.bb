@@ -150,6 +150,11 @@ do_install:append:class-nativesdk() {
 set(QT_HOST_PATH "\$ENV{OECORE_NATIVE_SYSROOT}/usr" CACHE PATH "")
 set(QT_BUILD_TOOLS_WHEN_CROSSCOMPILING "TRUE" CACHE BOOL "")
 EOF
+
+    sed -i ${D}${QT6_INSTALL_BINDIR}/* \
+        -e 's|${RECIPE_SYSROOT_NATIVE}|${SDKPATHNATIVE}|' \
+        -e '/^toolchain_path=/s|.*|toolchain_path=${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake|'
+
 }
 
 INSANE_SKIP:${PN}-ptest += "arch"
