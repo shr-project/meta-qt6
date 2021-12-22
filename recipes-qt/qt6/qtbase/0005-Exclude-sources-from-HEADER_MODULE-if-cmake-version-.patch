@@ -1,0 +1,44 @@
+From f1a213d4d961ee8545b9437f5221b36bae836994 Mon Sep 17 00:00:00 2001
+From: Alexey Edelev <alexey.edelev@qt.io>
+Date: Tue, 21 Dec 2021 17:05:07 +0100
+Subject: [PATCH] Exclude sources from HEADER_MODULE if cmake version is less
+ than 3.19
+
+CMake versions less than 3.19 don't support adding the source files to
+the PRIVATE scope of the INTERFACE libraries. It looks like these
+PRIVATE sources are only used by IDEs to display them in a project
+tree. Skip them to avoid configuring issues.
+
+Fixes: QTBUG-99316
+Pick-to: 6.3
+Change-Id: Id03f540ac9c94e920adfae5de4f364bd7aba4613
+---
+ cmake/QtTargetHelpers.cmake | 15 ++++++++++++---
+ 1 file changed, 12 insertions(+), 3 deletions(-)
+
+diff --git a/cmake/QtTargetHelpers.cmake b/cmake/QtTargetHelpers.cmake
+index b94a4bdae2..bc4f112560 100644
+--- a/cmake/QtTargetHelpers.cmake
++++ b/cmake/QtTargetHelpers.cmake
+@@ -51,9 +51,18 @@ function(qt_internal_extend_target target)
+         endforeach()
+ 
+         # Set-up the target
+-        target_sources("${target}" PRIVATE ${arg_SOURCES} ${dbus_sources})
+-        if (arg_COMPILE_FLAGS)
+-            set_source_files_properties(${arg_SOURCES} PROPERTIES COMPILE_FLAGS "${arg_COMPILE_FLAGS}")
++
++        # CMake versions less than 3.19 don't support adding the source files to the PRIVATE scope
++        # of the INTERFACE libraries. These PRIVATE sources are only needed by IDEs to display
++        # them in a project tree, so to avoid build issues and appearing the sources in
++        # INTERFACE_SOURCES property of HEADER_MODULE let's simply exclude them for compatibility
++        # with CMake versions less than 3.19.
++        if(NOT arg_HEADER_MODULE OR CMAKE_VERSION VERSION_GREATER_EQUAL "3.19")
++            target_sources("${target}" PRIVATE ${arg_SOURCES} ${dbus_sources})
++            if (arg_COMPILE_FLAGS)
++                set_source_files_properties(${arg_SOURCES} PROPERTIES
++                    COMPILE_FLAGS "${arg_COMPILE_FLAGS}")
++            endif()
+         endif()
+ 
+         set(public_visibility_option "PUBLIC")
