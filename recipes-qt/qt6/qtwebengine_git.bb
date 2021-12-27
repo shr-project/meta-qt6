@@ -10,6 +10,7 @@ DEPENDS += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'libxcomposite libxcursor libxi libxrandr libxtst libxkbfile', '', d)} \
     qtbase qtdeclarative qtdeclarative-native \
     gn-native \
+    python3-html5lib-native \
 "
 
 EXTRA_OECMAKE += "\
@@ -25,10 +26,7 @@ SECURITY_STRINGFORMAT = ""
 
 PACKAGECONFIG ??= "\
     ${@bb.utils.filter('DISTRO_FEATURES', 'alsa pulseaudio', d)} \
-    freetype \
     glib \
-    harfbuzz \
-    icu \
     libevent \
     libjpeg \
     libpci \
@@ -82,3 +80,7 @@ FILES:${PN} += "\
     ${QT6_INSTALL_TRANSLATIONSDIR} \
     ${QT6_INSTALL_DATADIR}/resources \
 "
+
+# QA Issue: qtwebengine: ELF binary /usr/lib/libQt6WebEngineCore.so.6.3.0 has relocations in .text [textrel]
+# when proprietary-codecs is enabled
+INSANE_SKIP:${PN} += "textrel"

@@ -9,6 +9,7 @@ DEPENDS += " \
     qtbase qtdeclarative qtdeclarative-native \
     gn-native \
     libxkbcommon \
+    python3-html5lib-native \
 "
 
 EXTRA_OECMAKE += "\
