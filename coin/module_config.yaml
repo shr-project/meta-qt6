@@ -115,7 +115,6 @@ instructions:
       git clone git://git.yoctoproject.org/poky --reference /mnt/yocto-cache/mirror/poky.git -b ${YOCTO_BRANCH}
       git clone git://git.openembedded.org/meta-openembedded --reference /mnt/yocto-cache/mirror/meta-openembedded.git -b ${YOCTO_BRANCH}
       git clone git://git.yoctoproject.org/meta-mingw --reference /mnt/yocto-cache/mirror/meta-mingw.git -b ${YOCTO_BRANCH}
-      git clone git://git.openembedded.org/meta-python2 --reference /mnt/yocto-cache/mirror/meta-python2.git -b ${YOCTO_BRANCH}
 
       source ./poky/oe-init-build-env
       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
@@ -128,7 +127,6 @@ instructions:
       bitbake-layers add-layer ../meta-openembedded/meta-python
       bitbake-layers add-layer ../meta-openembedded/meta-multimedia
       bitbake-layers add-layer ../meta-mingw
-      bitbake-layers add-layer ../meta-python2
       bitbake-layers add-layer ${SOURCE_DIR}
 
       if [ -n "${DISABLE_X11}" ] ; then
