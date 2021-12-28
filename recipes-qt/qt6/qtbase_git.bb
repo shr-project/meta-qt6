@@ -4,8 +4,8 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.GPL2;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
     file://LICENSE.GPL3;md5=d32239bcb673463ab874e80d47fae504 \
     file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
-    file://LICENSE.FDL;md5=6d9f2a9af4c8b8c3c769f6cc1b6aaf7e \
-    file://LICENSE.QT-LICENSE-AGREEMENT;md5=c8b6dd132d52c6e5a545df07a4e3e283 \
+    file://LICENSE.FDL;md5=a22d0be1ce2284b67950a4d1673dd1b0 \
+    file://LICENSE.QT-LICENSE-AGREEMENT;md5=f383149f021dd9099dd49628e3916808 \
 "
 
 inherit qt6-cmake pkgconfig
