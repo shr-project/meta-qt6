@@ -1,6 +1,8 @@
 LICENSE = "BSD-3-Clause & ( GFDL-1.3 & BSD & GPL-3.0 | The-Qt-Company-Commercial )"
 LIC_FILES_CHKSUM = " \
     file://LICENSE.GPL3;md5=d32239bcb673463ab874e80d47fae504 \
+    file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
+    file://LICENSE.FDL;md5=a22d0be1ce2284b67950a4d1673dd1b0 \
     file://src/3rdparty/assimp/src/LICENSE;md5=d9d5275cab4fb13ae624d42ce64865de \
 "
 
