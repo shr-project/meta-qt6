@@ -19,7 +19,6 @@ SRC_URI += "\
     file://0003-tests-disable-failing-tests.patch \
     file://0004-Do-not-use-QT_TOOLCHAIN_RELOCATABLE-paths-in-qt.tool.patch \
     file://0001-catch_p_p.h-don-t-use-MINSIGSTKSZ.patch \
-    file://0005-Exclude-sources-from-HEADER_MODULE-if-cmake-version-.patch \
 "
 
 DEPENDS += "\
