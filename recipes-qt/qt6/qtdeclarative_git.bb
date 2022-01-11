@@ -16,7 +16,7 @@ SRC_URI += "\
     file://0001-tests-disable-failing-tests.patch \
 "
 
-DEPENDS += "qtbase qtshadertools qtshadertools-native qtdeclarative-native"
+DEPENDS += "qtbase qtshadertools qtshadertools-native qtdeclarative-native qtlanguageserver"
 
 BBCLASSEXTEND = "native nativesdk"
 
