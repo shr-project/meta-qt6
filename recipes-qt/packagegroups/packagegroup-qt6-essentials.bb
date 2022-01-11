@@ -13,5 +13,4 @@ RDEPENDS:${PN} += " \
     qttools \
     qttranslations-qtbase \
     qttranslations-qtdeclarative \
-    qttranslations-qtquickcontrols2 \
 "
