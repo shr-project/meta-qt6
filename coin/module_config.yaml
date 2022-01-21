@@ -7,7 +7,7 @@ accept_configuration:
       equals_value: Yocto
     - condition: property
       property: target.arch
-      in_values: [TARGET2, TARGET3, TARGET4]
+      in_values: [TARGET1, TARGET2, TARGET3, TARGET4]
 
 machine_type:
   Build:
@@ -29,8 +29,8 @@ target1: &target1
       variableName: MACHINE
       variableValue: qemuarm64
     - type: EnvironmentVariable
-      variableName: YOCTO_BRANCH
-      variableValue: master
+      variableName: MANIFEST
+      variableValue: master.xml
     - type: EnvironmentVariable
       variableName: DISABLE_X11
       variableValue: true
@@ -45,8 +45,8 @@ target2: &target2
       variableName: MACHINE
       variableValue: qemux86
     - type: EnvironmentVariable
-      variableName: YOCTO_BRANCH
-      variableValue: honister
+      variableName: MANIFEST
+      variableValue: honister.xml
     - type: EnvironmentVariable
       variableName: DISABLE_X11
       variableValue: true
@@ -64,8 +64,8 @@ target3: &target3
       variableName: MACHINE
       variableValue: qemuarm
     - type: EnvironmentVariable
-      variableName: YOCTO_BRANCH
-      variableValue: hardknott
+      variableName: MANIFEST
+      variableValue: hardknott.xml
   enable_if:
       condition: property
       property: target.arch
@@ -77,8 +77,8 @@ target4: &target4
       variableName: MACHINE
       variableValue: qemux86-64
     - type: EnvironmentVariable
-      variableName: YOCTO_BRANCH
-      variableValue: dunfell
+      variableName: MANIFEST
+      variableValue: dunfell.xml
   enable_if:
       condition: property
       property: target.arch
@@ -112,10 +112,15 @@ instructions:
       sudo mkdir -p /mnt/yocto-cache
       sudo mount yocto-cache.ci.qt.io:/srv/yocto-cache /mnt/yocto-cache
 
-      git clone git://git.yoctoproject.org/poky --reference /mnt/yocto-cache/mirror/poky.git -b ${YOCTO_BRANCH}
-      git clone git://git.openembedded.org/meta-openembedded --reference /mnt/yocto-cache/mirror/meta-openembedded.git -b ${YOCTO_BRANCH}
-      git clone git://git.yoctoproject.org/meta-mingw --reference /mnt/yocto-cache/mirror/meta-mingw.git -b ${YOCTO_BRANCH}
-      git clone git://git.openembedded.org/meta-python2 --reference /mnt/yocto-cache/mirror/meta-python2.git -b ${YOCTO_BRANCH}
+      curl https://storage.googleapis.com/git-repo-downloads/repo > repo
+      chmod +x repo
+
+      ./repo init \
+          -u git://code.qt.io/yocto/boot2qt-manifest \
+          -b ci \
+          -m ${MANIFEST} \
+          --reference /mnt/mirror
+      ./repo sync
 
       source ./poky/oe-init-build-env
       export BB_ENV_EXTRAWHITE="$BB_ENV_EXTRAWHITE SSTATE_DIR DL_DIR"
