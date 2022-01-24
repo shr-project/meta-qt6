@@ -1,4 +1,4 @@
-From 54761cb9a05db79482cea138effc6d1c33125e99 Mon Sep 17 00:00:00 2001
+From 9228d7c87b6affc60fa784ca44ac26710b28abd9 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 8 Sep 2021 09:31:15 +0300
 Subject: [PATCH] tests: disable failing tests
@@ -12,12 +12,12 @@ Upstream-Status: Inappropriate [embedded specific]
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/tests/auto/gui/image/CMakeLists.txt b/tests/auto/gui/image/CMakeLists.txt
-index 14930536c9..2a506aa089 100644
+index 27916d0409..cf6c86e8dc 100644
 --- a/tests/auto/gui/image/CMakeLists.txt
 +++ b/tests/auto/gui/image/CMakeLists.txt
-@@ -6,7 +6,7 @@ if(TARGET Qt::Network AND NOT ANDROID)
+@@ -8,7 +8,7 @@ if(QT_FEATURE_ico)
+     add_subdirectory(qicoimageformat)
  endif()
- add_subdirectory(qicoimageformat)
  add_subdirectory(qpixmap)
 -add_subdirectory(qimage)
 +#add_subdirectory(qimage)
