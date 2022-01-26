@@ -44,7 +44,9 @@ fakeroot do_install_ptest() {
             test=${f##${D}${PTEST_PATH}/}
             testdir=$(dirname ${test})
             # tests may depend on files from sources
-            cp -r ${S}/${testdir}/* ${D}${PTEST_PATH}/${testdir}
+            if [ -e ${S}${testdir} ]; then
+                cp -r ${S}/${testdir}/* ${D}${PTEST_PATH}/${testdir}
+            fi
             echo ${test} >> ${D}${PTEST_PATH}/tst_list
         done
     fi
