@@ -1,0 +1,34 @@
+From 965ea251c7640baa9f8706263dbb1f3465c29c75 Mon Sep 17 00:00:00 2001
+From: Laszlo Agocs <laszlo.agocs@qt.io>
+Date: Fri, 28 Jan 2022 11:29:16 +0100
+Subject: [PATCH] rhi: d3d11: Try uuidof instead of IID_* to help old MinGW
+
+Fixes: QTBUG-100294
+Pick-to: 6.3
+Change-Id: Iee90355ecd48a753f9a7ec53e7f5758e3d12eddf
+---
+ src/gui/rhi/qrhid3d11.cpp | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/gui/rhi/qrhid3d11.cpp b/src/gui/rhi/qrhid3d11.cpp
+index fc6fd59f4f..41f235396e 100644
+--- a/src/gui/rhi/qrhid3d11.cpp
++++ b/src/gui/rhi/qrhid3d11.cpp
+@@ -217,7 +217,7 @@ bool QRhiD3D11::create(QRhi::Flags flags)
+         // sufficient to get non-blocking behavior, try using ALLOW_TEARING
+         // when available.
+         IDXGIFactory5 *factory5 = nullptr;
+-        if (SUCCEEDED(dxgiFactory->QueryInterface(IID_IDXGIFactory5, reinterpret_cast<void **>(&factory5)))) {
++        if (SUCCEEDED(dxgiFactory->QueryInterface(__uuidof(IDXGIFactory5), reinterpret_cast<void **>(&factory5)))) {
+             BOOL allowTearing = false;
+             if (SUCCEEDED(factory5->CheckFeatureSupport(DXGI_FEATURE_PRESENT_ALLOW_TEARING, &allowTearing, sizeof(allowTearing))))
+                 supportsAllowTearing = allowTearing;
+@@ -4667,7 +4667,7 @@ bool QD3D11SwapChain::createOrResize()
+                 swapChain = sc1;
+                 if (m_format != SDR) {
+                     IDXGISwapChain3 *sc3 = nullptr;
+-                    if (SUCCEEDED(sc1->QueryInterface(IID_IDXGISwapChain3, reinterpret_cast<void **>(&sc3)))) {
++                    if (SUCCEEDED(sc1->QueryInterface(__uuidof(IDXGISwapChain3), reinterpret_cast<void **>(&sc3)))) {
+                         hr = sc3->SetColorSpace1(hdrColorSpace);
+                         if (FAILED(hr))
+                             qWarning("Failed to set color space on swapchain: %s", qPrintable(comErrorMessage(hr)));
