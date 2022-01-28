@@ -20,3 +20,4 @@ DEPENDS += "qtbase qtshadertools qtshadertools-native qtdeclarative-native qtlan
 
 BBCLASSEXTEND = "native nativesdk"
 
+PTEST_ENABLED = "0"
