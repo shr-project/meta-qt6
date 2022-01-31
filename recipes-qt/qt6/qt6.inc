@@ -115,6 +115,7 @@ FILES:${PN}-staticdev += " \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.a \
     ${QT6_INSTALL_QMLDIR}/*/*/*/*/*.prl \
     ${QT6_INSTALL_LIBDIR}/objects* \
+    ${QT6_INSTALL_PLUGINSDIR}/*/objects* \
     ${QT6_INSTALL_QMLDIR}/*/objects*/ \
     ${QT6_INSTALL_QMLDIR}/*/*/objects*/ \
     ${QT6_INSTALL_QMLDIR}/*/*/*/objects*/ \
