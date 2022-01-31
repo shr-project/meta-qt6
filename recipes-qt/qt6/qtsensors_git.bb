@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
 "
 
-inherit qt6-cmake pkgconfig
+inherit qt6-cmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
