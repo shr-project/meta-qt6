@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = " \
     file://LICENSE.QT-LICENSE-AGREEMENT;md5=f383149f021dd9099dd49628e3916808 \
 "
 
-inherit qt6-cmake pkgconfig
+inherit qt6-cmake
 
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc

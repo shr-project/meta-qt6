@@ -1,4 +1,4 @@
-inherit cmake python3native perlnative qt6-paths
+inherit cmake python3native perlnative pkgconfig qt6-paths
 
 DEPENDS:prepend = "qtbase-native "
 
