@@ -27,13 +27,13 @@ FILES:${PN}-dev += " \
     ${QT6_INSTALL_DATADIR}/ifcodegen-templates \
     "
 
-PACKAGES =+ "${PN}-refapi-media"
+PACKAGE_BEFORE_PN =+ "${PN}-refapi-media"
 FILES:${PN}-refapi-media = "\
     ${QT6_INSTALL_LIBDIR}/libQt6IfMedia.so.* \
     ${QT6_INSTALL_LIBDIR}/qml/QtInterfaceFramework/Media \
     "
 
-PACKAGES =+ "${PN}-refapi-vehiclefuntions"
+PACKAGE_BEFORE_PN =+ "${PN}-refapi-vehiclefuntions"
 FILES:${PN}-refapi-vehiclefuntions = "\
     ${QT6_INSTALL_LIBDIR}/libQt6IfVehicleFunctions.so.* \
     ${QT6_INSTALL_LIBDIR}/qml/QtInterfaceFramework/VehicleFunctions \
