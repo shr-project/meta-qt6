@@ -30,7 +30,7 @@ PACKAGECONFIG[widgets] = "-DFEATURE_qtpdf_widgets_build=ON,-DFEATURE_qtpdf_widge
 ENABLE_QMLCOMPILER = "0"
 
 do_install:append() {
-    # remote conflicting files with QtWebEngine
-    rm ${D}${libdir}/cmake/Qt6BuildInternals/StandaloneTests/QtWebEngineTestsConfig.cmake
-    rm ${D}${libdir}/cmake/Qt6/Find*.cmake
+    # remove conflicting files with QtWebEngine
+    rm -f ${D}${libdir}/cmake/Qt6BuildInternals/StandaloneTests/QtWebEngineTestsConfig.cmake
+    rm -f ${D}${libdir}/cmake/Qt6/Find*.cmake
 }
