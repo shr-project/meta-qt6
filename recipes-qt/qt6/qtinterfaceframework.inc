@@ -24,7 +24,7 @@ SYSTEMD_SERVICE:${PN}-simulation = " \
     if-services.target \
     "
 
-PACKAGES =+ "${PN}-simulation"
+PACKAGE_BEFORE_PN =+ "${PN}-simulation"
 FILES:${PN}-simulation = " \
     ${QT6_INSTALL_BINDIR}/ifmedia-simulation-server \
     ${QT6_INSTALL_BINDIR}/ifvehiclefunctions-simulation-server \
