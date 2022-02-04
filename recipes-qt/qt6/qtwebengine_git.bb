@@ -38,6 +38,7 @@ PACKAGECONFIG ??= "\
     ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', '${PACKAGECONFIG_OPENEMBEDDED}', '', d)} \
     geolocation \
     webchannel \
+    ${@bb.utils.contains('BBFILE_COLLECTIONS', 'multimedia-layer', 'webrtc-pipewire', '', d)} \
     printing-and-pdf \
     pepper-plugins \
 "
