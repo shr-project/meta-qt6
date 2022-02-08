@@ -81,3 +81,7 @@ FILES:${PN} += "\
     ${QT6_INSTALL_TRANSLATIONSDIR} \
     ${QT6_INSTALL_DATADIR}/resources \
 "
+
+# QA Issue: qtwebengine: ELF binary /usr/lib/libQt6WebEngineCore.so.6.3.0 has relocations in .text [textrel]
+# when proprietary-codecs is enabled
+INSANE_SKIP:${PN} += "textrel"
