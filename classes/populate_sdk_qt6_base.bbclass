@@ -97,8 +97,9 @@ include("\${CMAKE_TOOLCHAIN_FILE}")
 EOF
 
     # and use that from the default toolchain file qt.toolchain.cmake
+    RELPATH=${@os.path.relpath('/usr/share/cmake/Qt6Toolchain.cmake', d.getVar('QT6_INSTALL_LIBDIR') + '/cmake/Qt6')}
     sed -i ${SDK_OUTPUT}${SDKPATHNATIVE}${QT6_INSTALL_LIBDIR}/cmake/Qt6/qt.toolchain.cmake \
-        -e 's|/.*/toolchain.cmake|${SDKPATHNATIVE}/usr/share/cmake/Qt6Toolchain.cmake|'
+        -e "s|/.*/toolchain.cmake|\${CMAKE_CURRENT_LIST_DIR}/$RELPATH|"
 }
 
 create_qt6_sdk_files:append:sdkmingw32() {
