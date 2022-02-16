@@ -17,9 +17,8 @@ DEPENDS += "qtbase qtshadertools qtshadertools-native"
 PACKAGECONFIG ?= "gstreamer qml"
 PACKAGECONFIG[alsa] = "-DFEATURE_alsa=ON,-DFEATURE_alsa=OFF,alsa-lib"
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtsvg"
-PACKAGECONFIG[pulseaudio] = "-DFEATURE_pulseaudio=ON,-DFEATURE_pulseaudio=OFF,pulseaudio"
+PACKAGECONFIG[ffmpeg] = "-DFEATURE_ffmpeg=ON,-DFEATURE_ffmpeg=OFF,ffmpeg"
 PACKAGECONFIG[gstreamer] = "-DFEATURE_gstreamer=ON,-DFEATURE_gstreamer=OFF,gstreamer1.0 gstreamer1.0-plugins-base gstreamer1.0-plugins-bad"
+PACKAGECONFIG[pulseaudio] = "-DFEATURE_pulseaudio=ON,-DFEATURE_pulseaudio=OFF,pulseaudio"
 PACKAGECONFIG[qml] = ",,qtdeclarative qtdeclarative-native"
-
-EXTRA_OECMAKE += "-DFEATURE_gpu_vivante=OFF"
-
+PACKAGECONFIG[vaapi] = "-DFEATURE_vaapi=ON,-DFEATURE_vaapi=OFF,libva"
