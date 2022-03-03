@@ -1,0 +1,30 @@
+From 7341251e0ece7e202e3b5fb02fec6b17d61304c9 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Martin=20Storsj=C3=B6?= <martin@martin.st>
+Date: Wed, 23 Feb 2022 11:41:31 +0200
+Subject: [PATCH] QHash: Fix building for i386 after "add support for VAES and
+ AVX512VL"
+
+Fix a typo from da1720485eee265c40b3832dc92c19100891d86f,
+where mm_cvtsz_si128 was undefined when building for a 32 bit
+target. The code would make it seem this was a typo, with the
+listing of defines didn't match between 32 and 64 bit.
+
+Change-Id: Ica24d88e7f71ecd1d24ed990773711f9105f3ec8
+Reviewed-by: Allan Sandfeld Jensen <allan.jensen@qt.io>
+---
+ src/corelib/tools/qhash.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/corelib/tools/qhash.cpp b/src/corelib/tools/qhash.cpp
+index c69b5123d8..e3106745da 100644
+--- a/src/corelib/tools/qhash.cpp
++++ b/src/corelib/tools/qhash.cpp
+@@ -525,7 +525,7 @@ static uint siphash(const uint8_t *in, uint inlen, uint seed, uint seed2)
+ #    define mm256_set1_epz  _mm256_set1_epi64x
+ #  else
+ #    define mm_set1_epz     _mm_set1_epi32
+-#    define mm_cvtepz_si128 _mm_cvtsi32_si128
++#    define mm_cvtsz_si128  _mm_cvtsi32_si128
+ #    define mm_cvtsi128_sz  _mm_cvtsi128_si32
+ #    define mm256_set1_epz  _mm256_set1_epi32
+ #  endif

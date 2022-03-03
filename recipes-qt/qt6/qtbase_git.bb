@@ -19,6 +19,7 @@ SRC_URI += "\
     file://0003-tests-disable-failing-tests.patch \
     file://0004-Do-not-use-QT_TOOLCHAIN_RELOCATABLE-paths-in-qt.tool.patch \
     file://0001-qsimd.cpp-fix-_FORTIFY_SOURCE-2-builds.patch \
+    file://0001-QHash-Fix-building-for-i386-after-add-support-for-VA.patch \
 "
 
 DEPENDS += "\
