@@ -1,4 +1,4 @@
-From 43ca1eba0970e3d74b556261813f7b8a317665f3 Mon Sep 17 00:00:00 2001
+From 6a77c14d667f3eddf77815d8f264e5c733e880f5 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Fri, 17 Sep 2021 07:27:55 +0300
 Subject: [PATCH] tests: disable failing tests
@@ -11,15 +11,15 @@ Upstream-Status: Inappropriate [embedded specific]
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/tests/auto/quickcontrols2/CMakeLists.txt b/tests/auto/quickcontrols2/CMakeLists.txt
-index 6f2300117c..d745d0c6e1 100644
+index b3b655f2cd..64fa495dba 100644
 --- a/tests/auto/quickcontrols2/CMakeLists.txt
 +++ b/tests/auto/quickcontrols2/CMakeLists.txt
-@@ -24,7 +24,7 @@ add_subdirectory(qquickmaterialstyleconf)
- add_subdirectory(qquickmenu)
+@@ -32,7 +32,7 @@ endif()
  add_subdirectory(qquickmenubar)
  add_subdirectory(qquickninepatchimage)
+ if(NOT ANDROID) # QTBUG-101005
 -add_subdirectory(qquickpopup)
 +#add_subdirectory(qquickpopup)
+ endif()
  add_subdirectory(qquickstyle)
  add_subdirectory(qquickuniversalstyle)
- add_subdirectory(qquickuniversalstyleconf)
