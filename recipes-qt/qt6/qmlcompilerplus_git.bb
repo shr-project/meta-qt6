@@ -8,10 +8,6 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-SRC_URI += "\
-    file://0001-Adapt-to-arguments-being-stored-as-QQmlJSRegisterCon.patch \
-"
-
 python() {
     if d.getVar('QT_EDITION') != 'commercial':
         raise bb.parse.SkipRecipe('Available only with Commercial Qt')
