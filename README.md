@@ -21,9 +21,10 @@ the LAYERSERIES_COMPAT (c).
 
 | Yocto \ Qt | dev | 6.3 | 6.2 | 6.1 | 6.0 |
 | ---------- |:---:|:---:|:---:|:---:|:---:|
-| master     |  x  |  x  |  x  |     |     |
+| master     |  x  |     |     |     |     |
+| kirkstone  |  x  |  x  |  x  |     |     |
 | honister   |  x  |  x  |  x  |     |     |
-| hardknott  |  x  |  x  |  x  |  x  |  x  |
+| hardknott  |  c  |  c  |  c  |  x  |  x  |
 | gatesgarth |  c  |  c  |  c  |  x  |  x  |
 | dunfell    |  x  |  x  |  x  |  x  |  x  |
 
