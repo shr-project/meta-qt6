@@ -34,6 +34,7 @@ RDEPENDS:${PN} += " \
     qtscxml \
     qtsensors \
     qtserialbus \
+    qtserialbus-tools \
     qtserialport \
     qtshadertools \
     qtsvg \
