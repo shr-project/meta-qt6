@@ -11,7 +11,7 @@ CVE_PRODUCT = "qt"
 
 S = "${WORKDIR}/git"
 
-PV = "6.3.0"
+PV = "6.3.1"
 
 SRCREV = "${SRCREV_${QT_MODULE}}"
 
