@@ -41,6 +41,8 @@ FILES:${PN}-refapi-vehiclefuntions = "\
 
 DEPENDS += "qtbase qtdeclarative qtdeclarative-native qtinterfaceframework-native"
 
+PRIVATE_LIBS:${PN}-examples = "libInstrumentCluster.so"
+
 PACKAGECONFIG ?= "ifcodegen remoteobjects interfaceframework \
     ${PACKAGECONFIG_REFERENCE_API} \
     ${PACKAGECONFIG_SIMULATION} \
