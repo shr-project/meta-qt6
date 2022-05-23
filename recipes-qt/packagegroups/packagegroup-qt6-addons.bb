@@ -25,7 +25,6 @@ RDEPENDS:${PN} += " \
     qtmultimedia \
     qtnetworkauth \
     qtopcua \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtpdf', '', d)} \
     qtpositioning \
     qtquick3d \
     qtquickdesigner-components \
@@ -44,7 +43,15 @@ RDEPENDS:${PN} += " \
     ${@bb.utils.contains('DISTRO_FEATURES', 'wayland', 'qtwayland', '', d)} \
     qtwebchannel \
     qtwebsockets \
+"
+
+ARCHITECTURE_LIMITED_MODULES = "\
+    ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtpdf', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine-tools', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebview', '', d)} \
 "
+RDEPENDS:${PN}:append:aarch64 ="${ARCHITECTURE_LIMITED_MODULES}"
+RDEPENDS:${PN}:append:arm ="${ARCHITECTURE_LIMITED_MODULES}"
+RDEPENDS:${PN}:append:x86 ="${ARCHITECTURE_LIMITED_MODULES}"
+RDEPENDS:${PN}:append:x86-64 ="${ARCHITECTURE_LIMITED_MODULES}"
