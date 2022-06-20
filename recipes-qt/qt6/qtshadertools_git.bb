@@ -1,10 +1,13 @@
-LICENSE = "GFDL-1.3 & BSD-3-Clause & ( GPL-3.0-only & Qt-GPL-exception-1.0 ) & ( GPL-2.0-or-later | LGPL-3.0-only ) | The-Qt-Company-Commercial"
+LICENSE = "(The-Qt-Company-Commercial | (GPL-3.0-only & Qt-GPL-exception-1.0) & GFDL-1.3-no-invariants-only) & (Apache-2.0 | MIT) & BSD-3-Clause & BSD-2-Clause & Apache-2.0 & GPL-3-with-bison-exception"
 LIC_FILES_CHKSUM = " \
-    file://LICENSE.LGPL3;md5=e6a600fd5e1d9cbde2d983680233ad02 \
-    file://LICENSE.GPL2;md5=b234ee4d69f5fce4486a80fdaf4a4263 \
-    file://LICENSE.GPL3;md5=d32239bcb673463ab874e80d47fae504 \
-    file://LICENSE.GPL3-EXCEPT;md5=763d8c535a234d9a3fb682c7ecb6c073 \
-    file://LICENSE.FDL;md5=a22d0be1ce2284b67950a4d1673dd1b0 \
+    file://LICENSES/BSD-3-Clause.txt;md5=cb40fa7520502d8c7a3aea47cae1316c \
+    file://LICENSES/GFDL-1.3-no-invariants-only.txt;md5=a22d0be1ce2284b67950a4d1673dd1b0 \
+    file://LICENSES/GPL-3.0-only.txt;md5=d32239bcb673463ab874e80d47fae504 \
+    file://LICENSES/LicenseRef-Qt-Commercial.txt;md5=40a1036f91cefc0e3fabad241fb5f187 \
+    file://LICENSES/Qt-GPL-exception-1.0.txt;md5=9a13522cd91a88fba784baf16ea66af8 \
+    file://src/3rdparty/SPIRV-Cross/KHRONOS-LICENSE.txt;md5=220cd23564f44ef34996a001e2651a36 \
+    file://src/3rdparty/SPIRV-Cross/LICENSE;md5=3b83ef96387f14655fc854ddc3c6bd57 \
+    file://src/3rdparty/glslang/LICENSE.txt;md5=ff2138e5b8d7cc42d9cb0b054c350922 \
 "
 
 inherit qt6-cmake
