@@ -13,6 +13,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "file://0001-clang-wants-C-attributes-before-a-func-declaration-n.patch"
+
 DEPENDS += "qtbase qtdeclarative libyaml libarchive qtapplicationmanager-native"
 RDEPENDS:${PN}:class-target = "libcrypto ${PN}-tools"
 
