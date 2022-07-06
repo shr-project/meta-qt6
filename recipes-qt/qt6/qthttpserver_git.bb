@@ -13,3 +13,6 @@ include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase"
+
+PACKAGECONFIG ?= "websockets"
+PACKAGECONFIG[websockets] = ",,qtwebsockets"
