@@ -1,0 +1,38 @@
+From 839d13043c1b8aa61e80f65332c1016bc8a79f06 Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Thu, 7 Jul 2022 15:15:57 +0000
+Subject: [PATCH] rcc: fix build when cross-compiling
+
+The zstd feature is now public, which enabled it in rcc even when rcc
+was cross-compiled, but rcc was not linked agaist zstd library.
+There is no need to test for cross-compilation anymore or to add
+the extra define.
+
+Amends eda4919f252c53f313441afbedb4d0f98e94c9a
+
+Pick-to: 6.4 6.3 6.2
+Change-Id: I23987ae0903759cf4f3fd17059c71c8815b8d908
+---
+ src/tools/rcc/CMakeLists.txt | 9 +--------
+ 1 file changed, 1 insertion(+), 8 deletions(-)
+
+diff --git a/src/tools/rcc/CMakeLists.txt b/src/tools/rcc/CMakeLists.txt
+index 8a8a1fa18e..2150a74d84 100644
+--- a/src/tools/rcc/CMakeLists.txt
++++ b/src/tools/rcc/CMakeLists.txt
+@@ -28,14 +28,7 @@ qt_internal_return_unless_building_tools()
+ ## Scopes:
+ #####################################################################
+ 
+-qt_internal_extend_target(${target_name} CONDITION QT_FEATURE_zstd AND NOT CMAKE_CROSSCOMPILING
+-    DEFINES
+-        QT_FEATURE_zstd=1
++qt_internal_extend_target(${target_name} CONDITION QT_FEATURE_zstd
+     LIBRARIES
+         WrapZSTD::WrapZSTD
+ )
+-
+-qt_internal_extend_target(${target_name} CONDITION CMAKE_CROSSCOMPILING OR NOT QT_FEATURE_zstd
+-    DEFINES
+-        QT_FEATURE_zstd=-1
+-)
