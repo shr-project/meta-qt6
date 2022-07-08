@@ -19,4 +19,4 @@ COMPATIBLE_MACHINE:arm = "(.*)"
 COMPATIBLE_MACHINE:x86 = "(.*)"
 COMPATIBLE_MACHINE:x86-64 = "(.*)"
 
-DEPENDS = "qtbase qtquick3d qtdeclarative-native"
+DEPENDS = "qtbase qtquick3d qtquick3d-native qtdeclarative-native"
