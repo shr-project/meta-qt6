@@ -19,7 +19,6 @@ SRC_URI += "\
     file://0002-qlibraryinfo-allow-to-set-qt.conf-from-the-outside-u.patch \
     file://0003-tests-disable-failing-tests.patch \
     file://0004-Fix-qt.toolchain.cmake-for-SDK-use.patch \
-    file://0001-rcc-fix-build-when-cross-compiling.patch \
 "
 
 DEPENDS += "\
