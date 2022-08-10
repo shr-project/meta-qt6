@@ -38,6 +38,7 @@ PACKAGECONFIG ??= "\
     webchannel \
     printing-and-pdf \
     pepper-plugins \
+    spellchecker \
 "
 PACKAGECONFIG_OPENEMBEDDED ?= "\
     lcms2 \
