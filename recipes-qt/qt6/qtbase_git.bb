@@ -162,8 +162,9 @@ do_install:append() {
 
 do_install:append:class-nativesdk() {
     install -d ${D}${datadir}/cmake/OEToolchainConfig.cmake.d
+    RELPATH=${@os.path.relpath(d.getVar('prefix'), d.getVar('datadir') + '/cmake/OEToolchainConfig.cmake.d')}
     cat > ${D}${datadir}/cmake/OEToolchainConfig.cmake.d/OEQt6Toolchain.cmake <<EOF
-set(QT_HOST_PATH "\$ENV{OECORE_NATIVE_SYSROOT}/usr" CACHE PATH "")
+get_filename_component(QT_HOST_PATH "\${CMAKE_CURRENT_LIST_DIR}/${RELPATH}" ABSOLUTE CACHE)
 set(QT_BUILD_INTERNALS_NO_FORCE_SET_INSTALL_PREFIX ON CACHE BOOL "")
 EOF
 
