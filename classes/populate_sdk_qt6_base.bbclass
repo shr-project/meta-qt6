@@ -130,7 +130,12 @@ if(NOT DEFINED CMAKE_INSTALL_PREFIX)
   set(CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT 1)
 endif()
 set(CMAKE_INSTALL_PREFIX "${prefix}" CACHE PATH "Install path prefix")
-set(QT_BUILD_INTERNALS_NO_FORCE_SET_INSTALL_PREFIX ON CACHE BOOL "")
+
+# Include the toolchain configuration subscripts
+file( GLOB toolchain_config_files "\${CMAKE_CURRENT_LIST_DIR}/OEToolchainConfig.cmake.d/*.cmake" )
+foreach(config \${toolchain_config_files})
+    include(\${config})
+endforeach()
 EOF
 
     # resolve absolute paths at runtime
