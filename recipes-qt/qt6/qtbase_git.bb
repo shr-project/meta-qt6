@@ -152,6 +152,9 @@ do_install:append() {
     sed -i ${D}${libdir}/cmake/Qt6BuildInternals/QtBuildInternalsExtra.cmake \
         -e '/QT_SOURCE_TREE/,+2d'
 
+    sed -i ${D}${QT6_INSTALL_LIBDIR}/cmake/Qt6/Qt6Dependencies.cmake \
+        -e '/set(__qt_platform_initial_qt_host/d'
+
     # remove mac and android specific scripts that depend on perl and bash
     # to avoid file-rdeps QA Issue.
     rm -f ${D}${QT6_INSTALL_LIBEXECDIR}/android_emulator_launcher.sh
