@@ -47,6 +47,7 @@ RDEPENDS:${PN} += " \
 
 ARCHITECTURE_LIMITED_MODULES = "\
     qtquick3dphysics \
+    qtquick3dphysics-tools \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtpdf', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine-tools', '', d)} \
