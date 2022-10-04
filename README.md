@@ -20,14 +20,15 @@ Following table shows the Yocto branches which are used to test each
 Qt version (x) and any additional Yocto releases that are stated in
 the LAYERSERIES_COMPAT (c).
 
-| Yocto \ Qt | dev | 6.3 | 6.2 | 6.1 | 6.0 |
-| ---------- |:---:|:---:|:---:|:---:|:---:|
-| master     |  x  |     |     |     |     |
-| kirkstone  |  x  |  x  |  x  |     |     |
-| honister   |  x  |  x  |  x  |     |     |
-| hardknott  |  c  |  c  |  c  |  x  |  x  |
-| gatesgarth |  c  |  c  |  c  |  x  |  x  |
-| dunfell    |  x  |  x  |  x  |  x  |  x  |
+| Yocto \ Qt | dev | 6.4 | 6.3 | 6.2 |
+| ---------- |:---:|:---:|:---:|:---:|
+| master     |  x  |  x  |     |     |
+| langdale   |  x  |  x  |     |     |
+| kirkstone  |  x  |  x  |  x  |  x  |
+| honister   |  c  |  c  |  x  |  x  |
+| hardknott  |  c  |  c  |  c  |  c  |
+| gatesgarth |  c  |  c  |  c  |  c  |
+| dunfell    |  x  |  x  |  x  |  x  |
 
 Commercial Qt
 -------------
