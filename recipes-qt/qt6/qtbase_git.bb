@@ -26,6 +26,7 @@ SRC_URI += "\
 "
 
 DEPENDS += "\
+    patchelf-native \
     freetype \
     pcre2 \
 "
