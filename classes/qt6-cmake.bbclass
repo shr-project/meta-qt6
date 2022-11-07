@@ -42,3 +42,5 @@ do_install:append() {
                -e 's|${STAGING_DIR_HOST}|$$[QT_SYSROOT]|g' \
                -e '/QMAKE_PRL_BUILD_DIR/d' {} \;
 }
+
+export QT_DISABLE_SHADER_DISK_CACHE = "1"
