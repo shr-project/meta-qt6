@@ -24,4 +24,10 @@ PACKAGECONFIG[multi-process] = "-DFEATURE_am_multi_process=ON, -DFEATURE_am_mult
 PACKAGECONFIG:class-native ??= "tools-only"
 PACKAGECONFIG:class-nativesdk ??= "${PACKAGECONFIG:class-native}"
 
+FILES:${PN}-tools = "\
+    ${QT6_INSTALL_BINDIR}/appman-packager* \
+    ${QT6_INSTALL_BINDIR}/appman-dumpqmltypes* \
+    ${QT6_INSTALL_BINDIR}/appman-qmltestrunner* \
+"
+
 BBCLASSEXTEND = "nativesdk native"

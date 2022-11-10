@@ -14,7 +14,6 @@ RDEPENDS:${PN} += " \
     qtcharts \
     qtcoap \
     qtconnectivity \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'qtconnectivity-tools', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'opengl', 'qtdatavis3d', '', d)} \
     qtdeviceutilities \
     qthttpserver \
@@ -47,10 +46,8 @@ RDEPENDS:${PN} += " \
 
 ARCHITECTURE_LIMITED_MODULES = "\
     qtquick3dphysics \
-    qtquick3dphysics-tools \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtpdf', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine', '', d)} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebengine-tools', '', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'webengine', 'qtwebview', '', d)} \
 "
 RDEPENDS:${PN}:append:aarch64 ="${ARCHITECTURE_LIMITED_MODULES}"

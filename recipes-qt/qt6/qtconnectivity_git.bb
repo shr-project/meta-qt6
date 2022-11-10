@@ -22,3 +22,4 @@ DEPENDS += "qtbase qtdeclarative qtdeclarative-native"
 PACKAGECONFIG ?= "${@bb.utils.contains('DISTRO_FEATURES', 'bluetooth', 'bluez', '', d)}"
 PACKAGECONFIG[bluez] = "-DFEATURE_bluez=ON,-DFEATURE_bluez=OFF,bluez5"
 
+FILES:${PN}-tools = ""
