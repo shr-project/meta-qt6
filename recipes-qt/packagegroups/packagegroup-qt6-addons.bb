@@ -19,6 +19,7 @@ RDEPENDS:${PN} += " \
     qthttpserver \
     qtimageformats \
     ${@bb.utils.contains('BBFILE_COLLECTIONS', 'meta-python', 'qtinterfaceframework', '', d)} \
+    qtlocation \
     qtlottie \
     qtmqtt \
     qtmultimedia \
