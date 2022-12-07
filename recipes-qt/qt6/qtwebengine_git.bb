@@ -85,3 +85,5 @@ FILES:${PN}-tools = ""
 # QA Issue: qtwebengine: ELF binary /usr/lib/libQt6WebEngineCore.so.6.3.0 has relocations in .text [textrel]
 # when proprietary-codecs is enabled
 INSANE_SKIP:${PN} += "textrel"
+
+QT_PTEST_ENABLED = "0"
