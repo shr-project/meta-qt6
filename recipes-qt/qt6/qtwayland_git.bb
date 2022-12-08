@@ -23,16 +23,12 @@ SRC_URI +="\
 PACKAGECONFIG ?= "\
     wayland-client \
     wayland-server \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcomposite-glx', '', d)} \
 "
 PACKAGECONFIG:class-native ?= ""
 PACKAGECONFIG:class-nativesdk ?= ""
 
 PACKAGECONFIG[wayland-client] = "-DFEATURE_wayland_client=ON,-DFEATURE_wayland_client=OFF,"
 PACKAGECONFIG[wayland-server] = "-DFEATURE_wayland_server=ON,-DFEATURE_wayland_server=OFF,"
-
-PACKAGECONFIG[xcomposite-egl] = "-DFEATURE_xcomposite_egl=ON,-DFEATURE_xcomposite_egl=OFF,libxcomposite"
-PACKAGECONFIG[xcomposite-glx] = "-DFEATURE_xcomposite_glx=ON,-DFEATURE_xcomposite_glx=OFF,libxcomposite virtual/mesa"
 
 PACKAGECONFIG[dmabuf-client-buffer] = "-DFEATURE_wayland_dmabuf_client_buffer=ON,-DFEATURE_wayland_dmabuf_client_buffer=OFF,libdrm"
 PACKAGECONFIG[dmabuf-server-buffer] = "-DFEATURE_wayland_dmabuf_server_buffer=ON,-DFEATURE_wayland_dmabuf_server_buffer=OFF,libdrm"
