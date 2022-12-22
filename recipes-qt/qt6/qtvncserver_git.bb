@@ -1,5 +1,5 @@
 LICENSE = "The-Qt-Company-Commercial"
-LIC_FILES_CHKSUM = "file://src/vncserver/qvncserver.h;endline=20;md5=580773df14a5ab6e35a84ea48f3df1f8"
+LIC_FILES_CHKSUM = "file://src/vncserver/qvncserver.h;endline=2;md5=a18574b7b7525f98e1f60d531ed2d015"
 
 inherit qt6-cmake
 
