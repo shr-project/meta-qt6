@@ -12,6 +12,7 @@ QT_FORCE_BUILD_TOOLS ?= "OFF"
 EXTRA_OECMAKE:append:class-target = "\
     -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native}/ \
     -DQT_FORCE_BUILD_TOOLS=${QT_FORCE_BUILD_TOOLS} \
+    -D__harfbuzz_broken_config_file=TRUE \
 "
 EXTRA_OECMAKE:append:class-nativesdk = "\
     -DQT_HOST_PATH:PATH=${RECIPE_SYSROOT_NATIVE}${prefix_native}/ \
