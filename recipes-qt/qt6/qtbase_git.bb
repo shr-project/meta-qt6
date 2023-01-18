@@ -54,13 +54,27 @@ PACKAGECONFIG_GRAPHICS ?= "\
         bb.utils.contains('DISTRO_FEATURES', 'x11', 'gl', 'gles2 eglfs', d), 'no-opengl linuxfb', d)} \
     ${@bb.utils.contains('DISTRO_FEATURES', 'directfb', 'directfb', '', d)} \
 "
-PACKAGECONFIG_X11 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb xkbcommon glib', '', d)}"
+PACKAGECONFIG_X11 ?= "${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'xcb', '', d)}"
 PACKAGECONFIG_KDE ?= "${@bb.utils.contains('DISTRO_FEATURES', 'kde', 'sm cups kms gbm sql-sqlite', '', d)}"
 PACKAGECONFIG_FONTS ?= ""
 PACKAGECONFIG_SYSTEM ?= ""
 PACKAGECONFIG_DISTRO ?= ""
-PACKAGECONFIG_DEFAULT ?= "accessibility dbus udev gui widgets icu openssl  \
-    jpeg png dbus libinput fontconfig harfbuzz zlib \
+PACKAGECONFIG_DEFAULT ?= "\
+    accessibility \
+    dbus \
+    fontconfig \
+    glib \
+    gui \
+    harfbuzz \
+    icu \
+    jpeg \
+    libinput \
+    openssl  \
+    png \
+    udev \
+    widgets \
+    xkbcommon \
+    zlib \
     ${@bb.utils.contains('SELECTED_OPTIMIZATION', '-Os', 'optimize-size ltcg', '', d)} \
     ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'zstd', '', d)} \
 "
