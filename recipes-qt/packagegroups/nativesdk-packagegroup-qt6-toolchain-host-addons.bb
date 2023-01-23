@@ -11,6 +11,8 @@ PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 RDEPENDS:${PN} += " \
     nativesdk-qtapplicationmanager-dev \
     nativesdk-qtapplicationmanager-tools \
+    ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'nativesdk-qtgrpc-dev', '', d)} \
+    ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'nativesdk-qtgrpc-tools', '', d)} \
     nativesdk-qtquick3d-dev \
     nativesdk-qtquick3d-tools \
     nativesdk-qtremoteobjects-dev \
