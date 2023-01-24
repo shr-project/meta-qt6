@@ -1,0 +1,66 @@
+From 1cfae7c693261803e8f99552166841c036aa6d60 Mon Sep 17 00:00:00 2001
+From: Joerg Bornemann <joerg.bornemann@qt.io>
+Date: Tue, 24 Jan 2023 10:58:59 +0100
+Subject: [PATCH] Fix configure -no-rpath for CMake < 3.18
+
+We must not set rpath-related properties on INTERFACE libraries. Move
+the code that sets the properties below the bail out for INTERFACE
+libraries.
+
+This amends commit 392d9a54194d06e96bfebdaf081aa6c9787e33ab.
+
+Pick-to: 6.5
+Fixes: QTBUG-110513
+Change-Id: Ie395f1482245c4522917f982d2f3bc745c0b2abc
+---
+ cmake/QtRpathHelpers.cmake | 30 +++++++++++++++---------------
+ 1 file changed, 15 insertions(+), 15 deletions(-)
+
+diff --git a/cmake/QtRpathHelpers.cmake b/cmake/QtRpathHelpers.cmake
+index 7b37c0e81d..3dbf5c6764 100644
+--- a/cmake/QtRpathHelpers.cmake
++++ b/cmake/QtRpathHelpers.cmake
+@@ -94,21 +94,6 @@ function(qt_apply_rpaths)
+         set(target "${arg_TARGET}")
+     endif()
+ 
+-    # Rpaths explicitly disabled (like for uikit), equivalent to qmake's no_qt_rpath.
+-    # Or feature was turned OFF.
+-    if(QT_DISABLE_RPATH OR NOT QT_FEATURE_rpath)
+-        set_target_properties(${target} PROPERTIES
+-            SKIP_BUILD_RPATH ON
+-            SKIP_INSTALL_RPATH ON
+-        )
+-        if(APPLE)
+-            set_target_properties(${target} PROPERTIES
+-                MACOSX_RPATH OFF
+-            )
+-        endif()
+-        return()
+-    endif()
+-
+     # If a target is not built (which can happen for tools when crosscompiling, we shouldn't try
+     # to apply properties.
+     if(NOT TARGET "${target}")
+@@ -125,6 +110,21 @@ function(qt_apply_rpaths)
+         message(FATAL_ERROR "No INSTALL_PATH given to qt_apply_rpaths.")
+     endif()
+ 
++    # Rpaths explicitly disabled (like for uikit), equivalent to qmake's no_qt_rpath.
++    # Or feature was turned OFF.
++    if(QT_DISABLE_RPATH OR NOT QT_FEATURE_rpath)
++        set_target_properties(${target} PROPERTIES
++            SKIP_BUILD_RPATH ON
++            SKIP_INSTALL_RPATH ON
++        )
++        if(APPLE)
++            set_target_properties(${target} PROPERTIES
++                MACOSX_RPATH OFF
++            )
++        endif()
++        return()
++    endif()
++
+     set(rpaths "")
+ 
+     # Modify the install path to contain the nested structure of a framework.
