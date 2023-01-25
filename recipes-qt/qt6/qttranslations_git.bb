@@ -12,7 +12,7 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qttools qttools-native"
 
-PACKAGES = "${PN}"
+PACKAGES = "${PN} ${PN}-dev"
 PACKAGES_DYNAMIC = "${PN}-*"
 PACKAGESPLITFUNCS:prepend = "split_translation_packages "
 
@@ -27,3 +27,4 @@ python split_translation_packages () {
     d.setVar('RRECOMMENDS:' + pn, ' '.join(pkgs))
 }
 
+FILES:${PN}-dev = "${QT6_INSTALL_TRANSLATIONSDIR}/catalogs.json"
