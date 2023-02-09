@@ -1,0 +1,31 @@
+From 99d44f513040e876be6d0cf05e3d10f7e4c2373d Mon Sep 17 00:00:00 2001
+From: Samuli Piippo <samuli.piippo@qt.io>
+Date: Thu, 9 Feb 2023 09:05:15 +0200
+Subject: [PATCH] IPC/QSharedMemory: add missing include
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+Include header defining MAP_FAILED for SysV sharedmemory to fix:
+
+src/corelib/ipc/qsharedmemory_systemv.cpp:175:25: error: ‘MAP_FAILED’ was not declared in this scope; did you mean ‘AF_FILE’?
+  175 |     if (self->memory == MAP_FAILED) {
+      |                         ^~~~~~~~~~
+
+Change-Id: Ia30539d90faad911909f2556b655758ddea6efdb
+---
+ src/corelib/ipc/qsharedmemory_systemv.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/src/corelib/ipc/qsharedmemory_systemv.cpp b/src/corelib/ipc/qsharedmemory_systemv.cpp
+index b14f5db39f..67d2375978 100644
+--- a/src/corelib/ipc/qsharedmemory_systemv.cpp
++++ b/src/corelib/ipc/qsharedmemory_systemv.cpp
+@@ -14,6 +14,7 @@
+ #if QT_CONFIG(sysv_shm)
+ #include <sys/types.h>
+ #include <sys/ipc.h>
++#include <sys/mman.h>
+ #include <sys/shm.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
