@@ -153,10 +153,6 @@ EXTRA_OECMAKE += "\
     -DQT_AVOID_CMAKE_ARCHIVING_API=ON \
 "
 
-EXTRA_OECMAKE:append:class-native = "\
-    -DFEATURE_posix_shm=OFF \
-"
-
 EXTRA_OECMAKE:append:class-target = "\
     -DFEATURE_rpath=OFF \
     -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
