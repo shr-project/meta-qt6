@@ -7,15 +7,16 @@ Build tests without location of the build and sources directories.
 
 Upstream-Status: Inappropriate [embedded specific]
 Change-Id: I8d5add473623a3d9f481097649819c9fb906e4b2
+
 ---
  src/testlib/CMakeLists.txt | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/src/testlib/CMakeLists.txt b/src/testlib/CMakeLists.txt
-index 03deb2edc9..972b366532 100644
+index 6cdb8f3376..3007585e1c 100644
 --- a/src/testlib/CMakeLists.txt
 +++ b/src/testlib/CMakeLists.txt
-@@ -125,8 +125,8 @@ set(qt_tc_build_dir_def
+@@ -121,8 +121,8 @@ set(qt_tc_build_dir_def
      "$<IF:${qt_bool_tc_build_dir},${qt_tc_build_dir},$<TARGET_PROPERTY:BINARY_DIR>>"
  )
  set_property(TARGET Test APPEND PROPERTY INTERFACE_COMPILE_DEFINITIONS
@@ -25,4 +26,4 @@ index 03deb2edc9..972b366532 100644
 +    QT_TESTCASE_SOURCEDIR=""
  )
  
- # special case begin
+ qt_internal_add_docs(Test
