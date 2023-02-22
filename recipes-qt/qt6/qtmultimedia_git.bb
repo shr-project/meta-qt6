@@ -30,3 +30,6 @@ PACKAGECONFIG[qml] = ",,qtdeclarative qtdeclarative-native"
 PACKAGECONFIG[spatialaudio] = "-DFEATURE_spatialaudio=ON,-DFEATURE_spatialaudio=OFF"
 PACKAGECONFIG[spatialaudio_quick3d] = "-DFEATURE_spatialaudio_quick3d=ON,-DFEATURE_spatialaudio_quick3d=OFF,qtquick3d qtquick3d-native"
 PACKAGECONFIG[vaapi] = "-DFEATURE_vaapi=ON,-DFEATURE_vaapi=OFF,libva"
+
+QT_DEFAULT_MEDIA_BACKEND ?= "${@bb.utils.contains('PACKAGECONFIG', 'gstreamer', 'gstreamer', 'ffmpeg', d)}"
+EXTRA_OECMAKE += "-DQT_DEFAULT_MEDIA_BACKEND=${QT_DEFAULT_MEDIA_BACKEND}"
