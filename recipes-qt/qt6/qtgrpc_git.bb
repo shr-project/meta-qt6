@@ -15,4 +15,6 @@ include recipes-qt/qt6/qt6.inc
 
 DEPENDS += "qtbase qtgrpc-native protobuf protobuf-native"
 
+PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative qtdeclarative-native"
+
 BBCLASSEXTEND = "native nativesdk"
