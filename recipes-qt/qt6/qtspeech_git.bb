@@ -13,8 +13,8 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
-DEPENDS += "qtbase"
+DEPENDS += "qtbase qtmultimedia"
 
 PACKAGECONFIG ?= "qml"
-PACKAGECONFIG[flite] = "-DFEATURE_flite=ON,-DFEATURE_flite=OFF,flite qtmultimedia"
+PACKAGECONFIG[flite] = "-DFEATURE_flite=ON,-DFEATURE_flite=OFF,flite"
 PACKAGECONFIG[qml] = ",,qtdeclarative qtdeclarative-native"
