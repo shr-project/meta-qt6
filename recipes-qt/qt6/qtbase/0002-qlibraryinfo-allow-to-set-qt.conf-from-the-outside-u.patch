@@ -1,4 +1,4 @@
-From bc9476229b98e567420e177a8ede27fd28451895 Mon Sep 17 00:00:00 2001
+From 1662965c5b1fd00fb61c3fc29833324999c0bfc2 Mon Sep 17 00:00:00 2001
 From: Holger Freyther <zecke@selfish.org>
 Date: Wed, 26 Sep 2012 17:22:30 +0200
 Subject: [PATCH] qlibraryinfo: allow to set qt.conf from the outside using the
@@ -15,15 +15,16 @@ Upstream-Status: Inappropriate [embedded specific]
 
 Change-Id: I41595c6ce7514e8f197d0a19a1308c9460037d1b
 Signed-off-by: Martin Jansa <Martin.Jansa@gmail.com>
+
 ---
  src/corelib/global/qlibraryinfo.cpp | 7 ++++++-
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/src/corelib/global/qlibraryinfo.cpp b/src/corelib/global/qlibraryinfo.cpp
-index a4764713c4..0fc456472d 100644
+index 715bda488c..3e9314be86 100644
 --- a/src/corelib/global/qlibraryinfo.cpp
 +++ b/src/corelib/global/qlibraryinfo.cpp
-@@ -126,7 +126,12 @@ static QSettings *findConfiguration()
+@@ -92,7 +92,12 @@ static QSettings *findConfiguration()
      if (QLibraryInfoPrivate::qtconfManualPath)
          return new QSettings(*QLibraryInfoPrivate::qtconfManualPath, QSettings::IniFormat);
  
