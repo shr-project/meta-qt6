@@ -13,6 +13,8 @@ INHERIT += "rm_work"
 # default to commercial Qt
 QT_EDITION = "commercial"
 
+LICENSE_FLAGS_ACCEPTED = "commercial_ffmpeg"
+
 # include commercial addons and enable Qt QML Compiler
 QT_COMMERCIAL_MODULES = "1"
 
