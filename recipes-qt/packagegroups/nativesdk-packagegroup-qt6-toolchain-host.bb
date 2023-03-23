@@ -18,5 +18,5 @@ FORLINUXHOST = " \
     nativesdk-cmake \
     nativesdk-ninja \
     nativesdk-perl-modules \
-    nativesdk-python3-html5lib \
+    ${@bb.utils.contains('BBFILE_COLLECTIONS', 'openembedded-layer', 'nativesdk-python3-html5lib', '', d)} \
 "
