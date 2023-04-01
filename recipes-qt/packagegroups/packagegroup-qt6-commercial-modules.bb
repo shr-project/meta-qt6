@@ -4,6 +4,7 @@ LICENSE = "MIT"
 PACKAGE_ARCH = "${MACHINE_ARCH}"
 
 inherit packagegroup
+include recipes-qt/qt6/qt6-commercial.inc
 
 PACKAGEGROUP_DISABLE_COMPLEMENTARY = "1"
 
