@@ -30,9 +30,6 @@ PACKAGECONFIG:class-nativesdk ?= ""
 PACKAGECONFIG[wayland-client] = "-DFEATURE_wayland_client=ON,-DFEATURE_wayland_client=OFF,"
 PACKAGECONFIG[wayland-server] = "-DFEATURE_wayland_server=ON,-DFEATURE_wayland_server=OFF,"
 
-PACKAGECONFIG[dmabuf-client-buffer] = "-DFEATURE_wayland_dmabuf_client_buffer=ON,-DFEATURE_wayland_dmabuf_client_buffer=OFF,libdrm"
-PACKAGECONFIG[dmabuf-server-buffer] = "-DFEATURE_wayland_dmabuf_server_buffer=ON,-DFEATURE_wayland_dmabuf_server_buffer=OFF,libdrm"
-
 DEPENDS += "qtbase qtdeclarative qtwayland-native wayland wayland-native"
 
 BBCLASSEXTEND = "native nativesdk"
