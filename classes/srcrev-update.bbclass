@@ -17,6 +17,7 @@ python do_srcrev_update() {
         return
 
     d.setVar("__BBSEENSRCREV", "1")
+    d.setVar("__BBSRCREV_SEEN", "1")
     for scm in scms:
         ud = urldata[scm]
         for name in ud.names:
