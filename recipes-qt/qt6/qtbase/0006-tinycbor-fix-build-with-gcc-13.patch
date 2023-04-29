@@ -1,0 +1,58 @@
+From 2cbc3f27f1613d2c8fb99436a23a7809dfcdf8e4 Mon Sep 17 00:00:00 2001
+From: Martin Jansa <Martin.Jansa@gmail.com>
+Date: Sat, 29 Apr 2023 13:01:56 +0200
+Subject: [PATCH] tinycbor: fix build with gcc-13
+
+* fixes:
+  http://errors.yoctoproject.org/Errors/Details/701753/
+
+qtbase/6.5.0-r0/git/tests/auto/corelib/serialization/qcborstreamwriter/../../../../../src/3rdparty/tinycbor/tests/encoder/data.cpp:242:90: error: invalid user-defined conversion from 'float' to 'const qfloat16&' [-fpermissive]
+  242 |     QTest::newRow("nan_f16") << raw("\xf9\x7e\0") << QVariant::fromValue<qfloat16>(myNaNf());
+      |                                                                                    ~~~~~~^~
+n file included from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtCore/qmetatype.h:14,
+                 from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtTest/qtestcase.h:11,
+                 from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtTest/qtest.h:13,
+                 from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtTest/QTest:1,
+                 from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/git/tests/auto/corelib/serialization/qcborstreamwriter/tst_qcborstreamwriter.cpp:4:
+TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtCore/qfloat16.h:81:22: note: candidate is: 'constexpr qfloat16::qfloat16(NativeType)' (near match)
+   81 |     constexpr inline qfloat16(NativeType f) : f(f) {}
+      |                      ^~~~~~~~
+TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtCore/qfloat16.h:81:22: note:   conversion of argument 1 would be ill-formed:
+TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/git/tests/auto/corelib/serialization/qcborstreamwriter/../../../../../src/3rdparty/tinycbor/tests/encoder/data.cpp:242:90: warning: converting to 'qfloat16::NativeType' {aka '_Float16'} from 'float' with greater conversion rank
+  242 |     QTest::newRow("nan_f16") << raw("\xf9\x7e\0") << QVariant::fromValue<qfloat16>(myNaNf());
+      |                                                                                    ~~~~~~^~
+TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/git/tests/auto/corelib/serialization/qcborstreamwriter/../../../../../src/3rdparty/tinycbor/tests/encoder/data.cpp:242:90: warning: converting to 'qfloat16::NativeType' {aka '_Float16'} from 'float' with greater conversion rank
+TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtCore/qfloat16.h:81:42: note:   initializing argument 1 of 'constexpr qfloat16::qfloat16(NativeType)'
+   81 |     constexpr inline qfloat16(NativeType f) : f(f) {}
+      |                               ~~~~~~~~~~~^
+In file included from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtCore/qmetaobject.h:9,
+                 from TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtTest/qtestcase.h:12:
+TOPDIR/tmp-glibc/work/core2-64-oe-linux/qtbase/6.5.0-r0/image/usr/include/QtCore/qvariant.h:435:43: note:   initializing argument 1 of 'static std::enable_if_t<(is_copy_constructible_v<T> && is_destructible_v<T>), QVariant> QVariant::fromValue(const T&) [with T = qfloat16; std::enable_if_t<(is_copy_constructible_v<T> && is_destructible_v<T>), QVariant> = QVariant]'
+  435 |     static inline auto fromValue(const T &value)
+      |                                  ~~~~~~~~~^~~~~
+
+Change-Id: I4876ebd8890eee883a0d1a2bef8cb7aec4fd0f2f
+Pick-to: 6.5
+---
+Upstream-Status: Submitted [https://codereview.qt-project.org/c/qt/qtbase/+/475132]
+
+ src/3rdparty/tinycbor/tests/encoder/data.cpp | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/src/3rdparty/tinycbor/tests/encoder/data.cpp b/src/3rdparty/tinycbor/tests/encoder/data.cpp
+index 6dca49d41c..2c902d85ee 100644
+--- a/src/3rdparty/tinycbor/tests/encoder/data.cpp
++++ b/src/3rdparty/tinycbor/tests/encoder/data.cpp
+@@ -239,9 +239,9 @@ void addFixedData()
+     QTest::newRow("0.f16") << raw("\xf9\0\0") << QVariant::fromValue(qfloat16(0));
+     QTest::newRow("-1.f16") << raw("\xf9\xbc\0") << QVariant::fromValue(qfloat16(-1));
+     QTest::newRow("1.5f16") << raw("\xf9\x3e\0") << QVariant::fromValue(qfloat16(1.5));
+-    QTest::newRow("nan_f16") << raw("\xf9\x7e\0") << QVariant::fromValue<qfloat16>(myNaNf());
+-    QTest::newRow("-inf_f16") << raw("\xf9\xfc\0") << QVariant::fromValue<qfloat16>(myNInff());
+-    QTest::newRow("+inf_f16") << raw("\xf9\x7c\0") << QVariant::fromValue<qfloat16>(myInff());
++    QTest::newRow("nan_f16") << raw("\xf9\x7e\0") << QVariant::fromValue<qfloat16>(qfloat16(myNaNf()));
++    QTest::newRow("-inf_f16") << raw("\xf9\xfc\0") << QVariant::fromValue<qfloat16>(qfloat16(myNInff()));
++    QTest::newRow("+inf_f16") << raw("\xf9\x7c\0") << QVariant::fromValue<qfloat16>(qfloat16(myInff()));
+ #endif
+ 
+     QTest::newRow("0.f") << raw("\xfa\0\0\0\0") << QVariant::fromValue(0.f);
