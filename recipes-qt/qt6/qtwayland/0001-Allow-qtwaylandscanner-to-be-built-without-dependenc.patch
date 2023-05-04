@@ -1,4 +1,4 @@
-From 2a4f01d115ce9a69a71ac8c028e1c9cae9db63b3 Mon Sep 17 00:00:00 2001
+From 00acaf097df33091c3158b01d68e1cc52f313d2f Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 29 Jan 2020 12:39:09 +0200
 Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
@@ -10,12 +10,12 @@ Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
  2 files changed, 1 insertion(+), 6 deletions(-)
 
 diff --git a/CMakeLists.txt b/CMakeLists.txt
-index 642afabb..08365f2d 100644
+index 6649dfcc..02f677b8 100644
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -21,11 +21,6 @@ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
-     BuildInternals
+@@ -18,11 +18,6 @@ find_package(Qt6 ${PROJECT_VERSION} CONFIG REQUIRED COMPONENTS
  )
+ qt_internal_project_setup()
  
 -if(NOT MACOS AND NOT QNX AND (ANDROID OR NOT LINUX))
 -    message(NOTICE "Skipping the build as the condition \"LINUX OR MACOS OR QNX\" is not met.")
@@ -26,10 +26,10 @@ index 642afabb..08365f2d 100644
      Core
  )
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 8e60f0ba..4b2639e3 100644
+index 0ac09b52..b1d6fe0c 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -3,7 +3,7 @@
+@@ -6,7 +6,7 @@
  qt_find_package(WaylandScanner PROVIDED_TARGETS Wayland::Scanner)
  qt_find_package(Wayland 1.15 PROVIDED_TARGETS Wayland::Client Wayland::Server)
  
