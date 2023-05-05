@@ -13,6 +13,10 @@ inherit qt6-cmake
 include recipes-qt/qt6/qt6-git.inc
 include recipes-qt/qt6/qt6.inc
 
+SRC_URI += "\
+    file://0001-Fix-warning-that-leads-to-yocto-build-issue.patch \
+"
+
 DEPENDS += "qtbase qtgrpc-native protobuf protobuf-native"
 
 PACKAGECONFIG[examples] = "-DQT_BUILD_EXAMPLES=ON,-DQT_BUILD_EXAMPLES=OFF,qtdeclarative qtdeclarative-native"
