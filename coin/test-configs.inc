@@ -1,6 +1,4 @@
 PREFERRED_PROVIDER_udev = "systemd"
-# use gold
-DISTRO_FEATURES:append = " ld-is-gold"
 # use systemd
 DISTRO_FEATURES:append = " systemd"
 DISTRO_FEATURES_BACKFILL_CONSIDERED = "sysvinit"
@@ -45,6 +43,7 @@ PACKAGECONFIG:append:pn-qtbase = "\
     tslib kms gbm zstd libproxy gssapi vulkan mtdev cups \
     sql-mysql sql-odbc sql-psql sql-sqlite journald brotli \
     ${@bb.utils.contains('DISTRO_FEATURES', 'x11', 'gtk', '', d)} \
+    use-gold-linker \
 "
 
 # imageformats mng FIXME
