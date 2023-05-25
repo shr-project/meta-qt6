@@ -71,6 +71,7 @@ PACKAGECONFIG_DEFAULT ?= "\
     icu \
     jpeg \
     libinput \
+    ${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', 'use-gold-linker', '', d)} \
     openssl  \
     png \
     udev \
@@ -96,6 +97,8 @@ PACKAGECONFIG[ltcg] = "-DCMAKE_INTERPROCEDURAL_OPTIMIZATION=ON,-DCMAKE_INTERPROC
 PACKAGECONFIG[optimize-size] = "-DFEATURE_optimize_size=ON,-DFEATURE_optimize_size=OFF"
 PACKAGECONFIG[static] = "-DBUILD_SHARED_LIBS=OFF,-DBUILD_SHARED_LIBS=ON"
 PACKAGECONFIG[developer-build] = "-DFEATURE_developer_build=ON,-DFEATURE_developer_build=OFF"
+PACKAGECONFIG[use-gold-linker] = "-DFEATURE_use_gold_linker=ON"
+PACKAGECONFIG[use-bfd-linker] = "-DFEATURE_use_bfd_linker=ON"
 
 PACKAGECONFIG[cups] = "-DFEATURE_cups=ON,-DFEATURE_cups=OFF,cups"
 PACKAGECONFIG[dbus] = "-DFEATURE_dbus=ON,-DFEATURE_dbus=OFF,dbus"
@@ -157,7 +160,6 @@ EXTRA_OECMAKE += "\
 EXTRA_OECMAKE:append:class-target = "\
     -DFEATURE_rpath=OFF \
     -DQT_QPA_DEFAULT_PLATFORM=${QT_QPA_DEFAULT_PLATFORM} \
-    ${@bb.utils.contains('DISTRO_FEATURES', 'ld-is-gold', '-DFEATURE_use_gold_linker=ON', '-DFEATURE_use_bfd_linker=ON', d)} \
 "
 
 EXTRA_OECMAKE:append:mingw32 = "\
