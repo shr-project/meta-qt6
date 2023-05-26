@@ -1,9 +1,10 @@
-From 00acaf097df33091c3158b01d68e1cc52f313d2f Mon Sep 17 00:00:00 2001
+From 481452adfddf754b1ffaca53f484c366edc5a3f5 Mon Sep 17 00:00:00 2001
 From: Samuli Piippo <samuli.piippo@qt.io>
 Date: Wed, 29 Jan 2020 12:39:09 +0200
 Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
 
 Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
+
 ---
  CMakeLists.txt     | 5 -----
  src/CMakeLists.txt | 2 +-
@@ -26,12 +27,12 @@ index 6649dfcc..02f677b8 100644
      Core
  )
 diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
-index 0ac09b52..b1d6fe0c 100644
+index c3219f9d..9886cb51 100644
 --- a/src/CMakeLists.txt
 +++ b/src/CMakeLists.txt
-@@ -6,7 +6,7 @@
- qt_find_package(WaylandScanner PROVIDED_TARGETS Wayland::Scanner)
- qt_find_package(Wayland 1.15 PROVIDED_TARGETS Wayland::Client Wayland::Server)
+@@ -20,7 +20,7 @@ endforeach()
+ 
+ qt_find_package(Wayland 1.15 PROVIDED_TARGETS ${wayland_libs})
  
 -if (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND)
 +if ((QT_FEATURE_wayland_server OR QT_FEATURE_wayland_client) AND (NOT WaylandScanner_FOUND OR NOT Wayland_FOUND))
