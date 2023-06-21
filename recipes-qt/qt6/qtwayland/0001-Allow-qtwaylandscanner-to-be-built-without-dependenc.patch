@@ -6,6 +6,8 @@ Subject: [PATCH] Allow qtwaylandscanner to be built without dependencies
 Change-Id: I15aa5fc5128fcd0925d5950596bd56710b5b81d4
 
 ---
+Upstream-Status: Pending
+
  CMakeLists.txt     | 5 -----
  src/CMakeLists.txt | 2 +-
  2 files changed, 1 insertion(+), 6 deletions(-)
