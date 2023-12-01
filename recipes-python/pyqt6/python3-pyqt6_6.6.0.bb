@@ -8,10 +8,7 @@ inherit pypi python3targetconfig python3-dir qt6-qmake qt6-paths
 
 PYPI_PACKAGE = "PyQt6"
 
-# Fix for QtSql module
-SRC_URI += "file://qt-6.6.patch"
-
-SRC_URI[sha256sum] = "bcbbf9511b038b4924298ca10999aa36eb37a0a38d0638f895f9bba6025c0a77"
+SRC_URI[sha256sum] = "d41512d66044c2df9c5f515a56a922170d68a37b3406ffddc8b4adc57181b576"
 
 S = "${WORKDIR}/PyQt6-${PV}"
 B = "${S}/build"
@@ -95,5 +92,11 @@ do_compile:append() {
 do_install:append() {
     sed -i "s,exec .*nativepython3,exec ${bindir}/python3," ${D}/${bindir}/*
 }
+
+# fix buildpaths warnings
+pyqt_fix_sources() {
+    find ${PKGD}/usr/src/debug/${PN} -type f -exec sed -i "s,\(${B}\|${S}\),/usr/src/debug/${PN}/${PV}-${PR},g" {} \;
+}
+PACKAGESPLITFUNCS:prepend = "pyqt_fix_sources"
 
 FILES:${PN} += "${PYTHON_SITEPACKAGES_DIR} ${OE_QMAKE_PATH_PLUGINS}"
